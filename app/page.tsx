@@ -2,102 +2,94 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <div className="min-h-screen bg-gradient-to-br from-neutral-50 via-white to-neutral-100 dark:from-neutral-900 dark:via-neutral-800 dark:to-neutral-900">
+      {/* Header */}
+      <header className="absolute top-0 left-0 right-0 p-6 sm:p-8">
+        <div className="flex justify-between items-center max-w-7xl mx-auto">
+          <div className="text-2xl font-bold text-neutral-800 dark:text-neutral-200">
+            Ta Da
+          </div>
+          <div className="text-sm text-neutral-600 dark:text-neutral-400">
+            Interior Design
+          </div>
+        </div>
+      </header>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+      {/* Main Content */}
+      <main className="flex flex-col items-center justify-center min-h-screen px-4 sm:px-6 lg:px-8">
+        <div className="text-center max-w-4xl mx-auto">
+          {/* Logo/Brand */}
+          <div className="mb-8">
+            <h1 className="text-6xl sm:text-7xl lg:text-8xl font-light text-neutral-800 dark:text-neutral-200 mb-4">
+              Ta Da
+            </h1>
+            <p className="text-xl sm:text-2xl text-neutral-600 dark:text-neutral-400 font-light tracking-wide">
+              Interior Design
+            </p>
+          </div>
+
+          {/* Under Construction Message */}
+          <div className="mb-12">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-light text-neutral-700 dark:text-neutral-300 mb-6">
+              Something Beautiful is Coming
+            </h2>
+            <p className="text-lg sm:text-xl text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto leading-relaxed">
+              We're crafting an extraordinary experience that will transform how you think about interior design. 
+              Our new website is under construction, but great things are worth the wait.
+            </p>
+          </div>
+
+          {/* Progress Indicator */}
+          <div className="mb-12">
+            <div className="w-full max-w-md mx-auto bg-neutral-200 dark:bg-neutral-700 rounded-full h-2 mb-4">
+              <div className="bg-gradient-to-r from-neutral-400 to-neutral-600 dark:from-neutral-500 dark:to-neutral-300 h-2 rounded-full transition-all duration-1000 ease-out" style={{width: '65%'}}></div>
+            </div>
+            <p className="text-sm text-neutral-500 dark:text-neutral-400">
+              We're 65% there
+            </p>
+          </div>
+
+          {/* Contact Information */}
+          <div className="space-y-4">
+            <p className="text-neutral-600 dark:text-neutral-400">
+              Ready to transform your space? Get in touch with us today.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <a 
+                href="mailto:hello@tadainteriordesign.com" 
+                className="inline-flex items-center gap-2 px-6 py-3 bg-neutral-800 dark:bg-neutral-200 text-white dark:text-neutral-800 rounded-full hover:bg-neutral-700 dark:hover:bg-neutral-300 transition-colors font-medium"
+              >
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                Get in Touch
+              </a>
+              <a 
+                href="tel:+1234567890" 
+                className="inline-flex items-center gap-2 px-6 py-3 border border-neutral-300 dark:border-neutral-600 text-neutral-700 dark:text-neutral-300 rounded-full hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors font-medium"
+              >
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                </svg>
+                Call Us
+              </a>
+            </div>
+          </div>
         </div>
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+
+      {/* Footer */}
+      <footer className="absolute bottom-0 left-0 right-0 p-6 sm:p-8">
+        <div className="flex justify-center items-center max-w-7xl mx-auto">
+          <p className="text-sm text-neutral-500 dark:text-neutral-400">
+            © 2024 Ta Da Interior Design. All rights reserved.
+          </p>
+        </div>
       </footer>
+
+      {/* Decorative Elements */}
+      <div className="absolute top-1/4 left-0 w-32 h-32 bg-gradient-to-br from-neutral-200/20 to-transparent rounded-full blur-3xl"></div>
+      <div className="absolute bottom-1/4 right-0 w-40 h-40 bg-gradient-to-tl from-neutral-300/20 to-transparent rounded-full blur-3xl"></div>
     </div>
   );
 }
