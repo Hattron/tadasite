@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-neutral-50 via-white to-neutral-100 dark:from-neutral-900 dark:via-neutral-800 dark:to-neutral-900">
@@ -34,7 +32,7 @@ export default function Home() {
               Something Beautiful is Coming
             </h2>
             <p className="text-lg sm:text-xl text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto leading-relaxed">
-              We're crafting an extraordinary experience that will transform how you think about interior design. 
+              We&apos;re crafting an extraordinary experience that will transform how you think about interior design. 
               Our new website is under construction, but great things are worth the wait.
             </p>
           </div>
@@ -45,7 +43,7 @@ export default function Home() {
               <div className="bg-gradient-to-r from-neutral-400 to-neutral-600 dark:from-neutral-500 dark:to-neutral-300 h-2 rounded-full transition-all duration-1000 ease-out" style={{width: '65%'}}></div>
             </div>
             <p className="text-sm text-neutral-500 dark:text-neutral-400">
-              We're 65% there
+              We&apos;re 65% there
             </p>
           </div>
 
