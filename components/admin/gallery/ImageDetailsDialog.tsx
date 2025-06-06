@@ -5,34 +5,16 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/u
 import { Label } from '@/components/ui/label';
 import { Move } from 'lucide-react';
 import { imagekitConfig } from '@/lib/imagekit';
-
-interface ImageData {
-  id: string;
-  imagekitUrl: string;
-  fileName: string;
-  originalName: string;
-  alt: string | null;
-  caption: string | null;
-  isHero: boolean;
-  folderId: string | null;
-  size: number;
-  width: number | null;
-  height: number | null;
-}
-
-interface FolderData {
-  id: string;
-  name: string;
-  description: string | null;
-  parentId: string | null;
-  sortOrder: number;
-}
+import { ImageData, FolderData } from './types';
 
 interface ImageDetailsDialogProps {
   selectedImage: ImageData | null;
   folders: FolderData[];
   onClose: () => void;
   onSetHero: (imageId: string) => void;
+  onSetResidentialCover?: (imageId: string) => void;
+  onSetCommercialCover?: (imageId: string) => void;
+  onSetProjectCover?: (imageId: string, projectId: string) => void;
   onMoveImage: (image: ImageData) => void;
   onDeleteImage: (imageId: string) => void;
 }
@@ -42,6 +24,9 @@ export default function ImageDetailsDialog({
   folders,
   onClose,
   onSetHero,
+  onSetResidentialCover,
+  onSetCommercialCover,
+  onSetProjectCover,
   onMoveImage,
   onDeleteImage
 }: ImageDetailsDialogProps) {
@@ -53,6 +38,9 @@ export default function ImageDetailsDialog({
   };
 
   if (!selectedImage) return null;
+
+  const currentFolder = selectedImage.folderId ? getFolderById(selectedImage.folderId) : null;
+  const isInProjectFolder = currentFolder?.folderType === 'project';
 
   return (
     <Dialog open={!!selectedImage} onOpenChange={onClose}>
@@ -109,14 +97,54 @@ export default function ImageDetailsDialog({
               </p>
             </div>
             
+            <div className="space-y-2">
+              <Label>Set as Cover Photo</Label>
+              <div className="flex flex-wrap gap-2">
+                <Button 
+                  onClick={() => onSetHero(selectedImage.id)}
+                  disabled={selectedImage.isHero}
+                  style={{ backgroundColor: 'var(--color-primary)' }}
+                  size="sm"
+                >
+                  {selectedImage.isHero ? 'Current Hero' : 'Set as Hero'}
+                </Button>
+                
+                {onSetResidentialCover && (
+                  <Button 
+                    onClick={() => onSetResidentialCover(selectedImage.id)}
+                    disabled={selectedImage.isResidentialCover}
+                    variant="outline"
+                    size="sm"
+                  >
+                    {selectedImage.isResidentialCover ? 'Current Residential Cover' : 'Residential Cover'}
+                  </Button>
+                )}
+                
+                {onSetCommercialCover && (
+                  <Button 
+                    onClick={() => onSetCommercialCover(selectedImage.id)}
+                    disabled={selectedImage.isCommercialCover}
+                    variant="outline"
+                    size="sm"
+                  >
+                    {selectedImage.isCommercialCover ? 'Current Commercial Cover' : 'Commercial Cover'}
+                  </Button>
+                )}
+                
+                {isInProjectFolder && onSetProjectCover && currentFolder && (
+                  <Button 
+                    onClick={() => onSetProjectCover(selectedImage.id, currentFolder.id)}
+                    disabled={selectedImage.isProjectCover}
+                    variant="outline"
+                    size="sm"
+                  >
+                    {selectedImage.isProjectCover ? 'Current Project Cover' : 'Project Cover'}
+                  </Button>
+                )}
+              </div>
+            </div>
+            
             <div className="flex gap-2">
-              <Button 
-                onClick={() => onSetHero(selectedImage.id)}
-                disabled={selectedImage.isHero}
-                style={{ backgroundColor: 'var(--color-primary)' }}
-              >
-                {selectedImage.isHero ? 'Current Hero' : 'Set as Hero'}
-              </Button>
               <Button 
                 variant="outline"
                 onClick={() => onMoveImage(selectedImage)}

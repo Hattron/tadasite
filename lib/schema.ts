@@ -16,6 +16,7 @@ export const tadaImageFolders = pgTable('tada_image_folders', {
   name: varchar('name', { length: 100 }).notNull(),
   description: text('description'),
   parentId: varchar('parent_id', { length: 50 }),
+  folderType: varchar('folder_type', { length: 50 }).default('project'), // 'hero', 'residential', 'commercial', 'project'
   sortOrder: integer('sort_order').notNull().default(0),
   createdAt: timestamp('created_at').notNull().defaultNow(),
   updatedAt: timestamp('updated_at').notNull().defaultNow(),
@@ -35,6 +36,9 @@ export const tadaImages = pgTable('tada_images', {
   alt: text('alt'),
   caption: text('caption'),
   isHero: boolean('is_hero').notNull().default(false),
+  isResidentialCover: boolean('is_residential_cover').notNull().default(false),
+  isCommercialCover: boolean('is_commercial_cover').notNull().default(false),
+  isProjectCover: boolean('is_project_cover').notNull().default(false),
   sortOrder: integer('sort_order').notNull().default(0),
   createdAt: timestamp('created_at').notNull().defaultNow(),
   updatedAt: timestamp('updated_at').notNull().defaultNow(),

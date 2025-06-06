@@ -6,28 +6,7 @@ import { Badge } from '@/components/ui/badge';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Move } from 'lucide-react';
 import { imagekitConfig } from '@/lib/imagekit';
-
-interface ImageData {
-  id: string;
-  imagekitUrl: string;
-  fileName: string;
-  originalName: string;
-  alt: string | null;
-  caption: string | null;
-  isHero: boolean;
-  folderId: string | null;
-  size: number;
-  width: number | null;
-  height: number | null;
-}
-
-interface FolderData {
-  id: string;
-  name: string;
-  description: string | null;
-  parentId: string | null;
-  sortOrder: number;
-}
+import { ImageData, FolderData } from './types';
 
 interface ImageGridProps {
   images: ImageData[];
@@ -82,14 +61,40 @@ export default function ImageGrid({
                     }}
                   />
                   
-                  {image.isHero && (
-                    <Badge 
-                      className="absolute top-2 left-2"
-                      style={{ backgroundColor: 'var(--color-accent)' }}
-                    >
-                      Hero
-                    </Badge>
-                  )}
+                  <div className="absolute top-2 left-2 flex flex-col gap-1">
+                    {image.isHero && (
+                      <Badge 
+                        className="text-xs"
+                        style={{ backgroundColor: 'var(--color-accent)' }}
+                      >
+                        Hero
+                      </Badge>
+                    )}
+                    {image.isResidentialCover && (
+                      <Badge 
+                        className="text-xs"
+                        variant="secondary"
+                      >
+                        Residential
+                      </Badge>
+                    )}
+                    {image.isCommercialCover && (
+                      <Badge 
+                        className="text-xs"
+                        variant="secondary"
+                      >
+                        Commercial
+                      </Badge>
+                    )}
+                    {image.isProjectCover && (
+                      <Badge 
+                        className="text-xs"
+                        variant="outline"
+                      >
+                        Project Cover
+                      </Badge>
+                    )}
+                  </div>
 
                   {/* Move button */}
                   <Button

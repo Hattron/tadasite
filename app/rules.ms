@@ -1,8 +1,3 @@
----
-description: 
-globs: 
-alwaysApply: true
----
 DO NOT USE DARKENING OVERLAYS UNLESS TOLD TO DO SO EXPLICITLY
 
 This is using tailwind v4, always use shadcn when it makes sense. this is next js 15 app router. 

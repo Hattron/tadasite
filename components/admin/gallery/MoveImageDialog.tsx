@@ -4,35 +4,14 @@ import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-
-interface ImageData {
-  id: string;
-  imagekitUrl: string;
-  fileName: string;
-  originalName: string;
-  alt: string | null;
-  caption: string | null;
-  isHero: boolean;
-  folderId: string | null;
-  size: number;
-  width: number | null;
-  height: number | null;
-}
-
-interface FolderData {
-  id: string;
-  name: string;
-  description: string | null;
-  parentId: string | null;
-  sortOrder: number;
-}
+import { ImageData, FolderData } from './types';
 
 interface MoveImageDialogProps {
   movingImage: ImageData | null;
   folders: FolderData[];
   isOpen: boolean;
   onClose: () => void;
-  onMoveImage: (e: React.FormEvent<HTMLFormElement>) => void;
+  onMoveImage: (imageId: string, folderId: string | null) => void;
 }
 
 export default function MoveImageDialog({
@@ -44,6 +23,16 @@ export default function MoveImageDialog({
 }: MoveImageDialogProps) {
   const getFolderById = (id: string) => folders.find(f => f.id === id);
 
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!movingImage) return;
+
+    const formData = new FormData(e.currentTarget);
+    const targetFolderId = formData.get('targetFolder') as string;
+    
+    onMoveImage(movingImage.id, targetFolderId);
+  };
+
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent>
@@ -51,7 +40,7 @@ export default function MoveImageDialog({
           <DialogTitle>Move Image</DialogTitle>
         </DialogHeader>
         {movingImage && (
-          <form onSubmit={onMoveImage} className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-4">
             <div>
               <Label>Moving: {movingImage.originalName}</Label>
             </div>
@@ -62,8 +51,9 @@ export default function MoveImageDialog({
                   <SelectValue placeholder="Select destination folder" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">All Images (No Folder)</SelectItem>
-                  {folders.map(folder => (
+                  {folders
+                    .filter(folder => folder.folderType === 'project' || folder.folderType === 'hero')
+                    .map(folder => (
                     <SelectItem key={folder.id} value={folder.id}>
                       {folder.parentId ? `${getFolderById(folder.parentId)?.name} / ${folder.name}` : folder.name}
                     </SelectItem>

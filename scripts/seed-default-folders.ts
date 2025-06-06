@@ -33,8 +33,8 @@ async function seedDefaultFolders() {
       },
       {
         id: 'folder_retail',
-        name: 'Retail',
-        description: 'Retail project images',
+        name: 'Residential',
+        description: 'Residential project images',
         parentId: null,
         sortOrder: 2,
       },

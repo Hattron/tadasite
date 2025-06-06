@@ -1,8 +1,40 @@
 import HeroSection from '@/components/HeroSection';
+import Link from 'next/link';
 
 export default function Home() {
   return (
     <>
+      {/* Simple Navigation */}
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-sm border-b border-gray-200">
+        <div className="max-w-7xl mx-auto px-8 py-4">
+          <div className="flex items-center justify-between">
+            <Link 
+              href="/"
+              className="text-xl font-bold"
+              style={{ color: 'var(--color-primary)' }}
+            >
+              Tada Interior Design
+            </Link>
+            <div className="flex items-center gap-6">
+              <Link 
+                href="/gallery"
+                className="font-medium hover:underline transition-colors"
+                style={{ color: 'var(--color-text)' }}
+              >
+                Gallery
+              </Link>
+              <a 
+                href="mailto:hello@tadainteriordesign.com"
+                className="font-medium hover:underline transition-colors"
+                style={{ color: 'var(--color-text)' }}
+              >
+                Contact
+              </a>
+            </div>
+          </div>
+        </div>
+      </nav>
+
       <HeroSection />
       
       {/* Additional content sections can go here */}
@@ -27,6 +59,21 @@ export default function Home() {
             Our team of expert interior designers specializes in creating stunning, 
             functional spaces that reflect your unique style and personality.
           </p>
+          
+          {/* Gallery Link */}
+          <div className="mb-8">
+            <Link 
+              href="/gallery"
+              className="inline-flex items-center gap-2 rounded-full transition-all font-medium px-6 py-3 mr-4"
+              style={{
+                backgroundColor: 'var(--color-secondary)',
+                color: 'white',
+                fontFamily: 'var(--font-secondary)'
+              }}
+            >
+              View Our Portfolio
+            </Link>
+          </div>
           
           {/* Contact Information */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">

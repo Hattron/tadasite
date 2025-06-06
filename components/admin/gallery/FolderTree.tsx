@@ -4,20 +4,8 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { FolderPlus, Folder, FolderOpen, Trash2, Edit2, Plus } from 'lucide-react';
-
-interface FolderData {
-  id: string;
-  name: string;
-  description: string | null;
-  parentId: string | null;
-  sortOrder: number;
-}
-
-interface ImageData {
-  id: string;
-  folderId: string | null;
-}
+import { Folder, FolderOpen, Trash2, Edit2, Plus } from 'lucide-react';
+import { FolderData, ImageData } from './types';
 
 interface FolderTreeProps {
   folders: FolderData[];
@@ -39,12 +27,26 @@ export default function FolderTree({
   onDeleteFolder
 }: FolderTreeProps) {
   // Helper functions
-  const getFolderById = (id: string) => folders.find(f => f.id === id);
   const getSubfolders = (parentId: string | null) => folders.filter(f => f.parentId === parentId);
   const getMainFolders = () => folders.filter(f => !f.parentId);
-  const canCreateSubfolder = (folderId: string) => {
-    const folder = getFolderById(folderId);
-    return folder && (folder.name === 'Retail' || folder.name === 'Commercial');
+  
+  const canCreateSubfolder = (folder: FolderData) => {
+    // Only Residential and Commercial can have new projects created under them
+    return folder.folderType === 'residential' || folder.folderType === 'commercial';
+  };
+  
+  const canEditFolder = (folder: FolderData) => {
+    // Only project folders can be edited
+    return folder.folderType === 'project';
+  };
+  
+  const canDeleteFolder = (folder: FolderData) => {
+    // Only project folders can be deleted
+    return folder.folderType === 'project';
+  };
+
+  const isSystemFolder = (folder: FolderData) => {
+    return ['hero', 'residential', 'commercial'].includes(folder.folderType);
   };
 
   return (
@@ -53,9 +55,6 @@ export default function FolderTree({
         <CardTitle style={{ color: 'var(--color-primary)' }}>
           Folders
         </CardTitle>
-        <Button size="sm" variant="outline" onClick={onCreateFolder}>
-          <FolderPlus className="h-4 w-4" />
-        </Button>
       </CardHeader>
       <CardContent>
         <ScrollArea className="h-64">
@@ -79,14 +78,23 @@ export default function FolderTree({
                     ) : (
                       <Folder className="h-4 w-4" />
                     )}
-                    <span className="text-sm flex-1">{folder.name}</span>
+                    <span className="text-sm flex-1 font-medium">
+                      {folder.name}
+                      {isSystemFolder(folder) && (
+                        <span className="ml-2 text-xs opacity-60">(System)</span>
+                      )}
+                    </span>
                     <Badge variant="secondary">{imagesCount}</Badge>
+                    
+                    {/* Action Buttons */}
                     <div className="flex gap-1">
-                      {canCreateSubfolder(folder.id) && (
+                      {/* Create Project Button - Only for Residential and Commercial */}
+                      {canCreateSubfolder(folder) && (
                         <Button
                           size="sm"
                           variant="ghost"
                           className="h-6 w-6 p-0"
+                          title="Create Project"
                           onClick={(e) => {
                             e.stopPropagation();
                             onCreateFolder();
@@ -95,22 +103,30 @@ export default function FolderTree({
                           <Plus className="h-3 w-3" />
                         </Button>
                       )}
-                      <Button
-                        size="sm"
-                        variant="ghost"
-                        className="h-6 w-6 p-0"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          onEditFolder(folder);
-                        }}
-                      >
-                        <Edit2 className="h-3 w-3" />
-                      </Button>
-                      {!['Main', 'Retail', 'Commercial'].includes(folder.name) && (
+                      
+                      {/* Edit Button - Only for Project folders */}
+                      {canEditFolder(folder) && (
+                        <Button
+                          size="sm"
+                          variant="ghost"
+                          className="h-6 w-6 p-0"
+                          title="Edit Project"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            onEditFolder(folder);
+                          }}
+                        >
+                          <Edit2 className="h-3 w-3" />
+                        </Button>
+                      )}
+                      
+                      {/* Delete Button - Only for Project folders */}
+                      {canDeleteFolder(folder) && (
                         <Button
                           size="sm"
                           variant="ghost"
                           className="h-6 w-6 p-0 text-red-500"
+                          title="Delete Project"
                           onClick={(e) => {
                             e.stopPropagation();
                             onDeleteFolder(folder.id);
@@ -122,7 +138,7 @@ export default function FolderTree({
                     </div>
                   </div>
                   
-                  {/* Subfolders */}
+                  {/* Subfolders (Projects) */}
                   {subfolders.map(subfolder => {
                     const subImages = images.filter(img => img.folderId === subfolder.id).length;
                     const isSubSelected = selectedFolder === subfolder.id;
@@ -138,29 +154,37 @@ export default function FolderTree({
                         <Folder className="h-4 w-4" />
                         <span className="text-sm flex-1">{subfolder.name}</span>
                         <Badge variant="secondary">{subImages}</Badge>
+                        
+                        {/* Project Actions - Edit and Delete only */}
                         <div className="flex gap-1">
-                          <Button
-                            size="sm"
-                            variant="ghost"
-                            className="h-6 w-6 p-0"
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              onEditFolder(subfolder);
-                            }}
-                          >
-                            <Edit2 className="h-3 w-3" />
-                          </Button>
-                          <Button
-                            size="sm"
-                            variant="ghost"
-                            className="h-6 w-6 p-0 text-red-500"
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              onDeleteFolder(subfolder.id);
-                            }}
-                          >
-                            <Trash2 className="h-3 w-3" />
-                          </Button>
+                          {canEditFolder(subfolder) && (
+                            <Button
+                              size="sm"
+                              variant="ghost"
+                              className="h-6 w-6 p-0"
+                              title="Edit Project"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                onEditFolder(subfolder);
+                              }}
+                            >
+                              <Edit2 className="h-3 w-3" />
+                            </Button>
+                          )}
+                          {canDeleteFolder(subfolder) && (
+                            <Button
+                              size="sm"
+                              variant="ghost"
+                              className="h-6 w-6 p-0 text-red-500"
+                              title="Delete Project"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                onDeleteFolder(subfolder.id);
+                              }}
+                            >
+                              <Trash2 className="h-3 w-3" />
+                            </Button>
+                          )}
                         </div>
                       </div>
                     );
@@ -170,6 +194,13 @@ export default function FolderTree({
             })}
           </div>
         </ScrollArea>
+        
+        {/* Instructions for creating projects */}
+        <div className="mt-4 p-3 bg-blue-50 rounded-lg">
+          <p className="text-xs text-blue-700">
+            <strong>Create Projects:</strong> Click the + button next to Residential or Commercial folders to create new projects.
+          </p>
+        </div>
       </CardContent>
     </Card>
   );

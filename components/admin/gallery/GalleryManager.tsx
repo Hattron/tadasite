@@ -6,6 +6,9 @@ import {
   getAllImages, 
   getAllFolders, 
   setHeroImage, 
+  setResidentialCoverImage,
+  setCommercialCoverImage,
+  setProjectCoverImage,
   createFolder, 
   deleteFolder, 
   moveImageToFolder,
@@ -19,28 +22,7 @@ import ImageGrid from './ImageGrid';
 import FolderDialogs from './FolderDialogs';
 import ImageDetailsDialog from './ImageDetailsDialog';
 import MoveImageDialog from './MoveImageDialog';
-
-interface ImageData {
-  id: string;
-  imagekitUrl: string;
-  fileName: string;
-  originalName: string;
-  alt: string | null;
-  caption: string | null;
-  isHero: boolean;
-  folderId: string | null;
-  size: number;
-  width: number | null;
-  height: number | null;
-}
-
-interface FolderData {
-  id: string;
-  name: string;
-  description: string | null;
-  parentId: string | null;
-  sortOrder: number;
-}
+import { ImageData, FolderData } from './types';
 
 export default function GalleryManager() {
   // Data states
@@ -68,8 +50,8 @@ export default function GalleryManager() {
   // Set default folder when folders are loaded
   useEffect(() => {
     if (folders.length > 0 && selectedFolder === null) {
-      const mainFolder = folders.find(f => f.name === 'Main');
-      setSelectedFolder(mainFolder?.id || folders[0]?.id || null);
+      const heroFolder = folders.find(f => f.folderType === 'hero');
+      setSelectedFolder(heroFolder?.id || folders[0]?.id || null);
     }
   }, [folders, selectedFolder]);
 
@@ -119,6 +101,7 @@ export default function GalleryManager() {
       (e.target as HTMLFormElement).reset();
     } catch (error) {
       console.error('Upload failed:', error);
+      alert(error instanceof Error ? error.message : 'Upload failed');
     } finally {
       setIsUploading(false);
       setUploadProgress(0);
@@ -133,19 +116,49 @@ export default function GalleryManager() {
     const description = formData.get('description') as string;
     const parentId = formData.get('parentId') as string;
 
+    // Validate that a parent is selected
+    if (!parentId) {
+      alert('Please select a section (Residential or Commercial) for this project.');
+      return;
+    }
+
+    // Validate parent is allowed
+    const parentFolder = folders.find(f => f.id === parentId);
+    if (!parentFolder || (parentFolder.folderType !== 'residential' && parentFolder.folderType !== 'commercial')) {
+      alert('Projects can only be created under Residential or Commercial sections.');
+      return;
+    }
+
     try {
-      await createFolder(name, description, parentId || undefined);
+      await createFolder(name, description, parentId);
       await loadData();
       setIsCreateFolderOpen(false);
       (e.target as HTMLFormElement).reset();
     } catch (error) {
-      console.error('Failed to create folder:', error);
+      console.error('Failed to create project:', error);
+      alert(error instanceof Error ? error.message : 'Failed to create project');
     }
+  };
+
+  const handleEditFolderClick = (folder: FolderData) => {
+    // Only allow editing project folders
+    if (folder.folderType !== 'project') {
+      alert('System folders cannot be edited.');
+      return;
+    }
+    setEditingFolder(folder);
+    setIsEditFolderOpen(true);
   };
 
   const handleEditFolder = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!editingFolder) return;
+
+    // Double check that we're only editing project folders
+    if (editingFolder.folderType !== 'project') {
+      alert('System folders cannot be edited.');
+      return;
+    }
 
     const formData = new FormData(e.currentTarget);
     const name = formData.get('name') as string;
@@ -157,68 +170,80 @@ export default function GalleryManager() {
       setIsEditFolderOpen(false);
       setEditingFolder(null);
     } catch (error) {
-      console.error('Failed to update folder:', error);
+      console.error('Failed to update project:', error);
+      alert(error instanceof Error ? error.message : 'Failed to update project');
     }
   };
 
   const handleDeleteFolder = async (folderId: string) => {
-    if (!confirm('Are you sure you want to delete this folder?')) return;
+    const folder = folders.find(f => f.id === folderId);
+    if (!folder) return;
+
+    // Prevent deletion of system folders
+    if (folder.folderType !== 'project') {
+      alert('System folders cannot be deleted.');
+      return;
+    }
+
+    if (!confirm(`Are you sure you want to delete the project "${folder.name}"?`)) return;
 
     try {
       await deleteFolder(folderId);
       await loadData();
+      
+      // If the deleted folder was selected, reset selection
       if (selectedFolder === folderId) {
         setSelectedFolder(null);
       }
     } catch (error) {
-      console.error('Failed to delete folder:', error);
-      alert(error instanceof Error ? error.message : 'Failed to delete folder');
+      console.error('Failed to delete project:', error);
+      alert(error instanceof Error ? error.message : 'Failed to delete project');
     }
   };
 
   // Image management handlers
-  const handleMoveImage = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (!movingImage) return;
-
-    const formData = new FormData(e.currentTarget);
-    const targetFolderId = formData.get('targetFolder') as string;
-
-    try {
-      await moveImageToFolder(movingImage.id, targetFolderId || null);
-      await loadData();
-      setIsMoveImageOpen(false);
-      setMovingImage(null);
-    } catch (error) {
-      console.error('Failed to move image:', error);
-    }
-  };
-
   const handleSetHero = async (imageId: string) => {
     try {
       await setHeroImage(imageId);
       await loadData();
+      setSelectedImage(null);
     } catch (error) {
       console.error('Failed to set hero image:', error);
+      alert(error instanceof Error ? error.message : 'Failed to set hero image');
     }
   };
 
-  const handleDeleteImage = async (imageId: string) => {
-    if (!confirm('Are you sure you want to delete this image?')) return;
-    
+  const handleSetResidentialCover = async (imageId: string) => {
     try {
-      await deleteImage(imageId);
+      await setResidentialCoverImage(imageId);
       await loadData();
       setSelectedImage(null);
     } catch (error) {
-      console.error('Failed to delete image:', error);
+      console.error('Failed to set residential cover image:', error);
+      alert(error instanceof Error ? error.message : 'Failed to set residential cover image');
     }
   };
 
-  // Dialog handlers
-  const handleEditFolderClick = (folder: FolderData) => {
-    setEditingFolder(folder);
-    setIsEditFolderOpen(true);
+  const handleSetCommercialCover = async (imageId: string) => {
+    try {
+      await setCommercialCoverImage(imageId);
+      await loadData();
+      setSelectedImage(null);
+    } catch (error) {
+      console.error('Failed to set commercial cover image:', error);
+      alert(error instanceof Error ? error.message : 'Failed to set commercial cover image');
+    }
+  };
+
+  const handleSetProjectCover = async (imageId: string, projectId: string) => {
+    try {
+      await setProjectCoverImage(imageId, projectId);
+      await loadData();
+      setSelectedImage(null);
+    } catch (error) {
+      console.error('Failed to set project cover image:', error);
+      alert(error instanceof Error ? error.message : 'Failed to set project cover image');
+    }
   };
 
   const handleMoveImageClick = (image: ImageData) => {
@@ -226,12 +251,33 @@ export default function GalleryManager() {
     setIsMoveImageOpen(true);
   };
 
+  const handleMoveImage = async (imageId: string, folderId: string | null) => {
+    try {
+      await moveImageToFolder(imageId, folderId);
+      await loadData();
+      setIsMoveImageOpen(false);
+      setMovingImage(null);
+    } catch (error) {
+      console.error('Failed to move image:', error);
+      alert(error instanceof Error ? error.message : 'Failed to move image');
+    }
+  };
+
+  const handleDeleteImage = async (imageId: string) => {
+    if (!confirm('Are you sure you want to delete this image?')) return;
+
+    try {
+      await deleteImage(imageId);
+      await loadData();
+      setSelectedImage(null);
+    } catch (error) {
+      console.error('Failed to delete image:', error);
+      alert(error instanceof Error ? error.message : 'Failed to delete image');
+    }
+  };
+
   if (isLoading) {
-    return (
-      <div className="flex items-center justify-center py-12">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2" style={{ borderColor: 'var(--color-primary)' }}></div>
-      </div>
-    );
+    return <div className="p-8 text-center">Loading gallery...</div>;
   }
 
   return (
@@ -285,6 +331,9 @@ export default function GalleryManager() {
         folders={folders}
         onClose={() => setSelectedImage(null)}
         onSetHero={handleSetHero}
+        onSetResidentialCover={handleSetResidentialCover}
+        onSetCommercialCover={handleSetCommercialCover}
+        onSetProjectCover={handleSetProjectCover}
         onMoveImage={handleMoveImageClick}
         onDeleteImage={handleDeleteImage}
       />

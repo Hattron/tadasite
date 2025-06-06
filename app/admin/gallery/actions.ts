@@ -1,7 +1,7 @@
 'use server';
 
 import { db } from '@/lib/db';
-import { tadaImages } from '@/lib/schema';
+import { tadaImages, tadaImageFolders } from '@/lib/schema';
 import { imagekit } from '@/lib/imagekit';
 import { eq } from 'drizzle-orm';
 import { revalidatePath } from 'next/cache';
@@ -15,6 +15,23 @@ export async function uploadImageToImageKit(formData: FormData) {
 
     if (!file) {
       throw new Error('No file provided');
+    }
+
+    // Check if target folder allows direct image uploads
+    if (folderId) {
+      const folder = await db
+        .select()
+        .from(tadaImageFolders)
+        .where(eq(tadaImageFolders.id, folderId))
+        .limit(1);
+
+      if (folder.length > 0) {
+        const targetFolder = folder[0];
+        // Prevent uploading images to residential/commercial folders directly
+        if (targetFolder.folderType === 'residential' || targetFolder.folderType === 'commercial') {
+          throw new Error('Images cannot be uploaded directly to section folders. Please select a project folder or create a new project.');
+        }
+      }
     }
 
     if (!imagekit) {
@@ -54,33 +71,39 @@ export async function uploadImageToImageKit(formData: FormData) {
     return { success: true, imageId, url: uploadResponse.url };
   } catch (error) {
     console.error('Error uploading image:', error);
-    throw new Error('Failed to upload image');
+    throw new Error(error instanceof Error ? error.message : 'Failed to upload image');
   }
 }
 
 export async function deleteImage(imageId: string) {
   try {
     // Get image details first
-    const image = await db
-      .select()
+    const images = await db
+      .select({
+        imagekitFileId: tadaImages.imagekitFileId,
+      })
       .from(tadaImages)
       .where(eq(tadaImages.id, imageId))
       .limit(1);
 
-    if (image.length === 0) {
+    if (images.length === 0) {
       throw new Error('Image not found');
     }
 
+    const image = images[0];
+
     // Delete from ImageKit
-    if (!imagekit) {
-      throw new Error('ImageKit not initialized on server');
+    if (imagekit && image.imagekitFileId) {
+      try {
+        await imagekit.deleteFile(image.imagekitFileId);
+      } catch (error) {
+        console.error('Error deleting from ImageKit:', error);
+        // Continue with database deletion even if ImageKit deletion fails
+      }
     }
-    await imagekit.deleteFile(image[0].imagekitFileId);
 
     // Delete from database
-    await db
-      .delete(tadaImages)
-      .where(eq(tadaImages.id, imageId));
+    await db.delete(tadaImages).where(eq(tadaImages.id, imageId));
 
     revalidatePath('/admin');
     return { success: true };
