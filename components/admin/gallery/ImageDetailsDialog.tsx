@@ -56,22 +56,22 @@ export default function ImageDetailsDialog({
 
   return (
     <Dialog open={!!selectedImage} onOpenChange={onClose}>
-      <DialogContent className="max-w-2xl">
+      <DialogContent className="max-w-[90vw] max-h-[90vh] overflow-y-auto w-full sm:max-w-[90vw]">
         <DialogHeader>
           <DialogTitle>Image Details</DialogTitle>
         </DialogHeader>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div>
+          <div className="flex-shrink-0">
             <img
               src={`${imagekitConfig.urlEndpoint}${getImagePath(selectedImage.imagekitUrl)}?tr=w-400,q-90`}
               alt={selectedImage.alt || 'Selected image'}
-              className="w-full rounded-lg"
+              className="w-full rounded-lg max-h-[60vh] object-contain"
             />
           </div>
           <div className="space-y-4">
             <div>
               <Label>File Name</Label>
-              <p className="text-sm text-muted-foreground">{selectedImage.fileName}</p>
+              <p className="text-sm text-muted-foreground">{selectedImage.originalName}</p>
             </div>
             <div>
               <Label>Folder</Label>

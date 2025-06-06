@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { updateCssVariable, getCssVariablesFromDb } from '../actions';
+import { updateCssVariable, getCssVariablesFromDb } from '@/app/admin/actions';
 import TypographySettings from './TypographySettings';
 import ColorPaletteSettings from './ColorPaletteSettings';
 import SaveButton from './SaveButton';

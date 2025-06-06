@@ -2,9 +2,8 @@
 
 import { Separator } from '@/components/ui/separator';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import GalleryManager from '@/app/admin/components/GalleryManager';
+import { GalleryManager, StyleSettings } from '@/components/admin';
 import { ImageKitProvider } from '@/components/ImageKitProvider';
-import StyleSettings from './components/StyleSettings';
 
 export default function AdminPage() {
   return (
