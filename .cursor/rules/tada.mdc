@@ -1,0 +1,26 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+This is using tailwind v4, always use shadcn when it makes sense. this is next js 15 app router. 
+I want to use drizzle kit, neon, and netlify. I have the netlify cli installed
+all tables for this project will start with "tada_"
+Use css variables for font, colors, and spacing with tailwind
+use server actions instead of api routes whenever possible
+routes should be modular with their own folder for components and serveractions. components that will be reused by the whole site should be stored in a main components folder.
+
+shadcn is now shadcn not shadcn-ui
+
+beware -  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+
+## CSS Variables System
+- Database-driven CSS variables stored in `tada_css_variables` table (Drizzle + Neon)
+- Variables loaded in layout.tsx before page render and injected into :root
+- Fallback system: database values override defaults in `lib/css-variables.ts`
+- Default primary font: Quicksand (with fallbacks if DB unavailable)
+- Categories: typography, colors, spacing
+- Use `var(--variable-name)` in styles, always with fallbacks
+- Seeding script available: `npm run db:seed`
+
+- CSS variables should be used in inline styles or style props, not just classes 
