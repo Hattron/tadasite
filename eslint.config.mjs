@@ -14,6 +14,8 @@ const eslintConfig = [
   {
     rules: {
       "@typescript-eslint/no-unused-vars": "warn",
+      // Disable img element warnings since we're using ImageKit for optimization
+      "@next/next/no-img-element": "off",
     },
   },
 ];

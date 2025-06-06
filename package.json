@@ -11,12 +11,16 @@
     "db:migrate": "drizzle-kit migrate",
     "db:push": "drizzle-kit push",
     "db:studio": "drizzle-kit studio",
-    "db:seed": "tsx scripts/seed-css-variables.ts"
+    "db:seed": "tsx scripts/seed-css-variables.ts",
+    "db:seed-folders": "tsx scripts/seed-default-folders.ts"
   },
   "dependencies": {
     "@imagekit/next": "^2.1.2",
     "@neondatabase/serverless": "^1.0.1",
+    "@radix-ui/react-dialog": "^1.1.14",
     "@radix-ui/react-label": "^2.1.7",
+    "@radix-ui/react-progress": "^1.1.7",
+    "@radix-ui/react-scroll-area": "^1.2.9",
     "@radix-ui/react-select": "^2.2.5",
     "@radix-ui/react-separator": "^1.1.7",
     "@radix-ui/react-slot": "^1.2.3",
@@ -26,10 +30,12 @@
     "dotenv": "^16.5.0",
     "drizzle-kit": "^0.31.1",
     "drizzle-orm": "^0.44.2",
+    "imagekit": "^6.0.0",
     "lucide-react": "^0.513.0",
     "next": "15.3.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-scroll-parallax": "^3.4.5",
     "tailwind-merge": "^3.3.0"
   },
   "devDependencies": {

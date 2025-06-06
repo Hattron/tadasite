@@ -1,7 +1,10 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  // Disable Next.js Image optimization since we're using ImageKit
+  images: {
+    unoptimized: true,
+  },
 };
 
 export default nextConfig;

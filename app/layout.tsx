@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Quicksand, Inter } from "next/font/google";
 import "./globals.css";
 import { getCssVariables, cssVariablesToString } from "@/lib/css-variables";
+import { ParallaxProvider } from "@/components/ParallaxProvider";
 
 const quicksand = Quicksand({
   variable: "--font-quicksand",
@@ -46,7 +47,9 @@ ${cssVariablesToString(cssVariables)}
           color: 'var(--color-text)',
         }}
       >
-        {children}
+        <ParallaxProvider>
+          {children}
+        </ParallaxProvider>
       </body>
     </html>
   );

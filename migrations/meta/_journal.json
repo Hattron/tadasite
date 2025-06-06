@@ -8,6 +8,13 @@
       "when": 1749218902253,
       "tag": "0000_loose_jamie_braddock",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1749229146565,
+      "tag": "0001_amazing_master_chief",
+      "breakpoints": true
     }
   ]
 }
