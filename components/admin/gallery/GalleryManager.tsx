@@ -50,8 +50,8 @@ export default function GalleryManager() {
   // Set default folder when folders are loaded
   useEffect(() => {
     if (folders.length > 0 && selectedFolder === null) {
-      const heroFolder = folders.find(f => f.folderType === 'hero');
-      setSelectedFolder(heroFolder?.id || folders[0]?.id || null);
+      const mainFolder = folders.find(f => f.folderType === 'main');
+      setSelectedFolder(mainFolder?.id || folders[0]?.id || null);
     }
   }, [folders, selectedFolder]);
 

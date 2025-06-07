@@ -7,9 +7,7 @@ const getImagePath = (fullUrl: string) => {
 };
 
 export default async function GalleryPage() {
-  const [residentialProjects, commercialProjects, residentialCover, commercialCover] = await Promise.all([
-    getProjectsByType('residential'),
-    getProjectsByType('commercial'),
+  const [residentialCover, commercialCover] = await Promise.all([
     getResidentialCoverImage(),
     getCommercialCoverImage(),
   ]);
@@ -90,47 +88,6 @@ export default async function GalleryPage() {
                 </div>
               )}
             </div>
-
-            {/* Residential Projects */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              {residentialProjects.map((project) => (
-                <Link 
-                  key={project.id} 
-                  href={`/gallery/residential/${project.id}`}
-                  className="group"
-                >
-                  <div className="bg-white rounded-lg shadow-md overflow-hidden transition-transform group-hover:scale-105">
-                    {project.coverImage ? (
-                      <img
-                        src={`${imagekitConfig.urlEndpoint}${getImagePath(project.coverImage.imagekitUrl)}?tr=w-400,h-300,q-80`}
-                        alt={project.coverImage.alt || project.name}
-                        className="w-full h-48 object-cover"
-                      />
-                    ) : (
-                      <div className="w-full h-48 bg-gray-200 flex items-center justify-center">
-                        <span className="text-gray-500">No Image</span>
-                      </div>
-                    )}
-                    <div className="p-4">
-                      <h3 
-                        className="text-lg font-semibold mb-2"
-                        style={{ color: 'var(--color-primary)' }}
-                      >
-                        {project.name}
-                      </h3>
-                      {project.description && (
-                        <p 
-                          className="text-sm"
-                          style={{ color: 'var(--color-text-muted)' }}
-                        >
-                          {project.description}
-                        </p>
-                      )}
-                    </div>
-                  </div>
-                </Link>
-              ))}
-            </div>
           </div>
 
           {/* Commercial Section */}
@@ -180,47 +137,6 @@ export default async function GalleryPage() {
                   </Link>
                 </div>
               )}
-            </div>
-
-            {/* Commercial Projects */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              {commercialProjects.map((project) => (
-                <Link 
-                  key={project.id} 
-                  href={`/gallery/commercial/${project.id}`}
-                  className="group"
-                >
-                  <div className="bg-white rounded-lg shadow-md overflow-hidden transition-transform group-hover:scale-105">
-                    {project.coverImage ? (
-                      <img
-                        src={`${imagekitConfig.urlEndpoint}${getImagePath(project.coverImage.imagekitUrl)}?tr=w-400,h-300,q-80`}
-                        alt={project.coverImage.alt || project.name}
-                        className="w-full h-48 object-cover"
-                      />
-                    ) : (
-                      <div className="w-full h-48 bg-gray-200 flex items-center justify-center">
-                        <span className="text-gray-500">No Image</span>
-                      </div>
-                    )}
-                    <div className="p-4">
-                      <h3 
-                        className="text-lg font-semibold mb-2"
-                        style={{ color: 'var(--color-primary)' }}
-                      >
-                        {project.name}
-                      </h3>
-                      {project.description && (
-                        <p 
-                          className="text-sm"
-                          style={{ color: 'var(--color-text-muted)' }}
-                        >
-                          {project.description}
-                        </p>
-                      )}
-                    </div>
-                  </div>
-                </Link>
-              ))}
             </div>
           </div>
         </div>

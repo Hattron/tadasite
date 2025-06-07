@@ -41,6 +41,7 @@ export default function ImageDetailsDialog({
 
   const currentFolder = selectedImage.folderId ? getFolderById(selectedImage.folderId) : null;
   const isInProjectFolder = currentFolder?.folderType === 'project';
+  const isInMainFolder = currentFolder?.folderType === 'main';
 
   return (
     <Dialog open={!!selectedImage} onOpenChange={onClose}>
@@ -100,46 +101,59 @@ export default function ImageDetailsDialog({
             <div className="space-y-2">
               <Label>Set as Cover Photo</Label>
               <div className="flex flex-wrap gap-2">
-                <Button 
-                  onClick={() => onSetHero(selectedImage.id)}
-                  disabled={selectedImage.isHero}
-                  style={{ backgroundColor: 'var(--color-primary)' }}
-                  size="sm"
-                >
-                  {selectedImage.isHero ? 'Current Hero' : 'Set as Hero'}
-                </Button>
-                
-                {onSetResidentialCover && (
-                  <Button 
-                    onClick={() => onSetResidentialCover(selectedImage.id)}
-                    disabled={selectedImage.isResidentialCover}
-                    variant="outline"
-                    size="sm"
-                  >
-                    {selectedImage.isResidentialCover ? 'Current Residential Cover' : 'Residential Cover'}
-                  </Button>
+                {/* Show Hero/Gallery cover options only for images in main folder */}
+                {isInMainFolder && (
+                  <>
+                    <Button 
+                      onClick={() => onSetHero(selectedImage.id)}
+                      disabled={selectedImage.isHero}
+                      style={{ backgroundColor: 'var(--color-primary)' }}
+                      size="sm"
+                    >
+                      {selectedImage.isHero ? 'Current Hero' : 'Set as Hero'}
+                    </Button>
+                    
+                    {onSetResidentialCover && (
+                      <Button 
+                        onClick={() => onSetResidentialCover(selectedImage.id)}
+                        disabled={selectedImage.isResidentialCover}
+                        variant="outline"
+                        size="sm"
+                      >
+                        {selectedImage.isResidentialCover ? 'Current Residential Cover' : 'Residential Cover'}
+                      </Button>
+                    )}
+                    
+                    {onSetCommercialCover && (
+                      <Button 
+                        onClick={() => onSetCommercialCover(selectedImage.id)}
+                        disabled={selectedImage.isCommercialCover}
+                        variant="outline"
+                        size="sm"
+                      >
+                        {selectedImage.isCommercialCover ? 'Current Commercial Cover' : 'Commercial Cover'}
+                      </Button>
+                    )}
+                  </>
                 )}
                 
-                {onSetCommercialCover && (
-                  <Button 
-                    onClick={() => onSetCommercialCover(selectedImage.id)}
-                    disabled={selectedImage.isCommercialCover}
-                    variant="outline"
-                    size="sm"
-                  >
-                    {selectedImage.isCommercialCover ? 'Current Commercial Cover' : 'Commercial Cover'}
-                  </Button>
-                )}
-                
+                {/* Show project cover option only for images in project folders */}
                 {isInProjectFolder && onSetProjectCover && currentFolder && (
                   <Button 
                     onClick={() => onSetProjectCover(selectedImage.id, currentFolder.id)}
                     disabled={selectedImage.isProjectCover}
-                    variant="outline"
+                    style={{ backgroundColor: 'var(--color-primary)' }}
                     size="sm"
                   >
-                    {selectedImage.isProjectCover ? 'Current Project Cover' : 'Project Cover'}
+                    {selectedImage.isProjectCover ? `Current Cover for ${currentFolder.name}` : `Set as ${currentFolder.name} Cover`}
                   </Button>
+                )}
+
+                {/* If image is not in main or project folder, show a message */}
+                {!isInMainFolder && !isInProjectFolder && (
+                  <p className="text-sm text-muted-foreground">
+                    Move this image to Main folder to set as hero/gallery cover, or to a project folder to set as project cover.
+                  </p>
                 )}
               </div>
             </div>

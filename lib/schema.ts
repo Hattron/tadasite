@@ -16,7 +16,7 @@ export const tadaImageFolders = pgTable('tada_image_folders', {
   name: varchar('name', { length: 100 }).notNull(),
   description: text('description'),
   parentId: varchar('parent_id', { length: 50 }),
-  folderType: varchar('folder_type', { length: 50 }).default('project'), // 'hero', 'residential', 'commercial', 'project'
+  folderType: varchar('folder_type', { length: 50 }).default('project'), // 'main', 'residential', 'commercial', 'project'
   sortOrder: integer('sort_order').notNull().default(0),
   createdAt: timestamp('created_at').notNull().defaultNow(),
   updatedAt: timestamp('updated_at').notNull().defaultNow(),

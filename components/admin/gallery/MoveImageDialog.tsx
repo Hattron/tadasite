@@ -52,7 +52,7 @@ export default function MoveImageDialog({
                 </SelectTrigger>
                 <SelectContent>
                   {folders
-                    .filter(folder => folder.folderType === 'project' || folder.folderType === 'hero')
+                    .filter(folder => folder.folderType === 'project' || folder.folderType === 'main')
                     .map(folder => (
                     <SelectItem key={folder.id} value={folder.id}>
                       {folder.parentId ? `${getFolderById(folder.parentId)?.name} / ${folder.name}` : folder.name}

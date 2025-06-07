@@ -8,11 +8,11 @@ async function seedGalleryStructure() {
     // Create main sections
     await db.insert(tadaImageFolders).values([
       {
-        id: 'folder_hero',
-        name: 'Hero',
-        description: 'Hero image selection',
+        id: 'folder_main',
+        name: 'Main',
+        description: 'Main gallery images',
         parentId: null,
-        folderType: 'hero',
+        folderType: 'main',
         sortOrder: 0,
       },
       {

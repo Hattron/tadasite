@@ -25,6 +25,9 @@ export async function getHeroImage() {
   }
 }
 
+// Alias for backward compatibility
+export const getMainImage = getHeroImage;
+
 export async function getResidentialCoverImage() {
   try {
     const coverImages = await db
