@@ -49,8 +49,8 @@ export default async function HeroSection() {
       {/* Content overlay */}
       <div className="h-full flex items-center justify-center">
         <div className="text-center max-w-4xl mx-auto px-6">
-          {/* Individual blur backgrounds for each text line */}
-          <div className="inline-block backdrop-blur-sm rounded-full px-6 py-2 mb-4" style={{ backgroundColor: 'rgba(255, 255, 255, 0.1)' }}>
+          {/* Main title with blur background */}
+          <div className="inline-block backdrop-blur-sm rounded-full px-8 py-3 mb-3" style={{ backgroundColor: 'rgba(255, 255, 255, 0.1)' }}>
             <h1 
               className="text-6xl sm:text-7xl lg:text-8xl font-light text-white"
               style={{ 
@@ -62,7 +62,8 @@ export default async function HeroSection() {
             </h1>
           </div>
           
-          <div className="inline-block backdrop-blur-sm rounded-full px-4 py-1 mb-6" style={{ backgroundColor: 'rgba(255, 255, 255, 0.1)' }}>
+          {/* Subtitle beneath main title */}
+          <div className="inline-block backdrop-blur-sm rounded-full px-6 py-2 mb-6" style={{ backgroundColor: 'rgba(255, 255, 255, 0.1)' }}>
             <p 
               className="text-xl sm:text-2xl font-light tracking-wide text-white"
               style={{ 

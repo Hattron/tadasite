@@ -6,6 +6,10 @@ import {
   getAllImages, 
   getAllFolders, 
   setHeroImage, 
+  setFirstImage,
+  setAboutUsImage,
+  setSecondImage,
+  setThirdImage,
   setResidentialCoverImage,
   setCommercialCoverImage,
   setProjectCoverImage,
@@ -213,6 +217,50 @@ export default function GalleryManager() {
     }
   };
 
+  const handleSetFirstImage = async (imageId: string) => {
+    try {
+      await setFirstImage(imageId);
+      await loadData();
+      setSelectedImage(null);
+    } catch (error) {
+      console.error('Failed to set first image:', error);
+      alert(error instanceof Error ? error.message : 'Failed to set first image');
+    }
+  };
+
+  const handleSetAboutUsImage = async (imageId: string) => {
+    try {
+      await setAboutUsImage(imageId);
+      await loadData();
+      setSelectedImage(null);
+    } catch (error) {
+      console.error('Failed to set about us image:', error);
+      alert(error instanceof Error ? error.message : 'Failed to set about us image');
+    }
+  };
+
+  const handleSetSecondImage = async (imageId: string) => {
+    try {
+      await setSecondImage(imageId);
+      await loadData();
+      setSelectedImage(null);
+    } catch (error) {
+      console.error('Failed to set second image:', error);
+      alert(error instanceof Error ? error.message : 'Failed to set second image');
+    }
+  };
+
+  const handleSetThirdImage = async (imageId: string) => {
+    try {
+      await setThirdImage(imageId);
+      await loadData();
+      setSelectedImage(null);
+    } catch (error) {
+      console.error('Failed to set third image:', error);
+      alert(error instanceof Error ? error.message : 'Failed to set third image');
+    }
+  };
+
   const handleSetResidentialCover = async (imageId: string) => {
     try {
       await setResidentialCoverImage(imageId);
@@ -331,6 +379,10 @@ export default function GalleryManager() {
         folders={folders}
         onClose={() => setSelectedImage(null)}
         onSetHero={handleSetHero}
+        onSetFirstImage={handleSetFirstImage}
+        onSetAboutUsImage={handleSetAboutUsImage}
+        onSetSecondImage={handleSetSecondImage}
+        onSetThirdImage={handleSetThirdImage}
         onSetResidentialCover={handleSetResidentialCover}
         onSetCommercialCover={handleSetCommercialCover}
         onSetProjectCover={handleSetProjectCover}

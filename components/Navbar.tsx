@@ -1,0 +1,57 @@
+import Link from 'next/link';
+
+export default function Navbar() {
+  return (
+    <nav 
+      className="fixed top-0 left-0 right-0 z-50 border-b transition-all duration-300"
+      style={{
+        backgroundColor: 'var(--color-background, #ffffff)',
+        borderBottomColor: 'var(--color-text-muted, #6b7280)/.2',
+      }}
+    >
+      <div 
+        className="max-w-7xl mx-auto flex items-center justify-between"
+        style={{
+          padding: 'var(--spacing-md, 1rem) var(--spacing-xl, 2rem)',
+        }}
+      >
+        <Link 
+          href="/"
+          className="text-xl font-bold transition-colors hover:opacity-80"
+          style={{ 
+            color: 'var(--color-primary, #3b82f6)',
+            fontFamily: 'var(--font-primary, Quicksand, sans-serif)',
+          }}
+        >
+          Tada Interior Design
+        </Link>
+        
+        <div 
+          className="flex items-center"
+          style={{ gap: 'var(--spacing-xl, 2rem)' }}
+        >
+          <Link 
+            href="/gallery"
+            className="font-medium transition-colors hover:opacity-70"
+            style={{ 
+              color: 'var(--color-text, #1f2937)',
+              fontFamily: 'var(--font-primary, Quicksand, sans-serif)',
+            }}
+          >
+            Gallery
+          </Link>
+          <a 
+            href="mailto:hello@tadainteriordesign.com"
+            className="font-medium transition-colors hover:opacity-70"
+            style={{ 
+              color: 'var(--color-text, #1f2937)',
+              fontFamily: 'var(--font-primary, Quicksand, sans-serif)',
+            }}
+          >
+            Contact
+          </a>
+        </div>
+      </div>
+    </nav>
+  );
+} 

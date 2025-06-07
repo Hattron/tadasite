@@ -1,0 +1,1 @@
+ALTER TABLE "tada_images" ADD COLUMN "is_first_image" boolean DEFAULT false NOT NULL;

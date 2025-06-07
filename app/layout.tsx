@@ -3,6 +3,8 @@ import { Quicksand, Inter } from "next/font/google";
 import "./globals.css";
 import { getCssVariables, cssVariablesToString } from "@/lib/css-variables";
 import { ParallaxProvider } from "@/components/ParallaxProvider";
+import Footer from "@/components/Footer";
+import Navbar from "@/components/Navbar";
 
 const quicksand = Quicksand({
   variable: "--font-quicksand",
@@ -48,7 +50,9 @@ ${cssVariablesToString(cssVariables)}
         }}
       >
         <ParallaxProvider>
+          <Navbar />
           {children}
+          <Footer />
         </ParallaxProvider>
       </body>
     </html>

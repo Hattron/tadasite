@@ -12,6 +12,10 @@ interface ImageDetailsDialogProps {
   folders: FolderData[];
   onClose: () => void;
   onSetHero: (imageId: string) => void;
+  onSetFirstImage: (imageId: string) => void;
+  onSetAboutUsImage: (imageId: string) => void;
+  onSetSecondImage: (imageId: string) => void;
+  onSetThirdImage: (imageId: string) => void;
   onSetResidentialCover?: (imageId: string) => void;
   onSetCommercialCover?: (imageId: string) => void;
   onSetProjectCover?: (imageId: string, projectId: string) => void;
@@ -24,6 +28,10 @@ export default function ImageDetailsDialog({
   folders,
   onClose,
   onSetHero,
+  onSetFirstImage,
+  onSetAboutUsImage,
+  onSetSecondImage,
+  onSetThirdImage,
   onSetResidentialCover,
   onSetCommercialCover,
   onSetProjectCover,
@@ -111,6 +119,42 @@ export default function ImageDetailsDialog({
                       size="sm"
                     >
                       {selectedImage.isHero ? 'Current Hero' : 'Set as Hero'}
+                    </Button>
+                    
+                    <Button 
+                      onClick={() => onSetFirstImage(selectedImage.id)}
+                      disabled={selectedImage.isFirstImage}
+                      style={{ backgroundColor: 'var(--color-secondary)' }}
+                      size="sm"
+                    >
+                      {selectedImage.isFirstImage ? 'Current First Image' : 'Set as First Image'}
+                    </Button>
+                    
+                    <Button 
+                      onClick={() => onSetAboutUsImage(selectedImage.id)}
+                      disabled={selectedImage.isAboutUsImage}
+                      style={{ backgroundColor: 'var(--color-accent)' }}
+                      size="sm"
+                    >
+                      {selectedImage.isAboutUsImage ? 'Current About Us Image' : 'Set as About Us Image'}
+                    </Button>
+                    
+                    <Button 
+                      onClick={() => onSetSecondImage(selectedImage.id)}
+                      disabled={selectedImage.isSecondImage}
+                      variant="outline"
+                      size="sm"
+                    >
+                      {selectedImage.isSecondImage ? 'Current Second Image' : 'Set as Second Image'}
+                    </Button>
+                    
+                    <Button 
+                      onClick={() => onSetThirdImage(selectedImage.id)}
+                      disabled={selectedImage.isThirdImage}
+                      variant="secondary"
+                      size="sm"
+                    >
+                      {selectedImage.isThirdImage ? 'Current Third Image' : 'Set as Third Image'}
                     </Button>
                     
                     {onSetResidentialCover && (

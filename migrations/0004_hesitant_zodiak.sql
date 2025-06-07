@@ -1,0 +1,1 @@
+ALTER TABLE "tada_images" ADD COLUMN "is_about_us_image" boolean DEFAULT false NOT NULL;

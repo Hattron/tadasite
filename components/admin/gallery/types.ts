@@ -6,6 +6,10 @@ export interface ImageData {
   alt: string | null;
   caption: string | null;
   isHero: boolean;
+  isFirstImage: boolean;
+  isAboutUsImage: boolean;
+  isSecondImage: boolean;
+  isThirdImage: boolean;
   isResidentialCover: boolean;
   isCommercialCover: boolean;
   isProjectCover: boolean;

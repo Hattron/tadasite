@@ -70,6 +70,38 @@ export default function ImageGrid({
                         Hero
                       </Badge>
                     )}
+                    {image.isFirstImage && (
+                      <Badge 
+                        className="text-xs"
+                        style={{ backgroundColor: 'var(--color-secondary)' }}
+                      >
+                        First Image
+                      </Badge>
+                    )}
+                    {image.isAboutUsImage && (
+                      <Badge 
+                        className="text-xs"
+                        style={{ backgroundColor: 'var(--color-accent)' }}
+                      >
+                        About Us
+                      </Badge>
+                    )}
+                    {image.isSecondImage && (
+                      <Badge 
+                        className="text-xs"
+                        variant="outline"
+                      >
+                        Second Image
+                      </Badge>
+                    )}
+                    {image.isThirdImage && (
+                      <Badge 
+                        className="text-xs"
+                        variant="secondary"
+                      >
+                        Third Image
+                      </Badge>
+                    )}
                     {image.isResidentialCover && (
                       <Badge 
                         className="text-xs"

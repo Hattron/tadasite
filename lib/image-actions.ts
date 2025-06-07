@@ -25,6 +25,86 @@ export async function getHeroImage() {
   }
 }
 
+export async function getFirstImage() {
+  try {
+    const firstImages = await db
+      .select({
+        id: tadaImages.id,
+        imagekitUrl: tadaImages.imagekitUrl,
+        alt: tadaImages.alt,
+        caption: tadaImages.caption,
+      })
+      .from(tadaImages)
+      .where(eq(tadaImages.isFirstImage, true))
+      .limit(1);
+
+    return firstImages.length > 0 ? firstImages[0] : null;
+  } catch (error) {
+    console.error('Error fetching first image:', error);
+    return null;
+  }
+}
+
+export async function getAboutUsImage() {
+  try {
+    const aboutUsImages = await db
+      .select({
+        id: tadaImages.id,
+        imagekitUrl: tadaImages.imagekitUrl,
+        alt: tadaImages.alt,
+        caption: tadaImages.caption,
+      })
+      .from(tadaImages)
+      .where(eq(tadaImages.isAboutUsImage, true))
+      .limit(1);
+
+    return aboutUsImages.length > 0 ? aboutUsImages[0] : null;
+  } catch (error) {
+    console.error('Error fetching about us image:', error);
+    return null;
+  }
+}
+
+export async function getSecondImage() {
+  try {
+    const secondImages = await db
+      .select({
+        id: tadaImages.id,
+        imagekitUrl: tadaImages.imagekitUrl,
+        alt: tadaImages.alt,
+        caption: tadaImages.caption,
+      })
+      .from(tadaImages)
+      .where(eq(tadaImages.isSecondImage, true))
+      .limit(1);
+
+    return secondImages.length > 0 ? secondImages[0] : null;
+  } catch (error) {
+    console.error('Error fetching second image:', error);
+    return null;
+  }
+}
+
+export async function getThirdImage() {
+  try {
+    const thirdImages = await db
+      .select({
+        id: tadaImages.id,
+        imagekitUrl: tadaImages.imagekitUrl,
+        alt: tadaImages.alt,
+        caption: tadaImages.caption,
+      })
+      .from(tadaImages)
+      .where(eq(tadaImages.isThirdImage, true))
+      .limit(1);
+
+    return thirdImages.length > 0 ? thirdImages[0] : null;
+  } catch (error) {
+    console.error('Error fetching third image:', error);
+    return null;
+  }
+}
+
 // Alias for backward compatibility
 export const getMainImage = getHeroImage;
 
@@ -180,6 +260,94 @@ export async function setHeroImage(imageId: string) {
   } catch (error) {
     console.error('Error setting hero image:', error);
     throw new Error('Failed to set hero image');
+  }
+}
+
+export async function setFirstImage(imageId: string) {
+  try {
+    // First, unset any existing first images
+    await db
+      .update(tadaImages)
+      .set({ isFirstImage: false })
+      .where(eq(tadaImages.isFirstImage, true));
+
+    // Set the new first image
+    await db
+      .update(tadaImages)
+      .set({ isFirstImage: true })
+      .where(eq(tadaImages.id, imageId));
+
+    revalidatePath('/admin');
+    return { success: true };
+  } catch (error) {
+    console.error('Error setting first image:', error);
+    throw new Error('Failed to set first image');
+  }
+}
+
+export async function setAboutUsImage(imageId: string) {
+  try {
+    // First, unset any existing about us images
+    await db
+      .update(tadaImages)
+      .set({ isAboutUsImage: false })
+      .where(eq(tadaImages.isAboutUsImage, true));
+
+    // Set the new about us image
+    await db
+      .update(tadaImages)
+      .set({ isAboutUsImage: true })
+      .where(eq(tadaImages.id, imageId));
+
+    revalidatePath('/admin');
+    return { success: true };
+  } catch (error) {
+    console.error('Error setting about us image:', error);
+    throw new Error('Failed to set about us image');
+  }
+}
+
+export async function setSecondImage(imageId: string) {
+  try {
+    // First, unset any existing second images
+    await db
+      .update(tadaImages)
+      .set({ isSecondImage: false })
+      .where(eq(tadaImages.isSecondImage, true));
+
+    // Set the new second image
+    await db
+      .update(tadaImages)
+      .set({ isSecondImage: true })
+      .where(eq(tadaImages.id, imageId));
+
+    revalidatePath('/admin');
+    return { success: true };
+  } catch (error) {
+    console.error('Error setting second image:', error);
+    throw new Error('Failed to set second image');
+  }
+}
+
+export async function setThirdImage(imageId: string) {
+  try {
+    // First, unset any existing third images
+    await db
+      .update(tadaImages)
+      .set({ isThirdImage: false })
+      .where(eq(tadaImages.isThirdImage, true));
+
+    // Set the new third image
+    await db
+      .update(tadaImages)
+      .set({ isThirdImage: true })
+      .where(eq(tadaImages.id, imageId));
+
+    revalidatePath('/admin');
+    return { success: true };
+  } catch (error) {
+    console.error('Error setting third image:', error);
+    throw new Error('Failed to set third image');
   }
 }
 

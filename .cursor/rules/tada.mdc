@@ -5,7 +5,7 @@ alwaysApply: true
 ---
 DO NOT USE DARKENING OVERLAYS UNLESS TOLD TO DO SO EXPLICITLY
 
-This is using tailwind v4, always use shadcn when it makes sense. this is next js 15 app router. 
+This is using tailwind v4, always use shadcn when it makes sense. this is next js 15 app router with React 19. 
 I want to use drizzle kit, neon, and netlify. I have the netlify cli installed
 all tables for this project will start with "tada_"
 Use css variables for font, colors, and spacing with tailwind
@@ -17,6 +17,12 @@ I am using powershell for the terminal
 shadcn is now shadcn not shadcn-ui
 
 beware -  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  react/no-unescaped-entities
+
+## Gallery Structure
+- **Main Gallery Page**: Shows only cover images for residential and commercial sections
+- **Category Pages** (`/gallery/residential`, `/gallery/commercial`): Show project thumbnails within that category
+- **Project Detail Pages** (`/gallery/[category]/[projectId]`): Show all images for a specific project
+- **Admin Panel**: Full gallery management with folder organization
 
 ## CSS Variables System
 - Database-driven CSS variables stored in `tada_css_variables` table (Drizzle + Neon)
@@ -48,6 +54,11 @@ beware -  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  reac
 ### Folder Organization
 - `/tada/` - Default folder for images without specific folder assignment
 - `/tada/folder_{folderId}` - Organized by database folder structure
+- **Folder Hierarchy**:
+  - `folder_main` - Hero/cover images for main site
+  - `folder_residential` - Residential category (contains projects)
+  - `folder_commercial` - Commercial category (contains projects)
+  - `folder_*` (projects) - Individual projects nested under categories
 - Mirrors the database folder hierarchy for easy management
 
 ## ImageKit Integration
