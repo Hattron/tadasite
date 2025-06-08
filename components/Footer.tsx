@@ -64,6 +64,18 @@ export default function Footer() {
                 Home
               </Link>
               <Link 
+                href="/about"
+                className="block transition-colors"
+                style={{ 
+                  color: 'var(--color-text-muted, #6b7280)',
+                  textDecoration: 'none'
+                }}
+                onMouseEnter={(e) => e.currentTarget.style.color = 'var(--color-background, #ffffff)'}
+                onMouseLeave={(e) => e.currentTarget.style.color = 'var(--color-text-muted, #6b7280)'}
+              >
+                About
+              </Link>
+              <Link 
                 href="/gallery"
                 className="block transition-colors"
                 style={{ 

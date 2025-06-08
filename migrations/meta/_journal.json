@@ -50,6 +50,34 @@
       "when": 1749333675783,
       "tag": "0006_greedy_squirrel_girl",
       "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1749391714286,
+      "tag": "0007_shiny_thunderbolts",
+      "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "7",
+      "when": 1749392078636,
+      "tag": "0008_huge_sugar_man",
+      "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "7",
+      "when": 1749392537221,
+      "tag": "0009_clumsy_mister_fear",
+      "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "7",
+      "when": 1749392669460,
+      "tag": "0010_opposite_valeria_richards",
+      "breakpoints": true
     }
   ]
 }

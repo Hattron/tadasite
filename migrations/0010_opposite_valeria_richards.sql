@@ -1,0 +1,1 @@
+ALTER TABLE "tada_images" RENAME COLUMN "is_sarah_image" TO "is_team_image";

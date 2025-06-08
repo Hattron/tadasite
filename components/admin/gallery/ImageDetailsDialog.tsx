@@ -14,6 +14,9 @@ interface ImageDetailsDialogProps {
   onSetHero: (imageId: string) => void;
   onSetFirstImage: (imageId: string) => void;
   onSetAboutUsImage: (imageId: string) => void;
+  onSetMaureenImage: (imageId: string) => void;
+  onSetJoannaImage: (imageId: string) => void;
+  onSetTeamImage: (imageId: string) => void;
   onSetSecondImage: (imageId: string) => void;
   onSetThirdImage: (imageId: string) => void;
   onSetResidentialCover?: (imageId: string) => void;
@@ -30,6 +33,9 @@ export default function ImageDetailsDialog({
   onSetHero,
   onSetFirstImage,
   onSetAboutUsImage,
+  onSetMaureenImage,
+  onSetJoannaImage,
+  onSetTeamImage,
   onSetSecondImage,
   onSetThirdImage,
   onSetResidentialCover,
@@ -137,6 +143,33 @@ export default function ImageDetailsDialog({
                       size="sm"
                     >
                       {selectedImage.isAboutUsImage ? 'Current About Us Image' : 'Set as About Us Image'}
+                    </Button>
+                    
+                    <Button 
+                      onClick={() => onSetMaureenImage(selectedImage.id)}
+                      disabled={selectedImage.isMaureenImage}
+                      variant="outline"
+                      size="sm"
+                    >
+                      {selectedImage.isMaureenImage ? 'Current Maureen Image' : 'Set as Maureen Image'}
+                    </Button>
+                    
+                    <Button 
+                      onClick={() => onSetJoannaImage(selectedImage.id)}
+                      disabled={selectedImage.isJoannaImage}
+                      variant="secondary"
+                      size="sm"
+                    >
+                      {selectedImage.isJoannaImage ? 'Current Joanna Image' : 'Set as Joanna Image'}
+                    </Button>
+                    
+                    <Button 
+                      onClick={() => onSetTeamImage(selectedImage.id)}
+                      disabled={selectedImage.isTeamImage}
+                      variant="outline"
+                      size="sm"
+                    >
+                      {selectedImage.isTeamImage ? 'Current Team Image' : 'Set as Team Image'}
                     </Button>
                     
                     <Button 

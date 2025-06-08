@@ -65,6 +65,66 @@ export async function getAboutUsImage() {
   }
 }
 
+export async function getMaureenImage() {
+  try {
+    const maureeenImages = await db
+      .select({
+        id: tadaImages.id,
+        imagekitUrl: tadaImages.imagekitUrl,
+        alt: tadaImages.alt,
+        caption: tadaImages.caption,
+      })
+      .from(tadaImages)
+      .where(eq(tadaImages.isMaureenImage, true))
+      .limit(1);
+
+    return maureeenImages.length > 0 ? maureeenImages[0] : null;
+  } catch (error) {
+    console.error('Error fetching Maureen image:', error);
+    return null;
+  }
+}
+
+export async function getJoannaImage() {
+  try {
+    const joannaImages = await db
+      .select({
+        id: tadaImages.id,
+        imagekitUrl: tadaImages.imagekitUrl,
+        alt: tadaImages.alt,
+        caption: tadaImages.caption,
+      })
+      .from(tadaImages)
+      .where(eq(tadaImages.isJoannaImage, true))
+      .limit(1);
+
+    return joannaImages.length > 0 ? joannaImages[0] : null;
+  } catch (error) {
+    console.error('Error fetching Joanna image:', error);
+    return null;
+  }
+}
+
+export async function getTeamImage() {
+  try {
+    const teamImages = await db
+      .select({
+        id: tadaImages.id,
+        imagekitUrl: tadaImages.imagekitUrl,
+        alt: tadaImages.alt,
+        caption: tadaImages.caption,
+      })
+      .from(tadaImages)
+      .where(eq(tadaImages.isTeamImage, true))
+      .limit(1);
+
+    return teamImages.length > 0 ? teamImages[0] : null;
+  } catch (error) {
+    console.error('Error fetching team image:', error);
+    return null;
+  }
+}
+
 export async function getSecondImage() {
   try {
     const secondImages = await db
@@ -304,6 +364,75 @@ export async function setAboutUsImage(imageId: string) {
   } catch (error) {
     console.error('Error setting about us image:', error);
     throw new Error('Failed to set about us image');
+  }
+}
+
+export async function setMaureenImage(imageId: string) {
+  try {
+    // First, unset any existing Maureen images
+    await db
+      .update(tadaImages)
+      .set({ isMaureenImage: false })
+      .where(eq(tadaImages.isMaureenImage, true));
+
+    // Set the new Maureen image
+    await db
+      .update(tadaImages)
+      .set({ isMaureenImage: true })
+      .where(eq(tadaImages.id, imageId));
+
+    revalidatePath('/admin');
+    revalidatePath('/about');
+    return { success: true };
+  } catch (error) {
+    console.error('Error setting Maureen image:', error);
+    throw new Error('Failed to set Maureen image');
+  }
+}
+
+export async function setJoannaImage(imageId: string) {
+  try {
+    // First, unset any existing Joanna images
+    await db
+      .update(tadaImages)
+      .set({ isJoannaImage: false })
+      .where(eq(tadaImages.isJoannaImage, true));
+
+    // Set the new Joanna image
+    await db
+      .update(tadaImages)
+      .set({ isJoannaImage: true })
+      .where(eq(tadaImages.id, imageId));
+
+    revalidatePath('/admin');
+    revalidatePath('/about');
+    return { success: true };
+  } catch (error) {
+    console.error('Error setting Joanna image:', error);
+    throw new Error('Failed to set Joanna image');
+  }
+}
+
+export async function setTeamImage(imageId: string) {
+  try {
+    // First, unset any existing team images
+    await db
+      .update(tadaImages)
+      .set({ isTeamImage: false })
+      .where(eq(tadaImages.isTeamImage, true));
+
+    // Set the new team image
+    await db
+      .update(tadaImages)
+      .set({ isTeamImage: true })
+      .where(eq(tadaImages.id, imageId));
+
+    revalidatePath('/admin');
+    revalidatePath('/about');
+    return { success: true };
+  } catch (error) {
+    console.error('Error setting team image:', error);
+    throw new Error('Failed to set team image');
   }
 }
 

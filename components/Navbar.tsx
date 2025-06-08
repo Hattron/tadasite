@@ -31,6 +31,16 @@ export default function Navbar() {
           style={{ gap: 'var(--spacing-xl, 2rem)' }}
         >
           <Link 
+            href="/about"
+            className="font-medium transition-colors hover:opacity-70"
+            style={{ 
+              color: 'var(--color-text, #1f2937)',
+              fontFamily: 'var(--font-primary, Quicksand, sans-serif)',
+            }}
+          >
+            About
+          </Link>
+          <Link 
             href="/gallery"
             className="font-medium transition-colors hover:opacity-70"
             style={{ 

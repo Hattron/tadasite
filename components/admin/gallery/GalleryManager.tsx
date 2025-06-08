@@ -8,6 +8,9 @@ import {
   setHeroImage, 
   setFirstImage,
   setAboutUsImage,
+  setMaureenImage,
+  setJoannaImage,
+  setTeamImage,
   setSecondImage,
   setThirdImage,
   setResidentialCoverImage,
@@ -239,6 +242,39 @@ export default function GalleryManager() {
     }
   };
 
+  const handleSetMaureenImage = async (imageId: string) => {
+    try {
+      await setMaureenImage(imageId);
+      await loadData();
+      setSelectedImage(null);
+    } catch (error) {
+      console.error('Failed to set Maureen image:', error);
+      alert(error instanceof Error ? error.message : 'Failed to set Maureen image');
+    }
+  };
+
+  const handleSetJoannaImage = async (imageId: string) => {
+    try {
+      await setJoannaImage(imageId);
+      await loadData();
+      setSelectedImage(null);
+    } catch (error) {
+      console.error('Failed to set Joanna image:', error);
+      alert(error instanceof Error ? error.message : 'Failed to set Joanna image');
+    }
+  };
+
+  const handleSetTeamImage = async (imageId: string) => {
+    try {
+      await setTeamImage(imageId);
+      await loadData();
+      setSelectedImage(null);
+    } catch (error) {
+      console.error('Failed to set team image:', error);
+      alert(error instanceof Error ? error.message : 'Failed to set team image');
+    }
+  };
+
   const handleSetSecondImage = async (imageId: string) => {
     try {
       await setSecondImage(imageId);
@@ -381,6 +417,9 @@ export default function GalleryManager() {
         onSetHero={handleSetHero}
         onSetFirstImage={handleSetFirstImage}
         onSetAboutUsImage={handleSetAboutUsImage}
+        onSetMaureenImage={handleSetMaureenImage}
+        onSetJoannaImage={handleSetJoannaImage}
+        onSetTeamImage={handleSetTeamImage}
         onSetSecondImage={handleSetSecondImage}
         onSetThirdImage={handleSetThirdImage}
         onSetResidentialCover={handleSetResidentialCover}

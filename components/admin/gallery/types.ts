@@ -8,6 +8,9 @@ export interface ImageData {
   isHero: boolean;
   isFirstImage: boolean;
   isAboutUsImage: boolean;
+  isMaureenImage: boolean;
+  isJoannaImage: boolean;
+  isTeamImage: boolean;
   isSecondImage: boolean;
   isThirdImage: boolean;
   isResidentialCover: boolean;
