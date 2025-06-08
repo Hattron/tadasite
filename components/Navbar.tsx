@@ -50,8 +50,8 @@ export default function Navbar() {
           >
             Gallery
           </Link>
-          <a 
-            href="mailto:hello@tadainteriordesign.com"
+          <Link 
+            href="/contact"
             className="font-medium transition-colors hover:opacity-70"
             style={{ 
               color: 'var(--color-text, #1f2937)',
@@ -59,7 +59,7 @@ export default function Navbar() {
             }}
           >
             Contact
-          </a>
+          </Link>
         </div>
       </div>
     </nav>

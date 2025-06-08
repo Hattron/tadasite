@@ -1,4 +1,4 @@
-import { getProjectsByType, getResidentialCoverImage, getCommercialCoverImage } from '@/lib/image-actions';
+import { getResidentialCoverImage, getCommercialCoverImage } from '@/lib/image-actions';
 import { imagekitConfig } from '@/lib/imagekit';
 import Link from 'next/link';
 
