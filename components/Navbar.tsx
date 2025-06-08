@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { imagekitConfig } from '@/lib/imagekit';
 
 export default function Navbar() {
   return (
@@ -12,18 +13,19 @@ export default function Navbar() {
       <div 
         className="max-w-7xl mx-auto flex items-center justify-between"
         style={{
-          padding: 'var(--spacing-md, 1rem) var(--spacing-xl, 2rem)',
+          padding: 'var(--spacing-sm, 0.5rem) var(--spacing-xl, 2rem)',
         }}
       >
         <Link 
           href="/"
-          className="text-xl font-bold transition-colors hover:opacity-80"
-          style={{ 
-            color: 'var(--color-primary, #3b82f6)',
-            fontFamily: 'var(--font-primary, Quicksand, sans-serif)',
-          }}
+          className="transition-colors hover:opacity-80"
         >
-          Tada Interior Design
+          <img 
+            src={`${imagekitConfig.urlEndpoint}/tada/Assets/logosimple.png?tr=h-60,q-90`}
+            alt="Tada Interior Design"
+            className="h-15"
+            style={{ height: '3.75rem' }}
+          />
         </Link>
         
         <div 
