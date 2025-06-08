@@ -98,7 +98,7 @@ export default function Testimonials() {
                   {testimonial.title && (
                     <span 
                       className="font-normal text-sm block"
-                      style={{ color: 'var(--color-text-muted)' }}
+                      style={{ color: 'var(--color-secondary)' }}
                     >
                       {testimonial.title}
                     </span>
@@ -107,7 +107,7 @@ export default function Testimonials() {
                 <div 
                   className="text-sm"
                   style={{ 
-                    color: 'var(--color-text-muted)',
+                    color: 'var(--color-secondary)',
                     fontFamily: 'var(--font-secondary)'
                   }}
                 >

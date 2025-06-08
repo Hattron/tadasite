@@ -19,7 +19,11 @@ import {
   createFolder, 
   deleteFolder, 
   moveImageToFolder,
-  updateFolderDetails 
+  updateFolderDetails,
+  updateHeroText,
+  updateFirstImageText,
+  updateSecondImageText,
+  updateThirdImageText
 } from '@/lib/image-actions';
 
 // Component imports
@@ -28,6 +32,7 @@ import UploadForm from './UploadForm';
 import ImageGrid from './ImageGrid';
 import FolderDialogs from './FolderDialogs';
 import ImageDetailsDialog from './ImageDetailsDialog';
+import ImageTextEditDialog from './ImageTextEditDialog';
 import MoveImageDialog from './MoveImageDialog';
 import { ImageData, FolderData } from './types';
 
@@ -49,6 +54,8 @@ export default function GalleryManager() {
   const [editingFolder, setEditingFolder] = useState<FolderData | null>(null);
   const [isMoveImageOpen, setIsMoveImageOpen] = useState(false);
   const [movingImage, setMovingImage] = useState<ImageData | null>(null);
+  const [textEditImage, setTextEditImage] = useState<ImageData | null>(null);
+  const [textEditType, setTextEditType] = useState<'hero' | 'first' | 'second' | 'third' | null>(null);
 
   useEffect(() => {
     loadData();
@@ -360,6 +367,44 @@ export default function GalleryManager() {
     }
   };
 
+  // Text editing handlers
+  const handleEditText = (imageType: 'hero' | 'first' | 'second' | 'third') => {
+    setTextEditImage(selectedImage);
+    setTextEditType(imageType);
+  };
+
+  const handleUpdateText = async (imageId: string, title?: string, subtitle?: string) => {
+    if (!textEditType) return;
+
+    try {
+      switch (textEditType) {
+        case 'hero':
+          await updateHeroText(imageId, title, subtitle);
+          break;
+        case 'first':
+          await updateFirstImageText(imageId, title, subtitle);
+          break;
+        case 'second':
+          await updateSecondImageText(imageId, title, subtitle);
+          break;
+        case 'third':
+          await updateThirdImageText(imageId, title, subtitle);
+          break;
+      }
+      await loadData();
+      setTextEditImage(null);
+      setTextEditType(null);
+    } catch (error) {
+      console.error('Failed to update text:', error);
+      alert(error instanceof Error ? error.message : 'Failed to update text');
+    }
+  };
+
+  const handleCloseTextEdit = () => {
+    setTextEditImage(null);
+    setTextEditType(null);
+  };
+
   if (isLoading) {
     return <div className="p-8 text-center">Loading gallery...</div>;
   }
@@ -427,6 +472,15 @@ export default function GalleryManager() {
         onSetProjectCover={handleSetProjectCover}
         onMoveImage={handleMoveImageClick}
         onDeleteImage={handleDeleteImage}
+        onEditText={handleEditText}
+      />
+
+      {/* Image Text Edit Dialog */}
+      <ImageTextEditDialog
+        selectedImage={textEditImage}
+        imageType={textEditType}
+        onClose={handleCloseTextEdit}
+        onUpdate={handleUpdateText}
       />
 
       {/* Move Image Dialog */}

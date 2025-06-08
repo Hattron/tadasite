@@ -13,6 +13,8 @@ export async function getHeroImage() {
         imagekitUrl: tadaImages.imagekitUrl,
         alt: tadaImages.alt,
         caption: tadaImages.caption,
+        heroTitle: tadaImages.heroTitle,
+        heroSubtitle: tadaImages.heroSubtitle,
       })
       .from(tadaImages)
       .where(eq(tadaImages.isHero, true))
@@ -33,6 +35,8 @@ export async function getFirstImage() {
         imagekitUrl: tadaImages.imagekitUrl,
         alt: tadaImages.alt,
         caption: tadaImages.caption,
+        firstImageTitle: tadaImages.firstImageTitle,
+        firstImageSubtitle: tadaImages.firstImageSubtitle,
       })
       .from(tadaImages)
       .where(eq(tadaImages.isFirstImage, true))
@@ -133,6 +137,8 @@ export async function getSecondImage() {
         imagekitUrl: tadaImages.imagekitUrl,
         alt: tadaImages.alt,
         caption: tadaImages.caption,
+        secondImageTitle: tadaImages.secondImageTitle,
+        secondImageSubtitle: tadaImages.secondImageSubtitle,
       })
       .from(tadaImages)
       .where(eq(tadaImages.isSecondImage, true))
@@ -153,6 +159,8 @@ export async function getThirdImage() {
         imagekitUrl: tadaImages.imagekitUrl,
         alt: tadaImages.alt,
         caption: tadaImages.caption,
+        thirdImageTitle: tadaImages.thirdImageTitle,
+        thirdImageSubtitle: tadaImages.thirdImageSubtitle,
       })
       .from(tadaImages)
       .where(eq(tadaImages.isThirdImage, true))
@@ -316,6 +324,8 @@ export async function setHeroImage(imageId: string) {
       .set({ isHero: true })
       .where(eq(tadaImages.id, imageId));
 
+    revalidatePath('/');
+    revalidatePath('/admin');
     return { success: true };
   } catch (error) {
     console.error('Error setting hero image:', error);
@@ -744,5 +754,86 @@ export async function getProjectDetails(projectId: string) {
   } catch (error) {
     console.error('Error fetching project details:', error);
     return null;
+  }
+}
+
+// Text content update functions for special images
+export async function updateHeroText(imageId: string, title?: string, subtitle?: string) {
+  try {
+    await db
+      .update(tadaImages)
+      .set({ 
+        heroTitle: title || null,
+        heroSubtitle: subtitle || null,
+        updatedAt: new Date()
+      })
+      .where(and(eq(tadaImages.id, imageId), eq(tadaImages.isHero, true)));
+
+    revalidatePath('/');
+    revalidatePath('/admin');
+    return { success: true };
+  } catch (error) {
+    console.error('Error updating hero text:', error);
+    throw new Error('Failed to update hero text');
+  }
+}
+
+export async function updateFirstImageText(imageId: string, title?: string, subtitle?: string) {
+  try {
+    await db
+      .update(tadaImages)
+      .set({ 
+        firstImageTitle: title || null,
+        firstImageSubtitle: subtitle || null,
+        updatedAt: new Date()
+      })
+      .where(and(eq(tadaImages.id, imageId), eq(tadaImages.isFirstImage, true)));
+
+    revalidatePath('/');
+    revalidatePath('/admin');
+    return { success: true };
+  } catch (error) {
+    console.error('Error updating first image text:', error);
+    throw new Error('Failed to update first image text');
+  }
+}
+
+export async function updateSecondImageText(imageId: string, title?: string, subtitle?: string) {
+  try {
+    await db
+      .update(tadaImages)
+      .set({ 
+        secondImageTitle: title || null,
+        secondImageSubtitle: subtitle || null,
+        updatedAt: new Date()
+      })
+      .where(and(eq(tadaImages.id, imageId), eq(tadaImages.isSecondImage, true)));
+
+    revalidatePath('/');
+    revalidatePath('/admin');
+    return { success: true };
+  } catch (error) {
+    console.error('Error updating second image text:', error);
+    throw new Error('Failed to update second image text');
+  }
+}
+
+export async function updateThirdImageText(imageId: string, title?: string, subtitle?: string) {
+  try {
+    await db
+      .update(tadaImages)
+      .set({ 
+        thirdImageTitle: title || null,
+        thirdImageSubtitle: subtitle || null,
+        updatedAt: new Date()
+      })
+      .where(and(eq(tadaImages.id, imageId), eq(tadaImages.isThirdImage, true)));
+
+    revalidatePath('/');
+    revalidatePath('/admin');
+    return { success: true };
+  } catch (error) {
+    console.error('Error updating third image text:', error);
+    throw new Error('Failed to update third image text');
   }
 } 

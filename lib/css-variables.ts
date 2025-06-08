@@ -17,6 +17,14 @@ export const defaultCssVariables = {
   '--spacing-md': '1rem',
   '--spacing-lg': '1.5rem',
   '--spacing-xl': '2rem',
+  // Frame styling variables
+  '--frame-background': 'rgba(255, 255, 255, 0.95)',
+  '--frame-background-dark': 'rgba(0, 0, 0, 0.85)',
+  '--frame-border': '2px solid rgba(255, 255, 255, 0.3)',
+  '--frame-border-radius': '1rem',
+  '--frame-shadow': '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+  '--frame-padding': '2rem',
+  '--frame-padding-sm': '1.5rem',
 };
 
 export async function getCssVariables(): Promise<Record<string, string>> {

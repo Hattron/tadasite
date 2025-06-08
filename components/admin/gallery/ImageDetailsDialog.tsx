@@ -24,6 +24,7 @@ interface ImageDetailsDialogProps {
   onSetProjectCover?: (imageId: string, projectId: string) => void;
   onMoveImage: (image: ImageData) => void;
   onDeleteImage: (imageId: string) => void;
+  onEditText: (imageType: 'hero' | 'first' | 'second' | 'third') => void;
 }
 
 export default function ImageDetailsDialog({
@@ -42,7 +43,8 @@ export default function ImageDetailsDialog({
   onSetCommercialCover,
   onSetProjectCover,
   onMoveImage,
-  onDeleteImage
+  onDeleteImage,
+  onEditText
 }: ImageDetailsDialogProps) {
   const getFolderById = (id: string) => folders.find(f => f.id === id);
   
@@ -243,6 +245,41 @@ export default function ImageDetailsDialog({
                 <Move className="h-4 w-4 mr-2" />
                 Move
               </Button>
+              
+              {/* Edit Text Button - only show for images that have editable text */}
+              {selectedImage.isHero && (
+                <Button 
+                  onClick={() => onEditText('hero')}
+                  variant="outline"
+                >
+                  Edit Hero Text
+                </Button>
+              )}
+              {selectedImage.isFirstImage && (
+                <Button 
+                  onClick={() => onEditText('first')}
+                  variant="outline"
+                >
+                  Edit First Image Text
+                </Button>
+              )}
+              {selectedImage.isSecondImage && (
+                <Button 
+                  onClick={() => onEditText('second')}
+                  variant="outline"
+                >
+                  Edit Second Image Text
+                </Button>
+              )}
+              {selectedImage.isThirdImage && (
+                <Button 
+                  onClick={() => onEditText('third')}
+                  variant="outline"
+                >
+                  Edit Third Image Text
+                </Button>
+              )}
+              
               <Button 
                 variant="destructive"
                 onClick={() => onDeleteImage(selectedImage.id)}

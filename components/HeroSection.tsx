@@ -49,35 +49,67 @@ export default async function HeroSection() {
       {/* Content overlay */}
       <div className="h-full flex items-center justify-center">
         <div className="text-center max-w-4xl mx-auto px-6">
-          {/* Combined title and subtitle with tight blur background */}
-          <div className="inline-block backdrop-blur-md rounded-2xl px-4 py-2 mb-6" style={{ backgroundColor: 'rgba(255, 255, 255, 0.15)' }}>
+          {/* Combined title and subtitle with framed box */}
+          <div 
+            className="inline-block rounded-2xl"
+            style={{ 
+              background: 'var(--frame-background)',
+              border: 'var(--frame-border)',
+              boxShadow: 'var(--frame-shadow)',
+              borderRadius: 'var(--frame-border-radius)',
+              padding: 'var(--frame-padding)',
+              marginBottom: 'var(--spacing-lg)'
+            }}
+          >
             <h1 
-              className="text-6xl sm:text-7xl lg:text-8xl font-light text-white leading-tight"
+              className="text-6xl sm:text-7xl lg:text-8xl font-light leading-tight"
               style={{ 
                 fontFamily: 'var(--font-primary)',
-                textShadow: '2px 2px 4px rgba(0,0,0,0.5)'
+                color: 'var(--color-text)',
+                margin: '0'
               }}
             >
-              Ta Da
+              {(heroImage.heroTitle || "Ta Da").split('\n').map((line, index) => (
+                <span key={index}>
+                  {line}
+                  {index < (heroImage.heroTitle || "Ta Da").split('\n').length - 1 && <br />}
+                </span>
+              ))}
             </h1>
             <p 
-              className="text-xl sm:text-2xl font-light tracking-wide text-white mt-1"
+              className="text-xl sm:text-2xl font-light tracking-wide mt-2"
               style={{ 
                 fontFamily: 'var(--font-secondary)',
-                textShadow: '1px 1px 2px rgba(0,0,0,0.5)'
+                color: 'var(--color-secondary)',
+                margin: '0.5rem 0 0 0'
               }}
             >
-              Interior Design
+              {(heroImage.heroSubtitle || "Interior Design").split('\n').map((line, index) => (
+                <span key={index}>
+                  {line}
+                  {index < (heroImage.heroSubtitle || "Interior Design").split('\n').length - 1 && <br />}
+                </span>
+              ))}
             </p>
           </div>
           
           {heroImage.caption && (
-            <div className="inline-block backdrop-blur-md rounded-lg px-2 py-0.5" style={{ backgroundColor: 'rgba(255, 255, 255, 0.15)' }}>
+            <div 
+              className="inline-block rounded-lg"
+              style={{ 
+                background: 'var(--frame-background)',
+                border: 'var(--frame-border)',
+                boxShadow: 'var(--frame-shadow)',
+                borderRadius: 'calc(var(--frame-border-radius) * 0.75)',
+                padding: 'var(--frame-padding-sm)'
+              }}
+            >
               <p 
-                className="text-sm text-white opacity-90"
+                className="text-sm opacity-90"
                 style={{ 
                   fontFamily: 'var(--font-secondary)',
-                  textShadow: '1px 1px 2px rgba(0,0,0,0.5)'
+                  color: 'var(--color-text-muted)',
+                  margin: '0'
                 }}
               >
                 {heroImage.caption}
@@ -88,13 +120,21 @@ export default async function HeroSection() {
       </div>
 
       {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white">
-        <div className="animate-bounce">
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
+        <div 
+          className="animate-bounce rounded-full p-2"
+          style={{
+            background: 'var(--frame-background)',
+            border: 'var(--frame-border)',
+            boxShadow: 'var(--frame-shadow)'
+          }}
+        >
           <svg 
             className="w-6 h-6 mx-auto" 
             fill="none" 
             stroke="currentColor" 
             viewBox="0 0 24 24"
+            style={{ color: 'var(--color-text)' }}
           >
             <path 
               strokeLinecap="round" 
