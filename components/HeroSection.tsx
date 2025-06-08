@@ -49,10 +49,10 @@ export default async function HeroSection() {
       {/* Content overlay */}
       <div className="h-full flex items-center justify-center">
         <div className="text-center max-w-4xl mx-auto px-6">
-          {/* Main title with blur background */}
-          <div className="inline-block backdrop-blur-sm rounded-full px-8 py-3 mb-3" style={{ backgroundColor: 'rgba(255, 255, 255, 0.1)' }}>
+          {/* Combined title and subtitle with tight blur background */}
+          <div className="inline-block backdrop-blur-md rounded-2xl px-4 py-2 mb-6" style={{ backgroundColor: 'rgba(255, 255, 255, 0.15)' }}>
             <h1 
-              className="text-6xl sm:text-7xl lg:text-8xl font-light text-white"
+              className="text-6xl sm:text-7xl lg:text-8xl font-light text-white leading-tight"
               style={{ 
                 fontFamily: 'var(--font-primary)',
                 textShadow: '2px 2px 4px rgba(0,0,0,0.5)'
@@ -60,12 +60,8 @@ export default async function HeroSection() {
             >
               Ta Da
             </h1>
-          </div>
-          
-          {/* Subtitle beneath main title */}
-          <div className="inline-block backdrop-blur-sm rounded-full px-6 py-2 mb-6" style={{ backgroundColor: 'rgba(255, 255, 255, 0.1)' }}>
             <p 
-              className="text-xl sm:text-2xl font-light tracking-wide text-white"
+              className="text-xl sm:text-2xl font-light tracking-wide text-white mt-1"
               style={{ 
                 fontFamily: 'var(--font-secondary)',
                 textShadow: '1px 1px 2px rgba(0,0,0,0.5)'
@@ -76,7 +72,7 @@ export default async function HeroSection() {
           </div>
           
           {heroImage.caption && (
-            <div className="inline-block backdrop-blur-sm rounded-full px-3 py-1" style={{ backgroundColor: 'rgba(255, 255, 255, 0.1)' }}>
+            <div className="inline-block backdrop-blur-md rounded-lg px-2 py-0.5" style={{ backgroundColor: 'rgba(255, 255, 255, 0.15)' }}>
               <p 
                 className="text-sm text-white opacity-90"
                 style={{ 

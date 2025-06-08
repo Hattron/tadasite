@@ -1,5 +1,3 @@
-'use client';
-
 import Link from 'next/link';
 
 export default function Footer() {
@@ -7,7 +5,7 @@ export default function Footer() {
     <footer 
       className="py-12"
       style={{ 
-        backgroundColor: 'var(--color-text, #1f2937)',
+        backgroundColor: 'var(--color-primary, #3b82f6)',
         color: 'var(--color-background, #ffffff)'
       }}
     >
@@ -53,85 +51,71 @@ export default function Footer() {
             <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-sm, 0.5rem)' }}>
               <Link 
                 href="/"
-                className="block transition-colors"
+                className="block transition-colors hover:text-white"
                 style={{ 
                   color: 'var(--color-text-muted, #6b7280)',
                   textDecoration: 'none'
                 }}
-                onMouseEnter={(e) => e.currentTarget.style.color = 'var(--color-background, #ffffff)'}
-                onMouseLeave={(e) => e.currentTarget.style.color = 'var(--color-text-muted, #6b7280)'}
               >
                 Home
               </Link>
               <Link 
                 href="/about"
-                className="block transition-colors"
+                className="block transition-colors hover:text-white"
                 style={{ 
                   color: 'var(--color-text-muted, #6b7280)',
                   textDecoration: 'none'
                 }}
-                onMouseEnter={(e) => e.currentTarget.style.color = 'var(--color-background, #ffffff)'}
-                onMouseLeave={(e) => e.currentTarget.style.color = 'var(--color-text-muted, #6b7280)'}
               >
                 About
               </Link>
               <Link 
                 href="/gallery"
-                className="block transition-colors"
+                className="block transition-colors hover:text-white"
                 style={{ 
                   color: 'var(--color-text-muted, #6b7280)',
                   textDecoration: 'none'
                 }}
-                onMouseEnter={(e) => e.currentTarget.style.color = 'var(--color-background, #ffffff)'}
-                onMouseLeave={(e) => e.currentTarget.style.color = 'var(--color-text-muted, #6b7280)'}
               >
                 Gallery
               </Link>
               <Link 
                 href="/contact"
-                className="block transition-colors"
+                className="block transition-colors hover:text-white"
                 style={{ 
                   color: 'var(--color-text-muted, #6b7280)',
                   textDecoration: 'none'
                 }}
-                onMouseEnter={(e) => e.currentTarget.style.color = 'var(--color-background, #ffffff)'}
-                onMouseLeave={(e) => e.currentTarget.style.color = 'var(--color-text-muted, #6b7280)'}
               >
                 Contact
               </Link>
               <Link 
                 href="/gallery/residential"
-                className="block transition-colors"
+                className="block transition-colors hover:text-white"
                 style={{ 
                   color: 'var(--color-text-muted, #6b7280)',
                   textDecoration: 'none'
                 }}
-                onMouseEnter={(e) => e.currentTarget.style.color = 'var(--color-background, #ffffff)'}
-                onMouseLeave={(e) => e.currentTarget.style.color = 'var(--color-text-muted, #6b7280)'}
               >
                 Residential Projects
               </Link>
               <Link 
                 href="/gallery/commercial"
-                className="block transition-colors"
+                className="block transition-colors hover:text-white"
                 style={{ 
                   color: 'var(--color-text-muted, #6b7280)',
                   textDecoration: 'none'
                 }}
-                onMouseEnter={(e) => e.currentTarget.style.color = 'var(--color-background, #ffffff)'}
-                onMouseLeave={(e) => e.currentTarget.style.color = 'var(--color-text-muted, #6b7280)'}
               >
                 Commercial Projects
               </Link>
               <Link 
                 href="/admin"
-                className="block transition-colors"
+                className="block transition-colors hover:text-white"
                 style={{ 
                   color: 'var(--color-text-muted, #6b7280)',
                   textDecoration: 'none'
                 }}
-                onMouseEnter={(e) => e.currentTarget.style.color = 'var(--color-background, #ffffff)'}
-                onMouseLeave={(e) => e.currentTarget.style.color = 'var(--color-text-muted, #6b7280)'}
               >
                 Admin
               </Link>
@@ -152,13 +136,11 @@ export default function Footer() {
             <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-sm, 0.5rem)' }}>
               <a 
                 href="mailto:hello@tadainteriordesign.com"
-                className="block transition-colors"
+                className="block transition-colors hover:text-white"
                 style={{ 
                   color: 'var(--color-text-muted, #6b7280)',
                   textDecoration: 'none'
                 }}
-                onMouseEnter={(e) => e.currentTarget.style.color = 'var(--color-background, #ffffff)'}
-                onMouseLeave={(e) => e.currentTarget.style.color = 'var(--color-text-muted, #6b7280)'}
               >
                 hello@tadainteriordesign.com
               </a>

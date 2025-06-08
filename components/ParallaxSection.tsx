@@ -31,8 +31,8 @@ export default function ParallaxSection({
       {/* Content overlay */}
       <div className="h-full flex items-center justify-center">
         <div className="text-center max-w-4xl mx-auto px-6">
-          {/* Main title with blur background */}
-          <div className="inline-block backdrop-blur-sm rounded-full px-8 py-3 mb-4" style={{ backgroundColor: 'rgba(255, 255, 255, 0.1)' }}>
+          {/* Main title with tight blur background */}
+          <div className="inline-block backdrop-blur-md rounded-2xl px-4 py-1 mb-4" style={{ backgroundColor: 'rgba(255, 255, 255, 0.15)' }}>
             <h2 
               className="text-4xl sm:text-5xl lg:text-6xl font-light text-white"
               style={{ 
@@ -44,8 +44,8 @@ export default function ParallaxSection({
             </h2>
           </div>
           
-          {/* Subtitle with blur background */}
-          <div className="inline-block backdrop-blur-sm rounded-full px-6 py-2" style={{ backgroundColor: 'rgba(255, 255, 255, 0.1)' }}>
+          {/* Subtitle with tight blur background */}
+          <div className="inline-block backdrop-blur-md rounded-xl px-3 py-1" style={{ backgroundColor: 'rgba(255, 255, 255, 0.15)' }}>
             <p 
               className="text-lg sm:text-xl lg:text-2xl font-light tracking-wide text-white"
               style={{ 
