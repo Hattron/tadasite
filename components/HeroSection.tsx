@@ -13,25 +13,36 @@ export default async function HeroSection() {
           color: 'var(--color-text)'
         }}
       >
-        <div className="text-center max-w-2xl mx-auto px-6">
+        <div className="text-center max-w-4xl mx-auto px-6">
           <h1 
-            className="text-6xl sm:text-7xl lg:text-8xl font-light mb-4"
+            className="text-6xl sm:text-7xl lg:text-8xl font-light mb-6"
             style={{ 
               color: 'var(--color-text)',
-              fontFamily: 'var(--font-primary)'
+              fontFamily: 'var(--font-primary)',
+              textShadow: '2px 2px 4px rgba(0, 0, 0, 0.1)'
             }}
           >
-            Ta Da
+            TaDa Interiors
           </h1>
-          <p 
-            className="text-xl sm:text-2xl font-light tracking-wide"
+          <div 
+            className="inline-block rounded-full px-8 py-3"
             style={{ 
-              color: 'var(--color-secondary)',
-              fontFamily: 'var(--font-secondary)'
+              background: 'rgba(255, 255, 255, 0.95)',
+              boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+              backdropFilter: 'blur(10px)'
             }}
           >
-            Interior Design
-          </p>
+            <p 
+              className="text-lg sm:text-xl font-medium tracking-wide"
+              style={{ 
+                color: 'var(--color-text)',
+                fontFamily: 'var(--font-secondary)',
+                margin: '0'
+              }}
+            >
+              Where personal style meets professional design
+            </p>
+          </div>
         </div>
       </div>
     );
@@ -40,7 +51,7 @@ export default async function HeroSection() {
   return (
     <ParallaxImage
       src={heroImage.imagekitUrl}
-      alt={heroImage.alt || 'Hero Image'}
+      alt={heroImage.alt || 'Interior Design Hero Image'}
       speed={-30}
       className="w-full h-screen"
       transformation="w-1920,h-1080,q-90"
@@ -49,66 +60,67 @@ export default async function HeroSection() {
       {/* Content overlay */}
       <div className="h-full flex items-center justify-center">
         <div className="text-center max-w-4xl mx-auto px-6">
-          {/* Combined title and subtitle with framed box */}
-          <div 
-            className="inline-block rounded-2xl"
+          {/* Main Title */}
+          <h1 
+            className="text-6xl sm:text-7xl lg:text-8xl font-light mb-6"
             style={{ 
-              background: 'var(--frame-background)',
-              border: 'var(--frame-border)',
-              boxShadow: 'var(--frame-shadow)',
-              borderRadius: 'var(--frame-border-radius)',
-              padding: 'var(--frame-padding)',
-              marginBottom: 'var(--spacing-lg)'
+              fontFamily: 'var(--font-primary)',
+              color: 'var(--color-text)',
+              textShadow: '2px 2px 8px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.5)',
+              letterSpacing: '-0.02em'
             }}
           >
-            <h1 
-              className="text-6xl sm:text-7xl lg:text-8xl font-light leading-tight"
+            {(heroImage.heroTitle || "TaDa Interiors").split('\n').map((line, index) => (
+              <span key={index}>
+                {line}
+                {index < (heroImage.heroTitle || "TaDa Interiors").split('\n').length - 1 && <br />}
+              </span>
+            ))}
+          </h1>
+          
+          {/* Subtitle in pill-shaped container */}
+          <div 
+            className="inline-block rounded-full px-8 py-3"
+            style={{ 
+              background: 'rgba(255, 255, 255, 0.95)',
+              boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
+              backdropFilter: 'blur(10px)',
+              border: '1px solid rgba(255, 255, 255, 0.2)'
+            }}
+          >
+            <p 
+              className="text-lg sm:text-xl font-medium tracking-wide"
               style={{ 
-                fontFamily: 'var(--font-primary)',
+                fontFamily: 'var(--font-secondary)',
                 color: 'var(--color-text)',
                 margin: '0'
               }}
             >
-              {(heroImage.heroTitle || "Ta Da").split('\n').map((line, index) => (
+              {(heroImage.heroSubtitle || "Where personal style meets professional design").split('\n').map((line, index) => (
                 <span key={index}>
                   {line}
-                  {index < (heroImage.heroTitle || "Ta Da").split('\n').length - 1 && <br />}
-                </span>
-              ))}
-            </h1>
-            <p 
-              className="text-xl sm:text-2xl font-light tracking-wide mt-2"
-              style={{ 
-                fontFamily: 'var(--font-secondary)',
-                color: 'var(--color-secondary)',
-                margin: '0.5rem 0 0 0'
-              }}
-            >
-              {(heroImage.heroSubtitle || "Interior Design").split('\n').map((line, index) => (
-                <span key={index}>
-                  {line}
-                  {index < (heroImage.heroSubtitle || "Interior Design").split('\n').length - 1 && <br />}
+                  {index < (heroImage.heroSubtitle || "Where personal style meets professional design").split('\n').length - 1 && <br />}
                 </span>
               ))}
             </p>
           </div>
           
+          {/* Caption if available */}
           {heroImage.caption && (
             <div 
-              className="inline-block rounded-lg"
+              className="inline-block rounded-lg mt-4"
               style={{ 
-                background: 'var(--frame-background)',
-                border: 'var(--frame-border)',
-                boxShadow: 'var(--frame-shadow)',
-                borderRadius: 'calc(var(--frame-border-radius) * 0.75)',
-                padding: 'var(--frame-padding-sm)'
+                background: 'rgba(255, 255, 255, 0.9)',
+                boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
+                backdropFilter: 'blur(10px)',
+                padding: 'var(--spacing-sm) var(--spacing-md)'
               }}
             >
               <p 
                 className="text-sm opacity-90"
                 style={{ 
                   fontFamily: 'var(--font-secondary)',
-                  color: 'var(--color-text-muted)',
+                  color: 'var(--color-text)',
                   margin: '0'
                 }}
               >
@@ -124,9 +136,9 @@ export default async function HeroSection() {
         <div 
           className="animate-bounce rounded-full p-2"
           style={{
-            background: 'var(--frame-background)',
-            border: 'var(--frame-border)',
-            boxShadow: 'var(--frame-shadow)'
+            background: 'rgba(255, 255, 255, 0.9)',
+            boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
+            backdropFilter: 'blur(5px)'
           }}
         >
           <svg 
