@@ -53,59 +53,63 @@ export default function ParallaxSection({
         overlay={false}
       />
       
-      {/* Fading overlay at the bottom */}
-      <div 
-        className="absolute inset-x-0 bottom-0 z-10 pointer-events-none"
-        style={{
-          height: '60%',
-          background: 'linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.6) 20%, rgba(0, 0, 0, 0.3) 35%, rgba(0, 0, 0, 0.1) 45%, transparent 55%)'
-        }}
-      />
-
       {/* Content positioned at bottom */}
       <div className="absolute bottom-0 left-0 right-0 z-20 p-8 pb-16">
-        <div className="text-center max-w-4xl mx-auto">
-          {/* Main Title */}
-          <h2 
-            className="font-light leading-tight mb-4"
-            style={{ 
-              fontFamily: 'var(--font-primary)',
-              color: 'white',
-              margin: '0 0 1rem 0',
-              fontSize: titleFontSize,
-              textAlign: 'center',
-              textShadow: '2px 2px 8px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.5)',
-              letterSpacing: '-0.02em'
-            }}
-          >
-            {title.split('\n').map((line, index) => (
-              <span key={index}>
-                {line}
-                {index < title.split('\n').length - 1 && <br />}
-              </span>
-            ))}
-          </h2>
+        {/* Text background container - fade at top 10% */}
+        <div 
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background: 'linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.8) 90%, transparent 100%)'
+          }}
+        />
+        
+        <div className="relative text-center max-w-4xl mx-auto">
+          {/* Main Title - only show if provided */}
+          {title && (
+            <h2 
+              className="font-light mb-4"
+              style={{ 
+                fontFamily: 'var(--font-primary)',
+                color: 'white',
+                margin: '0 0 1rem 0',
+                fontSize: titleFontSize,
+                textAlign: 'center',
+                textShadow: '2px 2px 8px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.5)',
+                letterSpacing: '-0.02em',
+                lineHeight: '1.3'
+              }}
+            >
+              {title.split('\n').map((line: string, index: number) => (
+                <span key={index}>
+                  {line}
+                  {index < title.split('\n').length - 1 && <br />}
+                </span>
+              ))}
+            </h2>
+          )}
           
-          {/* Subtitle */}
-          <p 
-            className="font-light tracking-wide"
-            style={{ 
-              fontFamily: 'var(--font-secondary)',
-              color: 'white',
-              margin: '0',
-              fontSize: subtitleFontSize,
-              textAlign: 'center',
-              lineHeight: '1.4',
-              textShadow: '2px 2px 8px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.5)'
-            }}
-          >
-            {subtitle.split('\n').map((line, index) => (
-              <span key={index}>
-                {line}
-                {index < subtitle.split('\n').length - 1 && <br />}
-              </span>
-            ))}
-          </p>
+          {/* Subtitle - only show if provided */}
+          {subtitle && (
+            <p 
+              className="font-light tracking-wide"
+              style={{ 
+                fontFamily: 'var(--font-secondary)',
+                color: 'white',
+                margin: '0',
+                fontSize: subtitleFontSize,
+                textAlign: 'center',
+                lineHeight: '1.6',
+                textShadow: '2px 2px 8px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.5)'
+              }}
+            >
+              {subtitle.split('\n').map((line: string, index: number) => (
+                <span key={index}>
+                  {line}
+                  {index < subtitle.split('\n').length - 1 && <br />}
+                </span>
+              ))}
+            </p>
+          )}
         </div>
       </div>
     </div>

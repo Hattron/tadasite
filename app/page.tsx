@@ -19,8 +19,8 @@ export default async function Home() {
       <Services />
       
       <ParallaxSection 
-        title={firstImage?.firstImageTitle || "Exceptional Design"}
-        subtitle={firstImage?.firstImageSubtitle || "Creating spaces that inspire and elevate your everyday experience"}
+        title={firstImage?.firstImageTitle || ""}
+        subtitle={firstImage?.firstImageSubtitle || ""}
         imageSrc={firstImage?.imagekitUrl || undefined}
         altText={firstImage?.alt || undefined}
       />
@@ -28,8 +28,8 @@ export default async function Home() {
       <AboutUs />
       
       <ParallaxSection 
-        title={secondImage?.secondImageTitle || "Your Vision, Our Expertise"}
-        subtitle={secondImage?.secondImageSubtitle || "Transforming spaces into beautiful, functional environments that tell your story"}
+        title={secondImage?.secondImageTitle || ""}
+        subtitle={secondImage?.secondImageSubtitle || ""}
         imageSrc={secondImage?.imagekitUrl || undefined}
         altText={secondImage?.alt || undefined}
       />
@@ -37,8 +37,8 @@ export default async function Home() {
       <Testimonials />
       
       <ParallaxSection 
-        title={thirdImage?.thirdImageTitle || "Ready to Get Started?"}
-        subtitle={thirdImage?.thirdImageSubtitle || "Let's bring your vision to life with exceptional design and craftsmanship"}
+        title={thirdImage?.thirdImageTitle || ""}
+        subtitle={thirdImage?.thirdImageSubtitle || ""}
         imageSrc={thirdImage?.imagekitUrl || undefined}
         altText={thirdImage?.alt || undefined}
       />

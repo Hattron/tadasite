@@ -1,8 +1,25 @@
+'use client';
+
 import { getHeroImage } from '@/lib/image-actions';
 import ParallaxImage from '@/components/ParallaxImage';
+import { useEffect, useState } from 'react';
 
-export default async function HeroSection() {
-  const heroImage = await getHeroImage();
+interface HeroImage {
+  id: string;
+  imagekitUrl: string;
+  alt: string | null;
+  heroTitle: string | null;
+  heroSubtitle: string | null;
+  caption: string | null;
+}
+
+export default function HeroSection() {
+  const [heroImage, setHeroImage] = useState<HeroImage | null>(null);
+
+  useEffect(() => {
+    // Fetch hero image
+    getHeroImage().then(setHeroImage);
+  }, []);
 
   if (!heroImage) {
     return (
@@ -59,53 +76,58 @@ export default async function HeroSection() {
         overlay={false}
       />
       
-      {/* Fading overlay at the bottom */}
-      <div 
-        className="absolute inset-x-0 bottom-0 z-10 pointer-events-none"
-        style={{
-          height: '60%',
-          background: 'linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.6) 20%, rgba(0, 0, 0, 0.3) 35%, rgba(0, 0, 0, 0.1) 45%, transparent 55%)'
-        }}
-      />
-
       {/* Content positioned at bottom */}
       <div className="absolute bottom-0 left-0 right-0 z-20 p-8 pb-16">
-        <div className="text-center max-w-4xl mx-auto">
-          {/* Main Title */}
-          <h1 
-            className="text-5xl sm:text-6xl lg:text-7xl font-light mb-4"
-            style={{ 
-              fontFamily: 'var(--font-primary)',
-              color: 'white',
-              textShadow: '2px 2px 8px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.5)',
-              letterSpacing: '-0.02em'
-            }}
-          >
-            {(heroImage.heroTitle || "TaDa Interiors").split('\n').map((line, index) => (
-              <span key={index}>
-                {line}
-                {index < (heroImage.heroTitle || "TaDa Interiors").split('\n').length - 1 && <br />}
-              </span>
-            ))}
-          </h1>
+        {/* Text background container - fade at top 10% */}
+        <div 
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background: 'linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.8) 90%, transparent 100%)'
+          }}
+        />
+        
+        <div className="relative text-center max-w-4xl mx-auto">
+          {/* Main Title - only show if exists */}
+          {heroImage.heroTitle && (
+            <h1 
+              className="text-5xl sm:text-6xl lg:text-7xl font-light mb-4"
+              style={{ 
+                fontFamily: 'var(--font-primary)',
+                color: 'white',
+                textShadow: '2px 2px 8px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.5)',
+                letterSpacing: '-0.02em',
+                lineHeight: '1.3'
+              }}
+            >
+              {heroImage.heroTitle!.split('\n').map((line: string, index: number) => (
+                <span key={index}>
+                  {line}
+                  {index < heroImage.heroTitle!.split('\n').length - 1 && <br />}
+                </span>
+              ))}
+            </h1>
+          )}
           
-          {/* Subtitle */}
-          <p 
-            className="text-base sm:text-lg font-medium tracking-wide mb-4"
-            style={{ 
-              fontFamily: 'var(--font-secondary)',
-              color: 'white',
-              textShadow: '2px 2px 8px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.5)',
-              margin: '0 0 1rem 0'
-            }}
-          >
-            {(heroImage.heroSubtitle || "Where personal style meets professional design").split('\n').map((line, index) => (
-              <span key={index}>
-                {line}
-                {index < (heroImage.heroSubtitle || "Where personal style meets professional design").split('\n').length - 1 && <br />}
-              </span>
-            ))}
-          </p>
+          {/* Subtitle - only show if exists */}
+          {heroImage.heroSubtitle && (
+            <p 
+              className="text-base sm:text-lg font-medium tracking-wide mb-4"
+              style={{ 
+                fontFamily: 'var(--font-secondary)',
+                color: 'white',
+                textShadow: '2px 2px 8px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.5)',
+                margin: '0 0 1rem 0',
+                lineHeight: '1.6'
+              }}
+            >
+              {heroImage.heroSubtitle!.split('\n').map((line: string, index: number) => (
+                <span key={index}>
+                  {line}
+                  {index < heroImage.heroSubtitle!.split('\n').length - 1 && <br />}
+                </span>
+              ))}
+            </p>
+          )}
           
           {/* Caption if available */}
           {heroImage.caption && (
