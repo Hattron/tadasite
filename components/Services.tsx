@@ -106,7 +106,7 @@ export default function Services() {
         
         <div className="text-center mt-12">
           <a 
-            href="mailto:hello@tadainteriordesign.com"
+            href="/contact"
             className="inline-flex items-center gap-2 rounded-full transition-all font-medium px-8 py-4 text-lg"
             style={{
               backgroundColor: 'var(--color-primary)',

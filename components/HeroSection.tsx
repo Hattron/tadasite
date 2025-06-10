@@ -49,23 +49,34 @@ export default async function HeroSection() {
   }
 
   return (
-    <ParallaxImage
-      src={heroImage.imagekitUrl}
-      alt={heroImage.alt || 'Interior Design Hero Image'}
-      speed={-30}
-      className="w-full h-screen"
-      transformation="w-1920,h-1080,q-90"
-      overlay={false}
-    >
-      {/* Content overlay */}
-      <div className="h-full flex items-center justify-center">
-        <div className="text-center max-w-4xl mx-auto px-6">
+    <div className="relative w-full h-screen overflow-hidden">
+      <ParallaxImage
+        src={heroImage.imagekitUrl}
+        alt={heroImage.alt || 'Interior Design Hero Image'}
+        speed={-30}
+        className="w-full h-screen"
+        transformation="w-1920,h-1080,q-90"
+        overlay={false}
+      />
+      
+      {/* Fading overlay at the bottom */}
+      <div 
+        className="absolute inset-x-0 bottom-0 z-10 pointer-events-none"
+        style={{
+          height: '60%',
+          background: 'linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.6) 20%, rgba(0, 0, 0, 0.3) 35%, rgba(0, 0, 0, 0.1) 45%, transparent 55%)'
+        }}
+      />
+
+      {/* Content positioned at bottom */}
+      <div className="absolute bottom-0 left-0 right-0 z-20 p-8 pb-16">
+        <div className="text-center max-w-4xl mx-auto">
           {/* Main Title */}
           <h1 
-            className="text-6xl sm:text-7xl lg:text-8xl font-light mb-6"
+            className="text-5xl sm:text-6xl lg:text-7xl font-light mb-4"
             style={{ 
               fontFamily: 'var(--font-primary)',
-              color: 'var(--color-text)',
+              color: 'white',
               textShadow: '2px 2px 8px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.5)',
               letterSpacing: '-0.02em'
             }}
@@ -78,37 +89,28 @@ export default async function HeroSection() {
             ))}
           </h1>
           
-          {/* Subtitle in pill-shaped container */}
-          <div 
-            className="inline-block rounded-full px-8 py-3"
+          {/* Subtitle */}
+          <p 
+            className="text-base sm:text-lg font-medium tracking-wide mb-4"
             style={{ 
-              background: 'rgba(255, 255, 255, 0.95)',
-              boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
-              backdropFilter: 'blur(10px)',
-              border: '1px solid rgba(255, 255, 255, 0.2)'
+              fontFamily: 'var(--font-secondary)',
+              color: 'white',
+              textShadow: '2px 2px 8px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.5)',
+              margin: '0 0 1rem 0'
             }}
           >
-            <p 
-              className="text-lg sm:text-xl font-medium tracking-wide"
-              style={{ 
-                fontFamily: 'var(--font-secondary)',
-                color: 'var(--color-text)',
-                margin: '0'
-              }}
-            >
-              {(heroImage.heroSubtitle || "Where personal style meets professional design").split('\n').map((line, index) => (
-                <span key={index}>
-                  {line}
-                  {index < (heroImage.heroSubtitle || "Where personal style meets professional design").split('\n').length - 1 && <br />}
-                </span>
-              ))}
-            </p>
-          </div>
+            {(heroImage.heroSubtitle || "Where personal style meets professional design").split('\n').map((line, index) => (
+              <span key={index}>
+                {line}
+                {index < (heroImage.heroSubtitle || "Where personal style meets professional design").split('\n').length - 1 && <br />}
+              </span>
+            ))}
+          </p>
           
           {/* Caption if available */}
           {heroImage.caption && (
             <div 
-              className="inline-block rounded-lg mt-4"
+              className="inline-block rounded-lg"
               style={{ 
                 background: 'rgba(255, 255, 255, 0.9)',
                 boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
@@ -132,7 +134,7 @@ export default async function HeroSection() {
       </div>
 
       {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
+      <div className="absolute bottom-8 right-8 z-20">
         <div 
           className="animate-bounce rounded-full p-2"
           style={{
@@ -157,6 +159,6 @@ export default async function HeroSection() {
           </svg>
         </div>
       </div>
-    </ParallaxImage>
+    </div>
   );
 } 
