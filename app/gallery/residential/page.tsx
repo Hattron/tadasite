@@ -11,16 +11,16 @@ export default async function ResidentialPage() {
 
   return (
     <div 
-      className="min-h-screen py-16 px-8"
+      className="min-h-screen py-20 px-8"
       style={{
         backgroundColor: 'var(--color-background)',
         color: 'var(--color-text)',
         fontFamily: 'var(--font-primary)',
       }}
     >
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-6xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-20">
           <Link 
             href="/gallery"
             className="inline-block mb-6 text-sm font-medium hover:underline"
@@ -29,14 +29,29 @@ export default async function ResidentialPage() {
             ← Back to Gallery
           </Link>
           <h1 
-            className="text-5xl font-bold mb-6"
-            style={{ color: 'var(--color-primary)' }}
+            className="text-4xl md:text-5xl font-light mb-6"
+            style={{ 
+              color: 'var(--color-text)',
+              fontFamily: 'var(--font-primary)'
+            }}
           >
             Residential Projects
           </h1>
+          
+          {/* Decorative line */}
+          <div className="flex justify-center mb-8">
+            <div 
+              className="w-16 h-0.5"
+              style={{ backgroundColor: 'var(--color-secondary)' }}
+            ></div>
+          </div>
+          
           <p 
-            className="text-xl max-w-3xl mx-auto"
-            style={{ color: 'var(--color-text-muted)' }}
+            className="text-lg max-w-2xl mx-auto leading-relaxed"
+            style={{ 
+              color: 'var(--color-text)',
+              fontFamily: 'var(--font-secondary)'
+            }}
           >
             Creating beautiful, functional homes that reflect your personal style and enhance your daily living experience.
           </p>
@@ -62,9 +77,9 @@ export default async function ResidentialPage() {
                     <span className="text-gray-500">No Image</span>
                   </div>
                 )}
-                <div className="p-6">
+                <div className="p-4">
                   <h3 
-                    className="text-xl font-semibold mb-3"
+                    className="text-xl font-semibold mb-2"
                     style={{ color: 'var(--color-primary)' }}
                   >
                     {project.name}
@@ -77,14 +92,6 @@ export default async function ResidentialPage() {
                       {project.description}
                     </p>
                   )}
-                  <div className="mt-4">
-                    <span 
-                      className="text-sm font-medium group-hover:underline"
-                      style={{ color: 'var(--color-secondary)' }}
-                    >
-                      View Project →
-                    </span>
-                  </div>
                 </div>
               </div>
             </Link>

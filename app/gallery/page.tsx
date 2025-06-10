@@ -14,158 +14,130 @@ export default async function GalleryPage() {
 
   return (
     <div 
-      className="min-h-screen py-16 px-8"
+      className="min-h-screen py-20 px-8"
       style={{
         backgroundColor: 'var(--color-background)',
         color: 'var(--color-text)',
         fontFamily: 'var(--font-primary)',
       }}
     >
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-6xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-20">
           <h1 
-            className="text-5xl font-bold mb-6"
-            style={{ color: 'var(--color-primary)' }}
+            className="text-4xl md:text-5xl font-light mb-6"
+            style={{ 
+              color: 'var(--color-text)',
+              fontFamily: 'var(--font-primary)'
+            }}
           >
-            Our Portfolio
+            Portfolio
           </h1>
+          
+          {/* Decorative line */}
+          <div className="flex justify-center mb-8">
+            <div 
+              className="w-16 h-0.5"
+              style={{ backgroundColor: 'var(--color-secondary)' }}
+            ></div>
+          </div>
+          
           <p 
-            className="text-xl max-w-3xl mx-auto"
-            style={{ color: 'var(--color-text-muted)' }}
+            className="text-lg max-w-2xl mx-auto leading-relaxed"
+            style={{ 
+              color: 'var(--color-text)',
+              fontFamily: 'var(--font-secondary)'
+            }}
           >
-            Explore our diverse collection of interior design projects, from cozy residential spaces to dynamic commercial environments.
+            Explore our collection of thoughtfully designed spaces that blend functionality with beauty
           </p>
         </div>
 
         {/* Gallery Sections */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
           {/* Residential Section */}
-          <div className="space-y-8">
-            <div className="text-center">
-              <h2 
-                className="text-3xl font-bold mb-4"
-                style={{ color: 'var(--color-secondary)' }}
-              >
-                Residential
-              </h2>
-              <p 
-                className="text-lg mb-8"
-                style={{ color: 'var(--color-text-muted)' }}
-              >
-                Creating beautiful, functional homes that reflect your personal style
-              </p>
-              
-              {/* Residential Cover Image */}
-              {residentialCover && (
-                <div className="relative mb-8 group cursor-pointer">
-                  <Link href="/gallery/residential">
-                    <div className="relative overflow-hidden rounded-lg shadow-lg">
-                      <img
-                        src={`${imagekitConfig.urlEndpoint}${getImagePath(residentialCover.imagekitUrl)}?tr=w-600,h-400,q-90`}
-                        alt={residentialCover.alt || 'Residential Design'}
-                        className="w-full h-80 object-cover transition-transform group-hover:scale-105"
-                      />
-                      <div 
-                        className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
-                        style={{
-                          background: 'linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.7) 100%)',
-                          backdropFilter: 'blur(2px)'
-                        }}
-                      >
-                        <span 
-                          className="text-xl font-semibold px-6 py-3 rounded-full"
-                          style={{ 
-                            color: 'var(--color-primary)',
-                            backgroundColor: 'rgba(255,255,255,0.9)'
-                          }}
-                        >
-                          View All Residential Projects
-                        </span>
-                      </div>
-                    </div>
-                  </Link>
+          <div className="group">
+            <Link href="/gallery/residential" className="block">
+              {residentialCover ? (
+                <div className="space-y-6">
+                  <div className="relative overflow-hidden rounded-2xl shadow-lg transition-all duration-500 group-hover:shadow-2xl">
+                    <img
+                      src={`${imagekitConfig.urlEndpoint}${getImagePath(residentialCover.imagekitUrl)}?tr=w-700,h-500,q-90`}
+                      alt={residentialCover.alt || 'Residential Design'}
+                      className="w-full h-96 object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                  </div>
+                  
+                  {/* Text below image */}
+                  <div className="text-center">
+                    <h2 
+                      className="text-2xl font-light mb-2"
+                      style={{ 
+                        color: 'var(--color-text)',
+                        fontFamily: 'var(--font-primary)'
+                      }}
+                    >
+                      Residential
+                    </h2>
+                  </div>
+                </div>
+              ) : (
+                <div 
+                  className="w-full h-96 rounded-2xl flex items-center justify-center transition-all duration-500 group-hover:shadow-2xl"
+                  style={{ backgroundColor: 'var(--color-secondary)', opacity: 0.1 }}
+                >
+                  <p 
+                    className="text-center"
+                    style={{ color: 'var(--color-text)' }}
+                  >
+                    Set a residential cover image in the gallery manager
+                  </p>
                 </div>
               )}
-            </div>
+            </Link>
           </div>
 
           {/* Commercial Section */}
-          <div className="space-y-8">
-            <div className="text-center">
-              <h2 
-                className="text-3xl font-bold mb-4"
-                style={{ color: 'var(--color-secondary)' }}
-              >
-                Commercial
-              </h2>
-              <p 
-                className="text-lg mb-8"
-                style={{ color: 'var(--color-text-muted)' }}
-              >
-                Designing inspiring workspaces that enhance productivity and brand identity
-              </p>
-              
-              {/* Commercial Cover Image */}
-              {commercialCover && (
-                <div className="relative mb-8 group cursor-pointer">
-                  <Link href="/gallery/commercial">
-                    <div className="relative overflow-hidden rounded-lg shadow-lg">
-                      <img
-                        src={`${imagekitConfig.urlEndpoint}${getImagePath(commercialCover.imagekitUrl)}?tr=w-600,h-400,q-90`}
-                        alt={commercialCover.alt || 'Commercial Design'}
-                        className="w-full h-80 object-cover transition-transform group-hover:scale-105"
-                      />
-                      <div 
-                        className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
-                        style={{
-                          background: 'linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.7) 100%)',
-                          backdropFilter: 'blur(2px)'
-                        }}
-                      >
-                        <span 
-                          className="text-xl font-semibold px-6 py-3 rounded-full"
-                          style={{ 
-                            color: 'var(--color-primary)',
-                            backgroundColor: 'rgba(255,255,255,0.9)'
-                          }}
-                        >
-                          View All Commercial Projects
-                        </span>
-                      </div>
-                    </div>
-                  </Link>
+          <div className="group">
+            <Link href="/gallery/commercial" className="block">
+              {commercialCover ? (
+                <div className="space-y-6">
+                  <div className="relative overflow-hidden rounded-2xl shadow-lg transition-all duration-500 group-hover:shadow-2xl">
+                    <img
+                      src={`${imagekitConfig.urlEndpoint}${getImagePath(commercialCover.imagekitUrl)}?tr=w-700,h-500,q-90`}
+                      alt={commercialCover.alt || 'Commercial Design'}
+                      className="w-full h-96 object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                  </div>
+                  
+                  {/* Text below image */}
+                  <div className="text-center">
+                    <h2 
+                      className="text-2xl font-light mb-2"
+                      style={{ 
+                        color: 'var(--color-text)',
+                        fontFamily: 'var(--font-primary)'
+                      }}
+                    >
+                      Commercial
+                    </h2>
+                  </div>
+                </div>
+              ) : (
+                <div 
+                  className="w-full h-96 rounded-2xl flex items-center justify-center transition-all duration-500 group-hover:shadow-2xl"
+                  style={{ backgroundColor: 'var(--color-secondary)', opacity: 0.1 }}
+                >
+                  <p 
+                    className="text-center"
+                    style={{ color: 'var(--color-text)' }}
+                  >
+                    Set a commercial cover image in the gallery manager
+                  </p>
                 </div>
               )}
-            </div>
+            </Link>
           </div>
-        </div>
-
-        {/* Call to Action */}
-        <div className="text-center">
-          <h3 
-            className="text-2xl font-bold mb-4"
-            style={{ color: 'var(--color-primary)' }}
-          >
-            Ready to Transform Your Space?
-          </h3>
-          <p 
-            className="text-lg mb-8"
-            style={{ color: 'var(--color-text-muted)' }}
-          >
-            Let&apos;s discuss your vision and create something extraordinary together.
-          </p>
-          <a 
-            href="mailto:hello@tadainteriordesign.com" 
-            className="inline-flex items-center gap-2 rounded-full transition-all font-medium px-8 py-4 text-lg"
-            style={{
-              backgroundColor: 'var(--color-primary)',
-              color: 'white',
-              fontFamily: 'var(--font-secondary)'
-            }}
-          >
-            Start Your Project
-          </a>
         </div>
       </div>
     </div>
