@@ -78,11 +78,14 @@ export default function HeroSection() {
       
       {/* Content positioned at bottom */}
       <div className="absolute bottom-0 left-0 right-0 z-20 p-8 pb-16">
-        {/* Text background container - fade at top 10% */}
+        {/* Blur background for text area only with fade at top */}
         <div 
           className="absolute inset-0 pointer-events-none"
           style={{
-            background: 'linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.8) 90%, transparent 100%)'
+            backdropFilter: 'blur(8px)',
+            WebkitBackdropFilter: 'blur(8px)',
+            maskImage: 'linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 90%, rgba(0,0,0,0) 100%)',
+            WebkitMaskImage: 'linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 90%, rgba(0,0,0,0) 100%)'
           }}
         />
         
@@ -94,7 +97,8 @@ export default function HeroSection() {
               style={{ 
                 fontFamily: 'var(--font-primary)',
                 color: 'white',
-                textShadow: '2px 2px 8px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.5)',
+                WebkitTextStroke: '0.5px rgba(var(--color-primary-rgb, 0, 0, 0), 0.3)',
+                textShadow: '2px 2px 8px rgba(0, 0, 0, 0.7), 1px 1px 4px rgba(0, 0, 0, 0.6), 0 0 20px rgba(0, 0, 0, 0.4)',
                 letterSpacing: '-0.02em',
                 lineHeight: '1.3'
               }}
@@ -115,7 +119,8 @@ export default function HeroSection() {
               style={{ 
                 fontFamily: 'var(--font-secondary)',
                 color: 'white',
-                textShadow: '2px 2px 8px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.5)',
+                WebkitTextStroke: '0.3px rgba(var(--color-primary-rgb, 0, 0, 0), 0.25)',
+                textShadow: '2px 2px 8px rgba(0, 0, 0, 0.7), 1px 1px 4px rgba(0, 0, 0, 0.6), 0 0 20px rgba(0, 0, 0, 0.4)',
                 margin: '0 0 1rem 0',
                 lineHeight: '1.6'
               }}

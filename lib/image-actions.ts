@@ -312,16 +312,45 @@ export async function getProjectsByType(type: 'residential' | 'commercial') {
 
 export async function setHeroImage(imageId: string) {
   try {
+    // Get the current hero image's text content before unsetting
+    const currentHero = await db
+      .select({
+        heroTitle: tadaImages.heroTitle,
+        heroSubtitle: tadaImages.heroSubtitle
+      })
+      .from(tadaImages)
+      .where(eq(tadaImages.isHero, true))
+      .limit(1);
+
+    // Get the new image's current text content
+    const newImage = await db
+      .select({
+        heroTitle: tadaImages.heroTitle,
+        heroSubtitle: tadaImages.heroSubtitle
+      })
+      .from(tadaImages)
+      .where(eq(tadaImages.id, imageId))
+      .limit(1);
+
     // First, unset any existing hero images
     await db
       .update(tadaImages)
       .set({ isHero: false })
       .where(eq(tadaImages.isHero, true));
 
-    // Set the new hero image
+    // Set the new hero image, preserving existing text if new image doesn't have text
+    const textToUse = {
+      heroTitle: newImage[0]?.heroTitle || (currentHero[0]?.heroTitle || null),
+      heroSubtitle: newImage[0]?.heroSubtitle || (currentHero[0]?.heroSubtitle || null)
+    };
+
     await db
       .update(tadaImages)
-      .set({ isHero: true })
+      .set({ 
+        isHero: true,
+        heroTitle: textToUse.heroTitle,
+        heroSubtitle: textToUse.heroSubtitle
+      })
       .where(eq(tadaImages.id, imageId));
 
     revalidatePath('/');
@@ -335,16 +364,45 @@ export async function setHeroImage(imageId: string) {
 
 export async function setFirstImage(imageId: string) {
   try {
+    // Get the current first image's text content before unsetting
+    const currentFirst = await db
+      .select({
+        firstImageTitle: tadaImages.firstImageTitle,
+        firstImageSubtitle: tadaImages.firstImageSubtitle
+      })
+      .from(tadaImages)
+      .where(eq(tadaImages.isFirstImage, true))
+      .limit(1);
+
+    // Get the new image's current text content
+    const newImage = await db
+      .select({
+        firstImageTitle: tadaImages.firstImageTitle,
+        firstImageSubtitle: tadaImages.firstImageSubtitle
+      })
+      .from(tadaImages)
+      .where(eq(tadaImages.id, imageId))
+      .limit(1);
+
     // First, unset any existing first images
     await db
       .update(tadaImages)
       .set({ isFirstImage: false })
       .where(eq(tadaImages.isFirstImage, true));
 
-    // Set the new first image
+    // Set the new first image, preserving existing text if new image doesn't have text
+    const textToUse = {
+      firstImageTitle: newImage[0]?.firstImageTitle || (currentFirst[0]?.firstImageTitle || null),
+      firstImageSubtitle: newImage[0]?.firstImageSubtitle || (currentFirst[0]?.firstImageSubtitle || null)
+    };
+
     await db
       .update(tadaImages)
-      .set({ isFirstImage: true })
+      .set({ 
+        isFirstImage: true,
+        firstImageTitle: textToUse.firstImageTitle,
+        firstImageSubtitle: textToUse.firstImageSubtitle
+      })
       .where(eq(tadaImages.id, imageId));
 
     revalidatePath('/admin');
@@ -448,16 +506,45 @@ export async function setTeamImage(imageId: string) {
 
 export async function setSecondImage(imageId: string) {
   try {
+    // Get the current second image's text content before unsetting
+    const currentSecond = await db
+      .select({
+        secondImageTitle: tadaImages.secondImageTitle,
+        secondImageSubtitle: tadaImages.secondImageSubtitle
+      })
+      .from(tadaImages)
+      .where(eq(tadaImages.isSecondImage, true))
+      .limit(1);
+
+    // Get the new image's current text content
+    const newImage = await db
+      .select({
+        secondImageTitle: tadaImages.secondImageTitle,
+        secondImageSubtitle: tadaImages.secondImageSubtitle
+      })
+      .from(tadaImages)
+      .where(eq(tadaImages.id, imageId))
+      .limit(1);
+
     // First, unset any existing second images
     await db
       .update(tadaImages)
       .set({ isSecondImage: false })
       .where(eq(tadaImages.isSecondImage, true));
 
-    // Set the new second image
+    // Set the new second image, preserving existing text if new image doesn't have text
+    const textToUse = {
+      secondImageTitle: newImage[0]?.secondImageTitle || (currentSecond[0]?.secondImageTitle || null),
+      secondImageSubtitle: newImage[0]?.secondImageSubtitle || (currentSecond[0]?.secondImageSubtitle || null)
+    };
+
     await db
       .update(tadaImages)
-      .set({ isSecondImage: true })
+      .set({ 
+        isSecondImage: true,
+        secondImageTitle: textToUse.secondImageTitle,
+        secondImageSubtitle: textToUse.secondImageSubtitle
+      })
       .where(eq(tadaImages.id, imageId));
 
     revalidatePath('/admin');
@@ -470,16 +557,45 @@ export async function setSecondImage(imageId: string) {
 
 export async function setThirdImage(imageId: string) {
   try {
+    // Get the current third image's text content before unsetting
+    const currentThird = await db
+      .select({
+        thirdImageTitle: tadaImages.thirdImageTitle,
+        thirdImageSubtitle: tadaImages.thirdImageSubtitle
+      })
+      .from(tadaImages)
+      .where(eq(tadaImages.isThirdImage, true))
+      .limit(1);
+
+    // Get the new image's current text content
+    const newImage = await db
+      .select({
+        thirdImageTitle: tadaImages.thirdImageTitle,
+        thirdImageSubtitle: tadaImages.thirdImageSubtitle
+      })
+      .from(tadaImages)
+      .where(eq(tadaImages.id, imageId))
+      .limit(1);
+
     // First, unset any existing third images
     await db
       .update(tadaImages)
       .set({ isThirdImage: false })
       .where(eq(tadaImages.isThirdImage, true));
 
-    // Set the new third image
+    // Set the new third image, preserving existing text if new image doesn't have text
+    const textToUse = {
+      thirdImageTitle: newImage[0]?.thirdImageTitle || (currentThird[0]?.thirdImageTitle || null),
+      thirdImageSubtitle: newImage[0]?.thirdImageSubtitle || (currentThird[0]?.thirdImageSubtitle || null)
+    };
+
     await db
       .update(tadaImages)
-      .set({ isThirdImage: true })
+      .set({ 
+        isThirdImage: true,
+        thirdImageTitle: textToUse.thirdImageTitle,
+        thirdImageSubtitle: textToUse.thirdImageSubtitle
+      })
       .where(eq(tadaImages.id, imageId));
 
     revalidatePath('/admin');
