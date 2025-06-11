@@ -23,6 +23,7 @@ export default async function Home() {
         subtitle={firstImage?.firstImageSubtitle || ""}
         imageSrc={firstImage?.imagekitUrl || undefined}
         altText={firstImage?.alt || undefined}
+        position="left"
       />
       
       <AboutUs />
@@ -32,6 +33,7 @@ export default async function Home() {
         subtitle={secondImage?.secondImageSubtitle || ""}
         imageSrc={secondImage?.imagekitUrl || undefined}
         altText={secondImage?.alt || undefined}
+        position="right"
       />
       
       <Testimonials />
@@ -41,6 +43,7 @@ export default async function Home() {
         subtitle={thirdImage?.thirdImageSubtitle || ""}
         imageSrc={thirdImage?.imagekitUrl || undefined}
         altText={thirdImage?.alt || undefined}
+        position="left"
       />
     </>
   );

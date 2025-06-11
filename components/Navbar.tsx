@@ -18,7 +18,8 @@ export default function Navbar() {
       >
         <Link 
           href="/"
-          className="transition-colors hover:opacity-80"
+          className="flex items-center transition-colors hover:opacity-80"
+          style={{ gap: 'var(--spacing-sm, 0.5rem)' }}
         >
           <img 
             src={`${imagekitConfig.urlEndpoint}/tada/Assets/logosimple.png?tr=h-60,q-90`}
@@ -26,6 +27,15 @@ export default function Navbar() {
             className="h-15"
             style={{ height: '3.75rem' }}
           />
+          <span
+            className="text-xl font-bold"
+            style={{ 
+              color: 'var(--color-text, #1f2937)',
+              fontFamily: 'var(--font-primary, Quicksand, sans-serif)',
+            }}
+          >
+            TaDa Interiors
+          </span>
         </Link>
         
         <div 

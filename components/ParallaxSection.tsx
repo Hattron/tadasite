@@ -7,6 +7,7 @@ interface ParallaxSectionProps {
   altText?: string;
   transformation?: string;
   speed?: number;
+  position?: 'left' | 'right';
 }
 
 // Function to calculate font size based on character count
@@ -32,53 +33,45 @@ export default function ParallaxSection({
   subtitle,
   imageSrc,
   altText,
-  transformation = 'w-1920,h-810,q-90',
-  speed = -30
+  transformation = 'w-1440,h-810,q-90',
+  speed = -30,
+  position = 'left'
 }: ParallaxSectionProps) {
   // Use provided imageSrc or fallback to placeholder
   const imageUrl = imageSrc || 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=1920&h=1080&fit=crop&crop=center';
   
   // Calculate font sizes based on content length
-  const titleFontSize = calculateFontSize(title, 64, 24, 80); // Base 64px, min 24px, max 80px
-  const subtitleFontSize = calculateFontSize(subtitle, 24, 16, 32); // Base 24px, min 16px, max 32px
+  const titleFontSize = calculateFontSize(title, 48, 20, 64); // Base 48px, min 20px, max 64px
+  const subtitleFontSize = calculateFontSize(subtitle, 18, 14, 24); // Base 18px, min 14px, max 24px
   
   return (
-    <div className="relative w-full h-[75vh] overflow-hidden">
-      <ParallaxImage
-        src={imageUrl}
-        alt={altText || `${title} section background`}
-        speed={speed}
-        className="w-full h-[75vh]"
-        transformation={transformation}
-        overlay={false}
-      />
-      
-      {/* Content positioned at bottom */}
-      <div className="absolute bottom-0 left-0 right-0 z-20 p-8 pb-16">
-        {/* Blur background for text area only with fade at top */}
-        <div 
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            backdropFilter: 'blur(8px)',
-            WebkitBackdropFilter: 'blur(8px)',
-            maskImage: 'linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 90%, rgba(0,0,0,0) 100%)',
-            WebkitMaskImage: 'linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 90%, rgba(0,0,0,0) 100%)'
-          }}
+    <div className="relative w-full h-[75vh] flex">
+      {/* Image Section - 3/4 width */}
+      <div className={`relative overflow-hidden ${position === 'left' ? 'order-1' : 'order-2'} w-3/4`}>
+        <ParallaxImage
+          src={imageUrl}
+          alt={altText || `${title} section background`}
+          speed={speed}
+          className="w-full h-[75vh]"
+          transformation={transformation}
+          overlay={false}
         />
-        
-        <div className="relative text-center max-w-4xl mx-auto">
+      </div>
+      
+      {/* Text Section - 1/4 width */}
+      <div className={`${position === 'left' ? 'order-2' : 'order-1'} w-1/4 flex items-center justify-center p-8`}
+           style={{ backgroundColor: 'var(--color-background)' }}>
+        <div className="text-center max-w-md">
           {/* Main Title - only show if provided */}
           {title && (
             <h2 
-              className="font-light mb-4"
+              className="font-bold mb-6"
               style={{ 
                 fontFamily: 'var(--font-primary)',
-                color: 'white',
-                margin: '0 0 1rem 0',
+                color: 'var(--color-text)',
+                margin: '0 0 1.5rem 0',
                 fontSize: titleFontSize,
                 textAlign: 'center',
-                WebkitTextStroke: '0.5px rgba(var(--color-primary-rgb, 0, 0, 0), 0.3)',
-                textShadow: '2px 2px 8px rgba(0, 0, 0, 0.7), 1px 1px 4px rgba(0, 0, 0, 0.6), 0 0 20px rgba(0, 0, 0, 0.4)',
                 letterSpacing: '-0.02em',
                 lineHeight: '1.3'
               }}
@@ -95,16 +88,15 @@ export default function ParallaxSection({
           {/* Subtitle - only show if provided */}
           {subtitle && (
             <p 
-              className="font-light tracking-wide"
+              className="font-medium tracking-wide"
               style={{ 
                 fontFamily: 'var(--font-secondary)',
-                color: 'white',
+                color: 'var(--color-text)',
                 margin: '0',
                 fontSize: subtitleFontSize,
                 textAlign: 'center',
                 lineHeight: '1.6',
-                WebkitTextStroke: '0.3px rgba(var(--color-primary-rgb, 0, 0, 0), 0.25)',
-                textShadow: '2px 2px 8px rgba(0, 0, 0, 0.7), 1px 1px 4px rgba(0, 0, 0, 0.6), 0 0 20px rgba(0, 0, 0, 0.4)'
+                opacity: '0.8'
               }}
             >
               {subtitle.split('\n').map((line: string, index: number) => (
