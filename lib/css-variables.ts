@@ -17,6 +17,20 @@ export const defaultCssVariables = {
   '--spacing-md': '1rem',
   '--spacing-lg': '1.5rem',
   '--spacing-xl': '2rem',
+  '--spacing-2xl': '3rem',
+  '--spacing-3xl': '4rem',
+  // Typography sizing variables
+  '--font-size-base': '1rem',
+  '--font-size-lg': '1.125rem',
+  '--font-size-xl': '1.25rem',
+  '--font-size-2xl': '1.5rem',
+  '--font-size-3xl': '1.875rem',
+  '--font-size-4xl': '2.25rem',
+  '--font-size-5xl': '3rem',
+  // Component sizing variables
+  '--image-max-width': '32rem',
+  '--content-max-width': '42rem',
+  '--container-max-width': '80rem',
   // Frame styling variables
   '--frame-background': 'rgba(255, 255, 255, 0.95)',
   '--frame-background-dark': 'rgba(0, 0, 0, 0.85)',

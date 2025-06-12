@@ -7,38 +7,59 @@ const getImagePath = (fullUrl: string) => {
 };
 
 export default async function MaureenBio() {
-  const maureeenImage = await getMaureenImage();
+  const maurImage = await getMaureenImage();
+
   return (
-    <section className="py-20 px-8" style={{ backgroundColor: 'var(--color-background)' }}>
-      <div className="max-w-7xl mx-auto">
+    <section 
+      className="px-8" 
+      style={{ 
+        backgroundColor: 'var(--color-background)',
+        paddingTop: 'var(--spacing-3xl)',
+        paddingBottom: 'var(--spacing-3xl)'
+      }}
+    >
+      <div style={{ maxWidth: 'var(--container-max-width)' }} className="mx-auto">
         <h1 
-          className="text-5xl font-bold text-center mb-16"
+          className="font-bold text-center"
           style={{ 
             color: 'var(--color-primary)',
-            fontFamily: 'var(--font-primary)'
+            fontFamily: 'var(--font-primary)',
+            fontSize: 'var(--font-size-5xl)',
+            marginBottom: 'var(--spacing-3xl)'
           }}
         >
           C. Maureen Rice, certified interior decorator
         </h1>
         
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+        <div 
+          className="grid grid-cols-1 lg:grid-cols-2 items-start"
+          style={{ gap: 'var(--spacing-2xl)' }}
+        >
           {/* Image Section */}
           <div className="flex justify-center lg:justify-start">
-            {maureeenImage ? (
+            {maurImage ? (
               <img
-                src={`${imagekitConfig.urlEndpoint}${getImagePath(maureeenImage.imagekitUrl)}?tr=w-600,h-600,q-90`}
-                alt={maureeenImage.alt || 'Maureen Rice, certified interior decorator'}
-                className="rounded-2xl shadow-lg max-w-full h-auto"
-                style={{ maxWidth: '500px' }}
+                src={`${imagekitConfig.urlEndpoint}${getImagePath(maurImage.imagekitUrl)}?tr=w-600,h-600,q-90`}
+                alt={maurImage.alt || 'Maureen Rice, certified interior decorator'}
+                className="rounded-2xl shadow-lg w-full h-auto"
+                style={{ maxWidth: 'var(--image-max-width)' }}
               />
             ) : (
               <div 
-                className="w-full max-w-md h-96 rounded-2xl shadow-lg flex items-center justify-center"
-                style={{ backgroundColor: 'var(--color-secondary)', opacity: 0.1 }}
+                className="w-full h-96 rounded-2xl shadow-lg flex items-center justify-center"
+                style={{ 
+                  backgroundColor: 'var(--color-secondary)', 
+                  opacity: 0.1,
+                  maxWidth: 'var(--image-max-width)'
+                }}
               >
                 <p 
                   className="text-center"
-                  style={{ color: 'var(--color-text)' }}
+                  style={{ 
+                    color: 'var(--color-text)',
+                    fontFamily: 'var(--font-secondary)',
+                    fontSize: 'var(--font-size-base)'
+                  }}
                 >
                   Set a Maureen image in the gallery manager
                 </p>
@@ -47,12 +68,13 @@ export default async function MaureenBio() {
           </div>
 
           {/* Content Section */}
-          <div className="space-y-6">
+          <div className="flex flex-col" style={{ gap: 'var(--spacing-lg)' }}>
             <p 
-              className="text-lg leading-relaxed"
+              className="leading-relaxed"
               style={{ 
                 color: 'var(--color-text)',
-                fontFamily: 'var(--font-secondary)'
+                fontFamily: 'var(--font-secondary)',
+                fontSize: 'var(--font-size-lg)'
               }}
             >
               After graduating with honours from the Residential Décor program at Algonquin 
@@ -63,10 +85,11 @@ export default async function MaureenBio() {
             </p>
 
             <p 
-              className="text-lg leading-relaxed"
+              className="leading-relaxed"
               style={{ 
                 color: 'var(--color-text)',
-                fontFamily: 'var(--font-secondary)'
+                fontFamily: 'var(--font-secondary)',
+                fontSize: 'var(--font-size-lg)'
               }}
             >
               Maureen brings a true passion for creativity to every project she takes on. 
@@ -79,10 +102,11 @@ export default async function MaureenBio() {
             </p>
 
             <p 
-              className="text-lg leading-relaxed"
+              className="leading-relaxed"
               style={{ 
                 color: 'var(--color-text)',
-                fontFamily: 'var(--font-secondary)'
+                fontFamily: 'var(--font-secondary)',
+                fontSize: 'var(--font-size-lg)'
               }}
             >
               Over the years Maureen has leant her skills and expertise to a number of 
@@ -96,10 +120,11 @@ export default async function MaureenBio() {
             </p>
 
             <p 
-              className="text-lg leading-relaxed"
+              className="leading-relaxed"
               style={{ 
                 color: 'var(--color-text)',
-                fontFamily: 'var(--font-secondary)'
+                fontFamily: 'var(--font-secondary)',
+                fontSize: 'var(--font-size-lg)'
               }}
             >
               Maureen values the great relationships that develop while working with her 
@@ -109,10 +134,11 @@ export default async function MaureenBio() {
             </p>
 
             <p 
-              className="text-lg leading-relaxed"
+              className="leading-relaxed"
               style={{ 
                 color: 'var(--color-text)',
-                fontFamily: 'var(--font-secondary)'
+                fontFamily: 'var(--font-secondary)',
+                fontSize: 'var(--font-size-lg)'
               }}
             >
               In addition to being a wife and proud mom of two boys Maureen finds joy in 

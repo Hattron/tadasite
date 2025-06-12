@@ -13,38 +13,57 @@ export default async function Home() {
   ]);
 
   return (
-    <>
+    <div 
+      className="flex flex-col" 
+      style={{ 
+        gap: 'var(--spacing-3xl)',
+        paddingTop: 'var(--spacing-xl)',
+        paddingBottom: 'var(--spacing-xl)'
+      }}
+    >
       <HeroSection />
       
-      <Services />
+      <div style={{ paddingTop: 'var(--spacing-2xl)' }}>
+        <Services />
+      </div>
       
-      <ParallaxSection 
-        title={firstImage?.firstImageTitle || ""}
-        subtitle={firstImage?.firstImageSubtitle || ""}
-        imageSrc={firstImage?.imagekitUrl || undefined}
-        altText={firstImage?.alt || undefined}
-        position="left"
-      />
+      <div style={{ paddingTop: 'var(--spacing-2xl)' }}>
+        <ParallaxSection 
+          title={firstImage?.firstImageTitle || ""}
+          subtitle={firstImage?.firstImageSubtitle || ""}
+          imageSrc={firstImage?.imagekitUrl || undefined}
+          altText={firstImage?.alt || undefined}
+          position="left"
+        />
+      </div>
       
-      <AboutUs />
+      <div style={{ paddingTop: 'var(--spacing-2xl)' }}>
+        <AboutUs />
+      </div>
       
-      <ParallaxSection 
-        title={secondImage?.secondImageTitle || ""}
-        subtitle={secondImage?.secondImageSubtitle || ""}
-        imageSrc={secondImage?.imagekitUrl || undefined}
-        altText={secondImage?.alt || undefined}
-        position="right"
-      />
+      <div style={{ paddingTop: 'var(--spacing-2xl)' }}>
+        <ParallaxSection 
+          title={secondImage?.secondImageTitle || ""}
+          subtitle={secondImage?.secondImageSubtitle || ""}
+          imageSrc={secondImage?.imagekitUrl || undefined}
+          altText={secondImage?.alt || undefined}
+          position="right"
+        />
+      </div>
       
-      <Testimonials />
+      <div style={{ paddingTop: 'var(--spacing-2xl)' }}>
+        <Testimonials />
+      </div>
       
-      <ParallaxSection 
-        title={thirdImage?.thirdImageTitle || ""}
-        subtitle={thirdImage?.thirdImageSubtitle || ""}
-        imageSrc={thirdImage?.imagekitUrl || undefined}
-        altText={thirdImage?.alt || undefined}
-        position="left"
-      />
-    </>
+      <div style={{ paddingTop: 'var(--spacing-2xl)' }}>
+        <ParallaxSection 
+          title={thirdImage?.thirdImageTitle || ""}
+          subtitle={thirdImage?.thirdImageSubtitle || ""}
+          imageSrc={thirdImage?.imagekitUrl || undefined}
+          altText={thirdImage?.alt || undefined}
+          position="left"
+        />
+      </div>
+    </div>
   );
 }

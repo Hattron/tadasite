@@ -10,24 +10,6 @@ interface ParallaxSectionProps {
   position?: 'left' | 'right';
 }
 
-// Function to calculate font size based on character count
-function calculateFontSize(text: string, baseSize: number, minSize: number = 16, maxSize?: number): string {
-  const charCount = text.length;
-  let scaleFactor = 1;
-  
-  // Scale down for longer text
-  if (charCount > 50) {
-    scaleFactor = Math.max(0.6, 1 - ((charCount - 50) * 0.01));
-  } else if (charCount > 30) {
-    scaleFactor = Math.max(0.8, 1 - ((charCount - 30) * 0.01));
-  }
-  
-  const calculatedSize = baseSize * scaleFactor;
-  const finalSize = Math.max(minSize, maxSize ? Math.min(maxSize, calculatedSize) : calculatedSize);
-  
-  return `${finalSize}px`;
-}
-
 export default function ParallaxSection({
   title,
   subtitle,
@@ -39,10 +21,6 @@ export default function ParallaxSection({
 }: ParallaxSectionProps) {
   // Use provided imageSrc or fallback to placeholder
   const imageUrl = imageSrc || 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=1920&h=1080&fit=crop&crop=center';
-  
-  // Calculate font sizes based on content length
-  const titleFontSize = calculateFontSize(title, 48, 20, 64); // Base 48px, min 20px, max 64px
-  const subtitleFontSize = calculateFontSize(subtitle, 18, 14, 24); // Base 18px, min 14px, max 24px
   
   return (
     <div className="relative w-full h-[75vh] flex">
@@ -59,18 +37,26 @@ export default function ParallaxSection({
       </div>
       
       {/* Text Section - 1/4 width */}
-      <div className={`${position === 'left' ? 'order-2' : 'order-1'} w-1/4 flex items-center justify-center p-8`}
-           style={{ backgroundColor: 'var(--color-background)' }}>
-        <div className="text-center max-w-md">
+      <div 
+        className={`${position === 'left' ? 'order-2' : 'order-1'} w-1/4 flex items-center justify-center`}
+        style={{ 
+          backgroundColor: 'var(--color-accent)',
+          padding: 'var(--spacing-xl)'
+        }}
+      >
+        <div 
+          className="text-center w-full"
+          style={{ maxWidth: 'var(--content-max-width)' }}
+        >
           {/* Main Title - only show if provided */}
           {title && (
             <h2 
-              className="font-bold mb-6"
+              className="font-bold"
               style={{ 
                 fontFamily: 'var(--font-primary)',
-                color: 'var(--color-text)',
-                margin: '0 0 1.5rem 0',
-                fontSize: titleFontSize,
+                color: 'var(--color-primary)',
+                margin: `0 0 var(--spacing-lg) 0`,
+                fontSize: 'var(--font-size-4xl)',
                 textAlign: 'center',
                 letterSpacing: '-0.02em',
                 lineHeight: '1.3'
@@ -91,9 +77,9 @@ export default function ParallaxSection({
               className="font-medium tracking-wide"
               style={{ 
                 fontFamily: 'var(--font-secondary)',
-                color: 'var(--color-text)',
+                color: 'var(--color-primary)',
                 margin: '0',
-                fontSize: subtitleFontSize,
+                fontSize: 'var(--font-size-lg)',
                 textAlign: 'center',
                 lineHeight: '1.6',
                 opacity: '0.8'

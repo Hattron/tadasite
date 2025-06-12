@@ -15,14 +15,26 @@ const googleFonts = [
   'Source Sans Pro',
   'Nunito',
   'Playfair Display',
+  'Oswald',
+  'Raleway',
+  'Ubuntu',
+  'Merriweather',
+  'PT Sans',
 ];
 
 interface TypographySettingsProps {
-  previewFont: string;
-  onFontChange: (font: string) => void;
+  previewHeaderFont: string;
+  previewBodyFont: string;
+  onHeaderFontChange: (font: string) => void;
+  onBodyFontChange: (font: string) => void;
 }
 
-export default function TypographySettings({ previewFont, onFontChange }: TypographySettingsProps) {
+export default function TypographySettings({ 
+  previewHeaderFont, 
+  previewBodyFont,
+  onHeaderFontChange, 
+  onBodyFontChange 
+}: TypographySettingsProps) {
   return (
     <Card>
       <CardHeader>
@@ -30,21 +42,45 @@ export default function TypographySettings({ previewFont, onFontChange }: Typogr
           Typography Settings
         </CardTitle>
       </CardHeader>
-      <CardContent className="space-y-4">
+      <CardContent className="space-y-6">
+        {/* Header/Title Font Selection */}
         <div className="space-y-2">
-          <Label htmlFor="font-select">Primary Font</Label>
-          <Select value={previewFont} onValueChange={onFontChange}>
+          <Label htmlFor="header-font-select">Headers & Titles Font</Label>
+          <Select value={previewHeaderFont} onValueChange={onHeaderFontChange}>
             <SelectTrigger>
-              <SelectValue placeholder="Select a font" />
+              <SelectValue placeholder="Select a font for headers" />
             </SelectTrigger>
             <SelectContent>
               {googleFonts.map(font => (
                 <SelectItem key={font} value={font}>
-                  {font}
+                  <span style={{ fontFamily: font }}>{font}</span>
                 </SelectItem>
               ))}
             </SelectContent>
           </Select>
+          <p className="text-sm text-muted-foreground">
+            Used for page titles, section headings, and navigation
+          </p>
+        </div>
+
+        {/* Body Text Font Selection */}
+        <div className="space-y-2">
+          <Label htmlFor="body-font-select">Body Text & Paragraphs Font</Label>
+          <Select value={previewBodyFont} onValueChange={onBodyFontChange}>
+            <SelectTrigger>
+              <SelectValue placeholder="Select a font for body text" />
+            </SelectTrigger>
+            <SelectContent>
+              {googleFonts.map(font => (
+                <SelectItem key={font} value={font}>
+                  <span style={{ fontFamily: font }}>{font}</span>
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+          <p className="text-sm text-muted-foreground">
+            Used for paragraphs, descriptions, and general content
+          </p>
         </div>
       </CardContent>
     </Card>

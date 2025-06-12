@@ -17,7 +17,8 @@ interface PreviewColors {
 }
 
 export default function StyleSettings() {
-  const [previewFont, setPreviewFont] = useState('Quicksand');
+  const [previewHeaderFont, setPreviewHeaderFont] = useState('Quicksand');
+  const [previewBodyFont, setPreviewBodyFont] = useState('Inter');
   const [previewColors, setPreviewColors] = useState<PreviewColors>({
     primary: '#6366f1',
     secondary: '#06b6d4',
@@ -36,10 +37,16 @@ export default function StyleSettings() {
       try {
         const dbVariables = await getCssVariablesFromDb();
         
-        // Extract font from database
+        // Extract header font from database
         if (dbVariables['--font-primary']) {
           const fontName = dbVariables['--font-primary'].split(',')[0].replace(/['"]/g, '').trim();
-          setPreviewFont(fontName);
+          setPreviewHeaderFont(fontName);
+        }
+        
+        // Extract body font from database
+        if (dbVariables['--font-secondary']) {
+          const fontName = dbVariables['--font-secondary'].split(',')[0].replace(/['"]/g, '').trim();
+          setPreviewBodyFont(fontName);
         }
         
         // Extract colors from database
@@ -56,11 +63,17 @@ export default function StyleSettings() {
         console.error('Failed to load database values, using defaults:', error);
         // Fallback to CSS computed values if database fails
         const root = document.documentElement;
-        const currentFont = getComputedStyle(root).getPropertyValue('--font-primary').trim();
+        const currentHeaderFont = getComputedStyle(root).getPropertyValue('--font-primary').trim();
+        const currentBodyFont = getComputedStyle(root).getPropertyValue('--font-secondary').trim();
         
-        if (currentFont) {
-          const fontName = currentFont.split(',')[0].replace(/['"]/g, '');
-          setPreviewFont(fontName);
+        if (currentHeaderFont) {
+          const fontName = currentHeaderFont.split(',')[0].replace(/['"]/g, '');
+          setPreviewHeaderFont(fontName);
+        }
+        
+        if (currentBodyFont) {
+          const fontName = currentBodyFont.split(',')[0].replace(/['"]/g, '');
+          setPreviewBodyFont(fontName);
         }
         
         setPreviewColors(prev => ({
@@ -83,7 +96,8 @@ export default function StyleSettings() {
   useEffect(() => {
     // Apply live preview changes
     const root = document.documentElement;
-    root.style.setProperty('--font-primary', `${previewFont}, sans-serif`);
+    root.style.setProperty('--font-primary', `${previewHeaderFont}, sans-serif`);
+    root.style.setProperty('--font-secondary', `${previewBodyFont}, sans-serif`);
     root.style.setProperty('--color-primary', previewColors.primary);
     root.style.setProperty('--color-secondary', previewColors.secondary);
     root.style.setProperty('--color-accent', previewColors.accent);
@@ -91,15 +105,20 @@ export default function StyleSettings() {
     root.style.setProperty('--color-text', previewColors.text);
     root.style.setProperty('--color-text-muted', previewColors.textMuted);
 
-    // Load Google Font dynamically
-    const existingLink = document.querySelector(`link[href*="${previewFont}"]`);
-    if (!existingLink) {
-      const link = document.createElement('link');
-      link.href = `https://fonts.googleapis.com/css2?family=${previewFont.replace(' ', '+')}:wght@300;400;500;600;700&display=swap`;
-      link.rel = 'stylesheet';
-      document.head.appendChild(link);
-    }
-  }, [previewFont, previewColors]);
+    // Load Google Fonts dynamically
+    const loadFont = (fontName: string) => {
+      const existingLink = document.querySelector(`link[href*="${fontName}"]`);
+      if (!existingLink) {
+        const link = document.createElement('link');
+        link.href = `https://fonts.googleapis.com/css2?family=${fontName.replace(' ', '+')}:wght@300;400;500;600;700&display=swap`;
+        link.rel = 'stylesheet';
+        document.head.appendChild(link);
+      }
+    };
+
+    loadFont(previewHeaderFont);
+    loadFont(previewBodyFont);
+  }, [previewHeaderFont, previewBodyFont, previewColors]);
 
   const handleSave = async () => {
     setIsLoading(true);
@@ -107,7 +126,8 @@ export default function StyleSettings() {
     
     try {
       const updates = [
-        { name: '--font-primary', value: `${previewFont}, sans-serif` },
+        { name: '--font-primary', value: `${previewHeaderFont}, sans-serif` },
+        { name: '--font-secondary', value: `${previewBodyFont}, sans-serif` },
         { name: '--color-primary', value: previewColors.primary },
         { name: '--color-secondary', value: previewColors.secondary },
         { name: '--color-accent', value: previewColors.accent },
@@ -147,8 +167,10 @@ export default function StyleSettings() {
       {/* Controls Panel */}
       <div className="space-y-6">
         <TypographySettings 
-          previewFont={previewFont} 
-          onFontChange={setPreviewFont} 
+          previewHeaderFont={previewHeaderFont}
+          previewBodyFont={previewBodyFont}
+          onHeaderFontChange={setPreviewHeaderFont}
+          onBodyFontChange={setPreviewBodyFont}
         />
         
         <ColorPaletteSettings 

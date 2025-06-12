@@ -10,36 +10,56 @@ export default async function JoannaBio() {
   const joannaImage = await getJoannaImage();
 
   return (
-    <section className="py-20 px-8" style={{ backgroundColor: 'var(--color-background)' }}>
-      <div className="max-w-7xl mx-auto">
+    <section 
+      className="px-8" 
+      style={{ 
+        backgroundColor: 'var(--color-background)',
+        paddingTop: 'var(--spacing-3xl)',
+        paddingBottom: 'var(--spacing-3xl)'
+      }}
+    >
+      <div style={{ maxWidth: 'var(--container-max-width)' }} className="mx-auto">
         <h1 
-          className="text-5xl font-bold text-center mb-16"
+          className="font-bold text-center"
           style={{ 
             color: 'var(--color-primary)',
-            fontFamily: 'var(--font-primary)'
+            fontFamily: 'var(--font-primary)',
+            fontSize: 'var(--font-size-5xl)',
+            marginBottom: 'var(--spacing-3xl)'
           }}
         >
           Joanna Dyment
         </h1>
         
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+        <div 
+          className="grid grid-cols-1 lg:grid-cols-2 items-start"
+          style={{ gap: 'var(--spacing-2xl)' }}
+        >
           {/* Image Section */}
           <div className="flex justify-center lg:justify-start">
             {joannaImage ? (
               <img
                 src={`${imagekitConfig.urlEndpoint}${getImagePath(joannaImage.imagekitUrl)}?tr=w-600,h-600,q-90`}
-                alt={joannaImage.alt || 'Joanna Dyment, Interior Designer'}
-                className="rounded-2xl shadow-lg max-w-full h-auto"
-                style={{ maxWidth: '500px' }}
+                alt={joannaImage.alt || 'Joanna, interior designer'}
+                className="rounded-2xl shadow-lg w-full h-auto"
+                style={{ maxWidth: 'var(--image-max-width)' }}
               />
             ) : (
               <div 
-                className="w-full max-w-md h-96 rounded-2xl shadow-lg flex items-center justify-center"
-                style={{ backgroundColor: 'var(--color-secondary)', opacity: 0.1 }}
+                className="w-full h-96 rounded-2xl shadow-lg flex items-center justify-center"
+                style={{ 
+                  backgroundColor: 'var(--color-secondary)', 
+                  opacity: 0.1,
+                  maxWidth: 'var(--image-max-width)'
+                }}
               >
                 <p 
                   className="text-center"
-                  style={{ color: 'var(--color-text)' }}
+                  style={{ 
+                    color: 'var(--color-text)',
+                    fontFamily: 'var(--font-secondary)',
+                    fontSize: 'var(--font-size-base)'
+                  }}
                 >
                   Set a Joanna image in the gallery manager
                 </p>
@@ -48,12 +68,13 @@ export default async function JoannaBio() {
           </div>
 
           {/* Content Section */}
-          <div className="space-y-6">
+          <div className="flex flex-col" style={{ gap: 'var(--spacing-lg)' }}>
             <p 
-              className="text-lg leading-relaxed"
+              className="leading-relaxed"
               style={{ 
                 color: 'var(--color-text)',
-                fontFamily: 'var(--font-secondary)'
+                fontFamily: 'var(--font-secondary)',
+                fontSize: 'var(--font-size-lg)'
               }}
             >
               Design has always been a part of Joanna&apos;s life. Growing up with an artist father, 
@@ -62,10 +83,11 @@ export default async function JoannaBio() {
             </p>
 
             <p 
-              className="text-lg leading-relaxed"
+              className="leading-relaxed"
               style={{ 
                 color: 'var(--color-text)',
-                fontFamily: 'var(--font-secondary)'
+                fontFamily: 'var(--font-secondary)',
+                fontSize: 'var(--font-size-lg)'
               }}
             >
               While she studied sociology in university, Joanna found that understanding how 
@@ -74,10 +96,11 @@ export default async function JoannaBio() {
             </p>
 
             <p 
-              className="text-lg leading-relaxed"
+              className="leading-relaxed"
               style={{ 
                 color: 'var(--color-text)',
-                fontFamily: 'var(--font-secondary)'
+                fontFamily: 'var(--font-secondary)',
+                fontSize: 'var(--font-size-lg)'
               }}
             >
               A people person at heart - social, intuitive, and deeply committed to creating 
@@ -85,10 +108,11 @@ export default async function JoannaBio() {
             </p>
 
             <p 
-              className="text-lg leading-relaxed"
+              className="leading-relaxed"
               style={{ 
                 color: 'var(--color-text)',
-                fontFamily: 'var(--font-secondary)'
+                fontFamily: 'var(--font-secondary)',
+                fontSize: 'var(--font-size-lg)'
               }}
             >
               Joanna&apos;s years working in the hospitality industry sharpened her eye for 
@@ -97,10 +121,11 @@ export default async function JoannaBio() {
             </p>
 
             <p 
-              className="text-lg leading-relaxed"
+              className="leading-relaxed"
               style={{ 
                 color: 'var(--color-text)',
-                fontFamily: 'var(--font-secondary)'
+                fontFamily: 'var(--font-secondary)',
+                fontSize: 'var(--font-size-lg)'
               }}
             >
               She later followed her passion and graduated with honours from the Interior 
@@ -109,10 +134,11 @@ export default async function JoannaBio() {
             </p>
 
             <p 
-              className="text-lg leading-relaxed"
+              className="leading-relaxed"
               style={{ 
                 color: 'var(--color-text)',
-                fontFamily: 'var(--font-secondary)'
+                fontFamily: 'var(--font-secondary)',
+                fontSize: 'var(--font-size-lg)'
               }}
             >
               Joanna loves to travel and finds endless inspiration in the colours, textures, and 
@@ -122,10 +148,11 @@ export default async function JoannaBio() {
             </p>
 
             <p 
-              className="text-lg leading-relaxed"
+              className="leading-relaxed"
               style={{ 
                 color: 'var(--color-text)',
-                fontFamily: 'var(--font-secondary)'
+                fontFamily: 'var(--font-secondary)',
+                fontSize: 'var(--font-size-lg)'
               }}
             >
               As a mother of two, she understands how important it is for spaces to be both 
@@ -133,10 +160,11 @@ export default async function JoannaBio() {
             </p>
 
             <p 
-              className="text-lg leading-relaxed"
+              className="leading-relaxed"
               style={{ 
                 color: 'var(--color-text)',
-                fontFamily: 'var(--font-secondary)'
+                fontFamily: 'var(--font-secondary)',
+                fontSize: 'var(--font-size-lg)'
               }}
             >
               Joanna is proud to have built lasting relationships with many repeat clients, 

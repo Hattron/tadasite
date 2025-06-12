@@ -3,11 +3,10 @@ import ContactForm from './components/ContactForm';
 export default function ContactPage() {
   return (
     <div 
-      className="min-h-screen py-16"
+      className="min-h-screen py-16 pt-24 md:pt-28"
       style={{
         backgroundColor: 'var(--color-background)',
         fontFamily: 'var(--font-primary)',
-        paddingTop: 'calc(var(--spacing-xl) * 4)',
         paddingBottom: 'calc(var(--spacing-xl) * 4)',
       }}
     >

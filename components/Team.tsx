@@ -10,36 +10,56 @@ export default async function Team() {
   const teamImage = await getTeamImage();
 
   return (
-    <section className="py-20 px-8" style={{ backgroundColor: 'var(--color-background)' }}>
-      <div className="max-w-7xl mx-auto">
+    <section 
+      className="px-8" 
+      style={{ 
+        backgroundColor: 'var(--color-background)',
+        paddingTop: 'var(--spacing-3xl)',
+        paddingBottom: 'var(--spacing-3xl)'
+      }}
+    >
+      <div style={{ maxWidth: 'var(--container-max-width)' }} className="mx-auto">
         <h1 
-          className="text-5xl font-bold text-center mb-16"
+          className="font-bold text-center"
           style={{ 
             color: 'var(--color-primary)',
-            fontFamily: 'var(--font-primary)'
+            fontFamily: 'var(--font-primary)',
+            fontSize: 'var(--font-size-5xl)',
+            marginBottom: 'var(--spacing-3xl)'
           }}
         >
           About TaDa! Interiors
         </h1>
         
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+        <div 
+          className="grid grid-cols-1 lg:grid-cols-2 items-start"
+          style={{ gap: 'var(--spacing-2xl)' }}
+        >
           {/* Image Section */}
           <div className="flex justify-center lg:justify-start">
             {teamImage ? (
               <img
                 src={`${imagekitConfig.urlEndpoint}${getImagePath(teamImage.imagekitUrl)}?tr=w-600,h-600,q-90`}
                 alt={teamImage.alt || 'TaDa! Interiors Team'}
-                className="rounded-2xl shadow-lg max-w-full h-auto"
-                style={{ maxWidth: '500px' }}
+                className="rounded-2xl shadow-lg w-full h-auto"
+                style={{ maxWidth: 'var(--image-max-width)' }}
               />
             ) : (
               <div 
-                className="w-full max-w-md h-96 rounded-2xl shadow-lg flex items-center justify-center"
-                style={{ backgroundColor: 'var(--color-secondary)', opacity: 0.1 }}
+                className="w-full h-96 rounded-2xl shadow-lg flex items-center justify-center"
+                style={{ 
+                  backgroundColor: 'var(--color-secondary)', 
+                  opacity: 0.1,
+                  maxWidth: 'var(--image-max-width)'
+                }}
               >
                 <p 
                   className="text-center"
-                  style={{ color: 'var(--color-text)' }}
+                  style={{ 
+                    color: 'var(--color-text)',
+                    fontFamily: 'var(--font-secondary)',
+                    fontSize: 'var(--font-size-base)'
+                  }}
                 >
                   Set a team image in the gallery manager
                 </p>
@@ -48,12 +68,13 @@ export default async function Team() {
           </div>
 
           {/* Content Section */}
-          <div className="space-y-6">
+          <div className="flex flex-col" style={{ gap: 'var(--spacing-lg)' }}>
             <p 
-              className="text-lg leading-relaxed"
+              className="leading-relaxed"
               style={{ 
                 color: 'var(--color-text)',
-                fontFamily: 'var(--font-secondary)'
+                fontFamily: 'var(--font-secondary)',
+                fontSize: 'var(--font-size-lg)'
               }}
             >
               At TaDa! Interiors, we&apos;ve been bringing inspired design to homes and 
@@ -63,10 +84,11 @@ export default async function Team() {
             </p>
 
             <p 
-              className="text-lg leading-relaxed"
+              className="leading-relaxed"
               style={{ 
                 color: 'var(--color-text)',
-                fontFamily: 'var(--font-secondary)'
+                fontFamily: 'var(--font-secondary)',
+                fontSize: 'var(--font-size-lg)'
               }}
             >
               We&apos;re celebrated for our ability to transform and reimagine spaces in a way that 
@@ -76,10 +98,11 @@ export default async function Team() {
             </p>
 
             <p 
-              className="text-lg leading-relaxed"
+              className="leading-relaxed"
               style={{ 
                 color: 'var(--color-text)',
-                fontFamily: 'var(--font-secondary)'
+                fontFamily: 'var(--font-secondary)',
+                fontSize: 'var(--font-size-lg)'
               }}
             >
               We work closely with a trusted team of skilled trades professionals, allowing 
@@ -87,10 +110,11 @@ export default async function Team() {
             </p>
 
             <p 
-              className="text-lg leading-relaxed"
+              className="leading-relaxed"
               style={{ 
                 color: 'var(--color-text)',
-                fontFamily: 'var(--font-secondary)'
+                fontFamily: 'var(--font-secondary)',
+                fontSize: 'var(--font-size-lg)'
               }}
             >
               At TaDa! Interiors, we take pride in sourcing the finest products and materials the 
@@ -101,10 +125,11 @@ export default async function Team() {
             </p>
 
             <p 
-              className="text-lg leading-relaxed"
+              className="leading-relaxed"
               style={{ 
                 color: 'var(--color-text)',
-                fontFamily: 'var(--font-secondary)'
+                fontFamily: 'var(--font-secondary)',
+                fontSize: 'var(--font-size-lg)'
               }}
             >
               In addition to residential work, TaDa! Interiors has completed a wide range of 

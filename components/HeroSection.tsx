@@ -34,7 +34,7 @@ export default function HeroSection() {
           <h1 
             className="text-6xl sm:text-7xl lg:text-8xl font-light mb-6"
             style={{ 
-              color: 'var(--color-text)',
+              color: 'var(--color-primary)',
               fontFamily: 'var(--font-primary)',
               textShadow: '2px 2px 4px rgba(0, 0, 0, 0.1)'
             }}
@@ -52,7 +52,7 @@ export default function HeroSection() {
             <p 
               className="text-lg sm:text-xl font-medium tracking-wide"
               style={{ 
-                color: 'var(--color-text)',
+                color: 'var(--color-primary)',
                 fontFamily: 'var(--font-secondary)',
                 margin: '0'
               }}
@@ -85,9 +85,8 @@ export default function HeroSection() {
               className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-4"
               style={{ 
                 fontFamily: 'var(--font-primary)',
-                color: 'var(--color-text)',
-                WebkitTextStroke: '0.5px rgba(var(--color-primary-rgb, 0, 0, 0), 0.3)',
-                textShadow: '1px 1px 3px rgba(0, 0, 0, 0.3), 0 0 8px rgba(0, 0, 0, 0.2)',
+                color: 'var(--color-primary)',
+                textShadow: '1px 1px 3px rgba(0, 0, 0, 0.4), 0 0 6px rgba(0, 0, 0, 0.3)',
                 letterSpacing: '-0.02em',
                 lineHeight: '1.3'
               }}
@@ -107,9 +106,8 @@ export default function HeroSection() {
               className="text-base sm:text-lg font-semibold tracking-wide mb-4"
               style={{ 
                 fontFamily: 'var(--font-secondary)',
-                color: 'var(--color-text)',
-                WebkitTextStroke: '0.3px rgba(var(--color-primary-rgb, 0, 0, 0), 0.25)',
-                textShadow: '1px 1px 3px rgba(0, 0, 0, 0.3), 0 0 8px rgba(0, 0, 0, 0.2)',
+                color: 'var(--color-primary)',
+                textShadow: '1px 1px 2px rgba(0, 0, 0, 0.4), 0 0 4px rgba(0, 0, 0, 0.3)',
                 margin: '0 0 1rem 0',
                 lineHeight: '1.6'
               }}
@@ -138,7 +136,7 @@ export default function HeroSection() {
                 className="text-sm opacity-90"
                 style={{ 
                   fontFamily: 'var(--font-secondary)',
-                  color: 'var(--color-text)',
+                  color: 'var(--color-primary)',
                   margin: '0'
                 }}
               >
@@ -164,7 +162,7 @@ export default function HeroSection() {
             fill="none" 
             stroke="currentColor" 
             viewBox="0 0 24 24"
-            style={{ color: 'var(--color-text)' }}
+            style={{ color: 'var(--color-primary)' }}
           >
             <path 
               strokeLinecap="round" 
