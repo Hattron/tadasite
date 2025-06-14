@@ -1,5 +1,6 @@
 import { getTeamImage } from '@/lib/image-actions';
 import { imagekitConfig } from '@/lib/imagekit';
+import ImageFrame from '@/components/ui/ImageFrame';
 
 // Helper function to extract path from ImageKit URL
 const getImagePath = (fullUrl: string) => {
@@ -32,34 +33,28 @@ export default async function Team() {
         </h1>
         
         <div 
-          className="grid grid-cols-1 lg:grid-cols-2 items-start"
-          style={{ gap: 'var(--spacing-2xl)' }}
+          className="grid grid-cols-1 lg:[grid-template-columns:auto_1fr] items-start place-items-start"
+          style={{ gap: 'var(--spacing-about-image-gap-tight)' }}
         >
           {/* Image Section */}
-          <div className="flex justify-center lg:justify-start">
+          <div className="flex items-start pr-4 md:pr-8 lg:pr-12">
             {teamImage ? (
-              <img
-                src={`${imagekitConfig.urlEndpoint}${getImagePath(teamImage.imagekitUrl)}?tr=w-600,h-600,q-90`}
-                alt={teamImage.alt || 'TaDa! Interiors Team'}
-                className="rounded-2xl shadow-lg w-full h-auto"
-                style={{ maxWidth: 'var(--image-max-width)' }}
-              />
+              <ImageFrame variant="default">
+                <img
+                  src={`${imagekitConfig.urlEndpoint}${getImagePath(teamImage.imagekitUrl)}?tr=w-300,h-300,q-90`}
+                  alt={teamImage.alt || 'TaDa! Interiors Team'}
+                  className="h-auto"
+                  style={{ maxWidth: 'var(--image-about-medium-max-width)', display: 'block' }}
+                />
+              </ImageFrame>
             ) : (
               <div 
-                className="w-full h-96 rounded-2xl shadow-lg flex items-center justify-center"
-                style={{ 
-                  backgroundColor: 'var(--color-secondary)', 
-                  opacity: 0.1,
-                  maxWidth: 'var(--image-max-width)'
-                }}
+                className="h-48 flex items-center justify-center"
+                style={{ maxWidth: 'var(--image-about-medium-max-width)', opacity: 0.1 }}
               >
                 <p 
                   className="text-center"
-                  style={{ 
-                    color: 'var(--color-text)',
-                    fontFamily: 'var(--font-secondary)',
-                    fontSize: 'var(--font-size-base)'
-                  }}
+                  style={{ color: 'var(--color-text)', fontFamily: 'var(--font-secondary)', fontSize: 'var(--font-size-base)' }}
                 >
                   Set a team image in the gallery manager
                 </p>
@@ -68,7 +63,7 @@ export default async function Team() {
           </div>
 
           {/* Content Section */}
-          <div className="flex flex-col" style={{ gap: 'var(--spacing-lg)' }}>
+          <div className="flex flex-col w-full lg:w-3/4" style={{ gap: 'var(--spacing-lg)' }}>
             <p 
               className="leading-relaxed"
               style={{ 

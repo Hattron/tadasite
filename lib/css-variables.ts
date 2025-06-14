@@ -19,6 +19,8 @@ export const defaultCssVariables = {
   '--spacing-xl': '2rem',
   '--spacing-2xl': '3rem',
   '--spacing-3xl': '4rem',
+  '--spacing-about-image-gap': '1.25rem',
+  '--spacing-about-image-gap-tight': '0.5rem',
   // Typography sizing variables
   '--font-size-base': '1rem',
   '--font-size-lg': '1.125rem',
@@ -29,6 +31,8 @@ export const defaultCssVariables = {
   '--font-size-5xl': '3rem',
   // Component sizing variables
   '--image-max-width': '32rem',
+  '--image-about-medium-max-width': '24rem',
+  '--image-about-max-width': '16rem',
   '--content-max-width': '42rem',
   '--container-max-width': '80rem',
   // Frame styling variables
