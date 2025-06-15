@@ -49,8 +49,8 @@ ${cssVariablesToString(cssVariables)}
           color: 'var(--color-text)',
         }}
       >
+        <Navbar />
         <ParallaxProvider>
-          <Navbar />
           {children}
           <Footer />
         </ParallaxProvider>

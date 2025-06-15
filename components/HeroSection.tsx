@@ -1,5 +1,6 @@
 'use client';
 
+import { motion } from 'framer-motion';
 import { getHeroImage } from '@/lib/image-actions';
 import ParallaxImage from '@/components/ParallaxImage';
 import { useEffect, useState } from 'react';
@@ -22,47 +23,7 @@ export default function HeroSection() {
   }, []);
 
   if (!heroImage) {
-    return (
-      <div 
-        className="relative w-full h-screen flex items-center justify-center"
-        style={{ 
-          background: `linear-gradient(135deg, var(--color-background) 0%, var(--color-primary) 100%)`,
-          color: 'var(--color-text)'
-        }}
-      >
-        <div className="text-center max-w-4xl mx-auto px-6">
-          <h1 
-            className="text-6xl sm:text-7xl lg:text-8xl font-light mb-6"
-            style={{ 
-              color: 'var(--color-primary)',
-              fontFamily: 'var(--font-primary)',
-              textShadow: '2px 2px 4px rgba(0, 0, 0, 0.1)'
-            }}
-          >
-            TaDa Interiors
-          </h1>
-          <div 
-            className="inline-block rounded-full px-8 py-3"
-            style={{ 
-              background: 'rgba(255, 255, 255, 0.95)',
-              boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
-              backdropFilter: 'blur(10px)'
-            }}
-          >
-            <p 
-              className="text-lg sm:text-xl font-medium tracking-wide"
-              style={{ 
-                color: 'var(--color-primary)',
-                fontFamily: 'var(--font-secondary)',
-                margin: '0'
-              }}
-            >
-              Where personal style meets professional design
-            </p>
-          </div>
-        </div>
-      </div>
-    );
+    return null; // Just wait for data to load instead of showing fallback
   }
 
   return (
@@ -77,12 +38,17 @@ export default function HeroSection() {
       />
       
       {/* Content positioned at center */}
-      <div className="absolute inset-0 flex items-center justify-center z-20 p-8">
-        <div className="relative text-center max-w-4xl mx-auto">
+      <div className="absolute inset-0 flex items-center justify-center z-20 p-4 sm:p-8">
+        <motion.div 
+          className="relative text-center max-w-4xl mx-auto px-4"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.5 }}
+        >
           {/* Main Title - only show if exists */}
           {heroImage.heroTitle && (
-            <h1 
-              className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-4"
+            <motion.h1 
+              className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-2 sm:mb-4"
               style={{ 
                 fontFamily: 'var(--font-primary)',
                 color: 'var(--color-primary)',
@@ -90,6 +56,9 @@ export default function HeroSection() {
                 letterSpacing: '-0.02em',
                 lineHeight: '1.3'
               }}
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.8 }}
             >
               {heroImage.heroTitle!.split('\n').map((line: string, index: number) => (
                 <span key={index}>
@@ -97,13 +66,13 @@ export default function HeroSection() {
                   {index < heroImage.heroTitle!.split('\n').length - 1 && <br />}
                 </span>
               ))}
-            </h1>
+            </motion.h1>
           )}
           
           {/* Subtitle - only show if exists */}
           {heroImage.heroSubtitle && (
-            <p 
-              className="text-base sm:text-lg font-semibold tracking-wide mb-4"
+            <motion.p 
+              className="text-sm sm:text-base md:text-lg font-semibold tracking-wide mb-2 sm:mb-4"
               style={{ 
                 fontFamily: 'var(--font-secondary)',
                 color: 'var(--color-primary)',
@@ -111,6 +80,9 @@ export default function HeroSection() {
                 margin: '0 0 1rem 0',
                 lineHeight: '1.6'
               }}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 1.2 }}
             >
               {heroImage.heroSubtitle!.split('\n').map((line: string, index: number) => (
                 <span key={index}>
@@ -118,22 +90,25 @@ export default function HeroSection() {
                   {index < heroImage.heroSubtitle!.split('\n').length - 1 && <br />}
                 </span>
               ))}
-            </p>
+            </motion.p>
           )}
           
           {/* Caption if available */}
           {heroImage.caption && (
-            <div 
-              className="inline-block rounded-lg"
+            <motion.div 
+              className="inline-block rounded-lg mx-auto max-w-xs sm:max-w-none"
               style={{ 
                 background: 'rgba(255, 255, 255, 0.9)',
                 boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
                 backdropFilter: 'blur(10px)',
                 padding: 'var(--spacing-sm) var(--spacing-md)'
               }}
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, delay: 1.6 }}
             >
               <p 
-                className="text-sm opacity-90"
+                className="text-xs sm:text-sm opacity-90"
                 style={{ 
                   fontFamily: 'var(--font-secondary)',
                   color: 'var(--color-primary)',
@@ -142,15 +117,20 @@ export default function HeroSection() {
               >
                 {heroImage.caption}
               </p>
-            </div>
+            </motion.div>
           )}
-        </div>
+        </motion.div>
       </div>
 
       {/* Scroll indicator */}
-      <div className="absolute bottom-8 right-8 z-20">
+      <motion.div 
+        className="absolute bottom-4 sm:bottom-8 right-4 sm:right-8 z-20"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 2 }}
+      >
         <div 
-          className="animate-bounce rounded-full p-2"
+          className="animate-bounce rounded-full p-1.5 sm:p-2"
           style={{
             background: 'rgba(255, 255, 255, 0.9)',
             boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
@@ -158,7 +138,7 @@ export default function HeroSection() {
           }}
         >
           <svg 
-            className="w-6 h-6 mx-auto" 
+            className="w-5 h-5 sm:w-6 sm:h-6 mx-auto" 
             fill="none" 
             stroke="currentColor" 
             viewBox="0 0 24 24"
@@ -172,7 +152,7 @@ export default function HeroSection() {
             />
           </svg>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 } 

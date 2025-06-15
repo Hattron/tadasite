@@ -1,8 +1,10 @@
 import HeroSection from '@/components/HeroSection';
 import Services from '@/components/Services';
 import ParallaxSection from '@/components/ParallaxSection';
-import AboutUs from '@/components/AboutUs';
+import AboutUsAnimated from '@/components/AboutUsAnimated';
 import Testimonials from '@/components/Testimonials';
+import AnimatedPageWrapper from '@/components/AnimatedPageWrapper';
+import AnimatedSection from '@/components/AnimatedSection';
 import { getFirstImage, getSecondImage, getThirdImage } from '@/lib/image-actions';
 
 export default async function Home() {
@@ -13,21 +15,16 @@ export default async function Home() {
   ]);
 
   return (
-    <div 
-      className="flex flex-col" 
-      style={{ 
-        gap: 'var(--spacing-3xl)',
-        paddingTop: 'var(--spacing-xl)',
-        paddingBottom: 'var(--spacing-xl)'
-      }}
-    >
-      <HeroSection />
+    <AnimatedPageWrapper>
+      <AnimatedSection delay={0}>
+        <HeroSection />
+      </AnimatedSection>
       
-      <div style={{ paddingTop: 'var(--spacing-2xl)' }}>
+      <AnimatedSection delay={0.1} style={{ paddingTop: 'var(--spacing-xl)' }}>
         <Services />
-      </div>
+      </AnimatedSection>
       
-      <div style={{ paddingTop: 'var(--spacing-2xl)' }}>
+      <AnimatedSection delay={0.15} style={{ paddingTop: 'var(--spacing-xl)' }}>
         <ParallaxSection 
           title={firstImage?.firstImageTitle || ""}
           subtitle={firstImage?.firstImageSubtitle || ""}
@@ -35,13 +32,13 @@ export default async function Home() {
           altText={firstImage?.alt || undefined}
           position="left"
         />
-      </div>
+      </AnimatedSection>
       
-      <div style={{ paddingTop: 'var(--spacing-2xl)' }}>
-        <AboutUs />
-      </div>
+      <AnimatedSection delay={0.2} style={{ paddingTop: 'var(--spacing-xl)' }}>
+        <AboutUsAnimated />
+      </AnimatedSection>
       
-      <div style={{ paddingTop: 'var(--spacing-2xl)' }}>
+      <AnimatedSection delay={0.25} style={{ paddingTop: 'var(--spacing-xl)' }}>
         <ParallaxSection 
           title={secondImage?.secondImageTitle || ""}
           subtitle={secondImage?.secondImageSubtitle || ""}
@@ -49,13 +46,13 @@ export default async function Home() {
           altText={secondImage?.alt || undefined}
           position="right"
         />
-      </div>
+      </AnimatedSection>
       
-      <div style={{ paddingTop: 'var(--spacing-2xl)' }}>
+      <AnimatedSection delay={0.3} style={{ paddingTop: 'var(--spacing-xl)' }}>
         <Testimonials />
-      </div>
+      </AnimatedSection>
       
-      <div style={{ paddingTop: 'var(--spacing-2xl)' }}>
+      <AnimatedSection delay={0.35} style={{ paddingTop: 'var(--spacing-xl)' }}>
         <ParallaxSection 
           title={thirdImage?.thirdImageTitle || ""}
           subtitle={thirdImage?.thirdImageSubtitle || ""}
@@ -63,7 +60,7 @@ export default async function Home() {
           altText={thirdImage?.alt || undefined}
           position="left"
         />
-      </div>
-    </div>
+      </AnimatedSection>
+    </AnimatedPageWrapper>
   );
 }

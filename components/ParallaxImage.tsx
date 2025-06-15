@@ -2,6 +2,7 @@
 
 import { Parallax } from 'react-scroll-parallax';
 import { imagekitConfig } from '@/lib/imagekit';
+import { useState, useEffect } from 'react';
 
 interface ParallaxImageProps {
   src: string;
@@ -29,13 +30,28 @@ export default function ParallaxImage({
   overlayOpacity = 0.2,
   children
 }: ParallaxImageProps) {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768); // md breakpoint
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Reduce parallax speed by 75% on mobile
+  const adjustedSpeed = isMobile ? speed * 0.25 : speed;
+
   const imageUrl = src.startsWith('http') 
     ? `${imagekitConfig.urlEndpoint}${getImagePath(src)}?tr=${transformation}`
     : `${imagekitConfig.urlEndpoint}${src}?tr=${transformation}`;
 
   return (
     <div className={`relative overflow-hidden ${className}`}>
-      <Parallax speed={speed} className="absolute inset-0">
+      <Parallax speed={adjustedSpeed} className="absolute inset-0">
         <img
           src={imageUrl}
           alt={alt}
