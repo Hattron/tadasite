@@ -12,9 +12,30 @@ export default function ContactPage() {
     >
       <div className="container mx-auto" style={{ padding: 'var(--spacing-md)' }}>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
-          {/* Contact Form */}
-          <div className="flex justify-center lg:justify-end">
-            <ContactForm />
+          {/* Contact Form Section */}
+          <div className="space-y-6">
+            <div className="flex justify-center lg:justify-end">
+              <ContactForm />
+            </div>
+            
+            {/* Apples Image */}
+            <div className="flex justify-center lg:justify-end">
+              <div className="w-full max-w-md">
+                <div 
+                  className="rounded-lg overflow-hidden shadow-sm"
+                  style={{
+                    backgroundColor: 'var(--color-background)',
+                    border: `1px solid var(--color-text-muted)`,
+                  }}
+                >
+                  <img
+                    src="https://ik.imagekit.io/crimsonstack/tada/Assets/vase.jpg?tr=w-600,h-400,q-90,c-fill"
+                    alt="Interior design apples showcase"
+                    className="w-full h-64 object-cover"
+                  />
+                </div>
+              </div>
+            </div>
           </div>
 
           {/* Business Information */}
@@ -44,7 +65,7 @@ export default function ContactPage() {
               </div>
             </div>
 
-            {/* Hero Image */}
+            {/* Vase Image */}
             <div 
               className="rounded-lg overflow-hidden shadow-sm"
               style={{
@@ -53,8 +74,8 @@ export default function ContactPage() {
               }}
             >
               <img
-                src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&h=300&fit=crop"
-                alt="Modern living room interior"
+                src="https://ik.imagekit.io/crimsonstack/tada/Assets/apples.jpg?tr=w-600,h-300,q-90,c-fill"
+                alt="Interior design vase showcase"
                 className="w-full h-48 object-cover"
               />
             </div>
