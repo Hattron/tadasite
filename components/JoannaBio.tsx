@@ -25,7 +25,7 @@ export default async function JoannaBio() {
           style={{ 
             color: 'var(--color-primary)',
             fontFamily: 'var(--font-primary)',
-            fontSize: 'var(--font-size-5xl)',
+            fontSize: 'var(--font-size-4xl)',
             marginBottom: 'var(--spacing-3xl)'
           }}
         >
@@ -37,7 +37,13 @@ export default async function JoannaBio() {
           style={{ gap: 'var(--spacing-about-image-gap-tight)' }}
         >
           {/* Image Section */}
-          <div className="flex items-start pr-4 md:pr-8 lg:pr-12">
+          <div 
+            className="mb-8 lg:mb-0 flex justify-center lg:justify-start items-start lg:pr-4 lg:md:pr-8 lg:lg:pr-12"
+            style={{ 
+              marginBottom: 'var(--spacing-2xl)',
+              width: '100%'
+            }}
+          >
             {joannaImage ? (
               <ImageFrame variant="default">
                 <img

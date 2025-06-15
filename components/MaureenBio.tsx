@@ -20,24 +20,45 @@ export default async function MaureenBio() {
       }}
     >
       <div style={{ maxWidth: 'var(--container-max-width)' }} className="mx-auto">
+        {/* Main Title */}
         <h1 
           className="font-bold text-center"
           style={{ 
             color: 'var(--color-primary)',
             fontFamily: 'var(--font-primary)',
-            fontSize: 'var(--font-size-5xl)',
-            marginBottom: 'var(--spacing-3xl)'
+            fontSize: 'var(--font-size-4xl)',
+            marginBottom: 'var(--spacing-md)'
           }}
         >
-          C. Maureen Rice, certified interior decorator
+          C. Maureen Rice
         </h1>
+        
+        {/* Subtitle */}
+        <h2 
+          className="text-center font-medium"
+          style={{ 
+            color: 'var(--color-text)',
+            fontFamily: 'var(--font-secondary)',
+            fontSize: 'var(--font-size-xl)',
+            marginBottom: 'var(--spacing-3xl)',
+            opacity: 0.8
+          }}
+        >
+          Certified Interior Decorator
+        </h2>
         
         <div 
           className="grid grid-cols-1 lg:[grid-template-columns:auto_1fr] items-start place-items-start"
           style={{ gap: 'var(--spacing-about-image-gap-tight)' }}
         >
           {/* Image Section */}
-          <div className="flex items-start pr-4 md:pr-8 lg:pr-12">
+          <div 
+            className="mb-8 lg:mb-0 flex justify-center lg:justify-start items-start lg:pr-4 lg:md:pr-8 lg:lg:pr-12"
+            style={{ 
+              marginBottom: 'var(--spacing-2xl)',
+              width: '100%'
+            }}
+          >
             {maurImage ? (
               <ImageFrame variant="default">
                 <img

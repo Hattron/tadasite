@@ -16,69 +16,133 @@ export default async function AboutPage() {
 
   return (
     <div className="pt-20 md:pt-24">
+      {/* Team Section */}
       <Team />
+      
+      {/* Our Approach Section */}
       <OurApproach />
       
       {/* Meet the Women Behind TaDa! Header Section */}
       <section 
-        className="px-8" 
         style={{ 
           backgroundColor: 'var(--color-background)',
-          paddingTop: 'var(--spacing-3xl)',
-          paddingBottom: 'var(--spacing-xl)'
+          paddingTop: 'var(--spacing-2xl)',
+          paddingBottom: 'var(--spacing-2xl)',
+          paddingLeft: 'var(--spacing-lg)',
+          paddingRight: 'var(--spacing-lg)'
         }}
+        className="md:px-8"
       >
-        <div style={{ maxWidth: 'var(--container-max-width)' }} className="mx-auto">
-          <div className="flex flex-col lg:flex-row items-start">
+        <div 
+          style={{ 
+            maxWidth: 'var(--container-max-width)',
+            margin: '0 auto'
+          }}
+        >
+          {/* Mobile Layout */}
+          <div className="block lg:hidden text-center">
+            <h2 
+              className="font-bold mb-6 text-2xl md:text-3xl"
+              style={{ 
+                color: 'var(--color-primary)',
+                fontFamily: 'var(--font-primary)',
+                lineHeight: '1.3',
+                marginBottom: 'var(--spacing-lg)'
+              }}
+            >
+              Meet the Women Behind TaDa!
+            </h2>
+            
+            <p 
+              className="leading-relaxed text-base md:text-lg mb-8 px-4"
+              style={{ 
+                color: 'var(--color-text)',
+                fontFamily: 'var(--font-secondary)',
+                maxWidth: '500px',
+                margin: '0 auto var(--spacing-xl) auto'
+              }}
+            >
+              Get to know Maureen and Joanna—the heart, soul, and creative force behind every project.
+            </p>
+
+            {/* Team Image for Mobile */}
+            {teamImage && (
+              <div className="flex justify-center">
+                <ImageFrame variant="default">
+                  <img
+                    src={`${imagekitConfig.urlEndpoint}${getImagePath(teamImage.imagekitUrl)}?tr=w-300,h-300,q-90`}
+                    alt={teamImage.alt || 'TaDa! Interiors Team'}
+                    className="w-full h-auto"
+                    style={{ 
+                      maxWidth: '250px',
+                      display: 'block'
+                    }}
+                  />
+                </ImageFrame>
+              </div>
+            )}
+          </div>
+
+          {/* Desktop Layout */}
+          <div className="hidden lg:grid lg:grid-cols-12 lg:gap-8 lg:items-center">
             {/* Text Content */}
-            <div style={{ marginRight: 'var(--spacing-lg)' }}>
+            <div className="col-span-7">
               <h2 
-                className="font-bold"
+                className="font-bold mb-4 text-3xl xl:text-4xl"
                 style={{ 
                   color: 'var(--color-primary)',
                   fontFamily: 'var(--font-primary)',
-                  fontSize: 'var(--font-size-5xl)',
-                  marginBottom: 'var(--spacing-lg)'
+                  lineHeight: '1.2',
+                  marginBottom: 'var(--spacing-md)'
                 }}
               >
                 Meet the Women Behind TaDa!
               </h2>
               
               <p 
-                className="leading-relaxed"
+                className="leading-relaxed text-lg xl:text-xl"
                 style={{ 
                   color: 'var(--color-text)',
                   fontFamily: 'var(--font-secondary)',
-                  fontSize: 'var(--font-size-lg)',
-                  maxWidth: '600px'
+                  maxWidth: '100%'
                 }}
               >
                 Get to know Maureen and Joanna—the heart, soul, and creative force behind every project.
               </p>
             </div>
 
-            {/* Team Image */}
-            <div 
-              className="flex items-start flex-shrink-0" 
-              style={{ padding: 'var(--spacing-md)' }}
-            >
+            {/* Team Image for Desktop */}
+            <div className="col-span-5 flex justify-center lg:justify-end">
               {teamImage ? (
                 <ImageFrame variant="default">
                   <img
-                    src={`${imagekitConfig.urlEndpoint}${getImagePath(teamImage.imagekitUrl)}?tr=w-300,h-300,q-90`}
+                    src={`${imagekitConfig.urlEndpoint}${getImagePath(teamImage.imagekitUrl)}?tr=w-350,h-350,q-90`}
                     alt={teamImage.alt || 'TaDa! Interiors Team'}
-                    className="h-auto"
-                    style={{ maxWidth: 'var(--image-about-medium-max-width)', display: 'block' }}
+                    className="w-full h-auto"
+                    style={{ 
+                      maxWidth: '280px',
+                      display: 'block'
+                    }}
                   />
                 </ImageFrame>
               ) : (
                 <div 
-                  className="h-48 flex items-center justify-center"
-                  style={{ maxWidth: 'var(--image-about-medium-max-width)', opacity: 0.1 }}
+                  className="flex items-center justify-center border-2 border-dashed rounded-lg"
+                  style={{ 
+                    height: '280px',
+                    maxWidth: '280px',
+                    width: '100%',
+                    borderColor: 'var(--color-border)',
+                    backgroundColor: 'var(--color-background-muted)',
+                    opacity: 0.3
+                  }}
                 >
                   <p 
-                    className="text-center"
-                    style={{ color: 'var(--color-text)', fontFamily: 'var(--font-secondary)', fontSize: 'var(--font-size-base)' }}
+                    className="text-center px-4 text-sm"
+                    style={{ 
+                      color: 'var(--color-text-muted)', 
+                      fontFamily: 'var(--font-secondary)'
+                    }}
                   >
                     Set a team image in the gallery manager
                   </p>
@@ -89,6 +153,7 @@ export default async function AboutPage() {
         </div>
       </section>
       
+      {/* Bio Sections */}
       <MaureenBio />
       <JoannaBio />
     </div>
