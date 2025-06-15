@@ -5,10 +5,11 @@ import AboutUsAnimated from '@/components/AboutUsAnimated';
 import Testimonials from '@/components/Testimonials';
 import AnimatedPageWrapper from '@/components/AnimatedPageWrapper';
 import AnimatedSection from '@/components/AnimatedSection';
-import { getFirstImage, getSecondImage, getThirdImage } from '@/lib/image-actions';
+import { getFirstImage, getSecondImage, getThirdImage, getHeroImage } from '@/lib/image-actions';
 
 export default async function Home() {
-  const [firstImage, secondImage, thirdImage] = await Promise.all([
+  const [heroImage, firstImage, secondImage, thirdImage] = await Promise.all([
+    getHeroImage(),
     getFirstImage(),
     getSecondImage(),
     getThirdImage()
@@ -16,9 +17,7 @@ export default async function Home() {
 
   return (
     <AnimatedPageWrapper>
-      <AnimatedSection delay={0}>
-        <HeroSection />
-      </AnimatedSection>
+      <HeroSection heroImage={heroImage} />
       
       <AnimatedSection delay={0.1} style={{ paddingTop: 'var(--spacing-xl)' }}>
         <Services />

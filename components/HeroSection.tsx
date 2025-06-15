@@ -1,9 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { getHeroImage } from '@/lib/image-actions';
 import ParallaxImage from '@/components/ParallaxImage';
-import { useEffect, useState } from 'react';
 
 interface HeroImage {
   id: string;
@@ -14,16 +12,24 @@ interface HeroImage {
   caption: string | null;
 }
 
-export default function HeroSection() {
-  const [heroImage, setHeroImage] = useState<HeroImage | null>(null);
+interface HeroSectionProps {
+  heroImage: HeroImage | null;
+}
 
-  useEffect(() => {
-    // Fetch hero image
-    getHeroImage().then(setHeroImage);
-  }, []);
+export default function HeroSection({ heroImage }: HeroSectionProps) {
 
   if (!heroImage) {
-    return null; // Just wait for data to load instead of showing fallback
+    // Show loading skeleton with same dimensions to prevent layout shift
+    return (
+      <div className="relative w-full h-screen overflow-hidden bg-gray-200 animate-pulse">
+        <div className="absolute inset-0 flex items-center justify-center z-20">
+          <div className="text-center max-w-4xl mx-auto px-4">
+            <div className="h-16 bg-gray-300 rounded mb-4 animate-pulse"></div>
+            <div className="h-8 bg-gray-300 rounded animate-pulse"></div>
+          </div>
+        </div>
+      </div>
+    );
   }
 
   return (
