@@ -1,6 +1,7 @@
-import { getTeamImage } from '@/lib/image-actions';
+import { getTeamImage, getAboutUsImage, getFirstImage, getSecondImage } from '@/lib/image-actions';
 import { imagekitConfig } from '@/lib/imagekit';
 import ImageFrame from '@/components/ui/ImageFrame';
+import Link from 'next/link';
 
 // Helper function to extract path from ImageKit URL
 const getImagePath = (fullUrl: string) => {
@@ -8,7 +9,11 @@ const getImagePath = (fullUrl: string) => {
 };
 
 export default async function Team() {
-  const teamImage = await getTeamImage();
+  const [aboutUsImage, firstImage, secondImage] = await Promise.all([
+    getAboutUsImage(),
+    getFirstImage(),
+    getSecondImage()
+  ]);
 
   return (
     <section 
@@ -32,38 +37,111 @@ export default async function Team() {
           About TaDa! Interiors
         </h1>
         
-        <div 
-          className="grid grid-cols-1 lg:[grid-template-columns:auto_1fr] items-start place-items-start"
-          style={{ gap: 'var(--spacing-about-image-gap-tight)' }}
-        >
-          {/* Image Section */}
-          <div className="flex items-start pr-4 md:pr-8 lg:pr-12">
-            {teamImage ? (
-              <ImageFrame variant="default">
-                <img
-                  src={`${imagekitConfig.urlEndpoint}${getImagePath(teamImage.imagekitUrl)}?tr=w-300,h-300,q-90`}
-                  alt={teamImage.alt || 'TaDa! Interiors Team'}
-                  className="h-auto"
-                  style={{ maxWidth: 'var(--image-about-medium-max-width)', display: 'block' }}
-                />
-              </ImageFrame>
-            ) : (
-              <div 
-                className="h-48 flex items-center justify-center"
-                style={{ maxWidth: 'var(--image-about-medium-max-width)', opacity: 0.1 }}
-              >
-                <p 
-                  className="text-center"
-                  style={{ color: 'var(--color-text)', fontFamily: 'var(--font-secondary)', fontSize: 'var(--font-size-base)' }}
+        {/* Content Section with Images */}
+        <div className="flex flex-col lg:flex-row" style={{ gap: 'var(--spacing-xl)' }}>
+          {/* Left Side - Images Column */}
+          <div className="flex flex-col lg:w-1/4" style={{ gap: 'var(--spacing-md)' }}>
+            {/* About Us Image */}
+            <div>
+              {aboutUsImage ? (
+                <ImageFrame variant="default">
+                  <img
+                    src={`${imagekitConfig.urlEndpoint}${getImagePath(aboutUsImage.imagekitUrl)}?tr=w-250,h-200,q-90`}
+                    alt={aboutUsImage.alt || 'About TaDa! Interiors'}
+                    className="w-full h-auto"
+                    style={{ display: 'block' }}
+                  />
+                </ImageFrame>
+              ) : (
+                <div 
+                  className="w-full h-40 flex items-center justify-center border-2 border-dashed"
+                  style={{ 
+                    borderColor: 'var(--color-border)',
+                    backgroundColor: 'var(--color-background-muted)'
+                  }}
                 >
-                  Set a team image in the gallery manager
-                </p>
-              </div>
-            )}
+                  <p 
+                    className="text-center text-xs px-2"
+                    style={{ 
+                      color: 'var(--color-text-muted)', 
+                      fontFamily: 'var(--font-secondary)'
+                    }}
+                  >
+                    About Photo Placeholder
+                  </p>
+                </div>
+              )}
+            </div>
+
+            {/* First Filler Image */}
+            <div>
+              {firstImage ? (
+                <ImageFrame variant="default">
+                  <img
+                    src={`${imagekitConfig.urlEndpoint}${getImagePath(firstImage.imagekitUrl)}?tr=w-250,h-200,q-90`}
+                    alt={firstImage.alt || 'TaDa! Interiors Showcase'}
+                    className="w-full h-auto"
+                    style={{ display: 'block' }}
+                  />
+                </ImageFrame>
+              ) : (
+                <div 
+                  className="w-full h-40 flex items-center justify-center border-2 border-dashed"
+                  style={{ 
+                    borderColor: 'var(--color-border)',
+                    backgroundColor: 'var(--color-background-muted)'
+                  }}
+                >
+                  <p 
+                    className="text-center text-xs px-2"
+                    style={{ 
+                      color: 'var(--color-text-muted)', 
+                      fontFamily: 'var(--font-secondary)'
+                    }}
+                  >
+                    Showcase Photo Placeholder
+                  </p>
+                </div>
+              )}
+            </div>
+
+            {/* Second Filler Image */}
+            <div>
+              {secondImage ? (
+                <ImageFrame variant="default">
+                  <img
+                    src={`${imagekitConfig.urlEndpoint}${getImagePath(secondImage.imagekitUrl)}?tr=w-250,h-200,q-90`}
+                    alt={secondImage.alt || 'TaDa! Interiors Work'}
+                    className="w-full h-auto"
+                    style={{ display: 'block' }}
+                  />
+                </ImageFrame>
+              ) : (
+                <div 
+                  className="w-full h-40 flex items-center justify-center border-2 border-dashed"
+                  style={{ 
+                    borderColor: 'var(--color-border)',
+                    backgroundColor: 'var(--color-background-muted)'
+                  }}
+                >
+                  <p 
+                    className="text-center text-xs px-2"
+                    style={{ 
+                      color: 'var(--color-text-muted)', 
+                      fontFamily: 'var(--font-secondary)'
+                    }}
+                  >
+                    Work Photo Placeholder
+                  </p>
+                </div>
+              )}
+            </div>
+
+
           </div>
 
-          {/* Content Section */}
-          <div className="flex flex-col w-full lg:w-3/4" style={{ gap: 'var(--spacing-lg)' }}>
+          {/* Right Side - Text Content */}
+          <div className="flex flex-col lg:flex-1" style={{ gap: 'var(--spacing-lg)' }}>
             <p 
               className="leading-relaxed"
               style={{ 

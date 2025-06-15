@@ -14,7 +14,7 @@ export default function OurApproach() {
         
         {/* Three Column Layout */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-          {/* Column 1: TaDa! Thoughts */}
+          {/* Column 1: Our Philosophy */}
           <div className="space-y-4">
             <h3 
               className="text-xl font-bold mb-4"
@@ -23,7 +23,7 @@ export default function OurApproach() {
                 fontFamily: 'var(--font-primary)'
               }}
             >
-              TADA! THOUGHTS:
+              Our Philosophy
             </h3>
             <div 
               className="w-20 h-1 mb-6"
@@ -45,8 +45,17 @@ export default function OurApproach() {
             </p>
           </div>
 
-          {/* Column 2: Individual Approach */}
+          {/* Column 2: Every Client Is Unique */}
           <div className="space-y-4">
+            <h3 
+              className="text-xl font-bold mb-4"
+              style={{ 
+                color: 'var(--color-primary)',
+                fontFamily: 'var(--font-primary)'
+              }}
+            >
+              Every Client Is Unique
+            </h3>
             <div 
               className="w-20 h-1 mb-6"
               style={{ backgroundColor: 'var(--color-primary)' }}
@@ -65,7 +74,7 @@ export default function OurApproach() {
             </p>
           </div>
 
-          {/* Column 3: Why Hire TaDa! */}
+          {/* Column 3: Why Choose Us */}
           <div className="space-y-4">
             <h3 
               className="text-xl font-bold mb-4"
@@ -74,7 +83,7 @@ export default function OurApproach() {
                 fontFamily: 'var(--font-primary)'
               }}
             >
-              Why Hire TaDa! Interiors?
+              Why Choose Us
             </h3>
             <div 
               className="w-20 h-1 mb-6"
