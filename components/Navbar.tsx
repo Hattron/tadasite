@@ -54,7 +54,7 @@ export default function Navbar() {
       <div 
         className="max-w-7xl mx-auto flex items-center justify-between"
         style={{
-          padding: 'var(--spacing-sm, 0.5rem) var(--spacing-md, 1rem)',
+          padding: 'var(--spacing-md, 1rem) var(--spacing-md, 1rem)',
         }}
       >
         <Link 
@@ -66,8 +66,8 @@ export default function Navbar() {
           <img 
             src={`${imagekitConfig.urlEndpoint}/tada/Assets/logosimple.png?tr=h-60,q-90`}
             alt="Tada Interior Design"
-            className="h-10 sm:h-12"
-            style={{ height: '2.5rem' }}
+            className="h-20 sm:h-24"
+            style={{ height: '5rem' }}
           />
           <span
             className="text-lg sm:text-xl font-bold"
@@ -93,6 +93,16 @@ export default function Navbar() {
             }}
           >
             About
+          </Link>
+          <Link 
+            href="/#services"
+            className="font-medium hover:opacity-70"
+            style={{ 
+              color: 'var(--color-text, #1f2937)',
+              fontFamily: 'var(--font-primary, Quicksand, sans-serif)',
+            }}
+          >
+            Services
           </Link>
           <Link 
             href="/gallery"
@@ -158,6 +168,17 @@ export default function Navbar() {
               onClick={closeMenu}
             >
               About
+            </Link>
+            <Link 
+              href="/#services"
+              className="block py-3 px-2 font-medium hover:bg-gray-50 rounded-md"
+              style={{ 
+                color: 'var(--color-text, #1f2937)',
+                fontFamily: 'var(--font-primary, Quicksand, sans-serif)',
+              }}
+              onClick={closeMenu}
+            >
+              Services
             </Link>
             <Link 
               href="/gallery"

@@ -11,8 +11,9 @@ export default async function CommercialPage() {
 
   return (
     <div 
-      className="min-h-screen py-20 px-8 pt-24 md:pt-28"
+      className="min-h-screen py-20 px-8"
       style={{
+        paddingTop: 'calc(var(--navbar-height) + var(--spacing-md))',
         backgroundColor: 'var(--color-background)',
         color: 'var(--color-text)',
         fontFamily: 'var(--font-primary)',

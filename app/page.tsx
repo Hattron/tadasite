@@ -19,7 +19,14 @@ export default async function Home() {
     <AnimatedPageWrapper>
       <HeroSection heroImage={heroImage} />
       
-      <AnimatedSection delay={0.1} style={{ paddingTop: 'var(--spacing-xl)' }}>
+      <AnimatedSection 
+        delay={0.1} 
+        style={{ 
+          paddingTop: 'calc(var(--spacing-xl) + var(--navbar-height))',
+          marginTop: 'calc(-1 * var(--navbar-height))'
+        }} 
+        id="services"
+      >
         <Services />
       </AnimatedSection>
       

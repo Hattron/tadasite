@@ -15,7 +15,7 @@ export default async function AboutPage() {
   const teamImage = await getTeamImage();
 
   return (
-    <div className="pt-20 md:pt-24">
+    <div style={{ paddingTop: 'var(--navbar-height)' }}>
       {/* Team Section */}
       <Team />
       
