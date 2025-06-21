@@ -23,7 +23,7 @@ export default function SaveButton({ onSave, isLoading, saveStatus }: SaveButton
             color: 'white',
           }}
         >
-          {isLoading ? 'Saving Changes...' : 'Save to Database'}
+          {isLoading ? 'Saving Changes...' : 'Update Website'}
         </Button>
         
         {saveStatus && (

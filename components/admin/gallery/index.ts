@@ -1,4 +1,5 @@
 export { default as GalleryManager } from './GalleryManager';
+export { default as ImageSectionManager } from './ImageSectionManager';
 export { default as FolderTree } from './FolderTree';
 export { default as FolderDialogs } from './FolderDialogs';
 export { default as ImageGrid } from './ImageGrid';

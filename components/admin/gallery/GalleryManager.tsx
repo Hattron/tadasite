@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { uploadImageToImageKit, deleteImage } from '@/app/admin/gallery/actions';
+import { deleteImage } from '@/app/admin/gallery/actions';
 import { 
   getAllImages, 
   getAllFolders, 
@@ -34,6 +34,8 @@ import FolderDialogs from './FolderDialogs';
 import ImageDetailsDialog from './ImageDetailsDialog';
 import ImageTextEditDialog from './ImageTextEditDialog';
 import MoveImageDialog from './MoveImageDialog';
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from '@/components/ui/alert-dialog';
+import { AlertTriangle, Trash2, Info } from 'lucide-react';
 import { ImageData, FolderData } from './types';
 
 export default function GalleryManager() {
@@ -42,20 +44,45 @@ export default function GalleryManager() {
   const [folders, setFolders] = useState<FolderData[]>([]);
   const [selectedFolder, setSelectedFolder] = useState<string | null>(null);
   const [selectedImage, setSelectedImage] = useState<ImageData | null>(null);
+  const [refreshKey, setRefreshKey] = useState(0);
   
   // Loading states
   const [isLoading, setIsLoading] = useState(true);
-  const [isUploading, setIsUploading] = useState(false);
-  const [uploadProgress, setUploadProgress] = useState(0);
   
   // Dialog states
   const [isCreateFolderOpen, setIsCreateFolderOpen] = useState(false);
   const [isEditFolderOpen, setIsEditFolderOpen] = useState(false);
+  const [isUploadOpen, setIsUploadOpen] = useState(false);
+  const [isSectionUploadOpen, setIsSectionUploadOpen] = useState(false);
+  const [sectionUploadType, setSectionUploadType] = useState<string | null>(null);
   const [editingFolder, setEditingFolder] = useState<FolderData | null>(null);
   const [isMoveImageOpen, setIsMoveImageOpen] = useState(false);
   const [movingImage, setMovingImage] = useState<ImageData | null>(null);
   const [textEditImage, setTextEditImage] = useState<ImageData | null>(null);
   const [textEditType, setTextEditType] = useState<'hero' | 'first' | 'second' | 'third' | null>(null);
+
+  // Alert dialog states
+  const [alertConfig, setAlertConfig] = useState({
+    isOpen: false,
+    title: '',
+    description: '',
+    type: 'info' as 'info' | 'warning' | 'error',
+    confirmText: 'OK',
+    onConfirm: () => {},
+    showCancel: false,
+    cancelText: 'Cancel'
+  });
+
+  // Confirm dialog states
+  const [confirmConfig, setConfirmConfig] = useState({
+    isOpen: false,
+    title: '',
+    description: '',
+    confirmText: 'Confirm',
+    cancelText: 'Cancel',
+    onConfirm: () => {},
+    onCancel: () => {}
+  });
 
   useEffect(() => {
     loadData();
@@ -84,41 +111,69 @@ export default function GalleryManager() {
     }
   };
 
-  // File upload handler
-  const handleFileUpload = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setIsUploading(true);
-    setUploadProgress(0);
+  // Helper functions for alerts
+  const showAlert = (title: string, description: string, type: 'info' | 'warning' | 'error' = 'info') => {
+    setAlertConfig({
+      isOpen: true,
+      title,
+      description,
+      type,
+      confirmText: 'OK',
+      onConfirm: () => setAlertConfig(prev => ({ ...prev, isOpen: false })),
+      showCancel: false,
+      cancelText: 'Cancel'
+    });
+  };
 
-    try {
-      const formData = new FormData(e.currentTarget);
-      
-      // Add selected folder to form data
-      if (selectedFolder) {
-        formData.append('folderId', selectedFolder);
+  const showConfirm = (title: string, description: string, onConfirm: () => void, confirmText = 'Confirm', cancelText = 'Cancel') => {
+    setConfirmConfig({
+      isOpen: true,
+      title,
+      description,
+      confirmText,
+      cancelText,
+      onConfirm: () => {
+        setConfirmConfig(prev => ({ ...prev, isOpen: false }));
+        onConfirm();
+      },
+      onCancel: () => setConfirmConfig(prev => ({ ...prev, isOpen: false }))
+    });
+  };
+
+  // Handle upload completion
+  const handleUploadComplete = async () => {
+    await loadData();
+  };
+
+  // Handle section upload clicks
+  const handleSectionUploadClick = (imageType: string) => {
+    setSectionUploadType(imageType);
+    setIsSectionUploadOpen(true);
+  };
+
+  const handleSectionUploadComplete = async () => {
+    await loadData();
+    setRefreshKey(prev => prev + 1);
+    setIsSectionUploadOpen(false);
+    setSectionUploadType(null);
+  };
+
+  // Handle section text editing
+  const handleSectionEditText = (imageType: 'hero' | 'first' | 'second' | 'third') => {
+    // Find the current image for this section type
+    const currentImage = images.find(img => {
+      switch (imageType) {
+        case 'hero': return img.isHero;
+        case 'first': return img.isFirstImage;
+        case 'second': return img.isSecondImage;
+        case 'third': return img.isThirdImage;
+        default: return false;
       }
-      
-      // Simulate progress
-      const progressInterval = setInterval(() => {
-        setUploadProgress(prev => Math.min(prev + 10, 90));
-      }, 200);
+    });
 
-      await uploadImageToImageKit(formData);
-      
-      clearInterval(progressInterval);
-      setUploadProgress(100);
-      
-      // Reload data
-      await loadData();
-      
-      // Reset form
-      (e.target as HTMLFormElement).reset();
-    } catch (error) {
-      console.error('Upload failed:', error);
-      alert(error instanceof Error ? error.message : 'Upload failed');
-    } finally {
-      setIsUploading(false);
-      setUploadProgress(0);
+    if (currentImage) {
+      setTextEditImage(currentImage);
+      setTextEditType(imageType);
     }
   };
 
@@ -132,14 +187,14 @@ export default function GalleryManager() {
 
     // Validate that a parent is selected
     if (!parentId) {
-      alert('Please select a section (Residential or Commercial) for this project.');
+      showAlert('Selection Required', 'Please select a section (Residential or Commercial) for this project.', 'warning');
       return;
     }
 
     // Validate parent is allowed
     const parentFolder = folders.find(f => f.id === parentId);
     if (!parentFolder || (parentFolder.folderType !== 'residential' && parentFolder.folderType !== 'commercial')) {
-      alert('Projects can only be created under Residential or Commercial sections.');
+      showAlert('Invalid Selection', 'Projects can only be created under Residential or Commercial sections.', 'warning');
       return;
     }
 
@@ -150,14 +205,14 @@ export default function GalleryManager() {
       (e.target as HTMLFormElement).reset();
     } catch (error) {
       console.error('Failed to create project:', error);
-      alert(error instanceof Error ? error.message : 'Failed to create project');
+      showAlert('Error', error instanceof Error ? error.message : 'Failed to create project', 'error');
     }
   };
 
   const handleEditFolderClick = (folder: FolderData) => {
     // Only allow editing project folders
     if (folder.folderType !== 'project') {
-      alert('System folders cannot be edited.');
+      showAlert('Cannot Edit System Folder', 'System folders cannot be edited.', 'warning');
       return;
     }
     setEditingFolder(folder);
@@ -170,7 +225,7 @@ export default function GalleryManager() {
 
     // Double check that we're only editing project folders
     if (editingFolder.folderType !== 'project') {
-      alert('System folders cannot be edited.');
+      showAlert('Cannot Edit System Folder', 'System folders cannot be edited.', 'warning');
       return;
     }
 
@@ -185,7 +240,7 @@ export default function GalleryManager() {
       setEditingFolder(null);
     } catch (error) {
       console.error('Failed to update project:', error);
-      alert(error instanceof Error ? error.message : 'Failed to update project');
+      showAlert('Error', error instanceof Error ? error.message : 'Failed to update project', 'error');
     }
   };
 
@@ -195,24 +250,30 @@ export default function GalleryManager() {
 
     // Prevent deletion of system folders
     if (folder.folderType !== 'project') {
-      alert('System folders cannot be deleted.');
+      showAlert('Cannot Delete System Folder', 'System folders cannot be deleted.', 'warning');
       return;
     }
 
-    if (!confirm(`Are you sure you want to delete the project "${folder.name}"?`)) return;
-
-    try {
-      await deleteFolder(folderId);
-      await loadData();
-      
-      // If the deleted folder was selected, reset selection
-      if (selectedFolder === folderId) {
-        setSelectedFolder(null);
-      }
-    } catch (error) {
-      console.error('Failed to delete project:', error);
-      alert(error instanceof Error ? error.message : 'Failed to delete project');
-    }
+    showConfirm(
+      'Delete Project',
+      `Are you sure you want to delete the project "${folder.name}"? This action cannot be undone.`,
+      async () => {
+        try {
+          await deleteFolder(folderId);
+          await loadData();
+          
+          // If the deleted folder was selected, reset selection
+          if (selectedFolder === folderId) {
+            setSelectedFolder(null);
+          }
+        } catch (error) {
+          console.error('Failed to delete project:', error);
+          showAlert('Error', error instanceof Error ? error.message : 'Failed to delete project', 'error');
+        }
+      },
+      'Delete',
+      'Cancel'
+    );
   };
 
   // Image management handlers
@@ -223,7 +284,7 @@ export default function GalleryManager() {
       setSelectedImage(null);
     } catch (error) {
       console.error('Failed to set hero image:', error);
-      alert(error instanceof Error ? error.message : 'Failed to set hero image');
+      showAlert('Error', error instanceof Error ? error.message : 'Failed to set hero image', 'error');
     }
   };
 
@@ -234,7 +295,7 @@ export default function GalleryManager() {
       setSelectedImage(null);
     } catch (error) {
       console.error('Failed to set first image:', error);
-      alert(error instanceof Error ? error.message : 'Failed to set first image');
+      showAlert('Error', error instanceof Error ? error.message : 'Failed to set first image', 'error');
     }
   };
 
@@ -245,7 +306,7 @@ export default function GalleryManager() {
       setSelectedImage(null);
     } catch (error) {
       console.error('Failed to set about us image:', error);
-      alert(error instanceof Error ? error.message : 'Failed to set about us image');
+      showAlert('Error', error instanceof Error ? error.message : 'Failed to set about us image', 'error');
     }
   };
 
@@ -256,7 +317,7 @@ export default function GalleryManager() {
       setSelectedImage(null);
     } catch (error) {
       console.error('Failed to set Maureen image:', error);
-      alert(error instanceof Error ? error.message : 'Failed to set Maureen image');
+      showAlert('Error', error instanceof Error ? error.message : 'Failed to set Maureen image', 'error');
     }
   };
 
@@ -267,7 +328,7 @@ export default function GalleryManager() {
       setSelectedImage(null);
     } catch (error) {
       console.error('Failed to set Joanna image:', error);
-      alert(error instanceof Error ? error.message : 'Failed to set Joanna image');
+      showAlert('Error', error instanceof Error ? error.message : 'Failed to set Joanna image', 'error');
     }
   };
 
@@ -278,7 +339,7 @@ export default function GalleryManager() {
       setSelectedImage(null);
     } catch (error) {
       console.error('Failed to set team image:', error);
-      alert(error instanceof Error ? error.message : 'Failed to set team image');
+      showAlert('Error', error instanceof Error ? error.message : 'Failed to set team image', 'error');
     }
   };
 
@@ -289,7 +350,7 @@ export default function GalleryManager() {
       setSelectedImage(null);
     } catch (error) {
       console.error('Failed to set second image:', error);
-      alert(error instanceof Error ? error.message : 'Failed to set second image');
+      showAlert('Error', error instanceof Error ? error.message : 'Failed to set second image', 'error');
     }
   };
 
@@ -300,7 +361,7 @@ export default function GalleryManager() {
       setSelectedImage(null);
     } catch (error) {
       console.error('Failed to set third image:', error);
-      alert(error instanceof Error ? error.message : 'Failed to set third image');
+      showAlert('Error', error instanceof Error ? error.message : 'Failed to set third image', 'error');
     }
   };
 
@@ -311,7 +372,7 @@ export default function GalleryManager() {
       setSelectedImage(null);
     } catch (error) {
       console.error('Failed to set residential cover image:', error);
-      alert(error instanceof Error ? error.message : 'Failed to set residential cover image');
+      showAlert('Error', error instanceof Error ? error.message : 'Failed to set residential cover image', 'error');
     }
   };
 
@@ -322,7 +383,7 @@ export default function GalleryManager() {
       setSelectedImage(null);
     } catch (error) {
       console.error('Failed to set commercial cover image:', error);
-      alert(error instanceof Error ? error.message : 'Failed to set commercial cover image');
+      showAlert('Error', error instanceof Error ? error.message : 'Failed to set commercial cover image', 'error');
     }
   };
 
@@ -333,7 +394,7 @@ export default function GalleryManager() {
       setSelectedImage(null);
     } catch (error) {
       console.error('Failed to set project cover image:', error);
-      alert(error instanceof Error ? error.message : 'Failed to set project cover image');
+      showAlert('Error', error instanceof Error ? error.message : 'Failed to set project cover image', 'error');
     }
   };
 
@@ -350,21 +411,27 @@ export default function GalleryManager() {
       setMovingImage(null);
     } catch (error) {
       console.error('Failed to move image:', error);
-      alert(error instanceof Error ? error.message : 'Failed to move image');
+      showAlert('Error', error instanceof Error ? error.message : 'Failed to move image', 'error');
     }
   };
 
   const handleDeleteImage = async (imageId: string) => {
-    if (!confirm('Are you sure you want to delete this image?')) return;
-
-    try {
-      await deleteImage(imageId);
-      await loadData();
-      setSelectedImage(null);
-    } catch (error) {
-      console.error('Failed to delete image:', error);
-      alert(error instanceof Error ? error.message : 'Failed to delete image');
-    }
+    showConfirm(
+      'Delete Image',
+      'Are you sure you want to delete this image? This action cannot be undone.',
+      async () => {
+        try {
+          await deleteImage(imageId);
+          await loadData();
+          setSelectedImage(null);
+        } catch (error) {
+          console.error('Failed to delete image:', error);
+          showAlert('Error', error instanceof Error ? error.message : 'Failed to delete image', 'error');
+        }
+      },
+      'Delete',
+      'Cancel'
+    );
   };
 
   // Text editing handlers
@@ -392,11 +459,12 @@ export default function GalleryManager() {
           break;
       }
       await loadData();
+      setRefreshKey(prev => prev + 1); // Trigger refresh of ImageSectionManager
       setTextEditImage(null);
       setTextEditType(null);
     } catch (error) {
       console.error('Failed to update text:', error);
-      alert(error instanceof Error ? error.message : 'Failed to update text');
+      showAlert('Error', error instanceof Error ? error.message : 'Failed to update text', 'error');
     }
   };
 
@@ -408,6 +476,17 @@ export default function GalleryManager() {
   if (isLoading) {
     return <div className="p-8 text-center">Loading gallery...</div>;
   }
+
+  const getAlertIcon = () => {
+    switch (alertConfig.type) {
+      case 'warning':
+        return <AlertTriangle className="h-5 w-5 text-amber-500" />;
+      case 'error':
+        return <AlertTriangle className="h-5 w-5 text-red-500" />;
+      default:
+        return <Info className="h-5 w-5 text-blue-500" />;
+    }
+  };
 
   return (
     <div className="space-y-6">
@@ -423,15 +502,6 @@ export default function GalleryManager() {
           onDeleteFolder={handleDeleteFolder}
         />
 
-        {/* Upload Form */}
-        <UploadForm
-          selectedFolder={selectedFolder}
-          folders={folders}
-          isUploading={isUploading}
-          uploadProgress={uploadProgress}
-          onFileUpload={handleFileUpload}
-        />
-
         {/* Image Grid */}
         <ImageGrid
           images={images}
@@ -439,8 +509,36 @@ export default function GalleryManager() {
           selectedFolder={selectedFolder}
           onImageSelect={setSelectedImage}
           onMoveImage={handleMoveImageClick}
+          onUploadClick={() => setIsUploadOpen(true)}
+          onSectionUploadClick={handleSectionUploadClick}
+          onSectionEditText={handleSectionEditText}
+          refreshKey={refreshKey}
         />
       </div>
+
+      {/* Upload Form Dialog */}
+      <UploadForm
+        selectedFolder={selectedFolder}
+        folders={folders}
+        isOpen={isUploadOpen}
+        onOpenChange={setIsUploadOpen}
+        onUploadComplete={handleUploadComplete}
+      />
+
+      {/* Section Upload Form Dialog */}
+      {isSectionUploadOpen && (
+        <UploadForm
+          selectedFolder={null}
+          folders={folders}
+          isOpen={isSectionUploadOpen}
+          onOpenChange={(open) => {
+            setIsSectionUploadOpen(open);
+            if (!open) setSectionUploadType(null);
+          }}
+          onUploadComplete={handleSectionUploadComplete}
+          sectionType={sectionUploadType}
+        />
+      )}
 
       {/* Folder Dialogs */}
       <FolderDialogs
@@ -491,6 +589,49 @@ export default function GalleryManager() {
         onClose={() => setIsMoveImageOpen(false)}
         onMoveImage={handleMoveImage}
       />
+
+      {/* Alert Dialog */}
+      <AlertDialog open={alertConfig.isOpen} onOpenChange={(open) => setAlertConfig(prev => ({ ...prev, isOpen: open }))}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle className="flex items-center gap-2">
+              {getAlertIcon()}
+              {alertConfig.title}
+            </AlertDialogTitle>
+            <AlertDialogDescription>
+              {alertConfig.description}
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogAction onClick={alertConfig.onConfirm}>
+              {alertConfig.confirmText}
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+
+      {/* Confirm Dialog */}
+      <AlertDialog open={confirmConfig.isOpen} onOpenChange={(open) => setConfirmConfig(prev => ({ ...prev, isOpen: open }))}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle className="flex items-center gap-2">
+              <Trash2 className="h-5 w-5 text-red-500" />
+              {confirmConfig.title}
+            </AlertDialogTitle>
+            <AlertDialogDescription>
+              {confirmConfig.description}
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel onClick={confirmConfig.onCancel}>
+              {confirmConfig.cancelText}
+            </AlertDialogCancel>
+            <AlertDialogAction onClick={confirmConfig.onConfirm} className="bg-red-600 hover:bg-red-700">
+              {confirmConfig.confirmText}
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 } 
