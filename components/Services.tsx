@@ -1,202 +1,164 @@
 'use client';
 
+import { Card, CardHeader, CardTitle, CardContent, CardFooter } from './ui/card';
+import { Button } from './ui/button';
+import { Paintbrush, Sofa, Ruler, Home, Layers, Layout, Wrench, RefreshCw, ClipboardCheck, Camera, Hammer, Lightbulb, Blinds, Brush, Image as ArtIcon } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { Icon } from '@iconify/react';
+import Link from 'next/link';
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.2,
-      delayChildren: 0.1
-    }
-  }
-};
-
-const cardVariants = {
-  hidden: { 
-    opacity: 0, 
-    y: 30,
-    scale: 0.95
+const serviceGroups = [
+  {
+    title: 'Design & Selection',
+    icon: <Paintbrush className="text-primary" />,
+    services: [
+      { icon: <Paintbrush />, text: 'Paint consultations' },
+      { icon: <Sofa />, text: 'Furniture layout and selection' },
+      { icon: <Layers />, text: 'Materials and finishes selections' },
+      { icon: <Home />, text: 'New Home Finish selections' },
+      { icon: <Camera />, text: 'Home Staging' },
+    ],
   },
-  visible: { 
-    opacity: 1, 
-    y: 0,
-    scale: 1,
-    transition: {
-      duration: 0.5
-    }
-  }
-};
-
-const serviceItemVariants = {
-  hidden: { opacity: 0, x: -10 },
-  visible: { 
-    opacity: 1, 
-    x: 0,
-    transition: {
-      duration: 0.3
-    }
-  }
-};
+  {
+    title: 'Planning & Management',
+    icon: <Layout className="text-primary" />,
+    services: [
+      { icon: <Ruler />, text: 'Space planning and floor plans' },
+      { icon: <Wrench />, text: 'Kitchen and bath remodels' },
+      { icon: <RefreshCw />, text: 'Partial/ full renovations' },
+      { icon: <ClipboardCheck />, text: 'Project Management' },
+      { icon: <Camera />, text: '3D drawings and Mood Boards' },
+    ],
+  },
+  {
+    title: 'Custom & Decor',
+    icon: <Hammer className="text-primary" />,
+    services: [
+      { icon: <Hammer />, text: 'Custom Millwork and furniture design' },
+      { icon: <Lightbulb />, text: 'Lighting Plans and selections' },
+      { icon: <Blinds />, text: 'Window treatments' },
+      { icon: <Brush />, text: 'Decorative wall treatments' },
+      { icon: <ArtIcon />, text: 'Art and accessories' },
+    ],
+  },
+];
 
 export default function Services() {
-  const serviceCategories = [
-    {
-      title: 'Design & Selection',
-      icon: 'mdi:palette-outline',
-      services: [
-        { name: 'Paint consultations', icon: 'mdi:brush' },
-        { name: 'Furniture layout and selection', icon: 'mdi:sofa' },
-        { name: 'Materials and finishes selections', icon: 'mdi:texture' },
-        { name: 'New Home Finish selections', icon: 'mdi:home-outline' },
-        { name: 'Home Staging', icon: 'mdi:camera' }
-      ]
-    },
-    {
-      title: 'Planning & Management',
-      icon: 'mdi:floor-plan',
-      services: [
-        { name: 'Space planning and floor plans', icon: 'mdi:floor-plan' },
-        { name: 'Kitchen and bath remodels', icon: 'mdi:silverware-fork-knife' },
-        { name: 'Partial/ full renovations', icon: 'mdi:wrench' },
-        { name: 'Project Management', icon: 'mdi:clipboard-check' },
-        { name: '3D drawings and Mood Boards', icon: 'mdi:cube-outline' }
-      ]
-    },
-    {
-      title: 'Custom & Decor',
-      icon: 'mdi:lightbulb-outline',
-      services: [
-        { name: 'Custom Millwork and furniture design', icon: 'mdi:saw-blade' },
-        { name: 'Lighting Plans and selections', icon: 'mdi:lightbulb' },
-        { name: 'Window treatments', icon: 'mdi:blinds' },
-        { name: 'Decorative wall treatments', icon: 'mdi:wall' },
-        { name: 'Art and accessories', icon: 'mdi:image-frame' }
-      ]
-    }
-  ];
-
   return (
-    <section className="py-12 sm:py-20 px-4 sm:px-8" style={{ backgroundColor: 'var(--color-background)' }}>
-      <div className="max-w-7xl mx-auto">
-        <motion.h2 
-          className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-8 sm:mb-16"
-          style={{ 
-            color: 'var(--color-primary)',
-            fontFamily: 'var(--font-primary)'
-          }}
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          Services
-        </motion.h2>
-        
-        <motion.div 
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-        >
-          {serviceCategories.map((category, index) => (
-            <motion.div 
-              key={index}
-              className="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-300"
-              variants={cardVariants}
-              whileHover={{ 
-                y: -5,
-                transition: { duration: 0.2 }
-              }}
-            >
-              <div className="text-center mb-6 sm:mb-8">
-                <motion.div 
-                  className="w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-3 sm:mb-4 rounded-full flex items-center justify-center"
-                  style={{ backgroundColor: 'var(--color-secondary)' }}
-                  whileHover={{ 
-                    scale: 1.1,
-                    rotate: 5,
-                    transition: { duration: 0.2 }
-                  }}
-                >
-                  <Icon 
-                    icon={category.icon} 
-                    className="text-2xl sm:text-3xl text-white" 
-                  />
-                </motion.div>
-                <h3 
-                  className="text-xl sm:text-2xl font-bold"
-                  style={{ 
-                    color: 'var(--color-primary)',
-                    fontFamily: 'var(--font-primary)'
-                  }}
-                >
-                  {category.title}
-                </h3>
-              </div>
-              
-              <motion.ul 
-                className="space-y-3 sm:space-y-4"
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                transition={{ staggerChildren: 0.1, delayChildren: 0.3 }}
+    <section 
+      className="py-14 px-2" 
+      style={{ 
+        background: 'var(--color-background)', 
+        textAlign: 'center' 
+      }} 
+      id="services"
+    >
+      <h2
+        className="mb-10 text-4xl font-bold tracking-tight"
+        style={{ 
+          fontFamily: 'var(--font-primary)',
+          color: 'var(--color-primary)',
+          marginBottom: 'var(--spacing-2xl, 2.5rem)'
+        }}
+      >
+        Services
+      </h2>
+      <div 
+        className="grid gap-6 w-full max-w-7xl mx-auto px-4" 
+        style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))' }}
+      >
+        {serviceGroups.map((group, i) => (
+          <motion.div
+            key={group.title}
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: 'easeOut' }}
+            viewport={{ once: true, amount: 0.3 }}
+            whileHover={{ y: -5 }}
+            className="relative rounded-3xl shadow-md p-6 sm:p-8 flex flex-col h-full justify-between border overflow-hidden"
+            style={{ 
+              background: 'var(--color-card, white)', 
+              borderColor: 'var(--color-primary)',
+              borderRadius: 'var(--radius-3xl, 1.5rem)',
+              padding: 'var(--spacing-xl, 2rem)',
+              boxShadow: 'var(--shadow-md, 0 4px 6px -1px rgb(0 0 0 / 0.1))',
+              transition: 'var(--transition-normal, all 0.3s ease)'
+            }}
+          >
+            <div className="flex flex-col items-center mb-4">
+              <span 
+                className="mb-2" 
+                style={{ 
+                  color: 'var(--color-primary)',
+                  marginBottom: 'var(--spacing-sm, 0.5rem)'
+                }}
               >
-                {category.services.map((service, serviceIndex) => (
-                  <motion.li 
-                    key={serviceIndex}
-                    className="flex items-start gap-2 sm:gap-3"
-                    variants={serviceItemVariants}
-                    whileHover={{ x: 5, transition: { duration: 0.2 } }}
+                {group.icon}
+              </span>
+              <span
+                className="text-2xl font-semibold mb-2"
+                style={{ 
+                  fontFamily: 'var(--font-primary)',
+                  fontSize: 'var(--text-2xl, 1.5rem)',
+                  fontWeight: 'var(--font-weight-semibold, 600)',
+                  color: 'var(--color-primary)',
+                  marginBottom: 'var(--spacing-sm, 0.5rem)'
+                }}
+              >
+                {group.title}
+              </span>
+            </div>
+            <div className="flex-1">
+              <ul className="space-y-3">
+                {group.services.map((service, j) => (
+                  <li 
+                    key={service.text} 
+                    className="flex items-center gap-3 text-base" 
+                    style={{ 
+                      fontFamily: 'var(--font-secondary)', 
+                      color: 'var(--color-text)',
+                      fontSize: 'var(--text-base, 1rem)',
+                      gap: 'var(--spacing-md, 0.75rem)'
+                    }}
                   >
-                    <Icon 
-                      icon={service.icon} 
-                      className="text-lg sm:text-xl mt-0.5 flex-shrink-0"
-                      style={{ color: 'var(--color-secondary)' }}
-                    />
-                    <span 
-                      className="text-sm sm:text-base leading-relaxed"
-                      style={{ 
-                        color: 'var(--color-text)',
-                        fontFamily: 'var(--font-secondary)'
-                      }}
-                    >
-                      {service.name}
+                    <span style={{ color: 'var(--color-primary)' }}>
+                      {service.icon}
                     </span>
-                  </motion.li>
+                    <span>{service.text}</span>
+                  </li>
                 ))}
-              </motion.ul>
-            </motion.div>
-          ))}
-        </motion.div>
-        
-        <motion.div 
-          className="text-center mt-8 sm:mt-12"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.8 }}
-        >
-          <motion.a 
-            href="/contact"
-            className="inline-flex items-center gap-2 rounded-full transition-all font-medium px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg"
+              </ul>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+      <div className="mt-12 flex justify-center">
+        <Link href="/contact">
+          <Button 
+            size="lg" 
             style={{
-              backgroundColor: 'var(--color-primary)',
+              fontFamily: 'var(--font-secondary)',
+              fontSize: 'var(--button-font-size, 1rem)',
+              fontWeight: 'var(--button-font-weight, 500)',
+              padding: 'var(--button-padding, 0.75rem 1.5rem)',
+              borderRadius: 'var(--button-radius, 0.5rem)',
+              background: 'var(--color-primary)',
               color: 'white',
-              fontFamily: 'var(--font-secondary)'
+              transition: 'var(--transition-normal, all 0.3s ease)',
+              border: 'none',
+              cursor: 'pointer'
             }}
-            whileHover={{ 
-              scale: 1.05,
-              transition: { duration: 0.2 }
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = 'var(--color-primary-hover, var(--color-primary))';
+              e.currentTarget.style.opacity = '0.9';
             }}
-            whileTap={{ scale: 0.95 }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = 'var(--color-primary)';
+              e.currentTarget.style.opacity = '1';
+            }}
           >
             Get Started
-          </motion.a>
-        </motion.div>
+          </Button>
+        </Link>
       </div>
     </section>
   );
