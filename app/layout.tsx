@@ -17,7 +17,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "TadaSite",
+  title: "TaDa! Site",
   description: "A customizable site with dynamic CSS variables",
 };
 

@@ -65,7 +65,7 @@ export default function Navbar() {
         >
           <img 
             src={`${imagekitConfig.urlEndpoint}/tada/Assets/logosimple.png?tr=h-60,q-90`}
-            alt="Tada Interior Design"
+            alt="TaDa! Interior Design"
             className="h-20 sm:h-24"
             style={{ height: '5rem' }}
           />
@@ -76,7 +76,7 @@ export default function Navbar() {
               fontFamily: 'var(--font-primary, Quicksand, sans-serif)',
             }}
           >
-            TaDa Interiors
+            TaDa! Interiors
           </span>
         </Link>
         

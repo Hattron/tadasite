@@ -121,7 +121,7 @@ export default function ContactPage() {
                     marginBottom: 'var(--spacing-md)',
                   }}
                 >
-                  At TaDal Interiors, we take pride in sourcing the finest products and 
+                  At TaDa! Interiors, we take pride in sourcing the finest products and 
                   materials the market has to offer. Backed by a trusted network of 
                   skilled tradespeople and a keen eye for finding the perfect finishing 
                   touches, we make the design process both seamless and enjoyable. Whether 
@@ -160,7 +160,7 @@ export default function ContactPage() {
                     marginBottom: 'var(--spacing-md)',
                   }}
                 >
-                  In addition to residential work, TaDal Interiors has completed a 
+                  In addition to residential work, TaDa! Interiors has completed a 
                   wide range of commercial projects. Our portfolio includes - though 
                   is not limited to - restaurants, retail environments, office spaces, 
                   condominiums and even a church.

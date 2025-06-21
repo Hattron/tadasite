@@ -15,7 +15,7 @@ export default function Footer() {
           {/* Company Logo */}
           <img 
             src={`${imagekitConfig.urlEndpoint}/tada/Assets/logo.png?tr=h-320,q-90`}
-            alt="Tada Interior Design"
+            alt="TaDa! Interior Design"
             className="h-64 flex-shrink-0"
           />
 
@@ -119,7 +119,7 @@ export default function Footer() {
           }}
         >
           <p style={{ color: 'var(--color-text-muted, #6b7280)' }}>
-            © {new Date().getFullYear()} Tada Interior Design. All rights reserved.
+            © {new Date().getFullYear()} TaDa! Interior Design. All rights reserved.
           </p>
         </div>
       </div>
