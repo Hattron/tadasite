@@ -1,8 +1,16 @@
+import { getCopyContentBySection } from '@/lib/copy-actions';
 import { imagekitConfig } from '@/lib/imagekit';
 import ImageFrame from '@/components/ui/ImageFrame';
 import Link from 'next/link';
 
-export default function Team() {
+export default async function Team() {
+  const teamContent = await getCopyContentBySection('about', 'team');
+  
+  // Extract content by type
+  const headingContent = teamContent.find(c => c.contentType === 'heading')?.content || 'About TaDa! Interiors';
+  const paragraphContent = teamContent.find(c => c.contentType === 'paragraph')?.content || 
+    'At TaDa! Interiors, we&apos;ve been bringing inspired design to homes and businesses across Ottawa for over 20 years. From personalized paint consultations to full scale renovations, we offer a wide range of residential and commercial design services tailored to meet each client&apos;s needs.';
+  
   // Static ImageKit asset URLs
   const tubImageUrl = 'https://ik.imagekit.io/crimsonstack/tada/Assets/tub.png';
   const chairImageUrl = 'https://ik.imagekit.io/crimsonstack/tada/Assets/chair.png';
@@ -27,9 +35,9 @@ export default function Team() {
             fontFamily: 'var(--font-primary)',
             marginBottom: 'var(--spacing-3xl)'
           }}
-        >
-          About TaDa! Interiors
-        </h1>
+          dangerouslySetInnerHTML={{ __html: headingContent }}
+        />
+        
         
         {/* Mobile Layout - Alternating Images and Text */}
         <div className="block lg:hidden">
@@ -50,19 +58,15 @@ export default function Team() {
 
           {/* First Text Block */}
           <div style={{ marginBottom: 'var(--spacing-xl)' }}>
-            <p 
+            <div 
               className="leading-relaxed text-center px-4"
               style={{ 
                 color: 'var(--color-text)',
                 fontFamily: 'var(--font-secondary)',
                 fontSize: 'var(--font-size-base)'
               }}
-            >
-              At TaDa! Interiors, we&apos;ve been bringing inspired design to homes and 
-              businesses across Ottawa for over 20 years. From personalized paint 
-              consultations to full scale renovations, we offer a wide range of residential and 
-              commercial design services tailored to meet each client&apos;s needs.
-            </p>
+              dangerouslySetInnerHTML={{ __html: paragraphContent }}
+            />
           </div>
 
           {/* Chair Image */}
@@ -188,19 +192,15 @@ export default function Team() {
 
             {/* Right Column - Text Content */}
             <div className="col-span-8 space-y-6" style={{ paddingLeft: 'var(--spacing-lg)' }}>
-              <p 
+              <div 
                 className="leading-relaxed text-lg"
                 style={{ 
                   color: 'var(--color-text)',
                   fontFamily: 'var(--font-secondary)',
                   fontSize: 'var(--font-size-lg)'
                 }}
-              >
-                At TaDa! Interiors, we&apos;ve been bringing inspired design to homes and 
-                businesses across Ottawa for over 20 years. From personalized paint 
-                consultations to full scale renovations, we offer a wide range of residential and 
-                commercial design services tailored to meet each client&apos;s needs.
-              </p>
+                dangerouslySetInnerHTML={{ __html: paragraphContent }}
+              />
 
               <p 
                 className="leading-relaxed text-lg"

@@ -57,4 +57,19 @@ export const tadaImages = pgTable('tada_images', {
   sortOrder: integer('sort_order').notNull().default(0),
   createdAt: timestamp('created_at').notNull().defaultNow(),
   updatedAt: timestamp('updated_at').notNull().defaultNow(),
+});
+
+export const tadaCopyContent = pgTable('tada_copy_content', {
+  id: varchar('id', { length: 50 }).primaryKey(),
+  sectionKey: varchar('section_key', { length: 100 }).notNull().unique(),
+  title: text('title'),
+  content: text('content').notNull(),
+  page: varchar('page', { length: 50 }).notNull(), // 'home', 'about', 'contact'
+  section: varchar('section', { length: 100 }).notNull(), // 'about-us', 'team', 'our-approach', 'business-hours', 'services-residential', 'services-commercial'
+  contentType: varchar('content_type', { length: 50 }).notNull().default('paragraph'), // 'paragraph', 'heading', 'list', 'address'
+  sortOrder: integer('sort_order').notNull().default(0),
+  isActive: boolean('is_active').notNull().default(true),
+  description: text('description'), // Admin description of what this content is for
+  createdAt: timestamp('created_at').notNull().defaultNow(),
+  updatedAt: timestamp('updated_at').notNull().defaultNow(),
 }); 

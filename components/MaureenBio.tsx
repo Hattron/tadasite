@@ -1,4 +1,5 @@
 import { getMaureenImage } from '@/lib/image-actions';
+import { getCopyContentBySection } from '@/lib/copy-actions';
 import { imagekitConfig } from '@/lib/imagekit';
 import ImageFrame from '@/components/ui/ImageFrame';
 
@@ -8,7 +9,10 @@ const getImagePath = (fullUrl: string) => {
 };
 
 export default async function MaureenBio() {
-  const maurImage = await getMaureenImage();
+  const [maurImage, bioContent] = await Promise.all([
+    getMaureenImage(),
+    getCopyContentBySection('about', 'maureen-bio')
+  ]);
 
   return (
     <section 
@@ -85,82 +89,18 @@ export default async function MaureenBio() {
 
           {/* Content Section */}
           <div className="flex flex-col w-full lg:w-3/4" style={{ gap: 'var(--spacing-lg)' }}>
-            <p 
-              className="leading-relaxed"
-              style={{ 
-                color: 'var(--color-text)',
-                fontFamily: 'var(--font-secondary)',
-                fontSize: 'var(--font-size-lg)'
-              }}
-            >
-              After graduating with honours from the Residential Décor program at Algonquin 
-              college Maureen embarked on her childhood dream of being an interior design 
-              professional and founded TaDa! Interiors. Since 2002 Maureen has used her 
-              strong understanding of the Elements of Design to create interiors that are unique 
-              and most importantly truly reflect her client&apos;s personalities and ways of living.
-            </p>
-
-            <p 
-              className="leading-relaxed"
-              style={{ 
-                color: 'var(--color-text)',
-                fontFamily: 'var(--font-secondary)',
-                fontSize: 'var(--font-size-lg)'
-              }}
-            >
-              Maureen brings a true passion for creativity to every project she takes on. 
-              Constantly inspired by the world around her she&apos;s known for thinking outside the 
-              box and finding fresh, unexpected solutions. Her meticulous attention to detail 
-              ensures that each space is executed with care and precision right down to the 
-              final finishing touch. With a thoughtful professional approach, Maureen 
-              transforms ideas into beautifully realized, functional spaces that leave a lasting 
-              impression.
-            </p>
-
-            <p 
-              className="leading-relaxed"
-              style={{ 
-                color: 'var(--color-text)',
-                fontFamily: 'var(--font-secondary)',
-                fontSize: 'var(--font-size-lg)'
-              }}
-            >
-              Over the years Maureen has leant her skills and expertise to a number of 
-              companies and organizations within the design community. Specifically, as an 
-              invaluable cast member of HGTV&apos;s Design U (seasons 2-4), she proved herself 
-              highly capable of turning out quality projects while working under arduous 
-              deadlines and budgetary constraints. Using her first name Christina on the show, 
-              she was able to showcase her skills as a drapery seamstress and furniture 
-              upholsterer, as well as assist the carpentry team with the many projects as 
-              required.
-            </p>
-
-            <p 
-              className="leading-relaxed"
-              style={{ 
-                color: 'var(--color-text)',
-                fontFamily: 'var(--font-secondary)',
-                fontSize: 'var(--font-size-lg)'
-              }}
-            >
-              Maureen values the great relationships that develop while working with her 
-              clients. Many of her clients are repeat customers, contacting TaDa! Interiors time 
-              after time to tackle more areas in their homes. It is a joy to be called upon with 
-              future projects and most of her clients become like family.
-            </p>
-
-            <p 
-              className="leading-relaxed"
-              style={{ 
-                color: 'var(--color-text)',
-                fontFamily: 'var(--font-secondary)',
-                fontSize: 'var(--font-size-lg)'
-              }}
-            >
-              In addition to being a wife and proud mom of two boys Maureen finds joy in 
-              gardening, unwinding through yoga, and exploring her creativity through various 
-              craft and textile arts.
-            </p>
+            {bioContent.map((content) => (
+              <div
+                key={content.id}
+                className="leading-relaxed"
+                style={{ 
+                  color: 'var(--color-text)',
+                  fontFamily: 'var(--font-secondary)',
+                  fontSize: 'var(--font-size-lg)'
+                }}
+                dangerouslySetInnerHTML={{ __html: content.content }}
+              />
+            ))}
           </div>
         </div>
       </div>

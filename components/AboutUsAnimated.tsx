@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { getAboutUsImage } from '@/lib/image-actions';
+import { getCopyContentByKeys } from '@/lib/copy-actions';
 import { imagekitConfig } from '@/lib/imagekit';
 import { useEffect, useState } from 'react';
 
@@ -19,9 +20,24 @@ interface AboutUsImageData {
 
 export default function AboutUsAnimated() {
   const [aboutUsImage, setAboutUsImage] = useState<AboutUsImageData | null>(null);
+  const [copyContent, setCopyContent] = useState<Record<string, string>>({});
 
   useEffect(() => {
-    getAboutUsImage().then(setAboutUsImage);
+    const loadContent = async () => {
+      const [image, content] = await Promise.all([
+        getAboutUsImage(),
+        getCopyContentByKeys([
+          'home-about-us-paragraph-1',
+          'home-about-us-paragraph-2', 
+          'home-about-us-paragraph-3'
+        ])
+      ]);
+      
+      setAboutUsImage(image);
+      setCopyContent(content);
+    };
+    
+    loadContent();
   }, []);
 
   return (
@@ -87,7 +103,7 @@ export default function AboutUsAnimated() {
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            <motion.p 
+            <motion.div 
               className="text-base sm:text-lg leading-relaxed"
               style={{ 
                 color: 'var(--color-text)',
@@ -97,16 +113,13 @@ export default function AboutUsAnimated() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.6 }}
-            >
-              At TaDa! Interiors, we&apos;ve been bringing inspired design 
-              to homes and businesses across Ottawa for over 20 years. 
-              From personalized paint consultations to full scale 
-              renovations, we offer a wide range of residential and 
-              commercial design services tailored to meet each client&apos;s 
-              needs.
-            </motion.p>
+              dangerouslySetInnerHTML={{ 
+                __html: copyContent['home-about-us-paragraph-1'] || 
+                'At TaDa! Interiors, we&apos;ve been bringing inspired design to homes and businesses across Ottawa for over 20 years.'
+              }}
+            />
 
-            <motion.p 
+            <motion.div 
               className="text-base sm:text-lg leading-relaxed"
               style={{ 
                 color: 'var(--color-text)',
@@ -116,15 +129,13 @@ export default function AboutUsAnimated() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.8 }}
-            >
-              We&apos;re celebrated for our ability to transform and reimagine 
-              spaces in a way that reflects every client&apos;s personality, style 
-              and lifestyle. Our warm, collaborative approach ensures that 
-              every project feels thoughtful, functional, and visually 
-              harmonious.
-            </motion.p>
+              dangerouslySetInnerHTML={{ 
+                __html: copyContent['home-about-us-paragraph-2'] || 
+                'We&apos;re celebrated for our ability to transform and reimagine spaces in a way that reflects every client&apos;s personality, style and lifestyle.'
+              }}
+            />
 
-            <motion.p 
+            <motion.div 
               className="text-base sm:text-lg leading-relaxed"
               style={{ 
                 color: 'var(--color-text)',
@@ -134,11 +145,11 @@ export default function AboutUsAnimated() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 1 }}
-            >
-              We work closely with a trusted team of skilled trades 
-              professionals, allowing TaDa! Interiors to deliver exceptional 
-              craftsmanship and seamless results every step of the way.
-            </motion.p>
+              dangerouslySetInnerHTML={{ 
+                __html: copyContent['home-about-us-paragraph-3'] || 
+                'We work closely with a trusted team of skilled trades professionals, allowing TaDa! Interiors to deliver exceptional craftsmanship and seamless results every step of the way.'
+              }}
+            />
 
             {/* Call to Action */}
             <motion.div 
