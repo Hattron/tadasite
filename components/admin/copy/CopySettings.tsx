@@ -4,10 +4,7 @@ import { useState, useEffect } from 'react';
 import { getAllCopyContent, updateCopyContent, type CopyContentData } from '@/lib/copy-actions';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Textarea } from '@/components/ui/textarea';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 
 import { Badge } from '@/components/ui/badge';
@@ -18,29 +15,6 @@ const pageOptions = [
   { value: 'home', label: 'Home Page' },
   { value: 'about', label: 'About Page' },
   { value: 'contact', label: 'Contact Page' },
-];
-
-const sectionOptions = {
-  home: [
-    { value: 'about-us', label: 'About Us Section' },
-  ],
-  about: [
-    { value: 'team', label: 'Team Section' },
-    { value: 'our-approach', label: 'Our Approach Section' },
-    { value: 'meet-team-header', label: 'Meet the Team Header' },
-  ],
-  contact: [
-    { value: 'business-hours', label: 'Business Hours' },
-    { value: 'services-residential', label: 'Residential Services' },
-    { value: 'services-commercial', label: 'Commercial Services' },
-  ],
-};
-
-const contentTypeOptions = [
-  { value: 'paragraph', label: 'Paragraph' },
-  { value: 'heading', label: 'Heading' },
-  { value: 'list', label: 'List' },
-  { value: 'address', label: 'Address' },
 ];
 
 export default function CopySettings() {
@@ -96,27 +70,22 @@ export default function CopySettings() {
     }
   };
 
-  // HTML entity decode/encode helpers
-  const decodeHtmlEntities = (text: string): string => {
-    const textarea = document.createElement('textarea');
-    textarea.innerHTML = text;
-    return textarea.value;
-  };
 
-  const encodeHtmlEntities = (text: string): string => {
-    const textarea = document.createElement('textarea');
-    textarea.textContent = text;
-    return textarea.innerHTML;
-  };
 
   const openEditDialog = (content: CopyContentData) => {
+    // Reset state first to prevent old content from showing
+    setEditingContent(null);
+    setEditingText('');
+    setEditingSections([]);
+    
     // Check if this is a section with multiple related items
-    if (content.page === 'contact' && (content.section === 'business-hours' || content.section.includes('services-'))) {
+    if (
+      (content.page === 'contact' && (content.section === 'business-hours' || content.section.includes('services-'))) ||
+      (content.page === 'home' && content.section === 'about-us') ||
+      (content.page === 'about' && (content.section === 'our-approach' || content.section === 'maureen-bio' || content.section === 'joanna-bio' || content.section === 'meet-team-header' || content.section === 'team'))
+    ) {
       const relatedSections = copyContent.filter(item => 
-        item.page === 'contact' && (
-          (content.section === 'business-hours' && item.section === 'business-hours') ||
-          (content.section.includes('services-') && item.section.includes('services-'))
-        )
+        item.page === content.page && item.section === content.section
       );
       setEditingSections(relatedSections);
     } else {
@@ -345,7 +314,7 @@ export default function CopySettings() {
                           <div>
                             <Label className="text-sm font-medium">Content Sections</Label>
                             <div className="mt-1 space-y-2">
-                              {(item.data as CopyContentData[]).map((content, contentIndex) => (
+                              {(item.data as CopyContentData[]).map((content) => (
                                 <div key={content.id} className="p-2 border rounded-md bg-muted/30">
                                   <div className="text-xs font-medium text-muted-foreground mb-1">
                                     {content.description || content.title || content.sectionKey}
@@ -401,7 +370,17 @@ export default function CopySettings() {
             </DialogTitle>
             <DialogDescription>
               {editingSections.length > 0 
-                ? `Update all content for ${editingSections[0]?.section === 'business-hours' ? 'Business Hours' : 'Services'} section`
+                ? `Update all content for ${
+                    editingSections[0]?.section === 'business-hours' ? 'Business Hours' :
+                    editingSections[0]?.section.includes('services-') ? 'Services' :
+                    editingSections[0]?.section === 'about-us' ? 'About Us' :
+                    editingSections[0]?.section === 'our-approach' ? 'Our Approach' :
+                    editingSections[0]?.section === 'maureen-bio' ? 'Maureen Bio' :
+                    editingSections[0]?.section === 'joanna-bio' ? 'Joanna Bio' :
+                    editingSections[0]?.section === 'meet-team-header' ? 'Meet the Team Header' :
+                    editingSections[0]?.section === 'team' ? 'Team' :
+                    editingSections[0]?.section
+                  } section`
                 : `Update the content for ${editingContent?.sectionKey}`
               }
             </DialogDescription>
@@ -460,8 +439,8 @@ export default function CopySettings() {
                     }}
                     suppressContentEditableWarning={true}
                     dangerouslySetInnerHTML={{ __html: section.content }}
-                    onBlur={(e) => {
-                      const target = e.target as HTMLDivElement;
+                    onBlur={(event) => {
+                      const target = event.target as HTMLDivElement;
                       setEditingSections(prev => 
                         prev.map((item, i) => 
                           i === index ? { ...item, content: target.innerHTML } : item
@@ -536,8 +515,8 @@ export default function CopySettings() {
                     fontFamily: 'var(--font-secondary)'
                   }}
                   suppressContentEditableWarning={true}
-                  onBlur={(e) => {
-                    const target = e.target as HTMLDivElement;
+                  onBlur={(event) => {
+                    const target = event.target as HTMLDivElement;
                     setEditingText(target.innerHTML);
                   }}
                   ref={(el) => {

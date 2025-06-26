@@ -1,7 +1,5 @@
 import { getCopyContentBySection } from '@/lib/copy-actions';
-import { imagekitConfig } from '@/lib/imagekit';
 import ImageFrame from '@/components/ui/ImageFrame';
-import Link from 'next/link';
 
 export default async function Team() {
   const teamContent = await getCopyContentBySection('about', 'team');

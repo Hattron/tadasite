@@ -1,3 +1,5 @@
+import { Heart, Users, Award } from 'lucide-react';
+
 export default function OurApproach() {
   return (
     <section 
@@ -35,13 +37,7 @@ export default function OurApproach() {
                   color: 'white'
                 }}
               >
-                <svg 
-                  className="w-8 h-8" 
-                  fill="currentColor" 
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                </svg>
+                <Heart className="w-8 h-8" />
               </div>
             </div>
             <h3 
@@ -89,13 +85,7 @@ export default function OurApproach() {
                   color: 'white'
                 }}
               >
-                <svg 
-                  className="w-8 h-8" 
-                  fill="currentColor" 
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M16 4c0-1.11.89-2 2-2s2 .89 2 2-.89 2-2 2-2-.89-2-2zm4 18v-6h2.5l-2.54-7.63A1.5 1.5 0 0 0 18.54 8H16c-.8 0-1.54-.37-2.01-.99l-.49-.64c-.32-.42-.85-.37-1.09.09L8.5 12l3.5 1.5V22h2zm-7.5-10.5c.83 0 1.5-.67 1.5-1.5s-.67-1.5-1.5-1.5S11 10.17 11 11s.67 1.5 1.5 1.5zm-2.5 1c-.28 0-.5.22-.5.5s.22.5.5.5.5-.22.5-.5-.22-.5-.5-.5zm-3 0c-.28 0-.5.22-.5.5s.22.5.5.5.5-.22.5-.5-.22-.5-.5-.5zm-2 0c-.28 0-.5.22-.5.5s.22.5.5.5.5-.22.5-.5-.22-.5-.5-.5z"/>
-                </svg>
+                <Users className="w-8 h-8" />
               </div>
             </div>
             <h3 
@@ -141,13 +131,7 @@ export default function OurApproach() {
                   color: 'white'
                 }}
               >
-                <svg 
-                  className="w-8 h-8" 
-                  fill="currentColor" 
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M9 11H7v9a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-6V4a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h4v-9zm10-5-1 1-2-2 1-1a1 1 0 0 1 1.41 0l.59.59a1 1 0 0 1 0 1.41zM11 13.5l6.5-6.5 2 2-6.5 6.5H11v-2z"/>
-                </svg>
+                <Award className="w-8 h-8" />
               </div>
             </div>
             <h3 
@@ -201,13 +185,7 @@ export default function OurApproach() {
                     color: 'white'
                   }}
                 >
-                  <svg 
-                    className="w-10 h-10" 
-                    fill="currentColor" 
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                  </svg>
+                  <Heart className="w-10 h-10" />
                 </div>
               </div>
               <h3 
@@ -255,13 +233,7 @@ export default function OurApproach() {
                     color: 'white'
                   }}
                 >
-                  <svg 
-                    className="w-10 h-10" 
-                    fill="currentColor" 
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M16 4c0-1.11.89-2 2-2s2 .89 2 2-.89 2-2 2-2-.89-2-2zm4 18v-6h2.5l-2.54-7.63A1.5 1.5 0 0 0 18.54 8H16c-.8 0-1.54-.37-2.01-.99l-.49-.64c-.32-.42-.85-.37-1.09.09L8.5 12l3.5 1.5V22h2zm-7.5-10.5c.83 0 1.5-.67 1.5-1.5s-.67-1.5-1.5-1.5S11 10.17 11 11s.67 1.5 1.5 1.5zm-2.5 1c-.28 0-.5.22-.5.5s.22.5.5.5.5-.22.5-.5-.22-.5-.5-.5zm-3 0c-.28 0-.5.22-.5.5s.22.5.5.5.5-.22.5-.5-.22-.5-.5-.5zm-2 0c-.28 0-.5.22-.5.5s.22.5.5.5.5-.22.5-.5-.22-.5-.5-.5z"/>
-                  </svg>
+                  <Users className="w-10 h-10" />
                 </div>
               </div>
               <h3 
@@ -307,13 +279,7 @@ export default function OurApproach() {
                     color: 'white'
                   }}
                 >
-                  <svg 
-                    className="w-10 h-10" 
-                    fill="currentColor" 
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M9 11H7v9a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-6V4a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h4v-9zm10-5-1 1-2-2 1-1a1 1 0 0 1 1.41 0l.59.59a1 1 0 0 1 0 1.41zM11 13.5l6.5-6.5 2 2-6.5 6.5H11v-2z"/>
-                  </svg>
+                  <Award className="w-10 h-10" />
                 </div>
               </div>
               <h3 

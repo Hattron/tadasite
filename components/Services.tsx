@@ -1,6 +1,6 @@
 'use client';
 
-import { Card, CardHeader, CardTitle, CardContent, CardFooter } from './ui/card';
+
 import { Button } from './ui/button';
 import { Paintbrush, Sofa, Ruler, Home, Layers, Layout, Wrench, RefreshCw, ClipboardCheck, Camera, Hammer, Lightbulb, Blinds, Brush, Image as ArtIcon } from 'lucide-react';
 import { motion } from 'framer-motion';
@@ -66,7 +66,7 @@ export default function Services() {
         className="grid gap-6 w-full max-w-7xl mx-auto px-4" 
         style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))' }}
       >
-        {serviceGroups.map((group, i) => (
+        {serviceGroups.map((group) => (
           <motion.div
             key={group.title}
             initial={{ opacity: 0, y: 40 }}
@@ -109,7 +109,7 @@ export default function Services() {
             </div>
             <div className="flex-1">
               <ul className="space-y-3">
-                {group.services.map((service, j) => (
+                {group.services.map((service) => (
                   <li 
                     key={service.text} 
                     className="flex items-center gap-3 text-base" 

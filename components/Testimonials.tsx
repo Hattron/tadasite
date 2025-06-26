@@ -103,7 +103,7 @@ export default function Testimonials() {
     const measureHeight = () => {
       let maxHeight = 320; // minimum height
       
-      testimonials.forEach((testimonial, index) => {
+      testimonials.forEach((testimonial) => {
         // Create a temporary element to measure content height
         const tempDiv = document.createElement('div');
         tempDiv.style.position = 'absolute';
@@ -134,7 +134,7 @@ export default function Testimonials() {
     };
 
     measureHeight();
-  }, [isMobile, testimonials]);
+  }, [isMobile]);
 
   const paginate = (newDirection: number) => {
     const newIndex = currentIndex + newDirection;
