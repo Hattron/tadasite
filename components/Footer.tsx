@@ -1,19 +1,22 @@
-import Link from 'next/link';
-import { imagekitConfig } from '@/lib/imagekit';
+import Link from "next/link";
+import { imagekitConfig } from "@/lib/imagekit";
 
 export default function Footer() {
   return (
-    <footer 
+    <footer
       className="py-6"
-      style={{ 
-        backgroundColor: 'var(--color-primary, #3b82f6)',
-        color: 'var(--color-background, #ffffff)'
+      style={{
+        backgroundColor: "var(--color-primary, #3b82f6)",
+        color: "var(--color-background, #ffffff)",
       }}
     >
-      <div className="max-w-7xl mx-auto" style={{ padding: 'var(--spacing-lg, 1rem)' }}>
+      <div
+        className="max-w-7xl mx-auto"
+        style={{ padding: "var(--spacing-lg, 1rem)" }}
+      >
         <div className="flex flex-col md:flex-row items-center md:items-center gap-8">
           {/* Company Logo */}
-          <img 
+          <img
             src={`${imagekitConfig.urlEndpoint}/tada/Assets/logo.png?tr=h-320,q-90`}
             alt="TaDa! Interior Design"
             className="h-64 flex-shrink-0"
@@ -21,85 +24,110 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h4 
+            <h4
               className="text-lg font-semibold"
-              style={{ 
-                marginBottom: 'var(--spacing-sm, 0.5rem)',
-                color: 'var(--color-background, #ffffff)'
+              style={{
+                marginBottom: "var(--spacing-sm, 0.5rem)",
+                color: "var(--color-background, #ffffff)",
               }}
             >
               Quick Links
             </h4>
-            <div className="grid grid-cols-2 gap-x-8" style={{ gap: 'var(--spacing-sm, 0.5rem)' }}>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-sm, 0.5rem)' }}>
-                <Link 
+            <div
+              className="grid grid-cols-2 gap-x-8"
+              style={{ gap: "var(--spacing-sm, 0.5rem)" }}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "var(--spacing-sm, 0.5rem)",
+                }}
+              >
+                <Link
                   href="/"
                   className="block transition-colors hover:text-white"
-                  style={{ 
-                    color: 'var(--color-text-muted, #6b7280)',
-                    textDecoration: 'none'
+                  style={{
+                    color: "var(--color-text-muted, #6b7280)",
+                    textDecoration: "none",
                   }}
                 >
                   Home
                 </Link>
-                <Link 
+                <Link
                   href="/about"
                   className="block transition-colors hover:text-white"
-                  style={{ 
-                    color: 'var(--color-text-muted, #6b7280)',
-                    textDecoration: 'none'
+                  style={{
+                    color: "var(--color-text-muted, #6b7280)",
+                    textDecoration: "none",
                   }}
                 >
                   About
                 </Link>
-                <Link 
+                <Link
+                  href="/#services"
+                  className="block transition-colors hover:text-white"
+                  style={{
+                    color: "var(--color-text-muted, #6b7280)",
+                    textDecoration: "none",
+                  }}
+                >
+                  Services
+                </Link>
+                <Link
                   href="/gallery"
                   className="block transition-colors hover:text-white"
-                  style={{ 
-                    color: 'var(--color-text-muted, #6b7280)',
-                    textDecoration: 'none'
+                  style={{
+                    color: "var(--color-text-muted, #6b7280)",
+                    textDecoration: "none",
                   }}
                 >
                   Gallery
                 </Link>
-                <Link 
+                <Link
                   href="/contact"
                   className="block transition-colors hover:text-white"
-                  style={{ 
-                    color: 'var(--color-text-muted, #6b7280)',
-                    textDecoration: 'none'
+                  style={{
+                    color: "var(--color-text-muted, #6b7280)",
+                    textDecoration: "none",
                   }}
                 >
                   Contact
                 </Link>
               </div>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-sm, 0.5rem)' }}>
-                <Link 
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "var(--spacing-sm, 0.5rem)",
+                }}
+              >
+                <Link
                   href="/gallery/residential"
                   className="block transition-colors hover:text-white"
-                  style={{ 
-                    color: 'var(--color-text-muted, #6b7280)',
-                    textDecoration: 'none'
+                  style={{
+                    color: "var(--color-text-muted, #6b7280)",
+                    textDecoration: "none",
                   }}
                 >
                   Residential Projects
                 </Link>
-                <Link 
+                <Link
                   href="/gallery/commercial"
                   className="block transition-colors hover:text-white"
-                  style={{ 
-                    color: 'var(--color-text-muted, #6b7280)',
-                    textDecoration: 'none'
+                  style={{
+                    color: "var(--color-text-muted, #6b7280)",
+                    textDecoration: "none",
                   }}
                 >
                   Commercial Projects
                 </Link>
-                <Link 
+                <Link
                   href="/admin"
                   className="block transition-colors hover:text-white"
-                  style={{ 
-                    color: 'var(--color-text-muted, #6b7280)',
-                    textDecoration: 'none'
+                  style={{
+                    color: "var(--color-text-muted, #6b7280)",
+                    textDecoration: "none",
                   }}
                 >
                   Admin
@@ -110,19 +138,20 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div 
+        <div
           className="text-center"
-          style={{ 
+          style={{
             borderTop: `1px solid var(--color-text-muted, #6b7280)`,
-            marginTop: 'var(--spacing-md, 1rem)',
-            paddingTop: 'var(--spacing-md, 1rem)'
+            marginTop: "var(--spacing-md, 1rem)",
+            paddingTop: "var(--spacing-md, 1rem)",
           }}
         >
-          <p style={{ color: 'var(--color-text-muted, #6b7280)' }}>
-            © {new Date().getFullYear()} TaDa! Interior Design. All rights reserved.
+          <p style={{ color: "var(--color-text-muted, #6b7280)" }}>
+            © {new Date().getFullYear()} TaDa! Interior Design. All rights
+            reserved.
           </p>
         </div>
       </div>
     </footer>
   );
-} 
+}

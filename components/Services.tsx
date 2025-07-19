@@ -77,10 +77,7 @@ export default function Services() {
       >
         Services
       </h2>
-      <div
-        className="grid gap-6 w-full max-w-7xl mx-auto px-4"
-        style={{ gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))" }}
-      >
+      <div className="grid gap-6 w-full max-w-7xl mx-auto px-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-items-start md:justify-items-center">
         {serviceGroups.map((group) => (
           <motion.div
             key={group.title}
@@ -89,7 +86,7 @@ export default function Services() {
             transition={{ duration: 0.7, ease: "easeOut" }}
             viewport={{ once: true, amount: 0.3 }}
             whileHover={{ y: -5 }}
-            className="relative rounded-3xl shadow-md p-6 sm:p-8 flex flex-col h-full justify-between border overflow-hidden"
+            className="relative rounded-3xl shadow-md p-6 sm:p-8 flex flex-col h-full justify-between border overflow-hidden w-full max-w-sm md:max-w-none"
             style={{
               background: "var(--color-card, white)",
               borderColor: "var(--color-primary)",
@@ -127,7 +124,7 @@ export default function Services() {
                 {group.services.map((service) => (
                   <li
                     key={service.text}
-                    className="flex items-center gap-3 text-base"
+                    className="flex items-center gap-3 text-base text-left"
                     style={{
                       fontFamily: "var(--font-secondary)",
                       color: "var(--color-text)",
