@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Quicksand, Inter } from "next/font/google";
+import { Quicksand, Inter, Raleway } from "next/font/google";
 import "./globals.css";
 import { getCssVariables, cssVariablesToString } from "@/lib/css-variables";
 import { ParallaxProvider } from "@/components/ParallaxProvider";
@@ -13,6 +13,11 @@ const quicksand = Quicksand({
 
 const inter = Inter({
   variable: "--font-inter",
+  subsets: ["latin"],
+});
+
+const raleway = Raleway({
+  variable: "--font-raleway",
   subsets: ["latin"],
 });
 
@@ -42,11 +47,12 @@ ${cssVariablesToString(cssVariables)}
         />
       </head>
       <body
-        className={`${quicksand.variable} ${inter.variable} antialiased`}
+        className={`${quicksand.variable} ${inter.variable} ${raleway.variable} antialiased`}
         style={{
-          fontFamily: 'var(--font-primary, var(--font-quicksand, Quicksand, sans-serif))',
-          backgroundColor: 'var(--color-background)',
-          color: 'var(--color-text)',
+          fontFamily:
+            "var(--font-primary, var(--font-quicksand, Quicksand, sans-serif))",
+          backgroundColor: "var(--color-background)",
+          color: "var(--color-text)",
         }}
       >
         <Navbar />

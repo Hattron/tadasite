@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { useState, useEffect, useRef } from 'react';
-import { imagekitConfig } from '@/lib/imagekit';
+import Link from "next/link";
+import { useState, useEffect, useRef } from "react";
+import { imagekitConfig } from "@/lib/imagekit";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -25,101 +25,101 @@ export default function Navbar() {
     };
 
     if (isMenuOpen) {
-      document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener("mousedown", handleClickOutside);
     }
 
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [isMenuOpen]);
 
   return (
-    <nav 
+    <nav
       ref={navRef}
       className="z-50 border-b"
       style={{
-        position: 'fixed',
+        position: "fixed",
         top: 0,
         left: 0,
         right: 0,
-        width: '100%',
-        backgroundColor: 'var(--color-background, #ffffff)',
-        borderBottomColor: 'var(--color-text-muted, #6b7280)',
-        borderBottomWidth: '1px',
+        width: "100%",
+        backgroundColor: "var(--color-background, #ffffff)",
+        borderBottomColor: "var(--color-text-muted, #6b7280)",
+        borderBottomWidth: "1px",
         zIndex: 9999,
-        transform: 'translateZ(0)',
-        willChange: 'transform',
+        transform: "translateZ(0)",
+        willChange: "transform",
       }}
     >
-      <div 
+      <div
         className="max-w-7xl mx-auto flex items-center justify-between"
         style={{
-          padding: 'var(--spacing-md, 1rem) var(--spacing-md, 1rem)',
+          padding: "var(--spacing-md, 1rem) var(--spacing-md, 1rem)",
         }}
       >
-        <Link 
+        <Link
           href="/"
           className="flex items-center hover:opacity-80"
-          style={{ gap: 'var(--spacing-xs, 0.25rem)' }}
+          style={{ gap: "var(--spacing-xs, 0.25rem)" }}
           onClick={closeMenu}
         >
-          <img 
+          <img
             src={`${imagekitConfig.urlEndpoint}/tada/Assets/logosimple.png?tr=h-60,q-90`}
             alt="TaDa! Interior Design"
             className="h-20 sm:h-24"
-            style={{ height: '5rem' }}
+            style={{ height: "5rem" }}
           />
           <span
-            className="text-lg sm:text-xl font-bold"
-            style={{ 
-              color: 'var(--color-text, #1f2937)',
-              fontFamily: 'var(--font-primary, Quicksand, sans-serif)',
+            className="text-2xl sm:text-3xl font-bold"
+            style={{
+              color: "var(--color-text, #1f2937)",
+              fontFamily: "var(--font-raleway, Raleway, sans-serif)",
             }}
           >
             TaDa! Interiors
           </span>
         </Link>
-        
-        <div 
+
+        <div
           className="hidden md:flex items-center"
-          style={{ gap: 'var(--spacing-lg, 1.5rem)' }}
+          style={{ gap: "var(--spacing-lg, 1.5rem)" }}
         >
-          <Link 
+          <Link
             href="/about"
             className="font-medium hover:opacity-70"
-            style={{ 
-              color: 'var(--color-text, #1f2937)',
-              fontFamily: 'var(--font-primary, Quicksand, sans-serif)',
+            style={{
+              color: "var(--color-text, #1f2937)",
+              fontFamily: "var(--font-primary, Quicksand, sans-serif)",
             }}
           >
             About
           </Link>
-          <Link 
+          <Link
             href="/#services"
             className="font-medium hover:opacity-70"
-            style={{ 
-              color: 'var(--color-text, #1f2937)',
-              fontFamily: 'var(--font-primary, Quicksand, sans-serif)',
+            style={{
+              color: "var(--color-text, #1f2937)",
+              fontFamily: "var(--font-primary, Quicksand, sans-serif)",
             }}
           >
             Services
           </Link>
-          <Link 
+          <Link
             href="/gallery"
             className="font-medium hover:opacity-70"
-            style={{ 
-              color: 'var(--color-text, #1f2937)',
-              fontFamily: 'var(--font-primary, Quicksand, sans-serif)',
+            style={{
+              color: "var(--color-text, #1f2937)",
+              fontFamily: "var(--font-primary, Quicksand, sans-serif)",
             }}
           >
             Gallery
           </Link>
-          <Link 
+          <Link
             href="/contact"
             className="font-medium hover:opacity-70"
-            style={{ 
-              color: 'var(--color-text, #1f2937)',
-              fontFamily: 'var(--font-primary, Quicksand, sans-serif)',
+            style={{
+              color: "var(--color-text, #1f2937)",
+              fontFamily: "var(--font-primary, Quicksand, sans-serif)",
             }}
           >
             Contact
@@ -131,7 +131,7 @@ export default function Navbar() {
           className="md:hidden p-2 rounded-md hover:bg-gray-100"
           aria-label="Toggle menu"
           style={{
-            color: 'var(--color-text, #1f2937)',
+            color: "var(--color-text, #1f2937)",
           }}
         >
           <svg
@@ -141,62 +141,72 @@ export default function Navbar() {
             viewBox="0 0 24 24"
           >
             {isMenuOpen ? (
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M6 18L18 6M6 6l12 12"
+              />
             ) : (
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M4 6h16M4 12h16M4 18h16"
+              />
             )}
           </svg>
         </button>
       </div>
 
       {isMenuOpen && (
-        <div 
+        <div
           className="md:hidden border-t"
           style={{
-            backgroundColor: 'var(--color-background, #ffffff)',
-            borderTopColor: 'var(--color-text-muted, #6b7280)',
+            backgroundColor: "var(--color-background, #ffffff)",
+            borderTopColor: "var(--color-text-muted, #6b7280)",
           }}
         >
           <div className="px-4 py-2 space-y-1">
-            <Link 
+            <Link
               href="/about"
               className="block py-3 px-2 font-medium hover:bg-gray-50 rounded-md"
-              style={{ 
-                color: 'var(--color-text, #1f2937)',
-                fontFamily: 'var(--font-primary, Quicksand, sans-serif)',
+              style={{
+                color: "var(--color-text, #1f2937)",
+                fontFamily: "var(--font-primary, Quicksand, sans-serif)",
               }}
               onClick={closeMenu}
             >
               About
             </Link>
-            <Link 
+            <Link
               href="/#services"
               className="block py-3 px-2 font-medium hover:bg-gray-50 rounded-md"
-              style={{ 
-                color: 'var(--color-text, #1f2937)',
-                fontFamily: 'var(--font-primary, Quicksand, sans-serif)',
+              style={{
+                color: "var(--color-text, #1f2937)",
+                fontFamily: "var(--font-primary, Quicksand, sans-serif)",
               }}
               onClick={closeMenu}
             >
               Services
             </Link>
-            <Link 
+            <Link
               href="/gallery"
               className="block py-3 px-2 font-medium hover:bg-gray-50 rounded-md"
-              style={{ 
-                color: 'var(--color-text, #1f2937)',
-                fontFamily: 'var(--font-primary, Quicksand, sans-serif)',
+              style={{
+                color: "var(--color-text, #1f2937)",
+                fontFamily: "var(--font-primary, Quicksand, sans-serif)",
               }}
               onClick={closeMenu}
             >
               Gallery
             </Link>
-            <Link 
+            <Link
               href="/contact"
               className="block py-3 px-2 font-medium hover:bg-gray-50 rounded-md"
-              style={{ 
-                color: 'var(--color-text, #1f2937)',
-                fontFamily: 'var(--font-primary, Quicksand, sans-serif)',
+              style={{
+                color: "var(--color-text, #1f2937)",
+                fontFamily: "var(--font-primary, Quicksand, sans-serif)",
               }}
               onClick={closeMenu}
             >
@@ -207,4 +217,4 @@ export default function Navbar() {
       )}
     </nav>
   );
-} 
+}
