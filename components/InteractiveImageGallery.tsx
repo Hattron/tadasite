@@ -198,32 +198,6 @@ export default function InteractiveImageGallery({
                 alt={image.alt || `${projectName} - Image ${index + 1}`}
                 className="w-full h-80 object-cover transition-transform group-hover:scale-110"
               />
-
-              {/* Hover Overlay */}
-              <div
-                className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
-                style={{
-                  background:
-                    "linear-gradient(135deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.4) 100%)",
-                  backdropFilter: "blur(1px)",
-                }}
-              >
-                <span
-                  className="font-semibold px-4 py-2 rounded-full text-white flex items-center gap-2"
-                  style={{
-                    backgroundColor: "rgba(0,0,0,0.7)",
-                  }}
-                >
-                  {preloadedImages.get(index) ? (
-                    <>View Full Size</>
-                  ) : (
-                    <>
-                      <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
-                      Loading...
-                    </>
-                  )}
-                </span>
-              </div>
             </div>
 
             {/* Image Caption */}
