@@ -1,5 +1,4 @@
 import { getJoannaImage } from "@/lib/image-actions";
-import { getCopyContent } from "@/lib/hardcoded-copy";
 import { imagekitConfig } from "@/lib/imagekit";
 import ImageFrame from "@/components/ui/ImageFrame";
 
@@ -93,12 +92,12 @@ export default async function JoannaBio() {
                 fontFamily: "var(--font-secondary)",
                 fontSize: "var(--font-size-lg)",
               }}
-              dangerouslySetInnerHTML={{
-                __html:
-                  getCopyContent("about-joanna-bio-paragraph-1") ||
-                  "Design has always been a part of Joanna's life. Growing up with an artist father, she was constantly surrounded by creativity, color, and the belief that beautiful spaces have the power to transform how we feel and live.",
-              }}
-            />
+            >
+              Design has always been a part of Joanna's life. Growing up with an
+              artist father, she was constantly surrounded by creativity, color,
+              and the belief that beautiful spaces have the power to transform
+              how we feel and live.
+            </div>
             <div
               className="leading-relaxed"
               style={{
@@ -106,12 +105,11 @@ export default async function JoannaBio() {
                 fontFamily: "var(--font-secondary)",
                 fontSize: "var(--font-size-lg)",
               }}
-              dangerouslySetInnerHTML={{
-                __html:
-                  getCopyContent("about-joanna-bio-paragraph-2") ||
-                  "While she studied sociology in university, Joanna found that understanding how people live, interact, and connect became the foundation for her design philosophy.",
-              }}
-            />
+            >
+              While she studied sociology in university, Joanna found that
+              understanding how people live, interact, and connect became the
+              foundation for her design philosophy.
+            </div>
             <div
               className="leading-relaxed"
               style={{
@@ -119,12 +117,10 @@ export default async function JoannaBio() {
                 fontFamily: "var(--font-secondary)",
                 fontSize: "var(--font-size-lg)",
               }}
-              dangerouslySetInnerHTML={{
-                __html:
-                  getCopyContent("about-joanna-bio-paragraph-3") ||
-                  "A people person at heart - social, intuitive, and deeply committed to creating spaces that feel personal and welcoming.",
-              }}
-            />
+            >
+              A people person at heart - social, intuitive, and deeply committed
+              to creating spaces that feel personal and welcoming.
+            </div>
             <div
               className="leading-relaxed"
               style={{
@@ -132,12 +128,11 @@ export default async function JoannaBio() {
                 fontFamily: "var(--font-secondary)",
                 fontSize: "var(--font-size-lg)",
               }}
-              dangerouslySetInnerHTML={{
-                __html:
-                  getCopyContent("about-joanna-bio-paragraph-4") ||
-                  "Joanna's years working in the hospitality industry sharpened her eye for functional beauty, especially in spaces where comfort and style must coexist seamlessly.",
-              }}
-            />
+            >
+              Joanna's years working in the hospitality industry sharpened her
+              eye for functional beauty, especially in spaces where comfort and
+              style must coexist seamlessly.
+            </div>
             <div
               className="leading-relaxed"
               style={{
@@ -145,12 +140,10 @@ export default async function JoannaBio() {
                 fontFamily: "var(--font-secondary)",
                 fontSize: "var(--font-size-lg)",
               }}
-              dangerouslySetInnerHTML={{
-                __html:
-                  getCopyContent("about-joanna-bio-paragraph-5") ||
-                  "She later followed her passion and graduated with honours from the Interior Decorating program at Algonquin College.",
-              }}
-            />
+            >
+              She later followed her passion and graduated with honours from the
+              Interior Decorating program at Algonquin College.
+            </div>
             <div
               className="leading-relaxed"
               style={{
@@ -158,12 +151,11 @@ export default async function JoannaBio() {
                 fontFamily: "var(--font-secondary)",
                 fontSize: "var(--font-size-lg)",
               }}
-              dangerouslySetInnerHTML={{
-                __html:
-                  getCopyContent("about-joanna-bio-paragraph-6") ||
-                  "Joanna loves to travel and finds endless inspiration in the colours, textures, and cultures she has experienced around the world.",
-              }}
-            />
+            >
+              Joanna loves to travel and finds endless inspiration in the
+              colours, textures, and cultures she has experienced around the
+              world.
+            </div>
             <div
               className="leading-relaxed"
               style={{
@@ -171,12 +163,10 @@ export default async function JoannaBio() {
                 fontFamily: "var(--font-secondary)",
                 fontSize: "var(--font-size-lg)",
               }}
-              dangerouslySetInnerHTML={{
-                __html:
-                  getCopyContent("about-joanna-bio-paragraph-7") ||
-                  "As a mother of two, she understands how important it is for spaces to be both stylish and livable.",
-              }}
-            />
+            >
+              As a mother of two, she understands how important it is for spaces
+              to be both stylish and livable.
+            </div>
             <div
               className="leading-relaxed"
               style={{
@@ -184,12 +174,11 @@ export default async function JoannaBio() {
                 fontFamily: "var(--font-secondary)",
                 fontSize: "var(--font-size-lg)",
               }}
-              dangerouslySetInnerHTML={{
-                __html:
-                  getCopyContent("about-joanna-bio-paragraph-8") ||
-                  "Joanna is proud to have built lasting relationships with many repeat clients, tailoring each space to evolve with their changing needs and life stages.",
-              }}
-            />
+            >
+              Joanna is proud to have built lasting relationships with many
+              repeat clients, tailoring each space to evolve with their changing
+              needs and life stages.
+            </div>
           </div>
         </div>
       </div>

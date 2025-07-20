@@ -1,5 +1,4 @@
 import { getMaureenImage } from "@/lib/image-actions";
-import { getCopyContent } from "@/lib/hardcoded-copy";
 import { imagekitConfig } from "@/lib/imagekit";
 import ImageFrame from "@/components/ui/ImageFrame";
 
@@ -111,12 +110,11 @@ export default async function MaureenBio() {
                 fontFamily: "var(--font-secondary)",
                 fontSize: "var(--font-size-lg)",
               }}
-              dangerouslySetInnerHTML={{
-                __html:
-                  getCopyContent("about-maureen-bio-paragraph-1") ||
-                  "After graduating with honours from the Residential Décor program at Algonquin college Maureen embarked on a career that has spanned over two decades.",
-              }}
-            />
+            >
+              After graduating with honours from the Residential Décor program
+              at Algonquin college Maureen embarked on a career that has spanned
+              over two decades.
+            </div>
             <div
               className="leading-relaxed"
               style={{
@@ -124,12 +122,10 @@ export default async function MaureenBio() {
                 fontFamily: "var(--font-secondary)",
                 fontSize: "var(--font-size-lg)",
               }}
-              dangerouslySetInnerHTML={{
-                __html:
-                  getCopyContent("about-maureen-bio-paragraph-2") ||
-                  "Maureen brings a true passion for creativity to every project she takes on.",
-              }}
-            />
+            >
+              Maureen brings a true passion for creativity to every project she
+              takes on.
+            </div>
             <div
               className="leading-relaxed"
               style={{
@@ -137,12 +133,10 @@ export default async function MaureenBio() {
                 fontFamily: "var(--font-secondary)",
                 fontSize: "var(--font-size-lg)",
               }}
-              dangerouslySetInnerHTML={{
-                __html:
-                  getCopyContent("about-maureen-bio-paragraph-3") ||
-                  "Over the years Maureen has leant her skills and expertise to a number of companies and organizations.",
-              }}
-            />
+            >
+              Over the years Maureen has leant her skills and expertise to a
+              number of companies and organizations.
+            </div>
             <div
               className="leading-relaxed"
               style={{
@@ -150,12 +144,10 @@ export default async function MaureenBio() {
                 fontFamily: "var(--font-secondary)",
                 fontSize: "var(--font-size-lg)",
               }}
-              dangerouslySetInnerHTML={{
-                __html:
-                  getCopyContent("about-maureen-bio-paragraph-4") ||
-                  "Maureen values the great relationships that develop while working with her clients.",
-              }}
-            />
+            >
+              Maureen values the great relationships that develop while working
+              with her clients.
+            </div>
             <div
               className="leading-relaxed"
               style={{
@@ -163,12 +155,11 @@ export default async function MaureenBio() {
                 fontFamily: "var(--font-secondary)",
                 fontSize: "var(--font-size-lg)",
               }}
-              dangerouslySetInnerHTML={{
-                __html:
-                  getCopyContent("about-maureen-bio-paragraph-5") ||
-                  "In addition to being a wife and proud mom of two boys Maureen finds joy in gardening, unwinding through yoga and meditation, and exploring new destinations through travel.",
-              }}
-            />
+            >
+              In addition to being a wife and proud mom of two boys Maureen
+              finds joy in gardening, unwinding through yoga and meditation, and
+              exploring new destinations through travel.
+            </div>
           </div>
         </div>
       </div>

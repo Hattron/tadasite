@@ -1,12 +1,9 @@
-import { getCopyContent } from "@/lib/hardcoded-copy";
 import ImageFrame from "@/components/ui/ImageFrame";
 
 export default function Team() {
-  // Get hardcoded copy content
-  const headingContent =
-    getCopyContent("about-team-heading") || "About TaDa! Interiors";
+  // Hardcoded copy content
+  const headingContent = "About TaDa! Interiors";
   const paragraphContent =
-    getCopyContent("about-team-paragraph-1") ||
     "At TaDa! Interiors, we've been designing inspired spaces across Ottawa for over 20 years. From colour consultations to full renovations, we offer personalized residential and commercial design services that reflect each clients unique style. With trusted trades partners and a warm, collaborative approach, we bring beautiful, functional spaces to life - seamlessly and professionally.";
 
   // Static ImageKit asset URLs
@@ -39,8 +36,9 @@ export default function Team() {
             fontFamily: "var(--font-primary)",
             marginBottom: "var(--spacing-3xl)",
           }}
-          dangerouslySetInnerHTML={{ __html: headingContent }}
-        />
+        >
+          {headingContent}
+        </h1>
 
         {/* Mobile Layout - Alternating Images and Text */}
         <div className="block lg:hidden">
@@ -68,8 +66,9 @@ export default function Team() {
                 fontFamily: "var(--font-secondary)",
                 fontSize: "var(--font-size-base)",
               }}
-              dangerouslySetInnerHTML={{ __html: paragraphContent }}
-            />
+            >
+              {paragraphContent}
+            </div>
           </div>
 
           {/* Chair Image */}
@@ -185,8 +184,9 @@ export default function Team() {
                   fontFamily: "var(--font-secondary)",
                   fontSize: "var(--font-size-lg)",
                 }}
-                dangerouslySetInnerHTML={{ __html: paragraphContent }}
-              />
+              >
+                {paragraphContent}
+              </div>
 
               {/* Light Image - Inline with text */}
               <div
