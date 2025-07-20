@@ -7,10 +7,11 @@ export default function Team() {
     getCopyContent("about-team-heading") || "About TaDa! Interiors";
   const paragraphContent =
     getCopyContent("about-team-paragraph-1") ||
-    "At TaDa! Interiors, we&apos;ve been bringing inspired design to homes and businesses across Ottawa for over 20 years. From personalized paint consultations to full scale renovations, we offer a wide range of residential and commercial design services tailored to meet each client&apos;s needs.";
+    "At TaDa! Interiors, we've been designing inspired spaces across Ottawa for over 20 years. From colour consultations to full renovations, we offer personalized residential and commercial design services that reflect each clients unique style. With trusted trades partners and a warm, collaborative approach, we bring beautiful, functional spaces to life - seamlessly and professionally.";
 
   // Static ImageKit asset URLs
-  const tubImageUrl = "https://ik.imagekit.io/crimsonstack/tada/Assets/tub.png";
+  const tubImageUrl =
+    "https://ik.imagekit.io/crimsonstack/tada/Assets/faucet.jpg";
   const chairImageUrl =
     "https://ik.imagekit.io/crimsonstack/tada/Assets/chair.png";
   const lightImageUrl =
@@ -48,17 +49,17 @@ export default function Team() {
             className="flex justify-center"
             style={{ marginBottom: "var(--spacing-xl)" }}
           >
-            <ImageFrame variant="default">
+            <ImageFrame variant="minimal">
               <img
                 src={`${tubImageUrl}?tr=w-350,h-280,q-90`}
-                alt="Interior design bathtub showcase"
+                alt="Interior design faucet showcase"
                 className="w-full h-auto"
                 style={{ maxWidth: "280px", display: "block" }}
               />
             </ImageFrame>
           </div>
 
-          {/* First Text Block */}
+          {/* Main Text Block */}
           <div style={{ marginBottom: "var(--spacing-xl)" }}>
             <div
               className="leading-relaxed text-center px-4"
@@ -76,7 +77,7 @@ export default function Team() {
             className="flex justify-end"
             style={{ marginBottom: "var(--spacing-xl)" }}
           >
-            <ImageFrame variant="default">
+            <ImageFrame variant="minimal">
               <img
                 src={`${chairImageUrl}?tr=w-300,h-240,q-90`}
                 alt="Interior design chair showcase"
@@ -96,11 +97,13 @@ export default function Team() {
                 fontSize: "var(--font-size-base)",
               }}
             >
-              We&apos;re celebrated for our ability to transform and reimagine
-              spaces in a way that reflects every client&apos;s personality,
-              style and lifestyle. Our warm, collaborative approach ensures that
-              every project feels thoughtful, functional, and visually
-              harmonious.
+              At TaDa! Interiors, we take pride in sourcing the finest products
+              and materials the market has to offer. Backed by a trusted network
+              of skilled tradespeople and a keen eye for finding the perfect
+              finishing touches, we make the design process both seamless and
+              enjoyable. Whether you are refreshing a room or transforming an
+              entire space, we ensure the journey is as rewarding as the final
+              result.
             </p>
           </div>
 
@@ -109,7 +112,7 @@ export default function Team() {
             className="flex justify-start"
             style={{ marginBottom: "var(--spacing-xl)" }}
           >
-            <ImageFrame variant="default">
+            <ImageFrame variant="minimal">
               <img
                 src={`${lightImageUrl}?tr=w-320,h-260,q-90`}
                 alt="Interior design lighting showcase"
@@ -119,38 +122,8 @@ export default function Team() {
             </ImageFrame>
           </div>
 
-          {/* Remaining Text */}
-          <div className="space-y-6">
-            <p
-              className="leading-relaxed text-center px-4"
-              style={{
-                color: "var(--color-text)",
-                fontFamily: "var(--font-secondary)",
-                fontSize: "var(--font-size-base)",
-              }}
-            >
-              We work closely with a trusted team of skilled trades
-              professionals, allowing TaDa! Interiors to deliver exceptional
-              craftsmanship and seamless results every step of the way.
-            </p>
-
-            <p
-              className="leading-relaxed text-center px-4"
-              style={{
-                color: "var(--color-text)",
-                fontFamily: "var(--font-secondary)",
-                fontSize: "var(--font-size-base)",
-              }}
-            >
-              At TaDa! Interiors, we take pride in sourcing the finest products
-              and materials the market has to offer. Backed by a trusted network
-              of skilled tradespeople and a keen eye for finding the perfect
-              finishing touches, we make the design process both seamless and
-              enjoyable. Whether you are refreshing a room or transforming an
-              entire space, we ensure the journey is as rewarding as the final
-              result.
-            </p>
-
+          {/* Final Text */}
+          <div>
             <p
               className="leading-relaxed text-center px-4"
               style={{
@@ -162,7 +135,7 @@ export default function Team() {
               In addition to residential work, TaDa! Interiors has completed a
               wide range of commercial projects. Our portfolio includes - though
               is not limited to - restaurants, retail environments, office
-              spaces, condominiums and even a church.
+              spaces and condominiums.
             </p>
           </div>
         </div>
@@ -177,10 +150,10 @@ export default function Team() {
             <div className="col-span-4">
               {/* Tub Image - Higher up */}
               <div style={{ marginBottom: "var(--spacing-2xl)" }}>
-                <ImageFrame variant="default">
+                <ImageFrame variant="minimal">
                   <img
                     src={`${tubImageUrl}?tr=w-300,h-240,q-90`}
-                    alt="Interior design bathtub showcase"
+                    alt="Interior design faucet showcase"
                     className="w-full h-auto"
                     style={{ display: "block" }}
                   />
@@ -189,7 +162,7 @@ export default function Team() {
 
               {/* Chair Image - Lower */}
               <div style={{ marginTop: "var(--spacing-2xl)" }}>
-                <ImageFrame variant="default">
+                <ImageFrame variant="minimal">
                   <img
                     src={`${chairImageUrl}?tr=w-280,h-220,q-90`}
                     alt="Interior design chair showcase"
@@ -215,21 +188,6 @@ export default function Team() {
                 dangerouslySetInnerHTML={{ __html: paragraphContent }}
               />
 
-              <p
-                className="leading-relaxed text-lg"
-                style={{
-                  color: "var(--color-text)",
-                  fontFamily: "var(--font-secondary)",
-                  fontSize: "var(--font-size-lg)",
-                }}
-              >
-                We&apos;re celebrated for our ability to transform and reimagine
-                spaces in a way that reflects every client&apos;s personality,
-                style and lifestyle. Our warm, collaborative approach ensures
-                that every project feels thoughtful, functional, and visually
-                harmonious.
-              </p>
-
               {/* Light Image - Inline with text */}
               <div
                 className="float-right ml-6 mb-4"
@@ -239,7 +197,7 @@ export default function Team() {
                   maxWidth: "240px",
                 }}
               >
-                <ImageFrame variant="default">
+                <ImageFrame variant="minimal">
                   <img
                     src={`${lightImageUrl}?tr=w-240,h-180,q-90`}
                     alt="Interior design lighting showcase"
@@ -248,19 +206,6 @@ export default function Team() {
                   />
                 </ImageFrame>
               </div>
-
-              <p
-                className="leading-relaxed text-lg"
-                style={{
-                  color: "var(--color-text)",
-                  fontFamily: "var(--font-secondary)",
-                  fontSize: "var(--font-size-lg)",
-                }}
-              >
-                We work closely with a trusted team of skilled trades
-                professionals, allowing TaDa! Interiors to deliver exceptional
-                craftsmanship and seamless results every step of the way.
-              </p>
 
               <p
                 className="leading-relaxed text-lg"
@@ -290,7 +235,7 @@ export default function Team() {
                 In addition to residential work, TaDa! Interiors has completed a
                 wide range of commercial projects. Our portfolio includes -
                 though is not limited to - restaurants, retail environments,
-                office spaces, condominiums and even a church.
+                office spaces and condominiums.
               </p>
             </div>
           </div>

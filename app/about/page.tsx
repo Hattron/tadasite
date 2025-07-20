@@ -49,7 +49,7 @@ export default async function AboutPage() {
                 marginBottom: "var(--spacing-lg)",
               }}
             >
-              Meet the Women Behind TaDa!
+              Meet the creative force behind TaDa! Interiors
             </h2>
 
             <p
@@ -68,7 +68,7 @@ export default async function AboutPage() {
             {/* Team Image for Mobile */}
             {teamImage && (
               <div className="flex justify-center">
-                <ImageFrame variant="default">
+                <ImageFrame variant="minimal">
                   <img
                     src={`${imagekitConfig.urlEndpoint}${getImagePath(teamImage.imagekitUrl)}?tr=w-300,h-300,q-90`}
                     alt={teamImage.alt || "TaDa! Interiors Team"}
@@ -95,7 +95,7 @@ export default async function AboutPage() {
                   marginBottom: "var(--spacing-md)",
                 }}
               >
-                Meet the Women Behind TaDa!
+                Meet the creative force behind TaDa! Interiors
               </h2>
 
               <p
@@ -114,7 +114,7 @@ export default async function AboutPage() {
             {/* Team Image for Desktop */}
             <div className="col-span-5 flex justify-center lg:justify-end">
               {teamImage ? (
-                <ImageFrame variant="default">
+                <ImageFrame variant="minimal">
                   <img
                     src={`${imagekitConfig.urlEndpoint}${getImagePath(teamImage.imagekitUrl)}?tr=w-350,h-350,q-90`}
                     alt={teamImage.alt || "TaDa! Interiors Team"}

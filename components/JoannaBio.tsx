@@ -48,7 +48,7 @@ export default async function JoannaBio() {
             }}
           >
             {joannaImage ? (
-              <ImageFrame variant="default">
+              <ImageFrame variant="minimal">
                 <img
                   src={`${imagekitConfig.urlEndpoint}${getImagePath(joannaImage.imagekitUrl)}?tr=w-300,h-300,q-90`}
                   alt={joannaImage.alt || "Joanna, interior designer"}

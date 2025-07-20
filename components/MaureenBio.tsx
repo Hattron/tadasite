@@ -40,7 +40,7 @@ export default async function MaureenBio() {
         <h2
           className="text-center font-medium"
           style={{
-            color: "var(--color-text)",
+            color: "var(--color-secondary)",
             fontFamily: "var(--font-secondary)",
             fontSize: "var(--font-size-xl)",
             marginBottom: "var(--spacing-3xl)",
@@ -63,7 +63,7 @@ export default async function MaureenBio() {
             }}
           >
             {maurImage ? (
-              <ImageFrame variant="default">
+              <ImageFrame variant="minimal">
                 <img
                   src={`${imagekitConfig.urlEndpoint}${getImagePath(maurImage.imagekitUrl)}?tr=w-300,h-300,q-90`}
                   alt={
