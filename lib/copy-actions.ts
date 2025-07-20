@@ -1,9 +1,10 @@
-'use server';
+"use server";
 
-import { db } from '@/lib/db';
-import { tadaCopyContent } from '@/lib/schema';
-import { eq, asc, and } from 'drizzle-orm';
-import { nanoid } from 'nanoid';
+import { db } from "@/lib/db";
+import { tadaCopyContent } from "@/lib/schema";
+import { eq, asc, and } from "drizzle-orm";
+import { nanoid } from "nanoid";
+import { revalidatePath } from "next/cache";
 
 export interface CopyContentData {
   id: string;
@@ -28,110 +29,120 @@ export async function getAllCopyContent(): Promise<CopyContentData[]> {
       .from(tadaCopyContent)
       .where(eq(tadaCopyContent.isActive, true))
       .orderBy(asc(tadaCopyContent.page), asc(tadaCopyContent.sortOrder));
-    
-    return result.map(item => ({
+
+    return result.map((item) => ({
       ...item,
       createdAt: new Date(item.createdAt),
-      updatedAt: new Date(item.updatedAt)
+      updatedAt: new Date(item.updatedAt),
     }));
   } catch (error) {
-    console.error('Error fetching copy content:', error);
+    console.error("Error fetching copy content:", error);
     return [];
   }
 }
 
 // Get copy content by page
-export async function getCopyContentByPage(page: string): Promise<CopyContentData[]> {
+export async function getCopyContentByPage(
+  page: string,
+): Promise<CopyContentData[]> {
   try {
     const result = await db
       .select()
       .from(tadaCopyContent)
-      .where(and(
-        eq(tadaCopyContent.page, page),
-        eq(tadaCopyContent.isActive, true)
-      ))
+      .where(
+        and(eq(tadaCopyContent.page, page), eq(tadaCopyContent.isActive, true)),
+      )
       .orderBy(asc(tadaCopyContent.sortOrder));
-    
-    return result.map(item => ({
+
+    return result.map((item) => ({
       ...item,
       createdAt: new Date(item.createdAt),
-      updatedAt: new Date(item.updatedAt)
+      updatedAt: new Date(item.updatedAt),
     }));
   } catch (error) {
-    console.error('Error fetching copy content by page:', error);
+    console.error("Error fetching copy content by page:", error);
     return [];
   }
 }
 
 // Get copy content by section
-export async function getCopyContentBySection(page: string, section: string): Promise<CopyContentData[]> {
+export async function getCopyContentBySection(
+  page: string,
+  section: string,
+): Promise<CopyContentData[]> {
   try {
     const result = await db
       .select()
       .from(tadaCopyContent)
-      .where(and(
-        eq(tadaCopyContent.page, page),
-        eq(tadaCopyContent.section, section),
-        eq(tadaCopyContent.isActive, true)
-      ))
+      .where(
+        and(
+          eq(tadaCopyContent.page, page),
+          eq(tadaCopyContent.section, section),
+          eq(tadaCopyContent.isActive, true),
+        ),
+      )
       .orderBy(asc(tadaCopyContent.sortOrder));
-    
-    return result.map(item => ({
+
+    return result.map((item) => ({
       ...item,
       createdAt: new Date(item.createdAt),
-      updatedAt: new Date(item.updatedAt)
+      updatedAt: new Date(item.updatedAt),
     }));
   } catch (error) {
-    console.error('Error fetching copy content by section:', error);
+    console.error("Error fetching copy content by section:", error);
     return [];
   }
 }
 
 // Get single copy content by section key
-export async function getCopyContentByKey(sectionKey: string): Promise<CopyContentData | null> {
+export async function getCopyContentByKey(
+  sectionKey: string,
+): Promise<CopyContentData | null> {
   try {
     const result = await db
       .select()
       .from(tadaCopyContent)
-      .where(and(
-        eq(tadaCopyContent.sectionKey, sectionKey),
-        eq(tadaCopyContent.isActive, true)
-      ))
+      .where(
+        and(
+          eq(tadaCopyContent.sectionKey, sectionKey),
+          eq(tadaCopyContent.isActive, true),
+        ),
+      )
       .limit(1);
-    
+
     if (result.length === 0) return null;
-    
+
     return {
       ...result[0],
       createdAt: new Date(result[0].createdAt),
-      updatedAt: new Date(result[0].updatedAt)
+      updatedAt: new Date(result[0].updatedAt),
     };
   } catch (error) {
-    console.error('Error fetching copy content by key:', error);
+    console.error("Error fetching copy content by key:", error);
     return null;
   }
 }
 
 // Helper function to get multiple content pieces by keys
-export async function getCopyContentByKeys(sectionKeys: string[]): Promise<Record<string, string>> {
+export async function getCopyContentByKeys(
+  sectionKeys: string[],
+): Promise<Record<string, string>> {
   try {
     const result = await db
       .select()
       .from(tadaCopyContent)
-      .where(and(
-        eq(tadaCopyContent.isActive, true)
-      ));
-    
+      .where(and(eq(tadaCopyContent.isActive, true)));
+
     const contentMap: Record<string, string> = {};
-    result.forEach(item => {
+    result.forEach((item) => {
       if (sectionKeys.includes(item.sectionKey)) {
         contentMap[item.sectionKey] = item.content;
       }
     });
-    
+
     return contentMap;
   } catch (error) {
-    console.error('Error fetching copy content by keys:', error);
+    console.error("Error fetching copy content by keys:", error);
     return {};
   }
 }
@@ -149,7 +160,7 @@ export async function createCopyContent(data: {
 }): Promise<{ success: boolean; error?: string; id?: string }> {
   try {
     const id = nanoid();
-    
+
     await db.insert(tadaCopyContent).values({
       id,
       sectionKey: data.sectionKey,
@@ -157,26 +168,34 @@ export async function createCopyContent(data: {
       content: data.content,
       page: data.page,
       section: data.section,
-      contentType: data.contentType || 'paragraph',
+      contentType: data.contentType || "paragraph",
       description: data.description || null,
       sortOrder: data.sortOrder || 0,
       isActive: true,
     });
-    
+
+    // Revalidate pages that might use this content
+    revalidatePath("/");
+    revalidatePath("/about");
+    revalidatePath("/admin");
+
     return { success: true, id };
   } catch (error) {
-    console.error('Error creating copy content:', error);
-    return { success: false, error: 'Failed to create copy content' };
+    console.error("Error creating copy content:", error);
+    return { success: false, error: "Failed to create copy content" };
   }
 }
 
 // Update copy content
-export async function updateCopyContent(id: string, data: {
-  title?: string;
-  content?: string;
-  sortOrder?: number;
-  description?: string;
-}): Promise<{ success: boolean; error?: string }> {
+export async function updateCopyContent(
+  id: string,
+  data: {
+    title?: string;
+    content?: string;
+    sortOrder?: number;
+    description?: string;
+  },
+): Promise<{ success: boolean; error?: string }> {
   try {
     await db
       .update(tadaCopyContent)
@@ -187,16 +206,23 @@ export async function updateCopyContent(id: string, data: {
         updatedAt: new Date(),
       })
       .where(eq(tadaCopyContent.id, id));
-    
+
+    // Revalidate pages that might use this content
+    revalidatePath("/");
+    revalidatePath("/about");
+    revalidatePath("/admin");
+
     return { success: true };
   } catch (error) {
-    console.error('Error updating copy content:', error);
-    return { success: false, error: 'Failed to update copy content' };
+    console.error("Error updating copy content:", error);
+    return { success: false, error: "Failed to update copy content" };
   }
 }
 
 // Delete copy content (soft delete)
-export async function deleteCopyContent(id: string): Promise<{ success: boolean; error?: string }> {
+export async function deleteCopyContent(
+  id: string,
+): Promise<{ success: boolean; error?: string }> {
   try {
     await db
       .update(tadaCopyContent)
@@ -205,10 +231,15 @@ export async function deleteCopyContent(id: string): Promise<{ success: boolean;
         updatedAt: new Date(),
       })
       .where(eq(tadaCopyContent.id, id));
-    
+
+    // Revalidate pages that might use this content
+    revalidatePath("/");
+    revalidatePath("/about");
+    revalidatePath("/admin");
+
     return { success: true };
   } catch (error) {
-    console.error('Error deleting copy content:', error);
-    return { success: false, error: 'Failed to delete copy content' };
+    console.error("Error deleting copy content:", error);
+    return { success: false, error: "Failed to delete copy content" };
   }
-} 
+}
