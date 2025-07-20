@@ -19,10 +19,9 @@ const testimonials: Testimonial[] = [
   },
   {
     quote:
-      "Maureen has done several decorating and sewing projects for my business. She is very professional, creative, and pleasant to deal with and the results are always on time, on budget and exceed my expectations. I would not hesitate to recommend TaDa! Interior Design.",
-    name: "Mike Traub",
-    title: "Vice President, Riverstone Retirement Community",
-    location: "Ottawa",
+      "I recently moved into a new semi-detached, adult-lifestyle bungalow. Starting from ground zero, with all of the choices to be made, was overwhelming. I talked to several interior designers and decided to use Maureen to help me with the process- not only for interior design choices, but also for the selection of window treatments, some new furniture pieces and decorating accents.I found Maureen to be absolutely delightful and great fun to work with. She was extremely helpful, very willing to work with what I had and what I like, and quite reasonable. I would highly recommend her to anyone whether you need a great deal of assistance or just some confirmation that your own instincts are good ones.",
+    name: "Sue",
+    location: "Kanata",
   },
   {
     quote:
