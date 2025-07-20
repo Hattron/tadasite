@@ -72,8 +72,8 @@ export default function Navbar() {
           <span
             className="text-2xl sm:text-3xl font-bold"
             style={{
-              color: "var(--color-text, #1f2937)",
-              fontFamily: "var(--font-raleway, Raleway, sans-serif)",
+              color: "var(--color-text, #0d0d0d)",
+              fontFamily: "var(--font-brand, Raleway, sans-serif)",
             }}
           >
             TaDa! Interiors
@@ -88,8 +88,8 @@ export default function Navbar() {
             href="/about"
             className="font-medium hover:opacity-70"
             style={{
-              color: "var(--color-text, #1f2937)",
-              fontFamily: "var(--font-primary, Quicksand, sans-serif)",
+              color: "var(--color-text, #0d0d0d)",
+              fontFamily: "var(--font-primary, Inter, sans-serif)",
             }}
           >
             About
@@ -98,8 +98,8 @@ export default function Navbar() {
             href="/#services"
             className="font-medium hover:opacity-70"
             style={{
-              color: "var(--color-text, #1f2937)",
-              fontFamily: "var(--font-primary, Quicksand, sans-serif)",
+              color: "var(--color-text, #0d0d0d)",
+              fontFamily: "var(--font-primary, Inter, sans-serif)",
             }}
           >
             Services
@@ -108,8 +108,8 @@ export default function Navbar() {
             href="/gallery"
             className="font-medium hover:opacity-70"
             style={{
-              color: "var(--color-text, #1f2937)",
-              fontFamily: "var(--font-primary, Quicksand, sans-serif)",
+              color: "var(--color-text, #0d0d0d)",
+              fontFamily: "var(--font-primary, Inter, sans-serif)",
             }}
           >
             Gallery
@@ -118,8 +118,8 @@ export default function Navbar() {
             href="/contact"
             className="font-medium hover:opacity-70"
             style={{
-              color: "var(--color-text, #1f2937)",
-              fontFamily: "var(--font-primary, Quicksand, sans-serif)",
+              color: "var(--color-text, #0d0d0d)",
+              fontFamily: "var(--font-primary, Inter, sans-serif)",
             }}
           >
             Contact
@@ -131,7 +131,7 @@ export default function Navbar() {
           className="md:hidden p-2 rounded-md hover:bg-gray-100"
           aria-label="Toggle menu"
           style={{
-            color: "var(--color-text, #1f2937)",
+            color: "var(--color-text, #0d0d0d)",
           }}
         >
           <svg
@@ -172,8 +172,8 @@ export default function Navbar() {
               href="/about"
               className="block py-3 px-2 font-medium hover:bg-gray-50 rounded-md"
               style={{
-                color: "var(--color-text, #1f2937)",
-                fontFamily: "var(--font-primary, Quicksand, sans-serif)",
+                color: "var(--color-text, #0d0d0d)",
+                fontFamily: "var(--font-primary, Inter, sans-serif)",
               }}
               onClick={closeMenu}
             >
@@ -183,8 +183,8 @@ export default function Navbar() {
               href="/#services"
               className="block py-3 px-2 font-medium hover:bg-gray-50 rounded-md"
               style={{
-                color: "var(--color-text, #1f2937)",
-                fontFamily: "var(--font-primary, Quicksand, sans-serif)",
+                color: "var(--color-text, #0d0d0d)",
+                fontFamily: "var(--font-primary, Inter, sans-serif)",
               }}
               onClick={closeMenu}
             >
@@ -194,8 +194,8 @@ export default function Navbar() {
               href="/gallery"
               className="block py-3 px-2 font-medium hover:bg-gray-50 rounded-md"
               style={{
-                color: "var(--color-text, #1f2937)",
-                fontFamily: "var(--font-primary, Quicksand, sans-serif)",
+                color: "var(--color-text, #0d0d0d)",
+                fontFamily: "var(--font-primary, Inter, sans-serif)",
               }}
               onClick={closeMenu}
             >
@@ -205,8 +205,8 @@ export default function Navbar() {
               href="/contact"
               className="block py-3 px-2 font-medium hover:bg-gray-50 rounded-md"
               style={{
-                color: "var(--color-text, #1f2937)",
-                fontFamily: "var(--font-primary, Quicksand, sans-serif)",
+                color: "var(--color-text, #0d0d0d)",
+                fontFamily: "var(--font-primary, Inter, sans-serif)",
               }}
               onClick={closeMenu}
             >

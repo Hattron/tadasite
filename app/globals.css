@@ -121,10 +121,11 @@
   /* Typography */
   --font-primary: Inter, sans-serif;
   --font-secondary: Inter, sans-serif;
+  --font-brand: Raleway, sans-serif;
 
   /* Colors */
   --color-primary: #485775;
-  --color-secondary: #e3c863;
+  --color-secondary: #9f956c;
   --color-accent: #cacac9;
   --color-background: #fafafa;
   --color-text: #0d0d0d;

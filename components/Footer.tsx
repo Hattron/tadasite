@@ -6,8 +6,8 @@ export default function Footer() {
     <footer
       className="py-6"
       style={{
-        backgroundColor: "var(--color-primary, #3b82f6)",
-        color: "var(--color-background, #ffffff)",
+        backgroundColor: "var(--color-primary, #485775)",
+        color: "var(--color-background, #fafafa)",
       }}
     >
       <div
@@ -28,7 +28,7 @@ export default function Footer() {
               className="text-lg font-semibold"
               style={{
                 marginBottom: "var(--spacing-sm, 0.5rem)",
-                color: "var(--color-background, #ffffff)",
+                color: "var(--color-background, #fafafa)",
               }}
             >
               Quick Links

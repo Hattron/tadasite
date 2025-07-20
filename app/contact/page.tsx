@@ -166,8 +166,9 @@ export default function ContactPage() {
                 <div
                   className="text-sm"
                   style={{
-                    color: "var(--color-text-muted)",
+                    color: "var(--color-primary)",
                     fontFamily: "var(--font-secondary)",
+                    fontWeight: "bold",
                   }}
                   dangerouslySetInnerHTML={{
                     __html:
@@ -208,8 +209,9 @@ export default function ContactPage() {
                 <div
                   className="text-sm"
                   style={{
-                    color: "var(--color-text-muted)",
+                    color: "var(--color-primary)",
                     fontFamily: "var(--font-secondary)",
+                    fontWeight: "bold",
                   }}
                   dangerouslySetInnerHTML={{
                     __html:
