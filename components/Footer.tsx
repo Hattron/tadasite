@@ -65,7 +65,7 @@ export default function Footer() {
                   About
                 </Link>
                 <Link
-                  href="/#services"
+                  href="/services"
                   className="block transition-colors hover:text-white"
                   style={{
                     color: "var(--color-footer-text, #dcdfe5)",

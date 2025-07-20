@@ -93,10 +93,10 @@ export default async function JoannaBio() {
                 fontSize: "var(--font-size-lg)",
               }}
             >
-              Design has always been a part of Joanna's life. Growing up with an
-              artist father, she was constantly surrounded by creativity, color,
-              and the belief that beautiful spaces have the power to transform
-              how we feel and live.
+              Design has always been a part of Joanna&apos;s life. Growing up
+              with an artist father, she was constantly surrounded by
+              creativity, color, and the belief that beautiful spaces have the
+              power to transform how we feel and live.
             </div>
             <div
               className="leading-relaxed"
@@ -123,7 +123,7 @@ export default async function JoannaBio() {
               A people person at heart - social, intuitive, and deeply committed
               to creating spaces that feel personal and welcoming. Joanna
               believes that the best designs emerge from truly understanding her
-              clients' stories, dreams, and daily routines.
+              clients&apos; stories, dreams, and daily routines.
             </div>
             <div
               className="leading-relaxed"
@@ -133,9 +133,9 @@ export default async function JoannaBio() {
                 fontSize: "var(--font-size-lg)",
               }}
             >
-              Joanna's years working in the hospitality industry sharpened her
-              eye for functional beauty, especially in spaces where comfort and
-              style must coexist seamlessly. This experience taught her how
+              Joanna&apos;s years working in the hospitality industry sharpened
+              her eye for functional beauty, especially in spaces where comfort
+              and style must coexist seamlessly. This experience taught her how
               design details can significantly impact how people feel in a
               space.
             </div>

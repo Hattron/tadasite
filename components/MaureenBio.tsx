@@ -127,9 +127,10 @@ export default async function MaureenBio() {
             >
               Maureen brings a true passion for creativity to every project she
               takes on. Constantly inspired by the latest trends, she has a keen
-              eye for timeless design that won't go out of style. Her approach
-              balances current aesthetics with enduring appeal, ensuring her
-              clients' spaces remain beautiful for years to come.
+              eye for timeless design that won&apos;t go out of style. Her
+              approach balances current aesthetics with enduring appeal,
+              ensuring her clients&apos; spaces remain beautiful for years to
+              come.
             </div>
             <div
               className="leading-relaxed"

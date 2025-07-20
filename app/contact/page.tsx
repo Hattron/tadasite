@@ -17,117 +17,112 @@ export default function ContactPage() {
   ]);
   return (
     <div
-      className="min-h-screen py-16"
+      className="min-h-screen"
       style={{
-        paddingTop: "calc(var(--navbar-height) + var(--spacing-md))",
+        paddingTop: "calc(var(--navbar-height) + var(--spacing-2xl))",
+        paddingBottom: "var(--spacing-3xl)",
         backgroundColor: "var(--color-background)",
         fontFamily: "var(--font-primary)",
-        paddingBottom: "calc(var(--spacing-xl) * 4)",
       }}
     >
       <div
         className="container mx-auto"
-        style={{ padding: "var(--spacing-md)" }}
+        style={{
+          maxWidth: "var(--container-max-width)",
+          padding: "0 var(--spacing-xl)",
+        }}
       >
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+
+
+        <div
+          className="flex flex-col lg:flex-row"
+          style={{
+            gap: "var(--spacing-lg)",
+            alignItems: "stretch",
+          }}
+        >
           {/* Contact Form Section */}
-          <div className="space-y-6">
-            <div className="flex justify-center lg:justify-end">
+          <div
+            className="flex flex-col"
+            style={{
+              gap: "var(--spacing-lg)",
+              flex: "1",
+            }}
+          >
+            <div
+              style={{
+                flex: "1",
+                display: "flex",
+                flexDirection: "column",
+              }}
+            >
               <ContactForm />
             </div>
 
-            {/* Apples Image */}
-            <div className="flex justify-center lg:justify-end">
-              <div className="w-full max-w-md">
-                <div
-                  className="rounded-lg overflow-hidden shadow-sm"
-                  style={{
-                    backgroundColor: "var(--color-background)",
-                    border: `1px solid var(--color-text-muted)`,
-                  }}
-                >
-                  <img
-                    src="https://ik.imagekit.io/crimsonstack/tada/Assets/vase.jpg?tr=w-600,h-400,q-90,c-fill"
-                    alt="Interior design apples showcase"
-                    className="w-full h-64 object-cover"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Business Information */}
-          <div className="space-y-6">
-            {/* Business Hours */}
             <div
-              className="rounded-lg p-6 shadow-sm"
+              className="rounded-lg overflow-hidden shadow-sm"
               style={{
                 backgroundColor: "var(--color-background)",
                 border: `1px solid var(--color-text-muted)`,
-                padding: "var(--spacing-lg)",
+                flex: "1",
               }}
             >
-              <h3
-                className="text-xl font-medium mb-4"
+              <img
+                src="https://ik.imagekit.io/crimsonstack/tada/Assets/sink.png?tr=w-450,q-90"
+                alt="Interior design sink showcase"
+                className="w-full h-full object-cover"
                 style={{
-                  color: "var(--color-primary)",
-                  fontFamily: "var(--font-primary)",
-                  marginBottom: "var(--spacing-md)",
-                }}
-                dangerouslySetInnerHTML={{
-                  __html:
-                    copyContent["contact-business-hours-title"] ||
-                    "Business Hours",
+                  objectPosition: "center",
                 }}
               />
-              <div className="space-y-2" style={{ color: "var(--color-text)" }}>
-                <div
-                  dangerouslySetInnerHTML={{
-                    __html:
-                      copyContent["contact-business-hours-schedule"] ||
-                      "Office hours are <strong>Monday to Friday 9:00 - 5:00pm</strong>.",
-                  }}
-                />
-                <div
-                  dangerouslySetInnerHTML={{
-                    __html:
-                      copyContent["contact-business-hours-closure"] ||
-                      "We are <strong>closed on weekends and holidays</strong>.",
-                  }}
-                />
-              </div>
             </div>
+          </div>
 
+          {/* Right Column - Images and Services */}
+          <div
+            className="flex flex-col"
+            style={{
+              gap: "var(--spacing-lg)",
+              flex: "1",
+            }}
+          >
             {/* Vase Image */}
             <div
               className="rounded-lg overflow-hidden shadow-sm"
               style={{
                 backgroundColor: "var(--color-background)",
                 border: `1px solid var(--color-text-muted)`,
+                flex: "1",
               }}
             >
               <img
-                src="https://ik.imagekit.io/crimsonstack/tada/Assets/apples.jpg?tr=w-600,h-300,q-90,c-fill"
-                alt="Interior design vase showcase"
-                className="w-full h-48 object-cover"
+                src="https://ik.imagekit.io/crimsonstack/tada/Assets/bluevase.jpg?tr=w-450,h-500,q-90,c-fill,g-south"
+                alt="Interior design blue vase showcase"
+                className="w-full h-full object-cover"
+                style={{ objectPosition: "bottom" }}
               />
             </div>
 
             {/* Our Services */}
             <div
-              className="rounded-lg p-6 shadow-sm"
+              className="rounded-lg shadow-sm"
               style={{
                 backgroundColor: "var(--color-background)",
                 border: `1px solid var(--color-text-muted)`,
-                padding: "var(--spacing-lg)",
+                padding: "var(--spacing-xl)",
+                flex: "1",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "flex-start",
               }}
             >
               <h3
-                className="text-xl font-medium mb-4"
                 style={{
                   color: "var(--color-primary)",
                   fontFamily: "var(--font-primary)",
-                  marginBottom: "var(--spacing-md)",
+                  fontSize: "var(--font-size-2xl)",
+                  fontWeight: "600",
+                  marginBottom: "var(--spacing-lg)",
                 }}
                 dangerouslySetInnerHTML={{
                   __html:
@@ -136,13 +131,14 @@ export default function ContactPage() {
               />
 
               {/* Residential Services */}
-              <div style={{ marginBottom: "var(--spacing-lg)" }}>
+              <div style={{ marginBottom: "var(--spacing-xl)" }}>
                 <h4
-                  className="text-lg font-medium mb-3"
                   style={{
                     color: "var(--color-secondary)",
                     fontFamily: "var(--font-primary)",
-                    marginBottom: "var(--spacing-sm)",
+                    fontSize: "var(--font-size-xl)",
+                    fontWeight: "600",
+                    marginBottom: "var(--spacing-md)",
                   }}
                   dangerouslySetInnerHTML={{
                     __html:
@@ -151,10 +147,11 @@ export default function ContactPage() {
                   }}
                 />
                 <div
-                  className="mb-4 leading-relaxed"
                   style={{
                     color: "var(--color-text)",
                     fontFamily: "var(--font-secondary)",
+                    fontSize: "var(--font-size-base)",
+                    lineHeight: "1.6",
                     marginBottom: "var(--spacing-md)",
                   }}
                   dangerouslySetInnerHTML={{
@@ -164,11 +161,12 @@ export default function ContactPage() {
                   }}
                 />
                 <div
-                  className="text-sm"
                   style={{
                     color: "var(--color-primary)",
                     fontFamily: "var(--font-secondary)",
-                    fontWeight: "bold",
+                    fontSize: "var(--font-size-base)",
+                    fontWeight: "600",
+                    lineHeight: "1.5",
                   }}
                   dangerouslySetInnerHTML={{
                     __html:
@@ -181,11 +179,12 @@ export default function ContactPage() {
               {/* Commercial Services */}
               <div>
                 <h4
-                  className="text-lg font-medium mb-3"
                   style={{
                     color: "var(--color-secondary)",
                     fontFamily: "var(--font-primary)",
-                    marginBottom: "var(--spacing-sm)",
+                    fontSize: "var(--font-size-xl)",
+                    fontWeight: "600",
+                    marginBottom: "var(--spacing-md)",
                   }}
                   dangerouslySetInnerHTML={{
                     __html:
@@ -194,10 +193,11 @@ export default function ContactPage() {
                   }}
                 />
                 <div
-                  className="mb-4 leading-relaxed"
                   style={{
                     color: "var(--color-text)",
                     fontFamily: "var(--font-secondary)",
+                    fontSize: "var(--font-size-base)",
+                    lineHeight: "1.6",
                     marginBottom: "var(--spacing-md)",
                   }}
                   dangerouslySetInnerHTML={{
@@ -207,11 +207,12 @@ export default function ContactPage() {
                   }}
                 />
                 <div
-                  className="text-sm"
                   style={{
                     color: "var(--color-primary)",
                     fontFamily: "var(--font-secondary)",
-                    fontWeight: "bold",
+                    fontSize: "var(--font-size-base)",
+                    fontWeight: "600",
+                    lineHeight: "1.5",
                   }}
                   dangerouslySetInnerHTML={{
                     __html:

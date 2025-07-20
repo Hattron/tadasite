@@ -29,13 +29,13 @@ export default function ContactForm() {
   };
 
   return (
-    <div className="w-full max-w-md">
+    <div className="w-full h-full flex flex-col">
       <div 
-        className="rounded-lg shadow-sm"
+        className="rounded-lg shadow-sm flex-1 flex flex-col"
         style={{
           backgroundColor: 'var(--color-background)',
           border: `1px solid var(--color-text-muted)`,
-          padding: 'var(--spacing-lg)',
+          padding: 'var(--spacing-xl)',
         }}
       >
         <h2 
@@ -62,7 +62,7 @@ export default function ContactForm() {
           </div>
         )}
 
-        <form id="contact-form" action={handleSubmit} className="space-y-4">
+        <form id="contact-form" action={handleSubmit} className="space-y-4 flex-1 flex flex-col">
           <div>
             <label 
               htmlFor="name" 
@@ -125,7 +125,7 @@ export default function ContactForm() {
             />
           </div>
 
-          <div>
+          <div className="flex-1 flex flex-col">
             <label 
               htmlFor="message" 
               className="block text-sm font-medium"
@@ -141,10 +141,9 @@ export default function ContactForm() {
               id="message"
               name="message"
               required
-              rows={4}
               disabled={isSubmitting}
               placeholder="How can we help you?"
-              className="w-full rounded-md focus:outline-none focus:ring-2 focus:ring-opacity-50 disabled:opacity-50 resize-vertical"
+              className="w-full flex-1 rounded-md focus:outline-none focus:ring-2 focus:ring-opacity-50 disabled:opacity-50 resize-none"
               style={{ 
                 padding: 'var(--spacing-sm) var(--spacing-sm)',
                 border: `1px solid var(--color-text-muted)`,
@@ -152,6 +151,7 @@ export default function ContactForm() {
                 color: 'var(--color-text)',
                 fontFamily: 'var(--font-secondary)',
                 '--tw-ring-color': 'var(--color-primary)',
+                minHeight: '120px',
               } as React.CSSProperties}
             />
           </div>
@@ -170,6 +170,42 @@ export default function ContactForm() {
             {isSubmitting ? 'Sending...' : 'Send Message'}
           </button>
         </form>
+
+        {/* Business Hours Section */}
+        <div 
+          style={{ 
+            marginTop: 'var(--spacing-lg)',
+            paddingTop: 'var(--spacing-lg)',
+            borderTop: `1px solid var(--color-text-muted)`,
+          }}
+        >
+          <h3
+            style={{
+              color: 'var(--color-primary)',
+              fontFamily: 'var(--font-primary)',
+              fontSize: 'var(--font-size-lg)',
+              fontWeight: '600',
+              marginBottom: 'var(--spacing-sm)',
+            }}
+          >
+            Business Hours
+          </h3>
+          <div
+            style={{
+              color: 'var(--color-text)',
+              fontFamily: 'var(--font-secondary)',
+              fontSize: 'var(--font-size-sm)',
+              lineHeight: '1.5',
+            }}
+          >
+            <div style={{ marginBottom: 'var(--spacing-xs)' }}>
+              Office hours are <strong>Monday to Friday 9:00 - 5:00pm</strong>.
+            </div>
+            <div>
+              We are <strong>closed on weekends and holidays</strong>.
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

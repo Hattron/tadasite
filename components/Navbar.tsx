@@ -95,7 +95,7 @@ export default function Navbar() {
             About
           </Link>
           <Link
-            href="/#services"
+            href="/services"
             className="font-medium hover:opacity-70"
             style={{
               color: "var(--color-text, #0d0d0d)",
@@ -180,7 +180,7 @@ export default function Navbar() {
               About
             </Link>
             <Link
-              href="/#services"
+              href="/services"
               className="block py-3 px-2 font-medium hover:bg-gray-50 rounded-md"
               style={{
                 color: "var(--color-text, #0d0d0d)",
