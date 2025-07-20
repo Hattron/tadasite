@@ -54,8 +54,8 @@ export default async function CommercialPage() {
               fontFamily: "var(--font-secondary)",
             }}
           >
-            Designing inspiring workspaces that enhance productivity, foster
-            collaboration, and strengthen brand identity.
+            Creating impactful interiors for commercial spaces that balance
+            function, atmosphere and brand personality.
           </p>
         </div>
 

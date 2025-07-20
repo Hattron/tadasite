@@ -263,7 +263,7 @@ export default function Testimonials() {
                   className="relative rounded-2xl shadow-sm border p-6 group hover:shadow-md transition-shadow duration-300 flex flex-col w-full max-w-sm pointer-events-none"
                   style={{
                     backgroundColor: "white",
-                    borderColor: "var(--color-text-muted)",
+                    borderColor: "var(--color-primary)",
                     borderWidth: "1px",
                   }}
                 >
@@ -353,7 +353,7 @@ export default function Testimonials() {
               className="relative rounded-2xl shadow-sm border p-6 sm:p-8 group hover:shadow-md transition-shadow duration-300 flex flex-col min-h-[350px] sm:min-h-[400px]"
               style={{
                 backgroundColor: "white",
-                borderColor: "var(--color-text-muted)",
+                borderColor: "var(--color-primary)",
                 borderWidth: "1px",
               }}
               variants={cardVariants}
