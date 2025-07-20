@@ -291,7 +291,7 @@ export default function Testimonials() {
                       {testimonials[currentIndex].title ? (
                         <span
                           className="font-normal text-xs block"
-                          style={{ color: "var(--color-secondary)" }}
+                          style={{ color: "var(--color-primary)" }}
                         >
                           {testimonials[currentIndex].title}
                         </span>
@@ -300,7 +300,7 @@ export default function Testimonials() {
                     <div
                       className="text-xs"
                       style={{
-                        color: "var(--color-secondary)",
+                        color: "var(--color-primary)",
                         fontFamily: "var(--font-secondary)",
                       }}
                     >
@@ -311,7 +311,7 @@ export default function Testimonials() {
                   {/* Large decorative quote mark - bottom right */}
                   <div
                     className="absolute bottom-3 right-4 opacity-20 text-6xl leading-none"
-                    style={{ color: "var(--color-secondary)" }}
+                    style={{ color: "var(--color-primary)" }}
                   >
                     <span style={{ fontFamily: "serif" }}>&rdquo;</span>
                   </div>
@@ -392,7 +392,7 @@ export default function Testimonials() {
                   {testimonial.title && (
                     <span
                       className="font-normal text-xs sm:text-sm block"
-                      style={{ color: "var(--color-secondary)" }}
+                      style={{ color: "var(--color-primary)" }}
                     >
                       {testimonial.title}
                     </span>
@@ -401,7 +401,7 @@ export default function Testimonials() {
                 <div
                   className="text-xs sm:text-sm"
                   style={{
-                    color: "var(--color-secondary)",
+                    color: "var(--color-primary)",
                     fontFamily: "var(--font-secondary)",
                   }}
                 >
@@ -412,7 +412,7 @@ export default function Testimonials() {
               {/* Large decorative quote mark - bottom right */}
               <motion.div
                 className="absolute bottom-3 sm:bottom-4 right-4 sm:right-6 opacity-20 text-6xl sm:text-8xl leading-none"
-                style={{ color: "var(--color-secondary)" }}
+                style={{ color: "var(--color-primary)" }}
                 initial={{ opacity: 0, scale: 0 }}
                 whileInView={{ opacity: 0.2, scale: 1 }}
                 viewport={{ once: true }}

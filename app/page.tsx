@@ -39,15 +39,8 @@ export default async function Home() {
         />
       </AnimatedSection>
 
-      <AnimatedSection
-        delay={0.2}
-        style={{
-          paddingTop: "calc(var(--spacing-xl) + var(--navbar-height))",
-          marginTop: "calc(-1 * var(--navbar-height))",
-        }}
-        id="services"
-      >
-        <Services />
+      <AnimatedSection delay={0.2} style={{ paddingTop: "var(--spacing-xl)" }}>
+        <AboutUsAnimated />
       </AnimatedSection>
 
       <AnimatedSection delay={0.25} style={{ paddingTop: "var(--spacing-xl)" }}>
@@ -60,8 +53,15 @@ export default async function Home() {
         />
       </AnimatedSection>
 
-      <AnimatedSection delay={0.3} style={{ paddingTop: "var(--spacing-xl)" }}>
-        <AboutUsAnimated />
+      <AnimatedSection
+        delay={0.3}
+        style={{
+          paddingTop: "calc(var(--spacing-xl) + var(--navbar-height))",
+          marginTop: "calc(-1 * var(--navbar-height))",
+        }}
+        id="services"
+      >
+        <Services />
       </AnimatedSection>
 
       <AnimatedSection delay={0.35} style={{ paddingTop: "var(--spacing-xl)" }}>
