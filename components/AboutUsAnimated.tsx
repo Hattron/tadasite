@@ -8,13 +8,6 @@ const getImagePath = (fullUrl: string) => {
   return fullUrl.replace(/^https:\/\/ik\.imagekit\.io\/[^\/]+/, "");
 };
 
-interface AboutUsImageData {
-  id: string;
-  imagekitUrl: string;
-  alt: string | null;
-  caption: string | null;
-}
-
 export default async function AboutUsAnimated() {
   const [aboutUsImage, copyContent] = await Promise.all([
     getAboutUsImage(),
@@ -61,7 +54,7 @@ export default async function AboutUsAnimated() {
               <img
                 src={`${imagekitConfig.urlEndpoint}${getImagePath(aboutUsImage.imagekitUrl)}?tr=w-600,h-600,q-90`}
                 alt={aboutUsImage.alt || "About TaDa! Interiors"}
-                className="rounded-2xl shadow-lg max-w-full h-auto w-full max-w-xs sm:max-w-md lg:max-w-lg"
+                className="rounded-2xl shadow-lg h-auto w-full max-w-xs sm:max-w-md lg:max-w-lg"
               />
             ) : (
               <div

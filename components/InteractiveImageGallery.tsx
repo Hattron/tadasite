@@ -70,7 +70,6 @@ export default function InteractiveImageGallery({
   const [preloadedImages, setPreloadedImages] = useState<Map<number, boolean>>(
     new Map(),
   );
-  const [preloadProgress, setPreloadProgress] = useState(0);
 
   const preloadImage = useCallback(
     (index: number) => {
@@ -80,7 +79,6 @@ export default function InteractiveImageGallery({
       img.onload = () => {
         setPreloadedImages((prev) => {
           const newMap = new Map(prev).set(index, true);
-          setPreloadProgress(newMap.size);
           return newMap;
         });
       };
@@ -105,7 +103,7 @@ export default function InteractiveImageGallery({
     document.body.style.overflow = "unset";
   };
 
-  const goToPrevious = () => {
+  const goToPrevious = useCallback(() => {
     if (selectedImageIndex !== null && selectedImageIndex > 0) {
       const newIndex = selectedImageIndex - 1;
       setSelectedImageIndex(newIndex);
@@ -114,9 +112,9 @@ export default function InteractiveImageGallery({
       // Preload next adjacent image
       if (newIndex > 0) preloadImage(newIndex - 1);
     }
-  };
+  }, [selectedImageIndex, preloadedImages, preloadImage]);
 
-  const goToNext = () => {
+  const goToNext = useCallback(() => {
     if (selectedImageIndex !== null && selectedImageIndex < images.length - 1) {
       const newIndex = selectedImageIndex + 1;
       setSelectedImageIndex(newIndex);
@@ -125,7 +123,7 @@ export default function InteractiveImageGallery({
       // Preload next adjacent image
       if (newIndex < images.length - 1) preloadImage(newIndex + 1);
     }
-  };
+  }, [selectedImageIndex, preloadedImages, preloadImage, images.length]);
 
   // Swipe handlers
   const swipeHandlers = useSwipeable(goToNext, goToPrevious);
@@ -146,7 +144,7 @@ export default function InteractiveImageGallery({
           break;
       }
     },
-    [selectedImageIndex],
+    [selectedImageIndex, goToPrevious, goToNext],
   );
 
   // Preload first few images on component mount
@@ -159,7 +157,6 @@ export default function InteractiveImageGallery({
     };
 
     if (images.length > 0) {
-      setPreloadProgress(0);
       preloadInitialImages();
     }
   }, [images, preloadImage]);

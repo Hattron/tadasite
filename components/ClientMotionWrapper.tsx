@@ -1,16 +1,16 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, MotionProps } from "framer-motion";
 import { ReactNode } from "react";
 
 interface ClientMotionWrapperProps {
   children: ReactNode;
   className?: string;
   style?: React.CSSProperties;
-  initial?: any;
-  whileInView?: any;
-  viewport?: any;
-  transition?: any;
+  initial?: MotionProps["initial"];
+  whileInView?: MotionProps["whileInView"];
+  viewport?: MotionProps["viewport"];
+  transition?: MotionProps["transition"];
 }
 
 export default function ClientMotionWrapper({

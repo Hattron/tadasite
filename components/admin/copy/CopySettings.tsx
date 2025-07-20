@@ -183,7 +183,7 @@ export default function CopySettings() {
       try {
         selection.removeAllRanges();
         selection.addRange(range);
-      } catch (e) {
+      } catch {
         // Range might be invalid after formatting, just focus the editor
         editor.focus();
       }
@@ -649,7 +649,7 @@ export default function CopySettings() {
                         try {
                           currentSelection.removeAllRanges();
                           currentSelection.addRange(range);
-                        } catch (e) {
+                        } catch {
                           // If range is invalid, place cursor at end
                           const newRange = document.createRange();
                           newRange.selectNodeContents(el);
