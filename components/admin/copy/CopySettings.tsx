@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   getAllCopyContent,
   updateCopyContent,
@@ -44,6 +44,8 @@ export default function CopySettings() {
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
   const [editingText, setEditingText] = useState<string>("");
   const [editingSections, setEditingSections] = useState<CopyContentData[]>([]);
+  const isFormattingRef = useRef(false);
+  const sectionEditorsRef = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
     loadCopyContent();
@@ -111,6 +113,8 @@ export default function CopySettings() {
           item.page === content.page && item.section === content.section,
       );
       setEditingSections(relatedSections);
+      // Initialize refs array for the sections
+      sectionEditorsRef.current = new Array(relatedSections.length).fill(null);
     } else {
       setEditingContent(content);
       setEditingText(content.content);
@@ -125,23 +129,42 @@ export default function CopySettings() {
     ) as HTMLDivElement;
     if (!editor) return;
 
-    editor.focus();
-    document.execCommand(command, false);
+    // Check if we have a selection
+    const selection = window.getSelection();
+    if (!selection || selection.rangeCount === 0) return;
 
-    // Update the specific section content
-    setEditingSections((prev) =>
-      prev.map((item, i) =>
-        i === sectionIndex ? { ...item, content: editor.innerHTML } : item,
-      ),
-    );
+    // Set formatting flag to prevent interference
+    isFormattingRef.current = true;
+
+    // Make sure the editor is focused
+    editor.focus();
+
+    // Apply formatting - this should preserve the selection automatically
+    try {
+      document.execCommand(command, false, undefined);
+      // Don't update state immediately - let onBlur handle it
+      isFormattingRef.current = false;
+    } catch (error) {
+      console.warn(`Failed to apply ${command} formatting:`, error);
+      isFormattingRef.current = false;
+    }
   };
 
   const handleEditSections = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     try {
+      // Get current content from editors and update sections
+      const updatedSections = editingSections.map((section, index) => {
+        const editor = sectionEditorsRef.current[index];
+        return {
+          ...section,
+          content: editor ? editor.innerHTML : section.content,
+        };
+      });
+
       // Update all sections
-      const updatePromises = editingSections.map((section) => {
+      const updatePromises = updatedSections.map((section) => {
         const cleanContent = section.content
           .replace(/<b>/g, "<strong>")
           .replace(/<\/b>/g, "</strong>")
@@ -171,26 +194,29 @@ export default function CopySettings() {
     const editor = document.getElementById("content-editor") as HTMLDivElement;
     if (!editor) return;
 
-    // Save current selection
+    // Check if we have a selection
     const selection = window.getSelection();
-    const range = selection?.rangeCount ? selection.getRangeAt(0) : null;
+    if (!selection || selection.rangeCount === 0) return;
 
+    // Set formatting flag to prevent interference
+    isFormattingRef.current = true;
+
+    // Make sure the editor is focused
     editor.focus();
-    document.execCommand(command, false);
 
-    // Restore selection if it existed
-    if (range && selection) {
-      try {
-        selection.removeAllRanges();
-        selection.addRange(range);
-      } catch {
-        // Range might be invalid after formatting, just focus the editor
-        editor.focus();
-      }
+    // Apply formatting - this should preserve the selection automatically
+    try {
+      document.execCommand(command, false, undefined);
+
+      // Delay the state update to avoid interfering with the selection
+      setTimeout(() => {
+        setEditingText(editor.innerHTML);
+        isFormattingRef.current = false;
+      }, 0);
+    } catch (error) {
+      console.warn(`Failed to apply ${command} formatting:`, error);
+      isFormattingRef.current = false;
     }
-
-    // Update the editing text state with the new HTML content
-    setEditingText(editor.innerHTML);
   };
 
   const filteredContent = copyContent.filter((item) => {
@@ -509,7 +535,7 @@ export default function CopySettings() {
                       variant="ghost"
                       size="sm"
                       onClick={() => applyFormattingToSection(index, "bold")}
-                      className="h-8 w-8 p-0"
+                      className="h-8 w-8 p-0 hover:bg-primary/20 active:bg-primary/30 transition-all duration-150 hover:scale-105"
                       title="Bold"
                     >
                       <Bold className="h-4 w-4" />
@@ -519,7 +545,7 @@ export default function CopySettings() {
                       variant="ghost"
                       size="sm"
                       onClick={() => applyFormattingToSection(index, "italic")}
-                      className="h-8 w-8 p-0"
+                      className="h-8 w-8 p-0 hover:bg-primary/20 active:bg-primary/30 transition-all duration-150 hover:scale-105"
                       title="Italic"
                     >
                       <Italic className="h-4 w-4" />
@@ -531,7 +557,7 @@ export default function CopySettings() {
                       onClick={() =>
                         applyFormattingToSection(index, "underline")
                       }
-                      className="h-8 w-8 p-0"
+                      className="h-8 w-8 p-0 hover:bg-primary/20 active:bg-primary/30 transition-all duration-150 hover:scale-105"
                       title="Underline"
                     >
                       <Underline className="h-4 w-4" />
@@ -547,16 +573,47 @@ export default function CopySettings() {
                       fontFamily: "var(--font-secondary)",
                     }}
                     suppressContentEditableWarning={true}
-                    dangerouslySetInnerHTML={{ __html: section.content }}
                     onBlur={(event) => {
                       const target = event.target as HTMLDivElement;
-                      setEditingSections((prev) =>
-                        prev.map((item, i) =>
-                          i === index
-                            ? { ...item, content: target.innerHTML }
-                            : item,
-                        ),
-                      );
+                      // Only update if we're not in the middle of a formatting operation
+                      if (!isFormattingRef.current) {
+                        setEditingSections((prev) =>
+                          prev.map((item, i) =>
+                            i === index
+                              ? { ...item, content: target.innerHTML }
+                              : item,
+                          ),
+                        );
+                      }
+                    }}
+                    ref={(el) => {
+                      sectionEditorsRef.current[index] = el;
+                      if (
+                        el &&
+                        section.content &&
+                        el.innerHTML !== section.content
+                      ) {
+                        // Only update if content is actually different and we're not formatting
+                        if (!isFormattingRef.current) {
+                          const currentSelection = window.getSelection();
+                          const range = currentSelection?.rangeCount
+                            ? currentSelection.getRangeAt(0)
+                            : null;
+
+                          el.innerHTML = section.content;
+
+                          // Restore cursor position
+                          if (range && currentSelection) {
+                            try {
+                              currentSelection.removeAllRanges();
+                              currentSelection.addRange(range);
+                            } catch {
+                              // Range might be invalid, just focus
+                              el.focus();
+                            }
+                          }
+                        }
+                      }
                     }}
                   />
                 </div>
@@ -594,7 +651,7 @@ export default function CopySettings() {
                     variant="ghost"
                     size="sm"
                     onClick={() => applyFormatting("bold")}
-                    className="h-8 w-8 p-0"
+                    className="h-8 w-8 p-0 hover:bg-primary/20 active:bg-primary/30 transition-all duration-150 hover:scale-105"
                     title="Bold"
                   >
                     <Bold className="h-4 w-4" />
@@ -604,7 +661,7 @@ export default function CopySettings() {
                     variant="ghost"
                     size="sm"
                     onClick={() => applyFormatting("italic")}
-                    className="h-8 w-8 p-0"
+                    className="h-8 w-8 p-0 hover:bg-primary/20 active:bg-primary/30 transition-all duration-150 hover:scale-105"
                     title="Italic"
                   >
                     <Italic className="h-4 w-4" />
@@ -614,7 +671,7 @@ export default function CopySettings() {
                     variant="ghost"
                     size="sm"
                     onClick={() => applyFormatting("underline")}
-                    className="h-8 w-8 p-0"
+                    className="h-8 w-8 p-0 hover:bg-primary/20 active:bg-primary/30 transition-all duration-150 hover:scale-105"
                     title="Underline"
                   >
                     <Underline className="h-4 w-4" />
@@ -635,8 +692,14 @@ export default function CopySettings() {
                     setEditingText(target.innerHTML);
                   }}
                   ref={(el) => {
-                    if (el && editingText && el.innerHTML !== editingText) {
+                    if (
+                      el &&
+                      editingText &&
+                      el.innerHTML !== editingText &&
+                      !isFormattingRef.current
+                    ) {
                       // Only update if content is actually different to avoid cursor jumping
+                      // Skip update during formatting operations to preserve selection
                       const currentSelection = window.getSelection();
                       const range = currentSelection?.rangeCount
                         ? currentSelection.getRangeAt(0)
@@ -650,12 +713,8 @@ export default function CopySettings() {
                           currentSelection.removeAllRanges();
                           currentSelection.addRange(range);
                         } catch {
-                          // If range is invalid, place cursor at end
-                          const newRange = document.createRange();
-                          newRange.selectNodeContents(el);
-                          newRange.collapse(false);
-                          currentSelection.removeAllRanges();
-                          currentSelection.addRange(newRange);
+                          // Range might be invalid, just focus
+                          el.focus();
                         }
                       }
                     }
