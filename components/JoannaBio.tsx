@@ -1,5 +1,5 @@
 import { getJoannaImage } from "@/lib/image-actions";
-import { getCopyContentBySection } from "@/lib/copy-actions";
+import { getCopyContent } from "@/lib/hardcoded-copy";
 import { imagekitConfig } from "@/lib/imagekit";
 import ImageFrame from "@/components/ui/ImageFrame";
 
@@ -9,10 +9,7 @@ const getImagePath = (fullUrl: string) => {
 };
 
 export default async function JoannaBio() {
-  const [joannaImage, bioContent] = await Promise.all([
-    getJoannaImage(),
-    getCopyContentBySection("about", "joanna-bio"),
-  ]);
+  const joannaImage = await getJoannaImage();
 
   return (
     <section
@@ -89,18 +86,110 @@ export default async function JoannaBio() {
             className="flex flex-col w-full lg:w-3/4"
             style={{ gap: "var(--spacing-lg)" }}
           >
-            {bioContent.map((content) => (
-              <div
-                key={content.id}
-                className="leading-relaxed"
-                style={{
-                  color: "var(--color-text)",
-                  fontFamily: "var(--font-secondary)",
-                  fontSize: "var(--font-size-lg)",
-                }}
-                dangerouslySetInnerHTML={{ __html: content.content }}
-              />
-            ))}
+            <div
+              className="leading-relaxed"
+              style={{
+                color: "var(--color-text)",
+                fontFamily: "var(--font-secondary)",
+                fontSize: "var(--font-size-lg)",
+              }}
+              dangerouslySetInnerHTML={{
+                __html:
+                  getCopyContent("about-joanna-bio-paragraph-1") ||
+                  "Design has always been a part of Joanna's life. Growing up with an artist father, she was constantly surrounded by creativity, color, and the belief that beautiful spaces have the power to transform how we feel and live.",
+              }}
+            />
+            <div
+              className="leading-relaxed"
+              style={{
+                color: "var(--color-text)",
+                fontFamily: "var(--font-secondary)",
+                fontSize: "var(--font-size-lg)",
+              }}
+              dangerouslySetInnerHTML={{
+                __html:
+                  getCopyContent("about-joanna-bio-paragraph-2") ||
+                  "While she studied sociology in university, Joanna found that understanding how people live, interact, and connect became the foundation for her design philosophy.",
+              }}
+            />
+            <div
+              className="leading-relaxed"
+              style={{
+                color: "var(--color-text)",
+                fontFamily: "var(--font-secondary)",
+                fontSize: "var(--font-size-lg)",
+              }}
+              dangerouslySetInnerHTML={{
+                __html:
+                  getCopyContent("about-joanna-bio-paragraph-3") ||
+                  "A people person at heart - social, intuitive, and deeply committed to creating spaces that feel personal and welcoming.",
+              }}
+            />
+            <div
+              className="leading-relaxed"
+              style={{
+                color: "var(--color-text)",
+                fontFamily: "var(--font-secondary)",
+                fontSize: "var(--font-size-lg)",
+              }}
+              dangerouslySetInnerHTML={{
+                __html:
+                  getCopyContent("about-joanna-bio-paragraph-4") ||
+                  "Joanna's years working in the hospitality industry sharpened her eye for functional beauty, especially in spaces where comfort and style must coexist seamlessly.",
+              }}
+            />
+            <div
+              className="leading-relaxed"
+              style={{
+                color: "var(--color-text)",
+                fontFamily: "var(--font-secondary)",
+                fontSize: "var(--font-size-lg)",
+              }}
+              dangerouslySetInnerHTML={{
+                __html:
+                  getCopyContent("about-joanna-bio-paragraph-5") ||
+                  "She later followed her passion and graduated with honours from the Interior Decorating program at Algonquin College.",
+              }}
+            />
+            <div
+              className="leading-relaxed"
+              style={{
+                color: "var(--color-text)",
+                fontFamily: "var(--font-secondary)",
+                fontSize: "var(--font-size-lg)",
+              }}
+              dangerouslySetInnerHTML={{
+                __html:
+                  getCopyContent("about-joanna-bio-paragraph-6") ||
+                  "Joanna loves to travel and finds endless inspiration in the colours, textures, and cultures she has experienced around the world.",
+              }}
+            />
+            <div
+              className="leading-relaxed"
+              style={{
+                color: "var(--color-text)",
+                fontFamily: "var(--font-secondary)",
+                fontSize: "var(--font-size-lg)",
+              }}
+              dangerouslySetInnerHTML={{
+                __html:
+                  getCopyContent("about-joanna-bio-paragraph-7") ||
+                  "As a mother of two, she understands how important it is for spaces to be both stylish and livable.",
+              }}
+            />
+            <div
+              className="leading-relaxed"
+              style={{
+                color: "var(--color-text)",
+                fontFamily: "var(--font-secondary)",
+                fontSize: "var(--font-size-lg)",
+              }}
+              dangerouslySetInnerHTML={{
+                __html:
+                  getCopyContent("about-joanna-bio-paragraph-8") ||
+                  "Joanna is proud to have built lasting relationships with many repeat clients, tailoring each space to evolve with their changing needs and life stages.",
+              }}
+            />
           </div>
         </div>
       </div>

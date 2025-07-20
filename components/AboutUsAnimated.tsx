@@ -1,5 +1,5 @@
 import { getAboutUsImage } from "@/lib/image-actions";
-import { getCopyContentByKeys } from "@/lib/copy-actions";
+import { getCopyContents } from "@/lib/hardcoded-copy";
 import { imagekitConfig } from "@/lib/imagekit";
 import ClientMotionWrapper from "./ClientMotionWrapper";
 
@@ -9,13 +9,13 @@ const getImagePath = (fullUrl: string) => {
 };
 
 export default async function AboutUsAnimated() {
-  const [aboutUsImage, copyContent] = await Promise.all([
-    getAboutUsImage(),
-    getCopyContentByKeys([
-      "home-about-us-paragraph-1",
-      "home-about-us-paragraph-2",
-      "home-about-us-paragraph-3",
-    ]),
+  const aboutUsImage = await getAboutUsImage();
+
+  // Get hardcoded copy content
+  const copyContent = getCopyContents([
+    "home-about-us-paragraph-1",
+    "home-about-us-paragraph-2",
+    "home-about-us-paragraph-3",
   ]);
 
   return (

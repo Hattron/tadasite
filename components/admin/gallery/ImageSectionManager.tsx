@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Upload, Image as ImageIcon, Edit3 } from "lucide-react";
+import { Upload, Image as ImageIcon } from "lucide-react";
 import { imagekitConfig } from "@/lib/imagekit";
 import {
   getHeroImage,
@@ -22,7 +22,6 @@ import {
 
 interface ImageSectionManagerProps {
   onUploadClick: (imageType: string) => void;
-  onEditText?: (imageType: "hero" | "first" | "second" | "third") => void;
   refreshKey?: number;
 }
 
@@ -31,8 +30,6 @@ interface SectionImage {
   imagekitUrl: string;
   alt: string | null;
   caption: string | null;
-  title?: string | null;
-  subtitle?: string | null;
 }
 
 interface ImageSection {
@@ -50,7 +47,6 @@ interface GroupedSections {
 
 export default function ImageSectionManager({
   onUploadClick,
-  onEditText,
   refreshKey,
 }: ImageSectionManagerProps) {
   const [sections, setSections] = useState<GroupedSections>({
@@ -114,8 +110,6 @@ export default function ImageSectionManager({
                   imagekitUrl: heroImage.imagekitUrl,
                   alt: heroImage.alt,
                   caption: heroImage.caption,
-                  title: heroImage.heroTitle,
-                  subtitle: heroImage.heroSubtitle,
                 }
               : null,
           },
@@ -129,8 +123,6 @@ export default function ImageSectionManager({
                   imagekitUrl: firstImage.imagekitUrl,
                   alt: firstImage.alt,
                   caption: firstImage.caption,
-                  title: firstImage.firstImageTitle,
-                  subtitle: firstImage.firstImageSubtitle,
                 }
               : null,
           },
@@ -157,8 +149,6 @@ export default function ImageSectionManager({
                   imagekitUrl: secondImage.imagekitUrl,
                   alt: secondImage.alt,
                   caption: secondImage.caption,
-                  title: secondImage.secondImageTitle,
-                  subtitle: secondImage.secondImageSubtitle,
                 }
               : null,
           },
@@ -172,8 +162,6 @@ export default function ImageSectionManager({
                   imagekitUrl: thirdImage.imagekitUrl,
                   alt: thirdImage.alt,
                   caption: thirdImage.caption,
-                  title: thirdImage.thirdImageTitle,
-                  subtitle: thirdImage.thirdImageSubtitle,
                 }
               : null,
           },
@@ -294,23 +282,6 @@ export default function ImageSectionManager({
           <Upload className="h-4 w-4" />
           {section.image ? "Change Image" : "Set Image"}
         </Button>
-
-        {/* Show Edit Text button only for sections that support text editing */}
-        {section.image &&
-          onEditText &&
-          ["hero", "first", "second", "third"].includes(section.id) && (
-            <Button
-              onClick={() =>
-                onEditText(section.id as "hero" | "first" | "second" | "third")
-              }
-              variant="outline"
-              size="sm"
-              className="flex items-center gap-2"
-            >
-              <Edit3 className="h-4 w-4" />
-              Edit Text
-            </Button>
-          )}
       </div>
 
       <div className="flex gap-6">
@@ -339,22 +310,10 @@ export default function ImageSectionManager({
           </h3>
           <p className="text-sm text-gray-600 mb-3">{section.description}</p>
 
-          {/* Image metadata text */}
-          {section.image && (
+          {/* Image metadata */}
+          {section.image && section.image.alt && (
             <div className="space-y-1">
-              {section.image.title && (
-                <p className="font-medium text-sm">{section.image.title}</p>
-              )}
-              {section.image.subtitle && (
-                <p className="text-sm text-gray-600">
-                  {section.image.subtitle}
-                </p>
-              )}
-              {section.image.alt && (
-                <p className="text-xs text-gray-500">
-                  Alt: {section.image.alt}
-                </p>
-              )}
+              <p className="text-xs text-gray-500">Alt: {section.image.alt}</p>
             </div>
           )}
         </div>

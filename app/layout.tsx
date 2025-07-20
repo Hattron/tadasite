@@ -1,11 +1,7 @@
 import type { Metadata } from "next";
 import { Quicksand, Inter, Raleway } from "next/font/google";
 import "./globals.css";
-import {
-  getCssVariables,
-  cssVariablesToString,
-  defaultCssVariables,
-} from "@/lib/css-variables";
+
 import { ParallaxProvider } from "@/components/ParallaxProvider";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
@@ -30,32 +26,14 @@ export const metadata: Metadata = {
   description: "A customizable site with dynamic CSS variables",
 };
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  let cssVariables;
-  try {
-    cssVariables = await getCssVariables();
-  } catch (error) {
-    console.error("Failed to load CSS variables, using defaults:", error);
-    cssVariables = defaultCssVariables;
-  }
-
   return (
     <html lang="en">
-      <head>
-        <style
-          dangerouslySetInnerHTML={{
-            __html: `
-              :root {
-${cssVariablesToString(cssVariables)}
-              }
-            `,
-          }}
-        />
-      </head>
+      <head></head>
       <body
         className={`${quicksand.variable} ${inter.variable} ${raleway.variable} antialiased`}
         style={{

@@ -11,9 +11,7 @@
     "db:migrate": "drizzle-kit migrate",
     "db:push": "drizzle-kit push",
     "db:studio": "drizzle-kit studio",
-    "db:seed": "tsx scripts/seed-css-variables.ts",
-    "db:seed-folders": "tsx scripts/seed-default-folders.ts",
-    "db:seed-copy": "tsx scripts/seed-copy-content.ts"
+    "db:seed-folders": "tsx scripts/seed-default-folders.ts"
   },
   "dependencies": {
     "@iconify/react": "^6.0.0",

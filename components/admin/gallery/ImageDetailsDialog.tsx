@@ -1,11 +1,16 @@
-'use client';
+"use client";
 
-import { Button } from '@/components/ui/button';
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
-import { Label } from '@/components/ui/label';
-import { Move } from 'lucide-react';
-import { imagekitConfig } from '@/lib/imagekit';
-import { ImageData, FolderData } from './types';
+import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { Label } from "@/components/ui/label";
+import { Move } from "lucide-react";
+import { imagekitConfig } from "@/lib/imagekit";
+import { ImageData, FolderData } from "./types";
 
 interface ImageDetailsDialogProps {
   selectedImage: ImageData | null;
@@ -24,7 +29,6 @@ interface ImageDetailsDialogProps {
   onSetProjectCover?: (imageId: string, projectId: string) => void;
   onMoveImage: (image: ImageData) => void;
   onDeleteImage: (imageId: string) => void;
-  onEditText: (imageType: 'hero' | 'first' | 'second' | 'third') => void;
 }
 
 export default function ImageDetailsDialog({
@@ -44,20 +48,21 @@ export default function ImageDetailsDialog({
   onSetProjectCover,
   onMoveImage,
   onDeleteImage,
-  onEditText
 }: ImageDetailsDialogProps) {
-  const getFolderById = (id: string) => folders.find(f => f.id === id);
-  
+  const getFolderById = (id: string) => folders.find((f) => f.id === id);
+
   const getImagePath = (fullUrl: string) => {
-    const path = fullUrl.replace(/^https:\/\/ik\.imagekit\.io\/[^\/]+/, '');
+    const path = fullUrl.replace(/^https:\/\/ik\.imagekit\.io\/[^\/]+/, "");
     return path;
   };
 
   if (!selectedImage) return null;
 
-  const currentFolder = selectedImage.folderId ? getFolderById(selectedImage.folderId) : null;
-  const isInProjectFolder = currentFolder?.folderType === 'project';
-  const isInMainFolder = currentFolder?.folderType === 'main';
+  const currentFolder = selectedImage.folderId
+    ? getFolderById(selectedImage.folderId)
+    : null;
+  const isInProjectFolder = currentFolder?.folderType === "project";
+  const isInMainFolder = currentFolder?.folderType === "main";
 
   return (
     <Dialog open={!!selectedImage} onOpenChange={onClose}>
@@ -69,22 +74,23 @@ export default function ImageDetailsDialog({
           <div className="flex-shrink-0">
             <img
               src={`${imagekitConfig.urlEndpoint}${getImagePath(selectedImage.imagekitUrl)}?tr=w-400,q-90`}
-              alt={selectedImage.alt || 'Selected image'}
+              alt={selectedImage.alt || "Selected image"}
               className="w-full rounded-lg max-h-[60vh] object-contain"
             />
           </div>
           <div className="space-y-4">
             <div>
               <Label>File Name</Label>
-              <p className="text-sm text-muted-foreground">{selectedImage.originalName}</p>
+              <p className="text-sm text-muted-foreground">
+                {selectedImage.originalName}
+              </p>
             </div>
             <div>
               <Label>Folder</Label>
               <p className="text-sm text-muted-foreground">
-                {selectedImage.folderId 
-                  ? getFolderById(selectedImage.folderId)?.name || 'Unknown' 
-                  : 'All Images (No Folder)'
-                }
+                {selectedImage.folderId
+                  ? getFolderById(selectedImage.folderId)?.name || "Unknown"
+                  : "All Images (No Folder)"}
               </p>
             </div>
             <div>
@@ -104,183 +110,174 @@ export default function ImageDetailsDialog({
             <div>
               <Label>Alt Text</Label>
               <p className="text-sm text-muted-foreground">
-                {selectedImage.alt || 'No alt text'}
+                {selectedImage.alt || "No alt text"}
               </p>
             </div>
             <div>
               <Label>Caption</Label>
               <p className="text-sm text-muted-foreground">
-                {selectedImage.caption || 'No caption'}
+                {selectedImage.caption || "No caption"}
               </p>
             </div>
-            
+
             <div className="space-y-2">
               <Label>Set as Cover Photo</Label>
               <div className="flex flex-wrap gap-2">
                 {/* Show Hero/Gallery cover options only for images in main folder */}
                 {isInMainFolder && (
                   <>
-                    <Button 
+                    <Button
                       onClick={() => onSetHero(selectedImage.id)}
                       disabled={selectedImage.isHero}
-                      style={{ backgroundColor: 'var(--color-primary)' }}
+                      style={{ backgroundColor: "var(--color-primary)" }}
                       size="sm"
                     >
-                      {selectedImage.isHero ? 'Current Hero' : 'Set as Hero'}
+                      {selectedImage.isHero ? "Current Hero" : "Set as Hero"}
                     </Button>
-                    
-                    <Button 
+
+                    <Button
                       onClick={() => onSetFirstImage(selectedImage.id)}
                       disabled={selectedImage.isFirstImage}
-                      style={{ backgroundColor: 'var(--color-secondary)' }}
+                      style={{ backgroundColor: "var(--color-secondary)" }}
                       size="sm"
                     >
-                      {selectedImage.isFirstImage ? 'Current First Image' : 'Set as First Image'}
+                      {selectedImage.isFirstImage
+                        ? "Current First Image"
+                        : "Set as First Image"}
                     </Button>
-                    
-                    <Button 
+
+                    <Button
                       onClick={() => onSetAboutUsImage(selectedImage.id)}
                       disabled={selectedImage.isAboutUsImage}
-                      style={{ backgroundColor: 'var(--color-accent)' }}
+                      style={{ backgroundColor: "var(--color-accent)" }}
                       size="sm"
                     >
-                      {selectedImage.isAboutUsImage ? 'Current About Us Image' : 'Set as About Us Image'}
+                      {selectedImage.isAboutUsImage
+                        ? "Current About Us Image"
+                        : "Set as About Us Image"}
                     </Button>
-                    
-                    <Button 
+
+                    <Button
                       onClick={() => onSetMaureenImage(selectedImage.id)}
                       disabled={selectedImage.isMaureenImage}
                       variant="outline"
                       size="sm"
                     >
-                      {selectedImage.isMaureenImage ? 'Current Maureen Image' : 'Set as Maureen Image'}
+                      {selectedImage.isMaureenImage
+                        ? "Current Maureen Image"
+                        : "Set as Maureen Image"}
                     </Button>
-                    
-                    <Button 
+
+                    <Button
                       onClick={() => onSetJoannaImage(selectedImage.id)}
                       disabled={selectedImage.isJoannaImage}
                       variant="secondary"
                       size="sm"
                     >
-                      {selectedImage.isJoannaImage ? 'Current Joanna Image' : 'Set as Joanna Image'}
+                      {selectedImage.isJoannaImage
+                        ? "Current Joanna Image"
+                        : "Set as Joanna Image"}
                     </Button>
-                    
-                    <Button 
+
+                    <Button
                       onClick={() => onSetTeamImage(selectedImage.id)}
                       disabled={selectedImage.isTeamImage}
                       variant="outline"
                       size="sm"
                     >
-                      {selectedImage.isTeamImage ? 'Current Team Image' : 'Set as Team Image'}
+                      {selectedImage.isTeamImage
+                        ? "Current Team Image"
+                        : "Set as Team Image"}
                     </Button>
-                    
-                    <Button 
+
+                    <Button
                       onClick={() => onSetSecondImage(selectedImage.id)}
                       disabled={selectedImage.isSecondImage}
                       variant="outline"
                       size="sm"
                     >
-                      {selectedImage.isSecondImage ? 'Current Second Image' : 'Set as Second Image'}
+                      {selectedImage.isSecondImage
+                        ? "Current Second Image"
+                        : "Set as Second Image"}
                     </Button>
-                    
-                    <Button 
+
+                    <Button
                       onClick={() => onSetThirdImage(selectedImage.id)}
                       disabled={selectedImage.isThirdImage}
                       variant="secondary"
                       size="sm"
                     >
-                      {selectedImage.isThirdImage ? 'Current Third Image' : 'Set as Third Image'}
+                      {selectedImage.isThirdImage
+                        ? "Current Third Image"
+                        : "Set as Third Image"}
                     </Button>
-                    
+
                     {onSetResidentialCover && (
-                      <Button 
+                      <Button
                         onClick={() => onSetResidentialCover(selectedImage.id)}
                         disabled={selectedImage.isResidentialCover}
                         variant="outline"
                         size="sm"
                       >
-                        {selectedImage.isResidentialCover ? 'Current Residential Cover' : 'Residential Cover'}
+                        {selectedImage.isResidentialCover
+                          ? "Current Residential Cover"
+                          : "Residential Cover"}
                       </Button>
                     )}
-                    
+
                     {onSetCommercialCover && (
-                      <Button 
+                      <Button
                         onClick={() => onSetCommercialCover(selectedImage.id)}
                         disabled={selectedImage.isCommercialCover}
                         variant="outline"
                         size="sm"
                       >
-                        {selectedImage.isCommercialCover ? 'Current Commercial Cover' : 'Commercial Cover'}
+                        {selectedImage.isCommercialCover
+                          ? "Current Commercial Cover"
+                          : "Commercial Cover"}
                       </Button>
                     )}
                   </>
                 )}
-                
+
                 {/* Show project cover option only for images in project folders */}
                 {isInProjectFolder && onSetProjectCover && currentFolder && (
-                  <Button 
-                    onClick={() => onSetProjectCover(selectedImage.id, currentFolder.id)}
+                  <Button
+                    onClick={() =>
+                      onSetProjectCover(selectedImage.id, currentFolder.id)
+                    }
                     disabled={selectedImage.isProjectCover}
-                    style={{ backgroundColor: 'var(--color-primary)' }}
+                    style={{ backgroundColor: "var(--color-primary)" }}
                     size="sm"
                   >
-                    {selectedImage.isProjectCover ? `Current Cover for ${currentFolder.name}` : `Set as ${currentFolder.name} Cover`}
+                    {selectedImage.isProjectCover
+                      ? `Current Cover for ${currentFolder.name}`
+                      : `Set as ${currentFolder.name} Cover`}
                   </Button>
                 )}
 
                 {/* If image is not in main or project folder, show a message */}
                 {!isInMainFolder && !isInProjectFolder && (
                   <p className="text-sm text-muted-foreground">
-                    Move this image to Main folder to set as hero/gallery cover, or to a project folder to set as project cover.
+                    Move this image to Main folder to set as hero/gallery cover,
+                    or to a project folder to set as project cover.
                   </p>
                 )}
               </div>
             </div>
-            
+
             <div className="flex gap-2">
-              <Button 
+              <Button
                 variant="outline"
                 onClick={() => onMoveImage(selectedImage)}
               >
                 <Move className="h-4 w-4 mr-2" />
                 Move
               </Button>
-              
+
               {/* Edit Text Button - only show for images that have editable text */}
-              {selectedImage.isHero && (
-                <Button 
-                  onClick={() => onEditText('hero')}
-                  variant="outline"
-                >
-                  Edit Hero Text
-                </Button>
-              )}
-              {selectedImage.isFirstImage && (
-                <Button 
-                  onClick={() => onEditText('first')}
-                  variant="outline"
-                >
-                  Edit First Image Text
-                </Button>
-              )}
-              {selectedImage.isSecondImage && (
-                <Button 
-                  onClick={() => onEditText('second')}
-                  variant="outline"
-                >
-                  Edit Second Image Text
-                </Button>
-              )}
-              {selectedImage.isThirdImage && (
-                <Button 
-                  onClick={() => onEditText('third')}
-                  variant="outline"
-                >
-                  Edit Third Image Text
-                </Button>
-              )}
-              
-              <Button 
+
+              <Button
                 variant="destructive"
                 onClick={() => onDeleteImage(selectedImage.id)}
               >
@@ -292,4 +289,4 @@ export default function ImageDetailsDialog({
       </DialogContent>
     </Dialog>
   );
-} 
+}

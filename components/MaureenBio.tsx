@@ -1,5 +1,5 @@
 import { getMaureenImage } from "@/lib/image-actions";
-import { getCopyContentBySection } from "@/lib/copy-actions";
+import { getCopyContent } from "@/lib/hardcoded-copy";
 import { imagekitConfig } from "@/lib/imagekit";
 import ImageFrame from "@/components/ui/ImageFrame";
 
@@ -9,10 +9,7 @@ const getImagePath = (fullUrl: string) => {
 };
 
 export default async function MaureenBio() {
-  const [maurImage, bioContent] = await Promise.all([
-    getMaureenImage(),
-    getCopyContentBySection("about", "maureen-bio"),
-  ]);
+  const maurImage = await getMaureenImage();
 
   return (
     <section
@@ -107,18 +104,71 @@ export default async function MaureenBio() {
             className="flex flex-col w-full lg:w-3/4"
             style={{ gap: "var(--spacing-lg)" }}
           >
-            {bioContent.map((content) => (
-              <div
-                key={content.id}
-                className="leading-relaxed"
-                style={{
-                  color: "var(--color-text)",
-                  fontFamily: "var(--font-secondary)",
-                  fontSize: "var(--font-size-lg)",
-                }}
-                dangerouslySetInnerHTML={{ __html: content.content }}
-              />
-            ))}
+            <div
+              className="leading-relaxed"
+              style={{
+                color: "var(--color-text)",
+                fontFamily: "var(--font-secondary)",
+                fontSize: "var(--font-size-lg)",
+              }}
+              dangerouslySetInnerHTML={{
+                __html:
+                  getCopyContent("about-maureen-bio-paragraph-1") ||
+                  "After graduating with honours from the Residential Décor program at Algonquin college Maureen embarked on a career that has spanned over two decades.",
+              }}
+            />
+            <div
+              className="leading-relaxed"
+              style={{
+                color: "var(--color-text)",
+                fontFamily: "var(--font-secondary)",
+                fontSize: "var(--font-size-lg)",
+              }}
+              dangerouslySetInnerHTML={{
+                __html:
+                  getCopyContent("about-maureen-bio-paragraph-2") ||
+                  "Maureen brings a true passion for creativity to every project she takes on.",
+              }}
+            />
+            <div
+              className="leading-relaxed"
+              style={{
+                color: "var(--color-text)",
+                fontFamily: "var(--font-secondary)",
+                fontSize: "var(--font-size-lg)",
+              }}
+              dangerouslySetInnerHTML={{
+                __html:
+                  getCopyContent("about-maureen-bio-paragraph-3") ||
+                  "Over the years Maureen has leant her skills and expertise to a number of companies and organizations.",
+              }}
+            />
+            <div
+              className="leading-relaxed"
+              style={{
+                color: "var(--color-text)",
+                fontFamily: "var(--font-secondary)",
+                fontSize: "var(--font-size-lg)",
+              }}
+              dangerouslySetInnerHTML={{
+                __html:
+                  getCopyContent("about-maureen-bio-paragraph-4") ||
+                  "Maureen values the great relationships that develop while working with her clients.",
+              }}
+            />
+            <div
+              className="leading-relaxed"
+              style={{
+                color: "var(--color-text)",
+                fontFamily: "var(--font-secondary)",
+                fontSize: "var(--font-size-lg)",
+              }}
+              dangerouslySetInnerHTML={{
+                __html:
+                  getCopyContent("about-maureen-bio-paragraph-5") ||
+                  "In addition to being a wife and proud mom of two boys Maureen finds joy in gardening, unwinding through yoga and meditation, and exploring new destinations through travel.",
+              }}
+            />
           </div>
         </div>
       </div>

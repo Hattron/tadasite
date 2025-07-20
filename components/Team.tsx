@@ -1,15 +1,12 @@
-import { getCopyContentBySection } from "@/lib/copy-actions";
+import { getCopyContent } from "@/lib/hardcoded-copy";
 import ImageFrame from "@/components/ui/ImageFrame";
 
-export default async function Team() {
-  const teamContent = await getCopyContentBySection("about", "team");
-
-  // Extract content by type
+export default function Team() {
+  // Get hardcoded copy content
   const headingContent =
-    teamContent.find((c) => c.contentType === "heading")?.content ||
-    "About TaDa! Interiors";
+    getCopyContent("about-team-heading") || "About TaDa! Interiors";
   const paragraphContent =
-    teamContent.find((c) => c.contentType === "paragraph")?.content ||
+    getCopyContent("about-team-paragraph-1") ||
     "At TaDa! Interiors, we&apos;ve been bringing inspired design to homes and businesses across Ottawa for over 20 years. From personalized paint consultations to full scale renovations, we offer a wide range of residential and commercial design services tailored to meet each client&apos;s needs.";
 
   // Static ImageKit asset URLs

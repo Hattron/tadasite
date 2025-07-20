@@ -1,37 +1,36 @@
-'use client';
+"use client";
 
-import { Separator } from '@/components/ui/separator';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { GalleryManager, StyleSettings, CopySettings } from '@/components/admin';
-import { ImageKitProvider } from '@/components/ImageKitProvider';
+import { Separator } from "@/components/ui/separator";
+import { GalleryManager } from "@/components/admin";
+import { ImageKitProvider } from "@/components/ImageKitProvider";
 
 export default function AdminPage() {
   return (
-    <div 
+    <div
       className="min-h-screen p-8"
       style={{
-        backgroundColor: 'var(--color-background)',
-        color: 'var(--color-text)',
-        fontFamily: 'var(--font-secondary)',
+        backgroundColor: "var(--color-background)",
+        color: "var(--color-text)",
+        fontFamily: "var(--font-secondary)",
       }}
     >
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-8">
-          <h1 
+          <h1
             className="text-4xl font-bold mb-2"
-            style={{ 
-              color: 'var(--color-primary)',
-              fontFamily: 'var(--font-primary)'
+            style={{
+              color: "var(--color-primary)",
+              fontFamily: "var(--font-primary)",
             }}
           >
             Admin Panel
           </h1>
-          <p 
+          <p
             className="text-lg"
-            style={{ 
-              color: 'var(--color-text-muted)',
-              fontFamily: 'var(--font-secondary)'
+            style={{
+              color: "var(--color-text-muted)",
+              fontFamily: "var(--font-secondary)",
             }}
           >
             Manage site settings and customization
@@ -39,43 +38,33 @@ export default function AdminPage() {
           <Separator className="mt-6" />
         </div>
 
-        <Tabs defaultValue="gallery" className="w-full">
-          <TabsList className="grid w-full grid-cols-3">
-            <TabsTrigger 
-              value="gallery"
-              style={{ fontFamily: 'var(--font-primary)' }}
+        <div className="w-full">
+          <div className="mb-6">
+            <h2
+              className="text-2xl font-semibold"
+              style={{
+                color: "var(--color-primary)",
+                fontFamily: "var(--font-primary)",
+              }}
             >
-              Gallery Settings
-            </TabsTrigger>
-            <TabsTrigger 
-              value="copy"
-              style={{ fontFamily: 'var(--font-primary)' }}
+              Gallery Management
+            </h2>
+            <p
+              className="text-sm mt-2"
+              style={{
+                color: "var(--color-text-muted)",
+                fontFamily: "var(--font-secondary)",
+              }}
             >
-              Copy Settings
-            </TabsTrigger>
-            <TabsTrigger 
-              value="styles"
-              style={{ fontFamily: 'var(--font-primary)' }}
-            >
-              Style Settings
-            </TabsTrigger>
-          </TabsList>
+              Manage images and gallery folders
+            </p>
+          </div>
 
-          <TabsContent value="gallery" className="mt-6">
-            <ImageKitProvider>
-              <GalleryManager />
-            </ImageKitProvider>
-          </TabsContent>
-
-          <TabsContent value="copy" className="mt-6">
-            <CopySettings />
-          </TabsContent>
-
-          <TabsContent value="styles" className="mt-6">
-            <StyleSettings />
-          </TabsContent>
-        </Tabs>
+          <ImageKitProvider>
+            <GalleryManager />
+          </ImageKitProvider>
+        </div>
       </div>
     </div>
   );
-} 
+}

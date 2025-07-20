@@ -1,3 +1,6 @@
+/* Import Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+
 @import "tailwindcss";
 @import "tw-animate-css";
 
@@ -113,20 +116,81 @@
   --sidebar-ring: oklch(0.556 0 0);
 }
 
+/* Hardcoded CSS Variables - Extracted from Database */
+:root {
+  /* Typography */
+  --font-primary: Inter, sans-serif;
+  --font-secondary: Inter, sans-serif;
+
+  /* Colors */
+  --color-primary: #485775;
+  --color-secondary: #e3c863;
+  --color-accent: #cacac9;
+  --color-background: #fafafa;
+  --color-text: #0d0d0d;
+  --color-text-muted: #dcdfe5;
+
+  /* Spacing */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+  --spacing-3xl: 4rem;
+  --spacing-about-image-gap: 1.25rem;
+  --spacing-about-image-gap-tight: 0.5rem;
+
+  /* Typography sizing variables */
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.875rem;
+  --font-size-4xl: 2.25rem;
+  --font-size-5xl: 3rem;
+
+  /* Component sizing variables */
+  --image-max-width: 32rem;
+  --image-about-medium-max-width: 24rem;
+  --image-about-max-width: 16rem;
+  --content-max-width: 42rem;
+  --container-max-width: 80rem;
+
+  /* Frame styling variables */
+  --frame-background: rgba(255, 255, 255, 0.95);
+  --frame-background-dark: rgba(0, 0, 0, 0.85);
+  --frame-border: 2px solid rgba(255, 255, 255, 0.3);
+  --frame-border-radius: 1rem;
+  --frame-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  --frame-padding: 2rem;
+  --frame-padding-sm: 1.5rem;
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
-  
+
   html {
     position: relative;
     overflow-x: hidden;
     scroll-behavior: smooth;
   }
-  
+
   body {
     @apply bg-background text-foreground;
     position: relative;
     overflow-x: hidden;
+    font-family: var(--font-secondary);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-primary);
   }
 }

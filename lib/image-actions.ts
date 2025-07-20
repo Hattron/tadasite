@@ -1,9 +1,9 @@
-'use server';
+"use server";
 
-import { db } from '@/lib/db';
-import { tadaImages, tadaImageFolders } from '@/lib/schema';
-import { eq, isNull, and } from 'drizzle-orm';
-import { revalidatePath } from 'next/cache';
+import { db } from "@/lib/db";
+import { tadaImages, tadaImageFolders } from "@/lib/schema";
+import { eq, isNull, and } from "drizzle-orm";
+import { revalidatePath } from "next/cache";
 
 export async function getHeroImage() {
   try {
@@ -22,7 +22,7 @@ export async function getHeroImage() {
 
     return heroImages.length > 0 ? heroImages[0] : null;
   } catch (error) {
-    console.error('Error fetching hero image:', error);
+    console.error("Error fetching hero image:", error);
     return null;
   }
 }
@@ -44,7 +44,7 @@ export async function getFirstImage() {
 
     return firstImages.length > 0 ? firstImages[0] : null;
   } catch (error) {
-    console.error('Error fetching first image:', error);
+    console.error("Error fetching first image:", error);
     return null;
   }
 }
@@ -64,7 +64,7 @@ export async function getAboutUsImage() {
 
     return aboutUsImages.length > 0 ? aboutUsImages[0] : null;
   } catch (error) {
-    console.error('Error fetching about us image:', error);
+    console.error("Error fetching about us image:", error);
     return null;
   }
 }
@@ -84,7 +84,7 @@ export async function getMaureenImage() {
 
     return maureeenImages.length > 0 ? maureeenImages[0] : null;
   } catch (error) {
-    console.error('Error fetching Maureen image:', error);
+    console.error("Error fetching Maureen image:", error);
     return null;
   }
 }
@@ -104,7 +104,7 @@ export async function getJoannaImage() {
 
     return joannaImages.length > 0 ? joannaImages[0] : null;
   } catch (error) {
-    console.error('Error fetching Joanna image:', error);
+    console.error("Error fetching Joanna image:", error);
     return null;
   }
 }
@@ -124,7 +124,7 @@ export async function getTeamImage() {
 
     return teamImages.length > 0 ? teamImages[0] : null;
   } catch (error) {
-    console.error('Error fetching team image:', error);
+    console.error("Error fetching team image:", error);
     return null;
   }
 }
@@ -146,7 +146,7 @@ export async function getSecondImage() {
 
     return secondImages.length > 0 ? secondImages[0] : null;
   } catch (error) {
-    console.error('Error fetching second image:', error);
+    console.error("Error fetching second image:", error);
     return null;
   }
 }
@@ -168,7 +168,7 @@ export async function getThirdImage() {
 
     return thirdImages.length > 0 ? thirdImages[0] : null;
   } catch (error) {
-    console.error('Error fetching third image:', error);
+    console.error("Error fetching third image:", error);
     return null;
   }
 }
@@ -191,7 +191,7 @@ export async function getResidentialCoverImage() {
 
     return coverImages.length > 0 ? coverImages[0] : null;
   } catch (error) {
-    console.error('Error fetching residential cover image:', error);
+    console.error("Error fetching residential cover image:", error);
     return null;
   }
 }
@@ -211,7 +211,7 @@ export async function getCommercialCoverImage() {
 
     return coverImages.length > 0 ? coverImages[0] : null;
   } catch (error) {
-    console.error('Error fetching commercial cover image:', error);
+    console.error("Error fetching commercial cover image:", error);
     return null;
   }
 }
@@ -225,14 +225,14 @@ export async function getAllImages() {
 
     return images;
   } catch (error) {
-    console.error('Error fetching images:', error);
+    console.error("Error fetching images:", error);
     return [];
   }
 }
 
 export async function getImagesByFolder(folderId: string | null) {
   try {
-    const query = folderId 
+    const query = folderId
       ? eq(tadaImages.folderId, folderId)
       : isNull(tadaImages.folderId);
 
@@ -244,15 +244,16 @@ export async function getImagesByFolder(folderId: string | null) {
 
     return images;
   } catch (error) {
-    console.error('Error fetching images by folder:', error);
+    console.error("Error fetching images by folder:", error);
     return [];
   }
 }
 
-export async function getProjectsByType(type: 'residential' | 'commercial') {
+export async function getProjectsByType(type: "residential" | "commercial") {
   try {
-    const parentFolderId = type === 'residential' ? 'folder_residential' : 'folder_commercial';
-    
+    const parentFolderId =
+      type === "residential" ? "folder_residential" : "folder_commercial";
+
     const projects = await db
       .select()
       .from(tadaImageFolders)
@@ -269,10 +270,12 @@ export async function getProjectsByType(type: 'residential' | 'commercial') {
             alt: tadaImages.alt,
           })
           .from(tadaImages)
-          .where(and(
-            eq(tadaImages.folderId, project.id),
-            eq(tadaImages.isProjectCover, true)
-          ))
+          .where(
+            and(
+              eq(tadaImages.folderId, project.id),
+              eq(tadaImages.isProjectCover, true),
+            ),
+          )
           .limit(1);
 
         const coverImage = coverImages.length > 0 ? coverImages[0] : null;
@@ -300,12 +303,12 @@ export async function getProjectsByType(type: 'residential' | 'commercial') {
           ...project,
           coverImage,
         };
-      })
+      }),
     );
 
     return projectsWithCover;
   } catch (error) {
-    console.error('Error fetching projects:', error);
+    console.error("Error fetching projects:", error);
     return [];
   }
 }
@@ -316,7 +319,7 @@ export async function setHeroImage(imageId: string) {
     const currentHero = await db
       .select({
         heroTitle: tadaImages.heroTitle,
-        heroSubtitle: tadaImages.heroSubtitle
+        heroSubtitle: tadaImages.heroSubtitle,
       })
       .from(tadaImages)
       .where(eq(tadaImages.isHero, true))
@@ -326,7 +329,7 @@ export async function setHeroImage(imageId: string) {
     const newImage = await db
       .select({
         heroTitle: tadaImages.heroTitle,
-        heroSubtitle: tadaImages.heroSubtitle
+        heroSubtitle: tadaImages.heroSubtitle,
       })
       .from(tadaImages)
       .where(eq(tadaImages.id, imageId))
@@ -340,25 +343,26 @@ export async function setHeroImage(imageId: string) {
 
     // Set the new hero image, preserving existing text if new image doesn't have text
     const textToUse = {
-      heroTitle: newImage[0]?.heroTitle || (currentHero[0]?.heroTitle || null),
-      heroSubtitle: newImage[0]?.heroSubtitle || (currentHero[0]?.heroSubtitle || null)
+      heroTitle: newImage[0]?.heroTitle || currentHero[0]?.heroTitle || null,
+      heroSubtitle:
+        newImage[0]?.heroSubtitle || currentHero[0]?.heroSubtitle || null,
     };
 
     await db
       .update(tadaImages)
-      .set({ 
+      .set({
         isHero: true,
         heroTitle: textToUse.heroTitle,
-        heroSubtitle: textToUse.heroSubtitle
+        heroSubtitle: textToUse.heroSubtitle,
       })
       .where(eq(tadaImages.id, imageId));
 
-    revalidatePath('/');
-    revalidatePath('/admin');
+    revalidatePath("/");
+    revalidatePath("/admin");
     return { success: true };
   } catch (error) {
-    console.error('Error setting hero image:', error);
-    throw new Error('Failed to set hero image');
+    console.error("Error setting hero image:", error);
+    throw new Error("Failed to set hero image");
   }
 }
 
@@ -368,7 +372,7 @@ export async function setFirstImage(imageId: string) {
     const currentFirst = await db
       .select({
         firstImageTitle: tadaImages.firstImageTitle,
-        firstImageSubtitle: tadaImages.firstImageSubtitle
+        firstImageSubtitle: tadaImages.firstImageSubtitle,
       })
       .from(tadaImages)
       .where(eq(tadaImages.isFirstImage, true))
@@ -378,7 +382,7 @@ export async function setFirstImage(imageId: string) {
     const newImage = await db
       .select({
         firstImageTitle: tadaImages.firstImageTitle,
-        firstImageSubtitle: tadaImages.firstImageSubtitle
+        firstImageSubtitle: tadaImages.firstImageSubtitle,
       })
       .from(tadaImages)
       .where(eq(tadaImages.id, imageId))
@@ -392,24 +396,30 @@ export async function setFirstImage(imageId: string) {
 
     // Set the new first image, preserving existing text if new image doesn't have text
     const textToUse = {
-      firstImageTitle: newImage[0]?.firstImageTitle || (currentFirst[0]?.firstImageTitle || null),
-      firstImageSubtitle: newImage[0]?.firstImageSubtitle || (currentFirst[0]?.firstImageSubtitle || null)
+      firstImageTitle:
+        newImage[0]?.firstImageTitle ||
+        currentFirst[0]?.firstImageTitle ||
+        null,
+      firstImageSubtitle:
+        newImage[0]?.firstImageSubtitle ||
+        currentFirst[0]?.firstImageSubtitle ||
+        null,
     };
 
     await db
       .update(tadaImages)
-      .set({ 
+      .set({
         isFirstImage: true,
         firstImageTitle: textToUse.firstImageTitle,
-        firstImageSubtitle: textToUse.firstImageSubtitle
+        firstImageSubtitle: textToUse.firstImageSubtitle,
       })
       .where(eq(tadaImages.id, imageId));
 
-    revalidatePath('/admin');
+    revalidatePath("/admin");
     return { success: true };
   } catch (error) {
-    console.error('Error setting first image:', error);
-    throw new Error('Failed to set first image');
+    console.error("Error setting first image:", error);
+    throw new Error("Failed to set first image");
   }
 }
 
@@ -427,11 +437,11 @@ export async function setAboutUsImage(imageId: string) {
       .set({ isAboutUsImage: true })
       .where(eq(tadaImages.id, imageId));
 
-    revalidatePath('/admin');
+    revalidatePath("/admin");
     return { success: true };
   } catch (error) {
-    console.error('Error setting about us image:', error);
-    throw new Error('Failed to set about us image');
+    console.error("Error setting about us image:", error);
+    throw new Error("Failed to set about us image");
   }
 }
 
@@ -449,12 +459,12 @@ export async function setMaureenImage(imageId: string) {
       .set({ isMaureenImage: true })
       .where(eq(tadaImages.id, imageId));
 
-    revalidatePath('/admin');
-    revalidatePath('/about');
+    revalidatePath("/admin");
+    revalidatePath("/about");
     return { success: true };
   } catch (error) {
-    console.error('Error setting Maureen image:', error);
-    throw new Error('Failed to set Maureen image');
+    console.error("Error setting Maureen image:", error);
+    throw new Error("Failed to set Maureen image");
   }
 }
 
@@ -472,12 +482,12 @@ export async function setJoannaImage(imageId: string) {
       .set({ isJoannaImage: true })
       .where(eq(tadaImages.id, imageId));
 
-    revalidatePath('/admin');
-    revalidatePath('/about');
+    revalidatePath("/admin");
+    revalidatePath("/about");
     return { success: true };
   } catch (error) {
-    console.error('Error setting Joanna image:', error);
-    throw new Error('Failed to set Joanna image');
+    console.error("Error setting Joanna image:", error);
+    throw new Error("Failed to set Joanna image");
   }
 }
 
@@ -495,12 +505,12 @@ export async function setTeamImage(imageId: string) {
       .set({ isTeamImage: true })
       .where(eq(tadaImages.id, imageId));
 
-    revalidatePath('/admin');
-    revalidatePath('/about');
+    revalidatePath("/admin");
+    revalidatePath("/about");
     return { success: true };
   } catch (error) {
-    console.error('Error setting team image:', error);
-    throw new Error('Failed to set team image');
+    console.error("Error setting team image:", error);
+    throw new Error("Failed to set team image");
   }
 }
 
@@ -510,7 +520,7 @@ export async function setSecondImage(imageId: string) {
     const currentSecond = await db
       .select({
         secondImageTitle: tadaImages.secondImageTitle,
-        secondImageSubtitle: tadaImages.secondImageSubtitle
+        secondImageSubtitle: tadaImages.secondImageSubtitle,
       })
       .from(tadaImages)
       .where(eq(tadaImages.isSecondImage, true))
@@ -520,7 +530,7 @@ export async function setSecondImage(imageId: string) {
     const newImage = await db
       .select({
         secondImageTitle: tadaImages.secondImageTitle,
-        secondImageSubtitle: tadaImages.secondImageSubtitle
+        secondImageSubtitle: tadaImages.secondImageSubtitle,
       })
       .from(tadaImages)
       .where(eq(tadaImages.id, imageId))
@@ -534,24 +544,30 @@ export async function setSecondImage(imageId: string) {
 
     // Set the new second image, preserving existing text if new image doesn't have text
     const textToUse = {
-      secondImageTitle: newImage[0]?.secondImageTitle || (currentSecond[0]?.secondImageTitle || null),
-      secondImageSubtitle: newImage[0]?.secondImageSubtitle || (currentSecond[0]?.secondImageSubtitle || null)
+      secondImageTitle:
+        newImage[0]?.secondImageTitle ||
+        currentSecond[0]?.secondImageTitle ||
+        null,
+      secondImageSubtitle:
+        newImage[0]?.secondImageSubtitle ||
+        currentSecond[0]?.secondImageSubtitle ||
+        null,
     };
 
     await db
       .update(tadaImages)
-      .set({ 
+      .set({
         isSecondImage: true,
         secondImageTitle: textToUse.secondImageTitle,
-        secondImageSubtitle: textToUse.secondImageSubtitle
+        secondImageSubtitle: textToUse.secondImageSubtitle,
       })
       .where(eq(tadaImages.id, imageId));
 
-    revalidatePath('/admin');
+    revalidatePath("/admin");
     return { success: true };
   } catch (error) {
-    console.error('Error setting second image:', error);
-    throw new Error('Failed to set second image');
+    console.error("Error setting second image:", error);
+    throw new Error("Failed to set second image");
   }
 }
 
@@ -561,7 +577,7 @@ export async function setThirdImage(imageId: string) {
     const currentThird = await db
       .select({
         thirdImageTitle: tadaImages.thirdImageTitle,
-        thirdImageSubtitle: tadaImages.thirdImageSubtitle
+        thirdImageSubtitle: tadaImages.thirdImageSubtitle,
       })
       .from(tadaImages)
       .where(eq(tadaImages.isThirdImage, true))
@@ -571,7 +587,7 @@ export async function setThirdImage(imageId: string) {
     const newImage = await db
       .select({
         thirdImageTitle: tadaImages.thirdImageTitle,
-        thirdImageSubtitle: tadaImages.thirdImageSubtitle
+        thirdImageSubtitle: tadaImages.thirdImageSubtitle,
       })
       .from(tadaImages)
       .where(eq(tadaImages.id, imageId))
@@ -585,24 +601,30 @@ export async function setThirdImage(imageId: string) {
 
     // Set the new third image, preserving existing text if new image doesn't have text
     const textToUse = {
-      thirdImageTitle: newImage[0]?.thirdImageTitle || (currentThird[0]?.thirdImageTitle || null),
-      thirdImageSubtitle: newImage[0]?.thirdImageSubtitle || (currentThird[0]?.thirdImageSubtitle || null)
+      thirdImageTitle:
+        newImage[0]?.thirdImageTitle ||
+        currentThird[0]?.thirdImageTitle ||
+        null,
+      thirdImageSubtitle:
+        newImage[0]?.thirdImageSubtitle ||
+        currentThird[0]?.thirdImageSubtitle ||
+        null,
     };
 
     await db
       .update(tadaImages)
-      .set({ 
+      .set({
         isThirdImage: true,
         thirdImageTitle: textToUse.thirdImageTitle,
-        thirdImageSubtitle: textToUse.thirdImageSubtitle
+        thirdImageSubtitle: textToUse.thirdImageSubtitle,
       })
       .where(eq(tadaImages.id, imageId));
 
-    revalidatePath('/admin');
+    revalidatePath("/admin");
     return { success: true };
   } catch (error) {
-    console.error('Error setting third image:', error);
-    throw new Error('Failed to set third image');
+    console.error("Error setting third image:", error);
+    throw new Error("Failed to set third image");
   }
 }
 
@@ -620,12 +642,12 @@ export async function setResidentialCoverImage(imageId: string) {
       .set({ isResidentialCover: true })
       .where(eq(tadaImages.id, imageId));
 
-    revalidatePath('/admin');
-    revalidatePath('/gallery');
+    revalidatePath("/admin");
+    revalidatePath("/gallery");
     return { success: true };
   } catch (error) {
-    console.error('Error setting residential cover image:', error);
-    throw new Error('Failed to set residential cover image');
+    console.error("Error setting residential cover image:", error);
+    throw new Error("Failed to set residential cover image");
   }
 }
 
@@ -643,12 +665,12 @@ export async function setCommercialCoverImage(imageId: string) {
       .set({ isCommercialCover: true })
       .where(eq(tadaImages.id, imageId));
 
-    revalidatePath('/admin');
-    revalidatePath('/gallery');
+    revalidatePath("/admin");
+    revalidatePath("/gallery");
     return { success: true };
   } catch (error) {
-    console.error('Error setting commercial cover image:', error);
-    throw new Error('Failed to set commercial cover image');
+    console.error("Error setting commercial cover image:", error);
+    throw new Error("Failed to set commercial cover image");
   }
 }
 
@@ -658,10 +680,12 @@ export async function setProjectCoverImage(imageId: string, projectId: string) {
     await db
       .update(tadaImages)
       .set({ isProjectCover: false })
-      .where(and(
-        eq(tadaImages.folderId, projectId),
-        eq(tadaImages.isProjectCover, true)
-      ));
+      .where(
+        and(
+          eq(tadaImages.folderId, projectId),
+          eq(tadaImages.isProjectCover, true),
+        ),
+      );
 
     // Set the new project cover image
     await db
@@ -669,12 +693,12 @@ export async function setProjectCoverImage(imageId: string, projectId: string) {
       .set({ isProjectCover: true })
       .where(eq(tadaImages.id, imageId));
 
-    revalidatePath('/admin');
-    revalidatePath('/gallery');
+    revalidatePath("/admin");
+    revalidatePath("/gallery");
     return { success: true };
   } catch (error) {
-    console.error('Error setting project cover image:', error);
-    throw new Error('Failed to set project cover image');
+    console.error("Error setting project cover image:", error);
+    throw new Error("Failed to set project cover image");
   }
 }
 
@@ -687,12 +711,16 @@ export async function getAllFolders() {
 
     return folders;
   } catch (error) {
-    console.error('Error fetching folders:', error);
+    console.error("Error fetching folders:", error);
     return [];
   }
 }
 
-export async function createFolder(name: string, description?: string, parentId?: string) {
+export async function createFolder(
+  name: string,
+  description?: string,
+  parentId?: string,
+) {
   try {
     // Check if parent is a section folder (residential/commercial) and prevent direct image uploads
     if (parentId) {
@@ -705,18 +733,21 @@ export async function createFolder(name: string, description?: string, parentId?
       if (parentFolder.length > 0) {
         const parent = parentFolder[0];
         // If creating a subfolder under residential or commercial, it's a project
-        if (parent.folderType === 'residential' || parent.folderType === 'commercial') {
+        if (
+          parent.folderType === "residential" ||
+          parent.folderType === "commercial"
+        ) {
           const id = `folder_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
-          
+
           await db.insert(tadaImageFolders).values({
             id,
             name,
             description: description || null,
             parentId: parentId,
-            folderType: 'project',
+            folderType: "project",
           });
 
-          revalidatePath('/admin');
+          revalidatePath("/admin");
           return { success: true, id };
         }
       }
@@ -724,20 +755,20 @@ export async function createFolder(name: string, description?: string, parentId?
 
     // Default folder creation
     const id = `folder_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
-    
+
     await db.insert(tadaImageFolders).values({
       id,
       name,
       description: description || null,
       parentId: parentId || null,
-      folderType: 'project',
+      folderType: "project",
     });
 
-    revalidatePath('/admin');
+    revalidatePath("/admin");
     return { success: true, id };
   } catch (error) {
-    console.error('Error creating folder:', error);
-    throw new Error('Failed to create folder');
+    console.error("Error creating folder:", error);
+    throw new Error("Failed to create folder");
   }
 }
 
@@ -750,8 +781,8 @@ export async function deleteFolder(folderId: string) {
       .where(eq(tadaImageFolders.id, folderId))
       .limit(1);
 
-    if (folder.length > 0 && folder[0].folderType !== 'project') {
-      throw new Error('Cannot delete system folders');
+    if (folder.length > 0 && folder[0].folderType !== "project") {
+      throw new Error("Cannot delete system folders");
     }
 
     // Check if folder has any images
@@ -762,7 +793,7 @@ export async function deleteFolder(folderId: string) {
       .limit(1);
 
     if (imagesInFolder.length > 0) {
-      throw new Error('Cannot delete folder that contains images');
+      throw new Error("Cannot delete folder that contains images");
     }
 
     // Check if folder has any subfolders
@@ -773,23 +804,26 @@ export async function deleteFolder(folderId: string) {
       .limit(1);
 
     if (subfolders.length > 0) {
-      throw new Error('Cannot delete folder that contains subfolders');
+      throw new Error("Cannot delete folder that contains subfolders");
     }
 
     // Delete the folder
-    await db
-      .delete(tadaImageFolders)
-      .where(eq(tadaImageFolders.id, folderId));
+    await db.delete(tadaImageFolders).where(eq(tadaImageFolders.id, folderId));
 
-    revalidatePath('/admin');
+    revalidatePath("/admin");
     return { success: true };
   } catch (error) {
-    console.error('Error deleting folder:', error);
-    throw new Error(error instanceof Error ? error.message : 'Failed to delete folder');
+    console.error("Error deleting folder:", error);
+    throw new Error(
+      error instanceof Error ? error.message : "Failed to delete folder",
+    );
   }
 }
 
-export async function moveImageToFolder(imageId: string, folderId: string | null) {
+export async function moveImageToFolder(
+  imageId: string,
+  folderId: string | null,
+) {
   try {
     // Check if target folder allows direct image uploads
     if (folderId) {
@@ -802,44 +836,55 @@ export async function moveImageToFolder(imageId: string, folderId: string | null
       if (folder.length > 0) {
         const targetFolder = folder[0];
         // Prevent moving images to residential/commercial folders directly
-        if (targetFolder.folderType === 'residential' || targetFolder.folderType === 'commercial') {
-          throw new Error('Images cannot be placed directly in section folders. Please move to a project folder.');
+        if (
+          targetFolder.folderType === "residential" ||
+          targetFolder.folderType === "commercial"
+        ) {
+          throw new Error(
+            "Images cannot be placed directly in section folders. Please move to a project folder.",
+          );
         }
       }
     }
 
     await db
       .update(tadaImages)
-      .set({ 
+      .set({
         folderId: folderId,
-        updatedAt: new Date()
+        updatedAt: new Date(),
       })
       .where(eq(tadaImages.id, imageId));
 
-    revalidatePath('/admin');
+    revalidatePath("/admin");
     return { success: true };
   } catch (error) {
-    console.error('Error moving image:', error);
-    throw new Error(error instanceof Error ? error.message : 'Failed to move image');
+    console.error("Error moving image:", error);
+    throw new Error(
+      error instanceof Error ? error.message : "Failed to move image",
+    );
   }
 }
 
-export async function updateFolderDetails(folderId: string, name: string, description?: string) {
+export async function updateFolderDetails(
+  folderId: string,
+  name: string,
+  description?: string,
+) {
   try {
     await db
       .update(tadaImageFolders)
-      .set({ 
+      .set({
         name,
         description: description || null,
-        updatedAt: new Date()
+        updatedAt: new Date(),
       })
       .where(eq(tadaImageFolders.id, folderId));
 
-    revalidatePath('/admin');
+    revalidatePath("/admin");
     return { success: true };
   } catch (error) {
-    console.error('Error updating folder:', error);
-    throw new Error('Failed to update folder');
+    console.error("Error updating folder:", error);
+    throw new Error("Failed to update folder");
   }
 }
 
@@ -868,88 +913,7 @@ export async function getProjectDetails(projectId: string) {
       images,
     };
   } catch (error) {
-    console.error('Error fetching project details:', error);
+    console.error("Error fetching project details:", error);
     return null;
   }
 }
-
-// Text content update functions for special images
-export async function updateHeroText(imageId: string, title?: string, subtitle?: string) {
-  try {
-    await db
-      .update(tadaImages)
-      .set({ 
-        heroTitle: title || null,
-        heroSubtitle: subtitle || null,
-        updatedAt: new Date()
-      })
-      .where(and(eq(tadaImages.id, imageId), eq(tadaImages.isHero, true)));
-
-    revalidatePath('/');
-    revalidatePath('/admin');
-    return { success: true };
-  } catch (error) {
-    console.error('Error updating hero text:', error);
-    throw new Error('Failed to update hero text');
-  }
-}
-
-export async function updateFirstImageText(imageId: string, title?: string, subtitle?: string) {
-  try {
-    await db
-      .update(tadaImages)
-      .set({ 
-        firstImageTitle: title || null,
-        firstImageSubtitle: subtitle || null,
-        updatedAt: new Date()
-      })
-      .where(and(eq(tadaImages.id, imageId), eq(tadaImages.isFirstImage, true)));
-
-    revalidatePath('/');
-    revalidatePath('/admin');
-    return { success: true };
-  } catch (error) {
-    console.error('Error updating first image text:', error);
-    throw new Error('Failed to update first image text');
-  }
-}
-
-export async function updateSecondImageText(imageId: string, title?: string, subtitle?: string) {
-  try {
-    await db
-      .update(tadaImages)
-      .set({ 
-        secondImageTitle: title || null,
-        secondImageSubtitle: subtitle || null,
-        updatedAt: new Date()
-      })
-      .where(and(eq(tadaImages.id, imageId), eq(tadaImages.isSecondImage, true)));
-
-    revalidatePath('/');
-    revalidatePath('/admin');
-    return { success: true };
-  } catch (error) {
-    console.error('Error updating second image text:', error);
-    throw new Error('Failed to update second image text');
-  }
-}
-
-export async function updateThirdImageText(imageId: string, title?: string, subtitle?: string) {
-  try {
-    await db
-      .update(tadaImages)
-      .set({ 
-        thirdImageTitle: title || null,
-        thirdImageSubtitle: subtitle || null,
-        updatedAt: new Date()
-      })
-      .where(and(eq(tadaImages.id, imageId), eq(tadaImages.isThirdImage, true)));
-
-    revalidatePath('/');
-    revalidatePath('/admin');
-    return { success: true };
-  } catch (error) {
-    console.error('Error updating third image text:', error);
-    throw new Error('Failed to update third image text');
-  }
-} 

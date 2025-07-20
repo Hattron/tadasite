@@ -20,10 +20,6 @@ import {
   deleteFolder,
   moveImageToFolder,
   updateFolderDetails,
-  updateHeroText,
-  updateFirstImageText,
-  updateSecondImageText,
-  updateThirdImageText,
 } from "@/lib/image-actions";
 
 // Component imports
@@ -32,7 +28,7 @@ import UploadForm from "./UploadForm";
 import ImageGrid from "./ImageGrid";
 import FolderDialogs from "./FolderDialogs";
 import ImageDetailsDialog from "./ImageDetailsDialog";
-import ImageTextEditDialog from "./ImageTextEditDialog";
+
 import MoveImageDialog from "./MoveImageDialog";
 import {
   AlertDialog,
@@ -69,10 +65,6 @@ export default function GalleryManager() {
   const [editingFolder, setEditingFolder] = useState<FolderData | null>(null);
   const [isMoveImageOpen, setIsMoveImageOpen] = useState(false);
   const [movingImage, setMovingImage] = useState<ImageData | null>(null);
-  const [textEditImage, setTextEditImage] = useState<ImageData | null>(null);
-  const [textEditType, setTextEditType] = useState<
-    "hero" | "first" | "second" | "third" | null
-  >(null);
 
   // Alert dialog states
   const [alertConfig, setAlertConfig] = useState({
@@ -180,32 +172,6 @@ export default function GalleryManager() {
     setRefreshKey((prev) => prev + 1);
     setIsSectionUploadOpen(false);
     setSectionUploadType(null);
-  };
-
-  // Handle section text editing
-  const handleSectionEditText = (
-    imageType: "hero" | "first" | "second" | "third",
-  ) => {
-    // Find the current image for this section type
-    const currentImage = images.find((img) => {
-      switch (imageType) {
-        case "hero":
-          return img.isHero;
-        case "first":
-          return img.isFirstImage;
-        case "second":
-          return img.isSecondImage;
-        case "third":
-          return img.isThirdImage;
-        default:
-          return false;
-      }
-    });
-
-    if (currentImage) {
-      setTextEditImage(currentImage);
-      setTextEditType(imageType);
-    }
   };
 
   // Folder management handlers
@@ -560,51 +526,6 @@ export default function GalleryManager() {
   };
 
   // Text editing handlers
-  const handleEditText = (imageType: "hero" | "first" | "second" | "third") => {
-    setTextEditImage(selectedImage);
-    setTextEditType(imageType);
-  };
-
-  const handleUpdateText = async (
-    imageId: string,
-    title?: string,
-    subtitle?: string,
-  ) => {
-    if (!textEditType) return;
-
-    try {
-      switch (textEditType) {
-        case "hero":
-          await updateHeroText(imageId, title, subtitle);
-          break;
-        case "first":
-          await updateFirstImageText(imageId, title, subtitle);
-          break;
-        case "second":
-          await updateSecondImageText(imageId, title, subtitle);
-          break;
-        case "third":
-          await updateThirdImageText(imageId, title, subtitle);
-          break;
-      }
-      await loadData();
-      setRefreshKey((prev) => prev + 1); // Trigger refresh of ImageSectionManager
-      setTextEditImage(null);
-      setTextEditType(null);
-    } catch (error) {
-      console.error("Failed to update text:", error);
-      showAlert(
-        "Error",
-        error instanceof Error ? error.message : "Failed to update text",
-        "error",
-      );
-    }
-  };
-
-  const handleCloseTextEdit = () => {
-    setTextEditImage(null);
-    setTextEditType(null);
-  };
 
   if (isLoading) {
     return <div className="p-8 text-center">Loading gallery...</div>;
@@ -644,7 +565,6 @@ export default function GalleryManager() {
           onMoveImage={handleMoveImageClick}
           onUploadClick={() => setIsUploadOpen(true)}
           onSectionUploadClick={handleSectionUploadClick}
-          onSectionEditText={handleSectionEditText}
           refreshKey={refreshKey}
         />
       </div>
@@ -703,15 +623,6 @@ export default function GalleryManager() {
         onSetProjectCover={handleSetProjectCover}
         onMoveImage={handleMoveImageClick}
         onDeleteImage={handleDeleteImage}
-        onEditText={handleEditText}
-      />
-
-      {/* Image Text Edit Dialog */}
-      <ImageTextEditDialog
-        selectedImage={textEditImage}
-        imageType={textEditType}
-        onClose={handleCloseTextEdit}
-        onUpdate={handleUpdateText}
       />
 
       {/* Move Image Dialog */}
