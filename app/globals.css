@@ -129,6 +129,7 @@
   --color-background: #fafafa;
   --color-text: #0d0d0d;
   --color-text-muted: #dcdfe5;
+  --color-footer-text: #dcdfe5;
 
   /* Spacing */
   --spacing-xs: 0.25rem;

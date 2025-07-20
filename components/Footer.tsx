@@ -48,7 +48,7 @@ export default function Footer() {
                   href="/"
                   className="block transition-colors hover:text-white"
                   style={{
-                    color: "var(--color-text-muted, #6b7280)",
+                    color: "var(--color-footer-text, #dcdfe5)",
                     textDecoration: "none",
                   }}
                 >
@@ -58,7 +58,7 @@ export default function Footer() {
                   href="/about"
                   className="block transition-colors hover:text-white"
                   style={{
-                    color: "var(--color-text-muted, #6b7280)",
+                    color: "var(--color-footer-text, #dcdfe5)",
                     textDecoration: "none",
                   }}
                 >
@@ -68,7 +68,7 @@ export default function Footer() {
                   href="/#services"
                   className="block transition-colors hover:text-white"
                   style={{
-                    color: "var(--color-text-muted, #6b7280)",
+                    color: "var(--color-footer-text, #dcdfe5)",
                     textDecoration: "none",
                   }}
                 >
@@ -78,7 +78,7 @@ export default function Footer() {
                   href="/gallery"
                   className="block transition-colors hover:text-white"
                   style={{
-                    color: "var(--color-text-muted, #6b7280)",
+                    color: "var(--color-footer-text, #dcdfe5)",
                     textDecoration: "none",
                   }}
                 >
@@ -88,7 +88,7 @@ export default function Footer() {
                   href="/contact"
                   className="block transition-colors hover:text-white"
                   style={{
-                    color: "var(--color-text-muted, #6b7280)",
+                    color: "var(--color-footer-text, #dcdfe5)",
                     textDecoration: "none",
                   }}
                 >
@@ -106,7 +106,7 @@ export default function Footer() {
                   href="/gallery/residential"
                   className="block transition-colors hover:text-white"
                   style={{
-                    color: "var(--color-text-muted, #6b7280)",
+                    color: "var(--color-footer-text, #dcdfe5)",
                     textDecoration: "none",
                   }}
                 >
@@ -116,7 +116,7 @@ export default function Footer() {
                   href="/gallery/commercial"
                   className="block transition-colors hover:text-white"
                   style={{
-                    color: "var(--color-text-muted, #6b7280)",
+                    color: "var(--color-footer-text, #dcdfe5)",
                     textDecoration: "none",
                   }}
                 >
@@ -126,7 +126,7 @@ export default function Footer() {
                   href="/admin"
                   className="block transition-colors hover:text-white"
                   style={{
-                    color: "var(--color-text-muted, #6b7280)",
+                    color: "var(--color-footer-text, #dcdfe5)",
                     textDecoration: "none",
                   }}
                 >
@@ -141,12 +141,12 @@ export default function Footer() {
         <div
           className="text-center"
           style={{
-            borderTop: `1px solid var(--color-text-muted, #6b7280)`,
+            borderTop: `1px solid var(--color-footer-text, #dcdfe5)`,
             marginTop: "var(--spacing-md, 1rem)",
             paddingTop: "var(--spacing-md, 1rem)",
           }}
         >
-          <p style={{ color: "var(--color-text-muted, #6b7280)" }}>
+          <p style={{ color: "var(--color-footer-text, #dcdfe5)" }}>
             © {new Date().getFullYear()} TaDa! Interior Design. All rights
             reserved.
           </p>

@@ -31,8 +31,8 @@ export default async function Home() {
 
       <AnimatedSection delay={0.15} style={{ paddingTop: "var(--spacing-xl)" }}>
         <ParallaxSection
-          title={firstImage?.firstImageTitle || ""}
-          subtitle={firstImage?.firstImageSubtitle || ""}
+          title=""
+          subtitle='"Designing spaces that feel like home - beautiful, thoughtful, and uniquely you"'
           imageSrc={firstImage?.imagekitUrl || undefined}
           altText={firstImage?.alt || undefined}
           position="left"
@@ -45,8 +45,10 @@ export default async function Home() {
 
       <AnimatedSection delay={0.25} style={{ paddingTop: "var(--spacing-xl)" }}>
         <ParallaxSection
-          title={secondImage?.secondImageTitle || ""}
-          subtitle={secondImage?.secondImageSubtitle || ""}
+          title=""
+          subtitle={`"I deeply believe that a beautiful decor can have a beneficial influence on our lives."
+
+- Albert Hadley`}
           imageSrc={secondImage?.imagekitUrl || undefined}
           altText={secondImage?.alt || undefined}
           position="right"
@@ -66,8 +68,8 @@ export default async function Home() {
 
       <AnimatedSection delay={0.35} style={{ paddingTop: "var(--spacing-xl)" }}>
         <ParallaxSection
-          title={thirdImage?.thirdImageTitle || ""}
-          subtitle={thirdImage?.thirdImageSubtitle || ""}
+          title="Ready to Get Started?"
+          subtitle="Your dream space is just a few clicks away."
           imageSrc={thirdImage?.imagekitUrl || undefined}
           altText={thirdImage?.alt || undefined}
           position="left"
