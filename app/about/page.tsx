@@ -6,6 +6,9 @@ import { getTeamImage } from "@/lib/image-actions";
 import { imagekitConfig } from "@/lib/imagekit";
 import ImageFrame from "@/components/ui/ImageFrame";
 
+// Force dynamic rendering to ensure fresh content
+export const revalidate = 0;
+
 // Helper function to extract path from ImageKit URL
 const getImagePath = (fullUrl: string) => {
   return fullUrl.replace(/^https:\/\/ik\.imagekit\.io\/[^\/]+/, "");

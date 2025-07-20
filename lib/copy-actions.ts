@@ -179,6 +179,23 @@ export async function createCopyContent(data: {
     revalidatePath("/about");
     revalidatePath("/admin");
 
+    // Also trigger cache revalidation across all edge nodes
+    try {
+      await fetch(
+        `${process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"}/api/revalidate`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            secret: process.env.REVALIDATE_SECRET,
+            paths: ["/", "/about", "/admin"],
+          }),
+        },
+      );
+    } catch (error) {
+      console.warn("Failed to trigger edge cache revalidation:", error);
+    }
+
     return { success: true, id };
   } catch (error) {
     console.error("Error creating copy content:", error);
@@ -212,6 +229,23 @@ export async function updateCopyContent(
     revalidatePath("/about");
     revalidatePath("/admin");
 
+    // Also trigger cache revalidation across all edge nodes
+    try {
+      await fetch(
+        `${process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"}/api/revalidate`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            secret: process.env.REVALIDATE_SECRET,
+            paths: ["/", "/about", "/admin"],
+          }),
+        },
+      );
+    } catch (error) {
+      console.warn("Failed to trigger edge cache revalidation:", error);
+    }
+
     return { success: true };
   } catch (error) {
     console.error("Error updating copy content:", error);
@@ -236,6 +270,23 @@ export async function deleteCopyContent(
     revalidatePath("/");
     revalidatePath("/about");
     revalidatePath("/admin");
+
+    // Also trigger cache revalidation across all edge nodes
+    try {
+      await fetch(
+        `${process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"}/api/revalidate`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            secret: process.env.REVALIDATE_SECRET,
+            paths: ["/", "/about", "/admin"],
+          }),
+        },
+      );
+    } catch (error) {
+      console.warn("Failed to trigger edge cache revalidation:", error);
+    }
 
     return { success: true };
   } catch (error) {

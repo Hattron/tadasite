@@ -1,0 +1,38 @@
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+# Next.js specific settings
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+# Headers for dynamic content pages
+[[headers]]
+  for = "/about"
+  [headers.values]
+    Cache-Control = "s-maxage=0, stale-while-revalidate=60"
+
+[[headers]]
+  for = "/"
+  [headers.values]
+    Cache-Control = "s-maxage=0, stale-while-revalidate=60"
+
+[[headers]]
+  for = "/admin/*"
+  [headers.values]
+    Cache-Control = "no-cache, no-store, must-revalidate"
+
+[[headers]]
+  for = "/api/*"
+  [headers.values]
+    Cache-Control = "no-cache, no-store, must-revalidate"
+
+# Build environment
+[build.environment]
+  NODE_VERSION = "18"
+  NEXT_TELEMETRY_DISABLED = "1"
+
+# Function settings for server-side rendering
+[functions]
+  directory = ".netlify/functions"
+  node_bundler = "esbuild"
