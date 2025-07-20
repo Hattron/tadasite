@@ -18,7 +18,7 @@ export default function ParallaxSection({
   subtitle,
   imageSrc,
   altText,
-  transformation = "w-1440,h-810,q-90",
+  transformation = "w-2400,h-1350,q-90,c-maintain_ratio",
   speed = -30,
   position = "left",
 }: ParallaxSectionProps) {
@@ -37,10 +37,9 @@ export default function ParallaxSection({
     >
       {/* Text Section - Full width on mobile, 1/4 width on desktop */}
       <motion.div
-        className={`${position === "left" ? "lg:order-2" : "lg:order-1"} w-full lg:w-1/6 flex items-center justify-center py-8 px-4 sm:py-12 sm:px-8 lg:py-0`}
+        className={`${position === "left" ? "lg:order-2" : "lg:order-1"} w-full lg:w-1/6 flex items-center justify-center py-8 px-4 sm:py-12 sm:px-8 lg:py-12 lg:px-8`}
         style={{
           backgroundColor: "var(--color-accent)",
-          padding: "var(--spacing-lg) var(--spacing-md)",
         }}
         initial={{
           x: position === "left" ? 100 : -100,
@@ -66,7 +65,9 @@ export default function ParallaxSection({
             <motion.h2
               className="font-bold text-2xl sm:text-3xl lg:text-4xl"
               style={{
-                fontFamily: "var(--font-primary)",
+                fontFamily: title.startsWith('"')
+                  ? "var(--font-quote)"
+                  : "var(--font-primary)",
                 color: "var(--color-primary)",
                 margin: `0 0 var(--spacing-md) 0`,
                 textAlign: "center",
