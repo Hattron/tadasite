@@ -113,7 +113,9 @@ export default async function MaureenBio() {
             >
               After graduating with honours from the Residential Décor program
               at Algonquin college Maureen embarked on a career that has spanned
-              over two decades.
+              over two decades. Her journey in interior design has been marked
+              by continuous learning, creative growth, and an unwavering
+              commitment to excellence.
             </div>
             <div
               className="leading-relaxed"
@@ -124,7 +126,10 @@ export default async function MaureenBio() {
               }}
             >
               Maureen brings a true passion for creativity to every project she
-              takes on.
+              takes on. Constantly inspired by the latest trends, she has a keen
+              eye for timeless design that won't go out of style. Her approach
+              balances current aesthetics with enduring appeal, ensuring her
+              clients' spaces remain beautiful for years to come.
             </div>
             <div
               className="leading-relaxed"
@@ -135,7 +140,10 @@ export default async function MaureenBio() {
               }}
             >
               Over the years Maureen has leant her skills and expertise to a
-              number of companies and organizations.
+              number of companies and organizations, always bringing her
+              signature blend of professionalism and creative vision. This
+              diverse experience has enriched her understanding of different
+              design challenges and client needs.
             </div>
             <div
               className="leading-relaxed"
@@ -146,7 +154,10 @@ export default async function MaureenBio() {
               }}
             >
               Maureen values the great relationships that develop while working
-              with her clients.
+              with her clients. Many of her clients have become long-term
+              friends, a testament to her genuine care and dedication to
+              creating spaces that truly reflect their personalities and
+              lifestyles.
             </div>
             <div
               className="leading-relaxed"
@@ -158,7 +169,9 @@ export default async function MaureenBio() {
             >
               In addition to being a wife and proud mom of two boys Maureen
               finds joy in gardening, unwinding through yoga and meditation, and
-              exploring new destinations through travel.
+              exploring new destinations through travel. These personal passions
+              often inspire elements in her design work, bringing organic beauty
+              and mindful tranquility to her projects.
             </div>
           </div>
         </div>

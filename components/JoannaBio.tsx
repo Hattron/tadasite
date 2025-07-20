@@ -108,7 +108,9 @@ export default async function JoannaBio() {
             >
               While she studied sociology in university, Joanna found that
               understanding how people live, interact, and connect became the
-              foundation for her design philosophy.
+              foundation for her design philosophy. This background gives her a
+              unique perspective on creating spaces that truly serve the people
+              who use them.
             </div>
             <div
               className="leading-relaxed"
@@ -119,7 +121,9 @@ export default async function JoannaBio() {
               }}
             >
               A people person at heart - social, intuitive, and deeply committed
-              to creating spaces that feel personal and welcoming.
+              to creating spaces that feel personal and welcoming. Joanna
+              believes that the best designs emerge from truly understanding her
+              clients' stories, dreams, and daily routines.
             </div>
             <div
               className="leading-relaxed"
@@ -131,7 +135,9 @@ export default async function JoannaBio() {
             >
               Joanna's years working in the hospitality industry sharpened her
               eye for functional beauty, especially in spaces where comfort and
-              style must coexist seamlessly.
+              style must coexist seamlessly. This experience taught her how
+              design details can significantly impact how people feel in a
+              space.
             </div>
             <div
               className="leading-relaxed"
@@ -142,7 +148,9 @@ export default async function JoannaBio() {
               }}
             >
               She later followed her passion and graduated with honours from the
-              Interior Decorating program at Algonquin College.
+              Interior Decorating program at Algonquin College, where she honed
+              her technical skills while staying true to her people-centered
+              design approach.
             </div>
             <div
               className="leading-relaxed"
@@ -154,7 +162,8 @@ export default async function JoannaBio() {
             >
               Joanna loves to travel and finds endless inspiration in the
               colours, textures, and cultures she has experienced around the
-              world.
+              world. These global influences often find their way into her
+              designs, creating spaces with depth, character, and story.
             </div>
             <div
               className="leading-relaxed"
@@ -165,7 +174,9 @@ export default async function JoannaBio() {
               }}
             >
               As a mother of two, she understands how important it is for spaces
-              to be both stylish and livable.
+              to be both stylish and livable. Her designs always consider the
+              reality of daily life, ensuring that beautiful spaces remain
+              functional for families and individuals alike.
             </div>
             <div
               className="leading-relaxed"
@@ -177,7 +188,8 @@ export default async function JoannaBio() {
             >
               Joanna is proud to have built lasting relationships with many
               repeat clients, tailoring each space to evolve with their changing
-              needs and life stages.
+              needs and life stages. She sees each project as the beginning of
+              an ongoing design journey with her clients.
             </div>
           </div>
         </div>
