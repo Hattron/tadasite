@@ -1,85 +1,100 @@
-import { getMaureenImage } from '@/lib/image-actions';
-import { getCopyContentBySection } from '@/lib/copy-actions';
-import { imagekitConfig } from '@/lib/imagekit';
-import ImageFrame from '@/components/ui/ImageFrame';
+import { getMaureenImage } from "@/lib/image-actions";
+import { getCopyContentBySection } from "@/lib/copy-actions";
+import { imagekitConfig } from "@/lib/imagekit";
+import ImageFrame from "@/components/ui/ImageFrame";
 
 // Helper function to extract path from ImageKit URL
 const getImagePath = (fullUrl: string) => {
-  return fullUrl.replace(/^https:\/\/ik\.imagekit\.io\/[^\/]+/, '');
+  return fullUrl.replace(/^https:\/\/ik\.imagekit\.io\/[^\/]+/, "");
 };
 
 export default async function MaureenBio() {
   const [maurImage, bioContent] = await Promise.all([
     getMaureenImage(),
-    getCopyContentBySection('about', 'maureen-bio')
+    getCopyContentBySection("about", "maureen-bio"),
   ]);
 
   return (
-    <section 
-      className="px-8" 
-      style={{ 
-        backgroundColor: 'var(--color-background)',
-        paddingTop: 'var(--spacing-3xl)',
-        paddingBottom: 'var(--spacing-3xl)'
+    <section
+      className="px-8"
+      style={{
+        backgroundColor: "var(--color-background)",
+        paddingTop: "var(--spacing-3xl)",
+        paddingBottom: "var(--spacing-3xl)",
       }}
     >
-      <div style={{ maxWidth: 'var(--container-max-width)' }} className="mx-auto">
+      <div
+        style={{ maxWidth: "var(--container-max-width)" }}
+        className="mx-auto"
+      >
         {/* Main Title */}
-        <h1 
-          className="font-bold text-center"
-          style={{ 
-            color: 'var(--color-primary)',
-            fontFamily: 'var(--font-primary)',
-            fontSize: 'var(--font-size-4xl)',
-            marginBottom: 'var(--spacing-md)'
+        <h1
+          className="text-3xl sm:text-4xl md:text-5xl font-light text-center"
+          style={{
+            color: "var(--color-primary)",
+            fontFamily: "var(--font-primary)",
+            marginBottom: "var(--spacing-md)",
           }}
         >
           C. Maureen Rice
         </h1>
-        
+
         {/* Subtitle */}
-        <h2 
+        <h2
           className="text-center font-medium"
-          style={{ 
-            color: 'var(--color-text)',
-            fontFamily: 'var(--font-secondary)',
-            fontSize: 'var(--font-size-xl)',
-            marginBottom: 'var(--spacing-3xl)',
-            opacity: 0.8
+          style={{
+            color: "var(--color-text)",
+            fontFamily: "var(--font-secondary)",
+            fontSize: "var(--font-size-xl)",
+            marginBottom: "var(--spacing-3xl)",
+            opacity: 0.8,
           }}
         >
           Certified Interior Decorator
         </h2>
-        
-        <div 
+
+        <div
           className="grid grid-cols-1 lg:[grid-template-columns:auto_1fr] items-start place-items-start"
-          style={{ gap: 'var(--spacing-about-image-gap-tight)' }}
+          style={{ gap: "var(--spacing-about-image-gap-tight)" }}
         >
           {/* Image Section */}
-          <div 
+          <div
             className="mb-8 lg:mb-0 flex justify-center lg:justify-start items-start lg:pr-4 lg:md:pr-8 lg:lg:pr-12"
-            style={{ 
-              marginBottom: 'var(--spacing-2xl)',
-              width: '100%'
+            style={{
+              marginBottom: "var(--spacing-2xl)",
+              width: "100%",
             }}
           >
             {maurImage ? (
               <ImageFrame variant="default">
                 <img
                   src={`${imagekitConfig.urlEndpoint}${getImagePath(maurImage.imagekitUrl)}?tr=w-300,h-300,q-90`}
-                  alt={maurImage.alt || 'Maureen Rice, certified interior decorator'}
+                  alt={
+                    maurImage.alt ||
+                    "Maureen Rice, certified interior decorator"
+                  }
                   className="h-auto"
-                  style={{ maxWidth: 'var(--image-about-medium-max-width)', display: 'block' }}
+                  style={{
+                    maxWidth: "var(--image-about-medium-max-width)",
+                    display: "block",
+                  }}
                 />
               </ImageFrame>
             ) : (
-              <div 
+              <div
                 className="h-48 flex items-center justify-center"
-                style={{ maxWidth: 'var(--image-about-medium-max-width)', opacity: 0.1 }}
+                style={{
+                  maxWidth: "var(--image-about-medium-max-width)",
+                  opacity: 0.1,
+                }}
               >
-                <p 
+                <p
                   className="text-center"
-                  style={{ color: 'var(--color-text)', fontFamily: 'var(--font-secondary)', fontSize: 'var(--font-size-base)' }}
+                  style={{
+                    color: "var(--color-text)",
+                    fontFamily: "var(--font-secondary)",
+                    fontSize: "var(--font-size-base)",
+                  }}
                 >
                   Set a Maureen image in the gallery manager
                 </p>
@@ -88,15 +103,18 @@ export default async function MaureenBio() {
           </div>
 
           {/* Content Section */}
-          <div className="flex flex-col w-full lg:w-3/4" style={{ gap: 'var(--spacing-lg)' }}>
+          <div
+            className="flex flex-col w-full lg:w-3/4"
+            style={{ gap: "var(--spacing-lg)" }}
+          >
             {bioContent.map((content) => (
               <div
                 key={content.id}
                 className="leading-relaxed"
-                style={{ 
-                  color: 'var(--color-text)',
-                  fontFamily: 'var(--font-secondary)',
-                  fontSize: 'var(--font-size-lg)'
+                style={{
+                  color: "var(--color-text)",
+                  fontFamily: "var(--font-secondary)",
+                  fontSize: "var(--font-size-lg)",
                 }}
                 dangerouslySetInnerHTML={{ __html: content.content }}
               />
@@ -106,4 +124,4 @@ export default async function MaureenBio() {
       </div>
     </section>
   );
-} 
+}

@@ -1,68 +1,69 @@
-import { getProjectsByType } from '@/lib/image-actions';
-import { imagekitConfig } from '@/lib/imagekit';
-import Link from 'next/link';
+import { getProjectsByType } from "@/lib/image-actions";
+import { imagekitConfig } from "@/lib/imagekit";
+import Link from "next/link";
 
 const getImagePath = (fullUrl: string) => {
-  return fullUrl.replace(/^https:\/\/ik\.imagekit\.io\/[^\/]+/, '');
+  return fullUrl.replace(/^https:\/\/ik\.imagekit\.io\/[^\/]+/, "");
 };
 
 export default async function CommercialPage() {
-  const commercialProjects = await getProjectsByType('commercial');
+  const commercialProjects = await getProjectsByType("commercial");
 
   return (
-    <div 
+    <div
       className="min-h-screen py-20 px-8"
       style={{
-        paddingTop: 'calc(var(--navbar-height) + var(--spacing-md))',
-        backgroundColor: 'var(--color-background)',
-        color: 'var(--color-text)',
-        fontFamily: 'var(--font-primary)',
+        paddingTop: "calc(var(--navbar-height) + var(--spacing-md))",
+        backgroundColor: "var(--color-background)",
+        color: "var(--color-text)",
+        fontFamily: "var(--font-primary)",
       }}
     >
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="text-center mb-20">
-          <Link 
+          <Link
             href="/gallery"
             className="inline-block mb-6 text-sm font-medium hover:underline"
-            style={{ color: 'var(--color-secondary)' }}
+            style={{ color: "var(--color-secondary)" }}
           >
             ← Back to Gallery
           </Link>
-          <h1 
-            className="text-4xl md:text-5xl font-light mb-6"
-            style={{ 
-              color: 'var(--color-text)',
-              fontFamily: 'var(--font-primary)'
+          <h1
+            className="text-3xl sm:text-4xl md:text-5xl font-light text-center mb-6"
+            style={{
+              color: "var(--color-primary)",
+              fontFamily: "var(--font-primary)",
             }}
           >
             Commercial Projects
           </h1>
-          
+
           {/* Decorative line */}
           <div className="flex justify-center mb-8">
-            <div 
+            <div
               className="w-16 h-0.5"
-              style={{ backgroundColor: 'var(--color-secondary)' }}
+              style={{ backgroundColor: "var(--color-secondary)" }}
             ></div>
           </div>
-          
-          <p 
+
+          <p
             className="text-lg max-w-2xl mx-auto leading-relaxed"
-            style={{ 
-              color: 'var(--color-text)',
-              fontFamily: 'var(--font-secondary)'
+            style={{
+              color: "var(--color-text)",
+              fontFamily: "var(--font-secondary)",
             }}
           >
-            Designing inspiring workspaces that enhance productivity, foster collaboration, and strengthen brand identity.
+            Designing inspiring workspaces that enhance productivity, foster
+            collaboration, and strengthen brand identity.
           </p>
         </div>
 
         {/* Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {commercialProjects.map((project) => (
-            <Link 
-              key={project.id} 
+            <Link
+              key={project.id}
               href={`/gallery/commercial/${project.id}`}
               className="group"
             >
@@ -79,16 +80,16 @@ export default async function CommercialPage() {
                   </div>
                 )}
                 <div className="p-4">
-                  <h3 
+                  <h3
                     className="text-xl font-semibold mb-2"
-                    style={{ color: 'var(--color-primary)' }}
+                    style={{ color: "var(--color-primary)" }}
                   >
                     {project.name}
                   </h3>
                   {project.description && (
-                    <p 
+                    <p
                       className="text-sm leading-relaxed"
-                      style={{ color: 'var(--color-text-muted)' }}
+                      style={{ color: "var(--color-text-muted)" }}
                     >
                       {project.description}
                     </p>
@@ -101,10 +102,7 @@ export default async function CommercialPage() {
 
         {commercialProjects.length === 0 && (
           <div className="text-center py-16">
-            <p 
-              className="text-xl"
-              style={{ color: 'var(--color-text-muted)' }}
-            >
+            <p className="text-xl" style={{ color: "var(--color-text-muted)" }}>
               No commercial projects available yet. Check back soon!
             </p>
           </div>
@@ -112,4 +110,4 @@ export default async function CommercialPage() {
       </div>
     </div>
   );
-} 
+}
