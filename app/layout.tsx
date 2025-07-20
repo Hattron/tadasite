@@ -1,7 +1,11 @@
 import type { Metadata } from "next";
 import { Quicksand, Inter, Raleway } from "next/font/google";
 import "./globals.css";
-import { getCssVariables, cssVariablesToString } from "@/lib/css-variables";
+import {
+  getCssVariables,
+  cssVariablesToString,
+  defaultCssVariables,
+} from "@/lib/css-variables";
 import { ParallaxProvider } from "@/components/ParallaxProvider";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
@@ -31,7 +35,13 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const cssVariables = await getCssVariables();
+  let cssVariables;
+  try {
+    cssVariables = await getCssVariables();
+  } catch (error) {
+    console.error("Failed to load CSS variables, using defaults:", error);
+    cssVariables = defaultCssVariables;
+  }
 
   return (
     <html lang="en">
@@ -54,6 +64,7 @@ ${cssVariablesToString(cssVariables)}
           backgroundColor: "var(--color-background)",
           color: "var(--color-text)",
         }}
+        suppressHydrationWarning={true}
       >
         <Navbar />
         <ParallaxProvider>
