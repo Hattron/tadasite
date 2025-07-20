@@ -1,10 +1,7 @@
-"use client";
-
-import { motion } from "framer-motion";
 import { getAboutUsImage } from "@/lib/image-actions";
 import { getCopyContentByKeys } from "@/lib/copy-actions";
 import { imagekitConfig } from "@/lib/imagekit";
-import { useEffect, useState } from "react";
+import ClientMotionWrapper from "./ClientMotionWrapper";
 
 // Helper function to extract path from ImageKit URL
 const getImagePath = (fullUrl: string) => {
@@ -18,29 +15,15 @@ interface AboutUsImageData {
   caption: string | null;
 }
 
-export default function AboutUsAnimated() {
-  const [aboutUsImage, setAboutUsImage] = useState<AboutUsImageData | null>(
-    null,
-  );
-  const [copyContent, setCopyContent] = useState<Record<string, string>>({});
-
-  useEffect(() => {
-    const loadContent = async () => {
-      const [image, content] = await Promise.all([
-        getAboutUsImage(),
-        getCopyContentByKeys([
-          "home-about-us-paragraph-1",
-          "home-about-us-paragraph-2",
-          "home-about-us-paragraph-3",
-        ]),
-      ]);
-
-      setAboutUsImage(image);
-      setCopyContent(content);
-    };
-
-    loadContent();
-  }, []);
+export default async function AboutUsAnimated() {
+  const [aboutUsImage, copyContent] = await Promise.all([
+    getAboutUsImage(),
+    getCopyContentByKeys([
+      "home-about-us-paragraph-1",
+      "home-about-us-paragraph-2",
+      "home-about-us-paragraph-3",
+    ]),
+  ]);
 
   return (
     <section
@@ -48,23 +31,26 @@ export default function AboutUsAnimated() {
       style={{ backgroundColor: "var(--color-background)" }}
     >
       <div className="max-w-7xl mx-auto">
-        <motion.h2
-          className="text-3xl sm:text-4xl md:text-5xl font-light text-center mb-8 sm:mb-16"
-          style={{
-            color: "var(--color-primary)",
-            fontFamily: "var(--font-primary)",
-          }}
+        <ClientMotionWrapper
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          About Us
-        </motion.h2>
+          <h2
+            className="text-3xl sm:text-4xl md:text-5xl font-light text-center mb-8 sm:mb-16"
+            style={{
+              color: "var(--color-primary)",
+              fontFamily: "var(--font-primary)",
+            }}
+          >
+            About Us
+          </h2>
+        </ClientMotionWrapper>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-center">
           {/* Image Section */}
-          <motion.div
+          <ClientMotionWrapper
             className="flex justify-center lg:justify-start order-1 lg:order-1"
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -72,18 +58,10 @@ export default function AboutUsAnimated() {
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             {aboutUsImage ? (
-              <motion.img
+              <img
                 src={`${imagekitConfig.urlEndpoint}${getImagePath(aboutUsImage.imagekitUrl)}?tr=w-600,h-600,q-90`}
                 alt={aboutUsImage.alt || "About TaDa! Interiors"}
                 className="rounded-2xl shadow-lg max-w-full h-auto w-full max-w-xs sm:max-w-md lg:max-w-lg"
-                initial={{ scale: 0.9, opacity: 0 }}
-                whileInView={{ scale: 1, opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.5 }}
-                whileHover={{
-                  scale: 1.02,
-                  transition: { duration: 0.3 },
-                }}
               />
             ) : (
               <div
@@ -101,26 +79,22 @@ export default function AboutUsAnimated() {
                 </p>
               </div>
             )}
-          </motion.div>
+          </ClientMotionWrapper>
 
           {/* Content Section */}
-          <motion.div
+          <ClientMotionWrapper
             className="space-y-4 sm:space-y-6 order-2 lg:order-2"
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            <motion.div
+            <div
               className="text-base sm:text-lg leading-relaxed"
               style={{
                 color: "var(--color-text)",
                 fontFamily: "var(--font-secondary)",
               }}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.6 }}
               dangerouslySetInnerHTML={{
                 __html:
                   copyContent["home-about-us-paragraph-1"] ||
@@ -128,16 +102,12 @@ export default function AboutUsAnimated() {
               }}
             />
 
-            <motion.div
+            <div
               className="text-base sm:text-lg leading-relaxed"
               style={{
                 color: "var(--color-text)",
                 fontFamily: "var(--font-secondary)",
               }}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.8 }}
               dangerouslySetInnerHTML={{
                 __html:
                   copyContent["home-about-us-paragraph-2"] ||
@@ -145,16 +115,12 @@ export default function AboutUsAnimated() {
               }}
             />
 
-            <motion.div
+            <div
               className="text-base sm:text-lg leading-relaxed"
               style={{
                 color: "var(--color-text)",
                 fontFamily: "var(--font-secondary)",
               }}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 1 }}
               dangerouslySetInnerHTML={{
                 __html:
                   copyContent["home-about-us-paragraph-3"] ||
@@ -163,31 +129,20 @@ export default function AboutUsAnimated() {
             />
 
             {/* Call to Action */}
-            <motion.div
-              className="pt-4 sm:pt-6 text-center lg:text-left"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 1.2 }}
-            >
-              <motion.a
+            <div className="pt-4 sm:pt-6 text-center lg:text-left">
+              <a
                 href="mailto:hello@tadainteriordesign.com"
-                className="inline-flex items-center gap-2 rounded-full transition-all font-medium px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg"
+                className="inline-flex items-center gap-2 rounded-full transition-all font-medium px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg hover:scale-105"
                 style={{
                   backgroundColor: "var(--color-primary)",
                   color: "white",
                   fontFamily: "var(--font-secondary)",
                 }}
-                whileHover={{
-                  scale: 1.05,
-                  transition: { duration: 0.2 },
-                }}
-                whileTap={{ scale: 0.95 }}
               >
                 Start Your Project
-              </motion.a>
-            </motion.div>
-          </motion.div>
+              </a>
+            </div>
+          </ClientMotionWrapper>
         </div>
       </div>
     </section>
