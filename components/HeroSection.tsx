@@ -38,7 +38,11 @@ export default function HeroSection({ heroImage }: HeroSectionProps) {
         alt={heroImage.alt || "Interior Design Hero Image"}
         speed={-30}
         className="w-full h-screen"
-        transformation="w-1920,h-1080,q-90"
+        responsive
+        widths={[1280, 1536, 1920, 2048, 2560, 2880, 3840]}
+        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 100vw"
+        transformation="q-90"
+        aspectRatio={16/9}
         overlay={false}
       />
 

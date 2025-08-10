@@ -70,10 +70,10 @@ export default function Navbar() {
             style={{ height: "5rem" }}
           />
           <span
-            className="text-2xl sm:text-3xl font-bold"
+            className="text-3xl sm:text-4xl font-normal"
             style={{
-              color: "var(--color-text, #0d0d0d)",
-              fontFamily: "var(--font-brand, Raleway, sans-serif)",
+              color: "var(--color-primary)",
+              fontFamily: "var(--font-primary)",
             }}
           >
             TaDa! Interiors
@@ -86,40 +86,76 @@ export default function Navbar() {
         >
           <Link
             href="/about"
-            className="font-medium hover:opacity-70"
+            className="font-medium pb-1 transition-all"
             style={{
-              color: "var(--color-text, #0d0d0d)",
-              fontFamily: "var(--font-primary, Inter, sans-serif)",
+              color: "var(--color-primary)",
+              fontFamily: "var(--font-secondary, Inter, sans-serif)",
+              borderBottom: "2px solid transparent",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.opacity = "0.9";
+              e.currentTarget.style.borderBottomColor = "var(--color-secondary)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.opacity = "1";
+              e.currentTarget.style.borderBottomColor = "transparent";
             }}
           >
             About
           </Link>
           <Link
             href="/services"
-            className="font-medium hover:opacity-70"
+            className="font-medium pb-1 transition-all"
             style={{
-              color: "var(--color-text, #0d0d0d)",
-              fontFamily: "var(--font-primary, Inter, sans-serif)",
+              color: "var(--color-primary)",
+              fontFamily: "var(--font-secondary, Inter, sans-serif)",
+              borderBottom: "2px solid transparent",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.opacity = "0.9";
+              e.currentTarget.style.borderBottomColor = "var(--color-secondary)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.opacity = "1";
+              e.currentTarget.style.borderBottomColor = "transparent";
             }}
           >
             Services
           </Link>
           <Link
             href="/gallery"
-            className="font-medium hover:opacity-70"
+            className="font-medium pb-1 transition-all"
             style={{
-              color: "var(--color-text, #0d0d0d)",
-              fontFamily: "var(--font-primary, Inter, sans-serif)",
+              color: "var(--color-primary)",
+              fontFamily: "var(--font-secondary, Inter, sans-serif)",
+              borderBottom: "2px solid transparent",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.opacity = "0.9";
+              e.currentTarget.style.borderBottomColor = "var(--color-secondary)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.opacity = "1";
+              e.currentTarget.style.borderBottomColor = "transparent";
             }}
           >
             Gallery
           </Link>
           <Link
             href="/contact"
-            className="font-medium hover:opacity-70"
+            className="font-medium pb-1 transition-all"
             style={{
-              color: "var(--color-text, #0d0d0d)",
-              fontFamily: "var(--font-primary, Inter, sans-serif)",
+              color: "var(--color-primary)",
+              fontFamily: "var(--font-secondary, Inter, sans-serif)",
+              borderBottom: "2px solid transparent",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.opacity = "0.9";
+              e.currentTarget.style.borderBottomColor = "var(--color-secondary)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.opacity = "1";
+              e.currentTarget.style.borderBottomColor = "transparent";
             }}
           >
             Contact
@@ -170,10 +206,16 @@ export default function Navbar() {
           <div className="px-4 py-2 space-y-1">
             <Link
               href="/about"
-              className="block py-3 px-2 font-medium hover:bg-gray-50 rounded-md"
+              className="block py-3 px-2 font-medium rounded-md transition-all"
               style={{
-                color: "var(--color-text, #0d0d0d)",
-                fontFamily: "var(--font-primary, Inter, sans-serif)",
+                color: "var(--color-primary)",
+                fontFamily: "var(--font-secondary, Inter, sans-serif)",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = "rgba(159, 149, 108, 0.08)"; // subtle secondary tint
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = "transparent";
               }}
               onClick={closeMenu}
             >
@@ -181,10 +223,16 @@ export default function Navbar() {
             </Link>
             <Link
               href="/services"
-              className="block py-3 px-2 font-medium hover:bg-gray-50 rounded-md"
+              className="block py-3 px-2 font-medium rounded-md transition-all"
               style={{
-                color: "var(--color-text, #0d0d0d)",
-                fontFamily: "var(--font-primary, Inter, sans-serif)",
+                color: "var(--color-primary)",
+                fontFamily: "var(--font-secondary, Inter, sans-serif)",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = "rgba(159, 149, 108, 0.08)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = "transparent";
               }}
               onClick={closeMenu}
             >
@@ -192,10 +240,16 @@ export default function Navbar() {
             </Link>
             <Link
               href="/gallery"
-              className="block py-3 px-2 font-medium hover:bg-gray-50 rounded-md"
+              className="block py-3 px-2 font-medium rounded-md transition-all"
               style={{
-                color: "var(--color-text, #0d0d0d)",
-                fontFamily: "var(--font-primary, Inter, sans-serif)",
+                color: "var(--color-primary)",
+                fontFamily: "var(--font-secondary, Inter, sans-serif)",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = "rgba(159, 149, 108, 0.08)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = "transparent";
               }}
               onClick={closeMenu}
             >
@@ -203,10 +257,16 @@ export default function Navbar() {
             </Link>
             <Link
               href="/contact"
-              className="block py-3 px-2 font-medium hover:bg-gray-50 rounded-md"
+              className="block py-3 px-2 font-medium rounded-md transition-all"
               style={{
-                color: "var(--color-text, #0d0d0d)",
-                fontFamily: "var(--font-primary, Inter, sans-serif)",
+                color: "var(--color-primary)",
+                fontFamily: "var(--font-secondary, Inter, sans-serif)",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = "rgba(159, 149, 108, 0.08)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = "transparent";
               }}
               onClick={closeMenu}
             >

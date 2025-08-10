@@ -39,7 +39,7 @@ export default function ParallaxSection({
       <motion.div
         className={`${position === "left" ? "lg:order-2" : "lg:order-1"} w-full lg:w-1/6 flex items-center justify-center py-8 px-4 sm:py-12 sm:px-8 lg:py-12 lg:px-8`}
         style={{
-          backgroundColor: "var(--color-accent)",
+          backgroundColor: "transparent",
         }}
         initial={{
           x: position === "left" ? 100 : -100,
@@ -60,14 +60,17 @@ export default function ParallaxSection({
           className="text-center w-full max-w-md lg:max-w-none"
           style={{ maxWidth: "var(--content-max-width)" }}
         >
+          <div className="relative inline-block caption-corners px-4 py-6 sm:py-8">
+            <span className="outer-corner top-left"></span>
+            <span className="outer-corner bottom-right"></span>
+            <span className="inner-corner top-left"></span>
+            <span className="inner-corner bottom-right"></span>
           {/* Main Title - only show if provided */}
           {title && (
             <motion.h2
-              className="font-bold text-2xl sm:text-3xl lg:text-4xl"
+              className="font-windsong text-2xl sm:text-3xl lg:text-4xl"
               style={{
-                fontFamily: title.startsWith('"')
-                  ? "var(--font-quote)"
-                  : "var(--font-primary)",
+                fontFamily: "'WindSong', cursive",
                 color: "var(--color-primary)",
                 margin: `0 0 var(--spacing-md) 0`,
                 textAlign: "center",
@@ -113,6 +116,7 @@ export default function ParallaxSection({
               ))}
             </motion.p>
           )}
+          </div>
         </div>
       </motion.div>
 

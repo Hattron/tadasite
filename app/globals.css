@@ -1,5 +1,6 @@
 /* Import Google Fonts */
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=WindSong:wght@400;500&display=swap");
 
 /* Local Font Declarations */
 @font-face {
@@ -8,6 +9,57 @@
   font-weight: normal;
   font-style: normal;
   font-display: swap;
+}
+
+.caption-corners {
+  position: relative;
+}
+
+.caption-corners .outer-corner {
+  position: absolute;
+  width: 72px;
+  height: 72px;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+/* Ensure inner corners are positioned absolutely and do not affect layout */
+.caption-corners .inner-corner {
+  position: absolute;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.caption-corners .outer-corner.top-left {
+  top: -6px;
+  left: -6px;
+  border-top: 1px solid var(--color-primary);
+  border-left: 1px solid var(--color-primary);
+}
+
+.caption-corners .outer-corner.bottom-right {
+  bottom: -6px;
+  right: -6px;
+  border-bottom: 1px solid var(--color-primary);
+  border-right: 1px solid var(--color-primary);
+}
+
+.caption-corners .inner-corner.top-left {
+  top: 3px;
+  left: 3px;
+  width: 48px; /* 2/3 of outer length */
+  height: 48px; /* 2/3 of outer length */
+  border-top: 1px solid var(--color-primary);
+  border-left: 1px solid var(--color-primary);
+}
+
+.caption-corners .inner-corner.bottom-right {
+  bottom: 3px;
+  right: 3px;
+  width: 48px;
+  height: 48px;
+  border-bottom: 1px solid var(--color-primary);
+  border-right: 1px solid var(--color-primary);
 }
 
 @import "tailwindcss";
@@ -132,6 +184,7 @@
   --font-secondary: Inter, sans-serif;
   --font-brand: Raleway, sans-serif;
   --font-quote: "Balqis", cursive;
+  --font-caption: "WindSong", cursive;
 
   /* Colors */
   --color-primary: #485775;

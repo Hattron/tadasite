@@ -78,7 +78,7 @@ export default async function GalleryPage() {
                     <h2
                       className="text-2xl font-light mb-2"
                       style={{
-                        color: "var(--color-text)",
+                        color: "var(--color-primary)",
                         fontFamily: "var(--font-primary)",
                       }}
                     >
@@ -123,7 +123,7 @@ export default async function GalleryPage() {
                     <h2
                       className="text-2xl font-light mb-2"
                       style={{
-                        color: "var(--color-text)",
+                        color: "var(--color-primary)",
                         fontFamily: "var(--font-primary)",
                       }}
                     >
