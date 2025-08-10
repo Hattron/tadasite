@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Quicksand, Inter, Raleway } from "next/font/google";
+import { Quicksand, Inter, Raleway, WindSong } from "next/font/google";
 import "./globals.css";
 
 import { ParallaxProvider } from "@/components/ParallaxProvider";
@@ -21,6 +21,12 @@ const raleway = Raleway({
   subsets: ["latin"],
 });
 
+const windSong = WindSong({
+  variable: "--font-windsong",
+  subsets: ["latin"],
+  weight: ["400", "500"],
+});
+
 export const metadata: Metadata = {
   title: "TaDa! Site",
   description: "A customizable site with dynamic CSS variables",
@@ -35,7 +41,7 @@ export default function RootLayout({
     <html lang="en">
       <head></head>
       <body
-        className={`${quicksand.variable} ${inter.variable} ${raleway.variable} antialiased`}
+        className={`${quicksand.variable} ${inter.variable} ${raleway.variable} ${windSong.variable} antialiased`}
         style={{
           fontFamily:
             "var(--font-primary, var(--font-quicksand, Quicksand, sans-serif))",
