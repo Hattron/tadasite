@@ -70,7 +70,7 @@ export default function ParallaxSection({
             <motion.h2
               className="font-windsong text-2xl sm:text-3xl lg:text-4xl"
               style={{
-                fontFamily: "'WindSong', cursive",
+                fontFamily: "var(--font-caption)",
                 color: "var(--color-primary)",
                 margin: `0 0 var(--spacing-md) 0`,
                 textAlign: "center",
@@ -96,7 +96,7 @@ export default function ParallaxSection({
             <motion.p
               className="font-medium tracking-wide text-sm sm:text-base lg:text-lg"
               style={{
-                fontFamily: "var(--font-secondary)",
+                fontFamily: "var(--font-caption)",
                 color: "var(--color-primary)",
                 margin: "0",
                 textAlign: "center",
