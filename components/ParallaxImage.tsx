@@ -81,13 +81,13 @@ export default function ParallaxImage({
       // Convert e.g., 16/9 -> 16-9
       const approx = (n: number) => Math.round(n * 100) / 100;
       // Try to map common aspect ratios to integers to avoid decimals in URL
-      const common: Record<number, [number, number]> = {
+      const common: Record<string, [number, number]> = {
         [approx(16 / 9)]: [16, 9],
         [approx(4 / 3)]: [4, 3],
         [approx(3 / 2)]: [3, 2],
         [approx(21 / 9)]: [21, 9],
-      } as any;
-      const key = approx(aspectRatio);
+      };
+      const key = String(approx(aspectRatio));
       const pair = common[key];
       if (pair) {
         arParts = [`ar-${pair[0]}-${pair[1]}`, "c-at_least"]; // cover crop to maintain AR
