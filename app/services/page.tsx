@@ -197,125 +197,52 @@ export default function ServicesPage() {
         </div>
 
         {/* Service Descriptions and Pricing */}
-        <div className="max-w-4xl mx-auto space-y-12">
-          {/* Residential Services */}
-          <div
-            className="rounded-lg p-8 shadow-sm"
-            style={{
-              backgroundColor: "var(--color-background)",
-              border: `1px solid var(--color-text-muted)`,
-              padding: "var(--spacing-xl)",
-            }}
-          >
-            <h3
-              className="text-2xl font-medium mb-6"
-              style={{
-                color: "var(--color-primary)",
-                fontFamily: "var(--font-primary)",
-                marginBottom: "var(--spacing-lg)",
-              }}
-            >
-              Residential Services
-            </h3>
-            <p
-              className="mb-6 leading-relaxed text-lg"
-              style={{
-                color: "var(--color-text)",
-                fontFamily: "var(--font-secondary)",
-                marginBottom: "var(--spacing-lg)",
-                lineHeight: "1.7",
-              }}
-            >
-              At TaDa! Interiors, we take pride in sourcing the finest products
-              and materials the market has to offer. Backed by a trusted network
-              of skilled tradespeople and a keen eye for finding the perfect
-              finishing touches, we make the design process both seamless and
-              enjoyable. Whether you are refreshing a room or transforming an
-              entire space, we ensure the journey is as rewarding as the final
-              result.
-            </p>
-            <div
-              className="text-lg font-bold"
-              style={{
-                color: "var(--color-primary)",
-                fontFamily: "var(--font-secondary)",
-              }}
-            >
-              Time and expertise for residential services are billed at an
-              hourly rate of $150.00/hour plus HST
-            </div>
-          </div>
+        <section className="services-detail-section">
+          <div className="services-detail-grid">
+            {/* Residential Services */}
+            <article className="services-detail-card">
+              <h3 className="services-detail-title">Residential Services</h3>
+              <p className="services-detail-copy">
+                At TaDa! Interiors, we take pride in sourcing the finest products
+                and materials the market has to offer. Backed by a trusted network
+                of skilled tradespeople and a keen eye for finding the perfect
+                finishing touches, we make the design process both seamless and
+                enjoyable. Whether you are refreshing a room or transforming an
+                entire space, we ensure the journey is as rewarding as the final
+                result.
+              </p>
+              <div className="services-detail-rate">
+                Time and expertise for residential services are billed at an
+                hourly rate of $150.00/hour plus HST
+              </div>
+            </article>
 
-          {/* Commercial Services */}
-          <div
-            className="rounded-lg p-8 shadow-sm"
-            style={{
-              backgroundColor: "var(--color-background)",
-              border: `1px solid var(--color-text-muted)`,
-              padding: "var(--spacing-xl)",
-            }}
-          >
-            <h3
-              className="text-2xl font-medium mb-6"
-              style={{
-                color: "var(--color-primary)",
-                fontFamily: "var(--font-primary)",
-                marginBottom: "var(--spacing-lg)",
-              }}
-            >
-              Commercial Services
-            </h3>
-            <p
-              className="mb-6 leading-relaxed text-lg"
-              style={{
-                color: "var(--color-text)",
-                fontFamily: "var(--font-secondary)",
-                marginBottom: "var(--spacing-lg)",
-                lineHeight: "1.7",
-              }}
-            >
-              In addition to residential work, TaDa! Interiors has completed a
-              wide range of commercial projects. Our portfolio includes - though
-              is not limited to - restaurants, retail environments, office
-              spaces, and condominiums.
-            </p>
-            <div
-              className="text-lg font-bold"
-              style={{
-                color: "var(--color-primary)",
-                fontFamily: "var(--font-secondary)",
-              }}
-            >
-              Time and expertise for commercial services are billed at an hourly
-              rate of $165.00/hour plus HST
-            </div>
+            {/* Commercial Services */}
+            <article className="services-detail-card">
+              <h3 className="services-detail-title">Commercial Services</h3>
+              <p className="services-detail-copy">
+                In addition to residential work, TaDa! Interiors has completed a
+                wide range of commercial projects. Our portfolio includes - though
+                is not limited to - restaurants, retail environments, office
+                spaces, and condominiums.
+              </p>
+              <div className="services-detail-rate">
+                Time and expertise for commercial services are billed at an hourly
+                rate of $165.00/hour plus HST
+              </div>
+            </article>
           </div>
 
           {/* Commercial Image - Starling Restaurant */}
-          <div className="mb-12">
-            <div
-              className="rounded-lg overflow-hidden shadow-lg"
-              style={{
-                backgroundColor: "var(--color-background)",
-                border: `1px solid var(--color-text-muted)`,
-              }}
-            >
-              <img
-                src="https://ik.imagekit.io/crimsonstack/tada/Assets/starling.JPG"
-                alt="Commercial restaurant interior design - Starling Restaurant"
-                className="w-full h-96 object-cover"
-              />
-            </div>
-            <p
-              className="text-center mt-4 text-sm"
-              style={{
-                color: "var(--color-text-muted)",
-                fontFamily: "var(--font-secondary)",
-                fontStyle: "italic",
-              }}
-            ></p>
-          </div>
-        </div>
+          <figure className="services-detail-media">
+            <img
+              src="https://ik.imagekit.io/crimsonstack/tada/Assets/starling.JPG"
+              alt="Commercial restaurant interior design - Starling Restaurant"
+              className="services-detail-media-image"
+            />
+            <figcaption className="services-detail-caption"></figcaption>
+          </figure>
+        </section>
 
         {/* Call to Action */}
         <div className="text-center mt-16">
