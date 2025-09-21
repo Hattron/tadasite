@@ -20,8 +20,14 @@ export default async function AboutUsAnimated() {
 
   return (
     <section
-      className="py-12 sm:py-20 px-4 sm:px-8"
-      style={{ backgroundColor: "var(--color-background)" }}
+      className="md:px-8"
+      style={{
+        backgroundColor: "var(--color-background)",
+        paddingTop: "var(--spacing-3xl)",
+        paddingBottom: "var(--spacing-3xl)",
+        paddingLeft: "var(--spacing-lg)",
+        paddingRight: "var(--spacing-lg)",
+      }}
     >
       <div className="max-w-7xl mx-auto">
         <ClientMotionWrapper
@@ -76,7 +82,11 @@ export default async function AboutUsAnimated() {
 
           {/* Content Section */}
           <ClientMotionWrapper
-            className="space-y-4 sm:space-y-6 order-2 lg:order-2"
+            className="flex flex-col w-full order-2 lg:order-2 mx-auto lg:mx-0"
+            style={{
+              rowGap: "clamp(var(--spacing-lg), 4vw, var(--spacing-xl))",
+              maxWidth: "var(--content-max-width)",
+            }}
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}

@@ -71,6 +71,7 @@ export default function ParallaxSection({
               className="font-windsong text-2xl sm:text-3xl lg:text-4xl"
               style={{
                 fontFamily: "var(--font-caption)",
+                fontWeight: "var(--font-caption-weight-bold)",
                 color: "var(--color-primary)",
                 margin: `0 0 var(--spacing-md) 0`,
                 textAlign: "center",

@@ -45,8 +45,8 @@ export default async function Home() {
 
       <AnimatedSection delay={0.25} style={{ paddingTop: "var(--spacing-xl)" }}>
         <ParallaxSection
-          title='"I deeply believe that a beautiful decor can have a beneficial influence on our lives."'
-          subtitle="- Albert Hadley"
+          title='"Inspired design with heart, function, and a touch of the unexpected"'
+          subtitle=""
           imageSrc={secondImage?.imagekitUrl || undefined}
           altText={secondImage?.alt || undefined}
           position="right"
@@ -80,3 +80,4 @@ export default async function Home() {
     </AnimatedPageWrapper>
   );
 }
+

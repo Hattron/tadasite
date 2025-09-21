@@ -185,6 +185,8 @@
   --font-brand: Raleway, sans-serif;
   --font-quote: "Balqis", cursive;
   --font-caption: var(--font-windsong, "WindSong"), cursive;
+  --font-caption-weight-regular: 400;
+  --font-caption-weight-bold: 500;
 
   /* Colors */
   --color-primary: #485775;
@@ -232,7 +234,7 @@
   --frame-padding-sm: 1.5rem;
 }
 
-.font-windsong { font-family: var(--font-caption); }
+.font-windsong { font-family: var(--font-caption); font-weight: var(--font-caption-weight-bold); }
 
 @layer base {
   * {
