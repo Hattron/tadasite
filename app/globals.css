@@ -235,7 +235,7 @@
   --services-section-padding-y: clamp(3rem, 8vw, 6rem);
   --services-section-padding-x: clamp(1.5rem, 6vw, 3.5rem);
   --services-grid-gap: clamp(1.5rem, 4vw, 3rem);
-  --services-grid-max-width: 72rem;
+  --services-grid-max-width: clamp(24rem, 90vw, 90rem);
   --services-card-padding: clamp(1.75rem, 4vw, 2.75rem);
   --services-card-gap: clamp(1.25rem, 3vw, 1.75rem);
   --services-card-radius: 1.75rem;
@@ -289,7 +289,8 @@
   max-width: var(--services-grid-max-width);
   display: grid;
   gap: var(--services-grid-gap);
-  grid-template-columns: repeat(auto-fit, minmax(min(20rem, 100%), 1fr));
+  grid-template-columns: minmax(0, 1fr);
+  justify-items: center;
   margin: 0 auto;
 }
 
@@ -300,6 +301,7 @@
   gap: var(--services-card-gap);
   padding: var(--services-card-padding);
   border-radius: var(--services-card-radius);
+  width: min(100%, 28rem);
   background: var(--services-card-bg);
   border: 1px solid var(--services-card-border);
   box-shadow: var(--services-card-shadow);
@@ -505,12 +507,13 @@
 }
 
 @media (min-width: 1024px) {
-  .services-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
   .services-detail-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (min-width: 1200px) {
+  .services-grid {
+    grid-template-columns: repeat(3, minmax(26rem, 1fr));
   }
 }
 @media (max-width: 768px) {
@@ -550,5 +553,3 @@
     font-family: var(--font-primary);
   }
 }
-
-
