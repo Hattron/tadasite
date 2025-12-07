@@ -37,13 +37,12 @@ export default async function MaureenBio() {
 
         {/* Subtitle */}
         <h2
-          className="text-center font-medium"
+          className="text-center font-bold tracking-widest uppercase"
           style={{
             color: "var(--color-secondary)",
             fontFamily: "var(--font-secondary)",
-            fontSize: "var(--font-size-xl)",
+            fontSize: "var(--font-size-lg)",
             marginBottom: "var(--spacing-3xl)",
-            opacity: 0.8,
           }}
         >
           Certified Interior Decorator
@@ -111,11 +110,12 @@ export default async function MaureenBio() {
                 fontSize: "var(--font-size-lg)",
               }}
             >
-              After graduating with honours from the Residential Décor program
-              at Algonquin college Maureen embarked on a career that has spanned
-              over two decades. Her journey in interior design has been marked
-              by continuous learning, creative growth, and an unwavering
-              commitment to excellence.
+              Maureen launched TaDa! Interiors in 2002, following her graduation
+              with honours from Algonquin College’s Residential Décor
+              program—and a lifelong dream to bring inspiring spaces to life.
+              With more than two decades of hands-on experience, she blends
+              creative vision, technical know-how, and deep attention to detail
+              into every project.
             </div>
             <div
               className="leading-relaxed"
@@ -125,12 +125,11 @@ export default async function MaureenBio() {
                 fontSize: "var(--font-size-lg)",
               }}
             >
-              Maureen brings a true passion for creativity to every project she
-              takes on. Constantly inspired by the latest trends, she has a keen
-              eye for timeless design that won&apos;t go out of style. Her
-              approach balances current aesthetics with enduring appeal,
-              ensuring her clients&apos; spaces remain beautiful for years to
-              come.
+              Her approach is equal parts thoughtful and inventive. Known for
+              thinking beyond the obvious, Maureen finds fresh, unexpected
+              solutions that elevate a space without sacrificing function. She’s
+              meticulous with the finishing touches—and never loses sight of the
+              big picture.
             </div>
             <div
               className="leading-relaxed"
@@ -140,11 +139,12 @@ export default async function MaureenBio() {
                 fontSize: "var(--font-size-lg)",
               }}
             >
-              Over the years Maureen has leant her skills and expertise to a
-              number of companies and organizations, always bringing her
-              signature blend of professionalism and creative vision. This
-              diverse experience has enriched her understanding of different
-              design challenges and client needs.
+              As a former cast member on HGTV’s Design U (seasons 2–4), Maureen
+              showcased her skill under pressure, delivering high-impact
+              projects on tight timelines and limited budgets. Under her first
+              name Christina on the show, she put her craftsmanship to work as a
+              drapery seamstress, upholsterer, and hands-on assistant to the
+              carpentry team.
             </div>
             <div
               className="leading-relaxed"
@@ -154,11 +154,10 @@ export default async function MaureenBio() {
                 fontSize: "var(--font-size-lg)",
               }}
             >
-              Maureen values the great relationships that develop while working
-              with her clients. Many of her clients have become long-term
-              friends, a testament to her genuine care and dedication to
-              creating spaces that truly reflect their personalities and
-              lifestyles.
+              Clients come back to Maureen time and again—not only for her
+              talent, but for the warm, collaborative relationships she builds.
+              Her designs reflect the people who live and work in them,
+              thoughtfully tailored to individual style, needs, and budget.
             </div>
             <div
               className="leading-relaxed"
@@ -168,11 +167,11 @@ export default async function MaureenBio() {
                 fontSize: "var(--font-size-lg)",
               }}
             >
-              In addition to being a wife and proud mom of two boys Maureen
-              finds joy in gardening, unwinding through yoga and meditation, and
-              exploring new destinations through travel. These personal passions
-              often inspire elements in her design work, bringing organic beauty
-              and mindful tranquility to her projects.
+              Outside the studio, Maureen is a proud wife and mom of two who
+              finds joy in gardening, unwinding through yoga, and exploring her
+              creativity through various craft and textile arts. These personal
+              passions often inspire elements in her design work, bringing
+              organic beauty and mindful tranquility to her projects.
             </div>
           </div>
         </div>

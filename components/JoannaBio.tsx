@@ -28,11 +28,24 @@ export default async function JoannaBio() {
           style={{
             color: "var(--color-primary)",
             fontFamily: "var(--font-primary)",
-            marginBottom: "var(--spacing-3xl)",
+            marginBottom: "var(--spacing-md)",
           }}
         >
           Joanna Dyment
         </h1>
+
+        {/* Subtitle */}
+        <h2
+          className="text-center font-bold tracking-widest uppercase"
+          style={{
+            color: "var(--color-secondary)",
+            fontFamily: "var(--font-secondary)",
+            fontSize: "var(--font-size-lg)",
+            marginBottom: "var(--spacing-3xl)",
+          }}
+        >
+          Certified Interior Decorator
+        </h2>
 
         <div
           className="grid grid-cols-1 lg:[grid-template-columns:auto_1fr] items-start place-items-start"
@@ -93,10 +106,11 @@ export default async function JoannaBio() {
                 fontSize: "var(--font-size-lg)",
               }}
             >
-              Design has always been a part of Joanna&apos;s life. Growing up
-              with an artist father, she was constantly surrounded by
-              creativity, color, and the belief that beautiful spaces have the
-              power to transform how we feel and live.
+              Joanna brings a deeply people-first approach to interior
+              decorating—shaped by her background in sociology and a lifelong
+              love of art and design. Raised by a professional artist, she grew
+              up surrounded by creativity, colour, and the belief that beautiful
+              environments can transform how we feel.
             </div>
             <div
               className="leading-relaxed"
@@ -106,11 +120,10 @@ export default async function JoannaBio() {
                 fontSize: "var(--font-size-lg)",
               }}
             >
-              While she studied sociology in university, Joanna found that
-              understanding how people live, interact, and connect became the
-              foundation for her design philosophy. This background gives her a
-              unique perspective on creating spaces that truly serve the people
-              who use them.
+              After years in hospitality, Joanna developed a sharp eye for how
+              comfort and aesthetics work together in real life. Her time in the
+              service industry honed her attention to detail, spatial flow, and
+              the importance of design that supports human connection.
             </div>
             <div
               className="leading-relaxed"
@@ -120,10 +133,10 @@ export default async function JoannaBio() {
                 fontSize: "var(--font-size-lg)",
               }}
             >
-              A people person at heart - social, intuitive, and deeply committed
-              to creating spaces that feel personal and welcoming. Joanna
-              believes that the best designs emerge from truly understanding her
-              clients&apos; stories, dreams, and daily routines.
+              She later formalized her skills at Algonquin College, graduating
+              with honours from the Interior Decorating program. Today, she
+              brings both warmth and professionalism to every project—focused on
+              spaces that feel personal, welcoming, and lived-in.
             </div>
             <div
               className="leading-relaxed"
@@ -133,11 +146,11 @@ export default async function JoannaBio() {
                 fontSize: "var(--font-size-lg)",
               }}
             >
-              Joanna&apos;s years working in the hospitality industry sharpened
-              her eye for functional beauty, especially in spaces where comfort
-              and style must coexist seamlessly. This experience taught her how
-              design details can significantly impact how people feel in a
-              space.
+              Joanna’s designs are inspired by her love of travel, drawing from
+              global textures, colours, and patterns to create interiors with
+              character and depth. As a mother of two, she understands that
+              design must work for everyday life—and her work always balances
+              beauty with livability.
             </div>
             <div
               className="leading-relaxed"
@@ -147,49 +160,11 @@ export default async function JoannaBio() {
                 fontSize: "var(--font-size-lg)",
               }}
             >
-              She later followed her passion and graduated with honours from the
-              Interior Decorating program at Algonquin College, where she honed
-              her technical skills while staying true to her people-centered
-              design approach.
-            </div>
-            <div
-              className="leading-relaxed"
-              style={{
-                color: "var(--color-text)",
-                fontFamily: "var(--font-secondary)",
-                fontSize: "var(--font-size-lg)",
-              }}
-            >
-              Joanna loves to travel and finds endless inspiration in the
-              colours, textures, and cultures she has experienced around the
-              world. These global influences often find their way into her
-              designs, creating spaces with depth, character, and story.
-            </div>
-            <div
-              className="leading-relaxed"
-              style={{
-                color: "var(--color-text)",
-                fontFamily: "var(--font-secondary)",
-                fontSize: "var(--font-size-lg)",
-              }}
-            >
-              As a mother of two, she understands how important it is for spaces
-              to be both stylish and livable. Her designs always consider the
-              reality of daily life, ensuring that beautiful spaces remain
-              functional for families and individuals alike.
-            </div>
-            <div
-              className="leading-relaxed"
-              style={{
-                color: "var(--color-text)",
-                fontFamily: "var(--font-secondary)",
-                fontSize: "var(--font-size-lg)",
-              }}
-            >
-              Joanna is proud to have built lasting relationships with many
-              repeat clients, tailoring each space to evolve with their changing
-              needs and life stages. She sees each project as the beginning of
-              an ongoing design journey with her clients.
+              Her clients value not just her creative eye, but her ability to
+              listen deeply and translate vision into reality. Many become
+              long-term partners as their lives evolve, with Joanna adapting
+              their spaces to meet changing needs while keeping the spirit of
+              the original design intact.
             </div>
           </div>
         </div>

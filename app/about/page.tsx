@@ -1,4 +1,4 @@
-import Team from "@/components/Team";
+
 import MaureenBio from "@/components/MaureenBio";
 import JoannaBio from "@/components/JoannaBio";
 
@@ -19,8 +19,7 @@ export default async function AboutPage() {
 
   return (
     <div style={{ paddingTop: "var(--navbar-height)" }}>
-      {/* Team Section */}
-      <Team />
+
 
       {/* Meet the Women Behind TaDa! Header Section */}
       <section
@@ -70,11 +69,11 @@ export default async function AboutPage() {
               <div className="flex justify-center">
                 <ImageFrame variant="minimal">
                   <img
-                    src={`${imagekitConfig.urlEndpoint}${getImagePath(teamImage.imagekitUrl)}?tr=w-300,h-300,q-90`}
+                    src={`${imagekitConfig.urlEndpoint}${getImagePath(teamImage.imagekitUrl)}?tr=w-400,h-400,q-90`}
                     alt={teamImage.alt || "TaDa! Interiors Team"}
                     className="w-full h-auto"
                     style={{
-                      maxWidth: "250px",
+                      maxWidth: "350px",
                       display: "block",
                     }}
                   />
@@ -116,11 +115,11 @@ export default async function AboutPage() {
               {teamImage ? (
                 <ImageFrame variant="minimal">
                   <img
-                    src={`${imagekitConfig.urlEndpoint}${getImagePath(teamImage.imagekitUrl)}?tr=w-350,h-350,q-90`}
+                    src={`${imagekitConfig.urlEndpoint}${getImagePath(teamImage.imagekitUrl)}?tr=w-500,h-500,q-90`}
                     alt={teamImage.alt || "TaDa! Interiors Team"}
                     className="w-full h-auto"
                     style={{
-                      maxWidth: "280px",
+                      maxWidth: "450px",
                       display: "block",
                     }}
                   />
@@ -129,8 +128,8 @@ export default async function AboutPage() {
                 <div
                   className="flex items-center justify-center border-2 border-dashed rounded-lg"
                   style={{
-                    height: "280px",
-                    maxWidth: "280px",
+                    height: "450px",
+                    maxWidth: "450px",
                     width: "100%",
                     borderColor: "var(--color-border)",
                     backgroundColor: "var(--color-background-muted)",
@@ -153,9 +152,53 @@ export default async function AboutPage() {
         </div>
       </section>
 
-      {/* Bio Sections */}
+
+
       <MaureenBio />
+
+      {/* Filler Image 2 - Chair */}
+      <div className="flex justify-center my-12 lg:my-24">
+        <ImageFrame variant="minimal">
+          <img
+            src="https://ik.imagekit.io/crimsonstack/tada/Assets/chair.png?tr=w-500,h-600,q-90"
+            alt="Interior design chair detail"
+            className="w-full h-auto object-cover grayscale hover:grayscale-0 transition-all duration-500"
+            style={{
+              maxHeight: "400px",
+              display: "block",
+            }}
+          />
+        </ImageFrame>
+      </div>
+
       <JoannaBio />
+
+      {/* Bottom Filler Images - Light & Faucet */}
+      <div className="flex flex-col md:flex-row justify-center gap-12 mt-12 mb-24 lg:mt-24 px-8 items-center">
+        <ImageFrame variant="minimal">
+          <img
+            src="https://ik.imagekit.io/crimsonstack/tada/Assets/light.jpg?tr=w-500,h-600,q-90"
+            alt="Interior design lighting detail"
+            className="w-full h-auto object-cover grayscale hover:grayscale-0 transition-all duration-500"
+            style={{
+              maxHeight: "400px",
+              display: "block",
+            }}
+          />
+        </ImageFrame>
+
+        <ImageFrame variant="minimal">
+          <img
+            src="https://ik.imagekit.io/crimsonstack/tada/Assets/faucet.jpg?tr=w-500,h-600,q-90"
+            alt="Interior design faucet detail"
+            className="w-full h-auto object-cover grayscale hover:grayscale-0 transition-all duration-500"
+            style={{
+              maxHeight: "400px",
+              display: "block",
+            }}
+          />
+        </ImageFrame>
+      </div>
     </div>
   );
 }
