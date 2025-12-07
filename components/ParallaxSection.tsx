@@ -65,58 +65,47 @@ export default function ParallaxSection({
             <span className="outer-corner bottom-right"></span>
             <span className="inner-corner top-left"></span>
             <span className="inner-corner bottom-right"></span>
-          {/* Main Title - only show if provided */}
-          {title && (
-            <motion.h2
-              className="font-windsong text-2xl sm:text-3xl lg:text-4xl"
-              style={{
-                fontFamily: "var(--font-caption)",
-                fontWeight: "var(--font-caption-weight-bold)",
-                color: "var(--color-primary)",
-                margin: `0 0 var(--spacing-md) 0`,
-                textAlign: "center",
-                letterSpacing: "-0.02em",
-                lineHeight: "1.3",
-              }}
-              initial={{ y: 20, opacity: 0 }}
-              whileInView={{ y: 0, opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.8 }}
-            >
-              {title.split("\n").map((line: string, index: number) => (
-                <span key={index}>
-                  {line}
-                  {index < title.split("\n").length - 1 && <br />}
-                </span>
-              ))}
-            </motion.h2>
-          )}
+            {/* Main Title - only show if provided */}
+            {title && (
+              <motion.h2
+                className="text-2xl sm:text-3xl lg:text-4xl font-semibold text-[var(--color-primary)] mb-6 text-center tracking-tight leading-snug"
+                style={{
+                  fontFamily: "var(--font-caption)",
+                }}
+                initial={{ y: 20, opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.8 }}
+              >
+                {title.split("\n").map((line: string, index: number) => (
+                  <span key={index}>
+                    {line}
+                    {index < title.split("\n").length - 1 && <br />}
+                  </span>
+                ))}
+              </motion.h2>
+            )}
 
-          {/* Subtitle - only show if provided */}
-          {subtitle && (
-            <motion.p
-              className="font-medium tracking-wide text-sm sm:text-base lg:text-lg"
-              style={{
-                fontFamily: "var(--font-caption)",
-                color: "var(--color-primary)",
-                margin: "0",
-                textAlign: "center",
-                lineHeight: "1.6",
-                opacity: "0.8",
-              }}
-              initial={{ y: 20, opacity: 0 }}
-              whileInView={{ y: 0, opacity: 0.8 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 1 }}
-            >
-              {subtitle.split("\n").map((line: string, index: number) => (
-                <span key={index}>
-                  {line}
-                  {index < subtitle.split("\n").length - 1 && <br />}
-                </span>
-              ))}
-            </motion.p>
-          )}
+            {/* Subtitle - only show if provided */}
+            {subtitle && (
+              <motion.p
+                className="font-medium tracking-wide text-sm sm:text-base lg:text-lg text-[var(--color-primary)] text-center leading-relaxed opacity-80"
+                style={{
+                  fontFamily: "var(--font-caption)",
+                }}
+                initial={{ y: 20, opacity: 0 }}
+                whileInView={{ y: 0, opacity: 0.8 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 1 }}
+              >
+                {subtitle.split("\n").map((line: string, index: number) => (
+                  <span key={index}>
+                    {line}
+                    {index < subtitle.split("\n").length - 1 && <br />}
+                  </span>
+                ))}
+              </motion.p>
+            )}
           </div>
         </div>
       </motion.div>

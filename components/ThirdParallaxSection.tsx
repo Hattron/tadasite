@@ -5,9 +5,9 @@ export default async function ThirdParallaxSection() {
   const thirdImage = await getThirdImage();
 
   return (
-    <ParallaxSection 
-      title={thirdImage?.thirdImageTitle || ""}
-      subtitle={thirdImage?.thirdImageSubtitle || ""}
+    <ParallaxSection
+      title='"Interiors that reflect your story"'
+      subtitle=""
       imageSrc={thirdImage?.imagekitUrl || undefined}
       altText={thirdImage?.alt || undefined}
       position="left"

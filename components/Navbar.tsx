@@ -139,7 +139,7 @@ export default function Navbar() {
               e.currentTarget.style.borderBottomColor = "transparent";
             }}
           >
-            Gallery
+            Recent Projects
           </Link>
           <Link
             href="/contact"
@@ -253,7 +253,7 @@ export default function Navbar() {
               }}
               onClick={closeMenu}
             >
-              Gallery
+              Recent Projects
             </Link>
             <Link
               href="/contact"

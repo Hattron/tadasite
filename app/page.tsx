@@ -1,25 +1,17 @@
 import HeroSection from "@/components/HeroSection";
 import Services from "@/components/Services";
-import ParallaxSection from "@/components/ParallaxSection";
+import FirstParallaxSection from "@/components/FirstParallaxSection";
+import SecondParallaxSection from "@/components/SecondParallaxSection";
+import ThirdParallaxSection from "@/components/ThirdParallaxSection";
 import AboutUsAnimated from "@/components/AboutUsAnimated";
 import Testimonials from "@/components/Testimonials";
 import OurApproach from "@/components/OurApproach";
 import AnimatedPageWrapper from "@/components/AnimatedPageWrapper";
 import AnimatedSection from "@/components/AnimatedSection";
-import {
-  getFirstImage,
-  getSecondImage,
-  getThirdImage,
-  getHeroImage,
-} from "@/lib/image-actions";
+import { getHeroImage } from "@/lib/image-actions";
 
 export default async function Home() {
-  const [heroImage, firstImage, secondImage, thirdImage] = await Promise.all([
-    getHeroImage(),
-    getFirstImage(),
-    getSecondImage(),
-    getThirdImage(),
-  ]);
+  const heroImage = await getHeroImage();
 
   return (
     <AnimatedPageWrapper>
@@ -30,13 +22,7 @@ export default async function Home() {
       </AnimatedSection>
 
       <AnimatedSection delay={0.15} style={{ paddingTop: "var(--spacing-xl)" }}>
-        <ParallaxSection
-          title='"Designing spaces that feel like home - beautiful, thoughtful, and uniquely you"'
-          subtitle=""
-          imageSrc={firstImage?.imagekitUrl || undefined}
-          altText={firstImage?.alt || undefined}
-          position="left"
-        />
+        <FirstParallaxSection />
       </AnimatedSection>
 
       <AnimatedSection delay={0.2} style={{ paddingTop: "var(--spacing-xl)" }}>
@@ -44,13 +30,7 @@ export default async function Home() {
       </AnimatedSection>
 
       <AnimatedSection delay={0.25} style={{ paddingTop: "var(--spacing-xl)" }}>
-        <ParallaxSection
-          title='"Inspired design with heart, function, and a touch of the unexpected"'
-          subtitle=""
-          imageSrc={secondImage?.imagekitUrl || undefined}
-          altText={secondImage?.alt || undefined}
-          position="right"
-        />
+        <SecondParallaxSection />
       </AnimatedSection>
 
       <AnimatedSection
@@ -65,13 +45,7 @@ export default async function Home() {
       </AnimatedSection>
 
       <AnimatedSection delay={0.35} style={{ paddingTop: "var(--spacing-xl)" }}>
-        <ParallaxSection
-          title='"Interiors that reflect your story"'
-          subtitle=""
-          imageSrc={thirdImage?.imagekitUrl || undefined}
-          altText={thirdImage?.alt || undefined}
-          position="left"
-        />
+        <ThirdParallaxSection />
       </AnimatedSection>
 
       <AnimatedSection delay={0.4} style={{ paddingTop: "var(--spacing-xl)" }}>
