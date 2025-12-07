@@ -27,7 +27,7 @@ export default async function ResidentialPage() {
             className="inline-block mb-6 text-sm font-medium hover:underline"
             style={{ color: "var(--color-secondary)" }}
           >
-            ← Back to Gallery
+            ← Back to Recent Projects
           </Link>
           <h1
             className="text-3xl sm:text-4xl md:text-5xl font-light text-center mb-6"

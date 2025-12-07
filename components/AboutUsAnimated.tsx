@@ -1,5 +1,5 @@
 import { getAboutUsImage } from "@/lib/image-actions";
-import { getCopyContents } from "@/lib/hardcoded-copy";
+
 import { imagekitConfig } from "@/lib/imagekit";
 import ClientMotionWrapper from "./ClientMotionWrapper";
 
@@ -11,12 +11,7 @@ const getImagePath = (fullUrl: string) => {
 export default async function AboutUsAnimated() {
   const aboutUsImage = await getAboutUsImage();
 
-  // Get hardcoded copy content
-  const copyContent = getCopyContents([
-    "home-about-us-paragraph-1",
-    "home-about-us-paragraph-2",
-    "home-about-us-paragraph-3",
-  ]);
+
 
   return (
     <section
@@ -98,12 +93,13 @@ export default async function AboutUsAnimated() {
                 color: "var(--color-text)",
                 fontFamily: "var(--font-secondary)",
               }}
-              dangerouslySetInnerHTML={{
-                __html:
-                  copyContent["home-about-us-paragraph-1"] ||
-                  "At TaDa! Interiors, we&apos;ve been bringing inspired design to homes and businesses across Ottawa for over 20 years.",
-              }}
-            />
+            >
+              At TaDa! Interiors, we&apos;ve been bringing inspired design to
+              homes and businesses across Ottawa for over 20 years. Our passion
+              lies in creating spaces that are not only beautiful but also
+              deeply personal and functional for the people who live and work in
+              them.
+            </div>
 
             <div
               className="text-base sm:text-lg leading-relaxed"
@@ -111,12 +107,13 @@ export default async function AboutUsAnimated() {
                 color: "var(--color-text)",
                 fontFamily: "var(--font-secondary)",
               }}
-              dangerouslySetInnerHTML={{
-                __html:
-                  copyContent["home-about-us-paragraph-2"] ||
-                  "We&apos;re celebrated for our ability to transform and reimagine spaces in a way that reflects every client&apos;s personality, style and lifestyle.",
-              }}
-            />
+            >
+              We&apos;re celebrated for our ability to transform and reimagine
+              spaces in a way that reflects every client&apos;s unique style,
+              needs, and budget. Whether it&apos;s a complete home renovation, a
+              single room refresh, or a commercial project, we approach each
+              design challenge with creativity, expertise, and genuine care.
+            </div>
 
             <div
               className="text-base sm:text-lg leading-relaxed"
@@ -124,12 +121,13 @@ export default async function AboutUsAnimated() {
                 color: "var(--color-text)",
                 fontFamily: "var(--font-secondary)",
               }}
-              dangerouslySetInnerHTML={{
-                __html:
-                  copyContent["home-about-us-paragraph-3"] ||
-                  "We work closely with a trusted team of skilled trades professionals, allowing TaDa! Interiors to deliver exceptional craftsmanship and seamless results every step of the way.",
-              }}
-            />
+            >
+              We work closely with a trusted team of skilled trades
+              professionals, allowing TaDa! Interiors to deliver comprehensive
+              design solutions from concept to completion. Our collaborative
+              approach ensures every detail is thoughtfully considered and
+              expertly executed.
+            </div>
 
             {/* Call to Action */}
             <div className="pt-4 sm:pt-6 text-center lg:text-left">

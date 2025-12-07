@@ -51,7 +51,7 @@ export default async function CommercialProjectPage({
               className="text-sm font-medium hover:underline"
               style={{ color: "var(--color-secondary)" }}
             >
-              Gallery
+              Recent Projects
             </Link>
           </div>
 
@@ -96,7 +96,7 @@ export default async function CommercialProjectPage({
           </h3>
           <p
             className="text-lg mb-8"
-            style={{ color: "var(--color-text-muted)" }}
+            style={{ color: "var(--color-secondary)" }}
           >
             Let&apos;s design a commercial space that inspires and performs.
           </p>

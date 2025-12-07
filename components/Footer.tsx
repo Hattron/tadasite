@@ -82,7 +82,7 @@ export default function Footer() {
                     textDecoration: "none",
                   }}
                 >
-                  Gallery
+                  Recent Projects
                 </Link>
                 <Link
                   href="/contact"

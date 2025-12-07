@@ -13,7 +13,7 @@ export default function ContactForm() {
 
     try {
       const result = await sendContactMessage(formData);
-      
+
       if (result.success) {
         setMessage({ type: 'success', text: result.message || 'Message sent successfully!' });
         // Reset form
@@ -30,7 +30,7 @@ export default function ContactForm() {
 
   return (
     <div className="w-full h-full flex flex-col">
-      <div 
+      <div
         className="rounded-lg shadow-sm flex-1 flex flex-col"
         style={{
           backgroundColor: 'var(--color-background)',
@@ -38,9 +38,9 @@ export default function ContactForm() {
           padding: 'var(--spacing-xl)',
         }}
       >
-        <h2 
+        <h2
           className="text-2xl font-medium"
-          style={{ 
+          style={{
             color: 'var(--color-primary)',
             fontFamily: 'var(--font-primary)',
             marginBottom: 'var(--spacing-lg)',
@@ -50,12 +50,11 @@ export default function ContactForm() {
         </h2>
 
         {message && (
-          <div 
-            className={`p-4 rounded-lg ${
-              message.type === 'success' 
-                ? 'bg-green-50 text-green-800 border border-green-200' 
+          <div
+            className={`p-4 rounded-lg ${message.type === 'success'
+                ? 'bg-green-50 text-green-800 border border-green-200'
                 : 'bg-red-50 text-red-800 border border-red-200'
-            }`}
+              }`}
             style={{ marginBottom: 'var(--spacing-md)' }}
           >
             {message.text}
@@ -64,10 +63,10 @@ export default function ContactForm() {
 
         <form id="contact-form" action={handleSubmit} className="space-y-4 flex-1 flex flex-col">
           <div>
-            <label 
-              htmlFor="name" 
+            <label
+              htmlFor="name"
               className="block text-sm font-medium"
-              style={{ 
+              style={{
                 color: 'var(--color-text)',
                 fontFamily: 'var(--font-secondary)',
                 marginBottom: 'var(--spacing-xs)',
@@ -83,7 +82,7 @@ export default function ContactForm() {
               disabled={isSubmitting}
               placeholder="Your Name"
               className="w-full rounded-md focus:outline-none focus:ring-2 focus:ring-opacity-50 disabled:opacity-50"
-              style={{ 
+              style={{
                 padding: 'var(--spacing-sm) var(--spacing-sm)',
                 border: `1px solid var(--color-text-muted)`,
                 backgroundColor: 'var(--color-background)',
@@ -95,10 +94,10 @@ export default function ContactForm() {
           </div>
 
           <div>
-            <label 
-              htmlFor="email" 
+            <label
+              htmlFor="email"
               className="block text-sm font-medium"
-              style={{ 
+              style={{
                 color: 'var(--color-text)',
                 fontFamily: 'var(--font-secondary)',
                 marginBottom: 'var(--spacing-xs)',
@@ -114,7 +113,7 @@ export default function ContactForm() {
               disabled={isSubmitting}
               placeholder="your.email@example.com"
               className="w-full rounded-md focus:outline-none focus:ring-2 focus:ring-opacity-50 disabled:opacity-50"
-              style={{ 
+              style={{
                 padding: 'var(--spacing-sm) var(--spacing-sm)',
                 border: `1px solid var(--color-text-muted)`,
                 backgroundColor: 'var(--color-background)',
@@ -126,16 +125,16 @@ export default function ContactForm() {
           </div>
 
           <div className="flex-1 flex flex-col">
-            <label 
-              htmlFor="message" 
+            <label
+              htmlFor="message"
               className="block text-sm font-medium"
-              style={{ 
+              style={{
                 color: 'var(--color-text)',
                 fontFamily: 'var(--font-secondary)',
                 marginBottom: 'var(--spacing-xs)',
               }}
             >
-              Message
+              Tell us about your project
             </label>
             <textarea
               id="message"
@@ -144,7 +143,7 @@ export default function ContactForm() {
               disabled={isSubmitting}
               placeholder="How can we help you?"
               className="w-full flex-1 rounded-md focus:outline-none focus:ring-2 focus:ring-opacity-50 disabled:opacity-50 resize-none"
-              style={{ 
+              style={{
                 padding: 'var(--spacing-sm) var(--spacing-sm)',
                 border: `1px solid var(--color-text-muted)`,
                 backgroundColor: 'var(--color-background)',
@@ -160,7 +159,7 @@ export default function ContactForm() {
             type="submit"
             disabled={isSubmitting}
             className="w-full rounded-md font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed hover:opacity-90"
-            style={{ 
+            style={{
               backgroundColor: 'var(--color-primary)',
               color: 'var(--color-background)',
               fontFamily: 'var(--font-secondary)',
@@ -172,8 +171,8 @@ export default function ContactForm() {
         </form>
 
         {/* Business Hours Section */}
-        <div 
-          style={{ 
+        <div
+          style={{
             marginTop: 'var(--spacing-lg)',
             paddingTop: 'var(--spacing-lg)',
             borderTop: `1px solid var(--color-text-muted)`,

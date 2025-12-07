@@ -1,20 +1,9 @@
 import ContactForm from "./components/ContactForm";
-import { getCopyContents } from "@/lib/hardcoded-copy";
+
 
 export default function ContactPage() {
-  // Get hardcoded copy content
-  const copyContent = getCopyContents([
-    "contact-business-hours-title",
-    "contact-business-hours-schedule",
-    "contact-business-hours-closure",
-    "contact-services-title",
-    "contact-services-residential-title",
-    "contact-services-residential-description",
-    "contact-services-residential-pricing",
-    "contact-services-commercial-title",
-    "contact-services-commercial-description",
-    "contact-services-commercial-pricing",
-  ]);
+
+
   return (
     <div
       className="min-h-screen"
@@ -124,11 +113,9 @@ export default function ContactPage() {
                   fontWeight: "600",
                   marginBottom: "var(--spacing-lg)",
                 }}
-                dangerouslySetInnerHTML={{
-                  __html:
-                    copyContent["contact-services-title"] || "Our Services",
-                }}
-              />
+              >
+                Our Services
+              </h3>
 
               {/* Residential Services */}
               <div style={{ marginBottom: "var(--spacing-xl)" }}>
@@ -140,12 +127,9 @@ export default function ContactPage() {
                     fontWeight: "600",
                     marginBottom: "var(--spacing-md)",
                   }}
-                  dangerouslySetInnerHTML={{
-                    __html:
-                      copyContent["contact-services-residential-title"] ||
-                      "Residential Services",
-                  }}
-                />
+                >
+                  Residential Services
+                </h4>
                 <div
                   style={{
                     color: "var(--color-text)",
@@ -154,12 +138,14 @@ export default function ContactPage() {
                     lineHeight: "1.6",
                     marginBottom: "var(--spacing-md)",
                   }}
-                  dangerouslySetInnerHTML={{
-                    __html:
-                      copyContent["contact-services-residential-description"] ||
-                      "At TaDa! Interiors, we take pride in sourcing the finest products and materials the market has to offer.",
-                  }}
-                />
+                >
+                  At TaDa! Interiors, we take pride in sourcing the finest
+                  products and materials the market has to offer. From custom
+                  window treatments and unique lighting solutions to beautiful
+                  furniture and distinctive accessories, we work with trusted
+                  suppliers to bring you quality pieces that enhance your
+                  space.
+                </div>
                 <div
                   style={{
                     color: "var(--color-primary)",
@@ -168,12 +154,10 @@ export default function ContactPage() {
                     fontWeight: "600",
                     lineHeight: "1.5",
                   }}
-                  dangerouslySetInnerHTML={{
-                    __html:
-                      copyContent["contact-services-residential-pricing"] ||
-                      "Time and expertise for residential services are billed at an hourly rate of <strong>$150.00/hour plus HST</strong>",
-                  }}
-                />
+                >
+                  Time and expertise for residential services are billed at an
+                  hourly rate of <strong>$150.00/hour plus HST</strong>
+                </div>
               </div>
 
               {/* Commercial Services */}
@@ -186,12 +170,9 @@ export default function ContactPage() {
                     fontWeight: "600",
                     marginBottom: "var(--spacing-md)",
                   }}
-                  dangerouslySetInnerHTML={{
-                    __html:
-                      copyContent["contact-services-commercial-title"] ||
-                      "Commercial Services",
-                  }}
-                />
+                >
+                  Commercial Services
+                </h4>
                 <div
                   style={{
                     color: "var(--color-text)",
@@ -200,12 +181,14 @@ export default function ContactPage() {
                     lineHeight: "1.6",
                     marginBottom: "var(--spacing-md)",
                   }}
-                  dangerouslySetInnerHTML={{
-                    __html:
-                      copyContent["contact-services-commercial-description"] ||
-                      "In addition to residential work, TaDa! Interiors has completed a wide range of commercial projects.",
-                  }}
-                />
+                >
+                  TaDa! Interiors creates dynamic, high performing commercial
+                  spaces that elevate the customer and employee experience. From
+                  bars and restaurants to offices, condominiums and retail
+                  environments, we blend functionality with distinctive style to
+                  deliver spaces that work beautifully and leave a lasting
+                  impression.
+                </div>
                 <div
                   style={{
                     color: "var(--color-primary)",
@@ -214,12 +197,10 @@ export default function ContactPage() {
                     fontWeight: "600",
                     lineHeight: "1.5",
                   }}
-                  dangerouslySetInnerHTML={{
-                    __html:
-                      copyContent["contact-services-commercial-pricing"] ||
-                      "Time and expertise for commercial services are billed at an hourly rate of <strong>$165.00/hour plus hst</strong>",
-                  }}
-                />
+                >
+                  Time and expertise for commercial services are billed at an
+                  hourly rate of <strong>$165.00/hour plus hst</strong>
+                </div>
               </div>
             </div>
           </div>

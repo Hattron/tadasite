@@ -196,6 +196,23 @@ export default function ServicesPage() {
           </div>
         </div>
 
+        {/* Middle Image */}
+        <div className="mb-16">
+          <div
+            className="rounded-lg overflow-hidden shadow-lg max-w-4xl mx-auto"
+            style={{
+              backgroundColor: "var(--color-background)",
+              border: `1px solid var(--color-text-muted)`,
+            }}
+          >
+            <img
+              src="https://ik.imagekit.io/crimsonstack/tada/1_opening_image_kyaCLZTNA.jpg"
+              alt="Interior design showcase"
+              className="w-full h-96 object-cover"
+            />
+          </div>
+        </div>
+
         {/* Service Descriptions and Pricing */}
         <section className="services-detail-section">
           <div className="services-detail-grid">
@@ -221,10 +238,12 @@ export default function ServicesPage() {
             <article className="services-detail-card">
               <h3 className="services-detail-title">Commercial Services</h3>
               <p className="services-detail-copy">
-                In addition to residential work, TaDa! Interiors has completed a
-                wide range of commercial projects. Our portfolio includes - though
-                is not limited to - restaurants, retail environments, office
-                spaces, and condominiums.
+                TaDa! Interiors creates dynamic, high performing commercial
+                spaces that elevate the customer and employee experience. From
+                bars and restaurants to offices, condominiums and retail
+                environments, we blend functionality with distinctive style to
+                deliver spaces that work beautifully and leave a lasting
+                impression.
               </p>
               <div className="services-detail-rate">
                 Time and expertise for commercial services are billed at an hourly
