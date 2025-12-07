@@ -143,12 +143,13 @@ export default function ContactPage() {
                   color: "var(--color-primary)",
                   fontFamily: "var(--font-secondary)",
                   fontSize: "var(--font-size-lg)",
-                  fontWeight: "600",
                   lineHeight: "1.5",
                 }}
               >
-                Time and expertise for residential services are billed at an
-                hourly rate of <strong>$150.00/hour plus HST</strong>
+                <strong>
+                  Time and expertise for residential services are billed at an
+                  hourly rate of $150.00/hour plus HST
+                </strong>
               </div>
             </div>
 
@@ -186,12 +187,13 @@ export default function ContactPage() {
                   color: "var(--color-primary)",
                   fontFamily: "var(--font-secondary)",
                   fontSize: "var(--font-size-lg)",
-                  fontWeight: "600",
                   lineHeight: "1.5",
                 }}
               >
-                Time and expertise for commercial services are billed at an
-                hourly rate of <strong>$165.00/hour plus hst</strong>
+                <strong>
+                  Time and expertise for commercial services are billed at an
+                  hourly rate of $165.00/hour plus hst
+                </strong>
               </div>
             </div>
           </div>

@@ -31,7 +31,7 @@ export default async function JoannaBio() {
             marginBottom: "var(--spacing-md)",
           }}
         >
-          Joanna Dyment
+          Joanna Dyment Carrasco
         </h1>
 
         {/* Subtitle */}
