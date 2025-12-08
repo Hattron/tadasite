@@ -9,6 +9,7 @@ import { Upload, Image as ImageIcon } from "lucide-react";
 import { imagekitConfig } from "@/lib/imagekit";
 import {
   getHeroImage,
+  getMobileHeroImage,
   getFirstImage,
   getAboutUsImage,
   getMaureenImage,
@@ -74,6 +75,7 @@ export default function ImageSectionManager({
     try {
       const [
         heroImage,
+        mobileHeroImage,
         firstImage,
         aboutUsImage,
         maureeenImage,
@@ -85,6 +87,7 @@ export default function ImageSectionManager({
         commercialCoverImage,
       ] = await Promise.all([
         getHeroImage(),
+        getMobileHeroImage(),
         getFirstImage(),
         getAboutUsImage(),
         getMaureenImage(),
@@ -106,11 +109,24 @@ export default function ImageSectionManager({
               "Main banner image displayed at the top of the homepage",
             image: heroImage
               ? {
-                  id: heroImage.id,
-                  imagekitUrl: heroImage.imagekitUrl,
-                  alt: heroImage.alt,
-                  caption: heroImage.caption,
-                }
+                id: heroImage.id,
+                imagekitUrl: heroImage.imagekitUrl,
+                alt: heroImage.alt,
+                caption: heroImage.caption,
+              }
+              : null,
+          },
+          {
+            id: "mobileHero",
+            title: "Mobile Hero Image",
+            description: "Hero image displayed on mobile devices (optional)",
+            image: mobileHeroImage
+              ? {
+                id: mobileHeroImage.id,
+                imagekitUrl: mobileHeroImage.imagekitUrl,
+                alt: mobileHeroImage.alt,
+                caption: mobileHeroImage.caption,
+              }
               : null,
           },
           {
@@ -119,11 +135,11 @@ export default function ImageSectionManager({
             description: "First parallax section image on homepage",
             image: firstImage
               ? {
-                  id: firstImage.id,
-                  imagekitUrl: firstImage.imagekitUrl,
-                  alt: firstImage.alt,
-                  caption: firstImage.caption,
-                }
+                id: firstImage.id,
+                imagekitUrl: firstImage.imagekitUrl,
+                alt: firstImage.alt,
+                caption: firstImage.caption,
+              }
               : null,
           },
           {
@@ -132,11 +148,11 @@ export default function ImageSectionManager({
             description: "Image displayed in the About Us section on homepage",
             image: aboutUsImage
               ? {
-                  id: aboutUsImage.id,
-                  imagekitUrl: aboutUsImage.imagekitUrl,
-                  alt: aboutUsImage.alt,
-                  caption: aboutUsImage.caption,
-                }
+                id: aboutUsImage.id,
+                imagekitUrl: aboutUsImage.imagekitUrl,
+                alt: aboutUsImage.alt,
+                caption: aboutUsImage.caption,
+              }
               : null,
           },
           {
@@ -145,11 +161,11 @@ export default function ImageSectionManager({
             description: "Second parallax section image on homepage",
             image: secondImage
               ? {
-                  id: secondImage.id,
-                  imagekitUrl: secondImage.imagekitUrl,
-                  alt: secondImage.alt,
-                  caption: secondImage.caption,
-                }
+                id: secondImage.id,
+                imagekitUrl: secondImage.imagekitUrl,
+                alt: secondImage.alt,
+                caption: secondImage.caption,
+              }
               : null,
           },
           {
@@ -158,11 +174,11 @@ export default function ImageSectionManager({
             description: "Third parallax section image on homepage",
             image: thirdImage
               ? {
-                  id: thirdImage.id,
-                  imagekitUrl: thirdImage.imagekitUrl,
-                  alt: thirdImage.alt,
-                  caption: thirdImage.caption,
-                }
+                id: thirdImage.id,
+                imagekitUrl: thirdImage.imagekitUrl,
+                alt: thirdImage.alt,
+                caption: thirdImage.caption,
+              }
               : null,
           },
         ],
@@ -173,11 +189,11 @@ export default function ImageSectionManager({
             description: "Profile image for Maureen on the About/Team page",
             image: maureeenImage
               ? {
-                  id: maureeenImage.id,
-                  imagekitUrl: maureeenImage.imagekitUrl,
-                  alt: maureeenImage.alt,
-                  caption: maureeenImage.caption,
-                }
+                id: maureeenImage.id,
+                imagekitUrl: maureeenImage.imagekitUrl,
+                alt: maureeenImage.alt,
+                caption: maureeenImage.caption,
+              }
               : null,
           },
           {
@@ -186,11 +202,11 @@ export default function ImageSectionManager({
             description: "Profile image for Joanna on the About/Team page",
             image: joannaImage
               ? {
-                  id: joannaImage.id,
-                  imagekitUrl: joannaImage.imagekitUrl,
-                  alt: joannaImage.alt,
-                  caption: joannaImage.caption,
-                }
+                id: joannaImage.id,
+                imagekitUrl: joannaImage.imagekitUrl,
+                alt: joannaImage.alt,
+                caption: joannaImage.caption,
+              }
               : null,
           },
           {
@@ -199,11 +215,11 @@ export default function ImageSectionManager({
             description: "Main team section image on the About page",
             image: teamImage
               ? {
-                  id: teamImage.id,
-                  imagekitUrl: teamImage.imagekitUrl,
-                  alt: teamImage.alt,
-                  caption: teamImage.caption,
-                }
+                id: teamImage.id,
+                imagekitUrl: teamImage.imagekitUrl,
+                alt: teamImage.alt,
+                caption: teamImage.caption,
+              }
               : null,
           },
         ],
@@ -214,11 +230,11 @@ export default function ImageSectionManager({
             description: "Cover image for the residential gallery section",
             image: residentialCoverImage
               ? {
-                  id: residentialCoverImage.id,
-                  imagekitUrl: residentialCoverImage.imagekitUrl,
-                  alt: residentialCoverImage.alt,
-                  caption: residentialCoverImage.caption,
-                }
+                id: residentialCoverImage.id,
+                imagekitUrl: residentialCoverImage.imagekitUrl,
+                alt: residentialCoverImage.alt,
+                caption: residentialCoverImage.caption,
+              }
               : null,
           },
           {
@@ -227,11 +243,11 @@ export default function ImageSectionManager({
             description: "Cover image for the commercial gallery section",
             image: commercialCoverImage
               ? {
-                  id: commercialCoverImage.id,
-                  imagekitUrl: commercialCoverImage.imagekitUrl,
-                  alt: commercialCoverImage.alt,
-                  caption: commercialCoverImage.caption,
-                }
+                id: commercialCoverImage.id,
+                imagekitUrl: commercialCoverImage.imagekitUrl,
+                alt: commercialCoverImage.alt,
+                caption: commercialCoverImage.caption,
+              }
               : null,
           },
         ],

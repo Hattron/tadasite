@@ -27,6 +27,28 @@ export async function getHeroImage() {
   }
 }
 
+export async function getMobileHeroImage() {
+  try {
+    const mobileHeroImages = await db
+      .select({
+        id: tadaImages.id,
+        imagekitUrl: tadaImages.imagekitUrl,
+        alt: tadaImages.alt,
+        caption: tadaImages.caption,
+        heroTitle: tadaImages.heroTitle,
+        heroSubtitle: tadaImages.heroSubtitle,
+      })
+      .from(tadaImages)
+      .where(eq(tadaImages.isMobileHero, true))
+      .limit(1);
+
+    return mobileHeroImages.length > 0 ? mobileHeroImages[0] : null;
+  } catch (error) {
+    console.error("Error fetching mobile hero image:", error);
+    return null;
+  }
+}
+
 export async function getFirstImage() {
   try {
     const firstImages = await db
@@ -363,6 +385,70 @@ export async function setHeroImage(imageId: string) {
   } catch (error) {
     console.error("Error setting hero image:", error);
     throw new Error("Failed to set hero image");
+  }
+}
+
+export async function setMobileHeroImage(imageId: string) {
+  try {
+    // Get the current hero image's text content before unsetting
+    const currentHero = await db
+      .select({
+        heroTitle: tadaImages.heroTitle,
+        heroSubtitle: tadaImages.heroSubtitle,
+      })
+      .from(tadaImages)
+      .where(eq(tadaImages.isMobileHero, true))
+      .limit(1);
+
+    // Get the new image's current text content
+    const newImage = await db
+      .select({
+        heroTitle: tadaImages.heroTitle,
+        heroSubtitle: tadaImages.heroSubtitle,
+      })
+      .from(tadaImages)
+      .where(eq(tadaImages.id, imageId))
+      .limit(1);
+
+    // First, unset any existing mobile hero images
+    await db
+      .update(tadaImages)
+      .set({ isMobileHero: false })
+      .where(eq(tadaImages.isMobileHero, true));
+
+    // Set the new mobile hero image
+    // Note: We might want to use the same text as desktop hero, or independent text.
+    // For now, let's keep it consistent with other set*Image functions and preserve text if possible.
+    // If specific mobile text is needed, we might need a separate field or UI for it.
+    // Assuming for now mobile hero shares hero text title/subtitle structure.
+
+    // Check if new image has text, if not use current mobile hero text
+    const textToUse = {
+      heroTitle: newImage[0]?.heroTitle || currentHero[0]?.heroTitle || null,
+      heroSubtitle:
+        newImage[0]?.heroSubtitle || currentHero[0]?.heroSubtitle || null,
+    };
+
+    await db
+      .update(tadaImages)
+      .set({
+        isMobileHero: true,
+        // We can choose to carry over text or not. 
+        // If the user wants separate text for mobile, we should probably just leave it as is on the image
+        // or copy it from the previous mobile hero.
+        // For simple image swapping, let's just set the flag. 
+        // If text is needed, it's already on the image object (if set via other means) or we copy it.
+        heroTitle: textToUse.heroTitle,
+        heroSubtitle: textToUse.heroSubtitle,
+      })
+      .where(eq(tadaImages.id, imageId));
+
+    revalidatePath("/");
+    revalidatePath("/admin");
+    return { success: true };
+  } catch (error) {
+    console.error("Error setting mobile hero image:", error);
+    throw new Error("Failed to set mobile hero image");
   }
 }
 

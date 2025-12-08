@@ -38,6 +38,7 @@ export const tadaImages = pgTable('tada_images', {
   isHero: boolean('is_hero').notNull().default(false),
   heroTitle: text('hero_title'),
   heroSubtitle: text('hero_subtitle'),
+  isMobileHero: boolean('is_mobile_hero').notNull().default(false),
   isFirstImage: boolean('is_first_image').notNull().default(false),
   firstImageTitle: text('first_image_title'),
   firstImageSubtitle: text('first_image_subtitle'),

@@ -20,6 +20,7 @@ import {
   deleteFolder,
   moveImageToFolder,
   updateFolderDetails,
+  setMobileHeroImage,
 } from "@/lib/image-actions";
 
 // Component imports
@@ -73,7 +74,7 @@ export default function GalleryManager() {
     description: "",
     type: "info" as "info" | "warning" | "error",
     confirmText: "OK",
-    onConfirm: () => {},
+    onConfirm: () => { },
     showCancel: false,
     cancelText: "Cancel",
   });
@@ -85,8 +86,8 @@ export default function GalleryManager() {
     description: "",
     confirmText: "Confirm",
     cancelText: "Cancel",
-    onConfirm: () => {},
-    onCancel: () => {},
+    onConfirm: () => { },
+    onCancel: () => { },
   });
 
   useEffect(() => {
@@ -320,6 +321,21 @@ export default function GalleryManager() {
       showAlert(
         "Error",
         error instanceof Error ? error.message : "Failed to set hero image",
+        "error",
+      );
+    }
+  };
+
+  const handleSetMobileHero = async (imageId: string) => {
+    try {
+      await setMobileHeroImage(imageId);
+      await loadData();
+      setSelectedImage(null);
+    } catch (error) {
+      console.error("Failed to set mobile hero image:", error);
+      showAlert(
+        "Error",
+        error instanceof Error ? error.message : "Failed to set mobile hero image",
         "error",
       );
     }

@@ -8,7 +8,7 @@ import Testimonials from "@/components/Testimonials";
 import OurApproach from "@/components/OurApproach";
 import AnimatedPageWrapper from "@/components/AnimatedPageWrapper";
 import AnimatedSection from "@/components/AnimatedSection";
-import { getHeroImage } from "@/lib/image-actions";
+import { getHeroImage, getMobileHeroImage } from "@/lib/image-actions";
 
 import { Metadata } from "next";
 
@@ -20,10 +20,11 @@ export const metadata: Metadata = {
 
 export default async function Home() {
   const heroImage = await getHeroImage();
+  const mobileHeroImage = await getMobileHeroImage();
 
   return (
     <AnimatedPageWrapper>
-      <HeroSection heroImage={heroImage} />
+      <HeroSection heroImage={heroImage} mobileHeroImage={mobileHeroImage} />
 
       <AnimatedSection delay={0.1} style={{ paddingTop: "var(--spacing-xl)" }}>
         <OurApproach />

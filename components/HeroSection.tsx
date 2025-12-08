@@ -14,9 +14,10 @@ interface HeroImage {
 
 interface HeroSectionProps {
   heroImage: HeroImage | null;
+  mobileHeroImage?: HeroImage | null;
 }
 
-export default function HeroSection({ heroImage }: HeroSectionProps) {
+export default function HeroSection({ heroImage, mobileHeroImage }: HeroSectionProps) {
   if (!heroImage) {
     // Show loading skeleton with same dimensions to prevent layout shift
     return (
@@ -33,18 +34,51 @@ export default function HeroSection({ heroImage }: HeroSectionProps) {
 
   return (
     <div className="relative w-full h-screen overflow-hidden">
-      <ParallaxImage
-        src={heroImage.imagekitUrl}
-        alt={heroImage.alt || "Interior Design Hero Image"}
-        speed={-30}
-        className="w-full h-screen"
-        responsive
-        widths={[1280, 1536, 1920, 2048, 2560, 2880, 3840]}
-        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 100vw"
-        transformation="q-90"
-        aspectRatio={16/9}
-        overlay={false}
-      />
+      {mobileHeroImage ? (
+        <>
+          {/* Mobile Hero Image */}
+          <ParallaxImage
+            src={mobileHeroImage.imagekitUrl}
+            alt={mobileHeroImage.alt || "Interior Design Hero Image"}
+            speed={-15} // Reduced speed for mobile
+            className="w-full h-screen md:hidden"
+            responsive
+            widths={[640, 750, 828, 1080]}
+            sizes="100vw"
+            transformation="q-90"
+            // Mobile formatting often benefits from portrait or square, or just center crop
+            // We'll let the container (h-screen) and object-cover handle it, or we could force AR
+            overlay={false}
+          />
+          {/* Desktop Hero Image */}
+          <ParallaxImage
+            src={heroImage.imagekitUrl}
+            alt={heroImage.alt || "Interior Design Hero Image"}
+            speed={-30}
+            className="w-full h-screen hidden md:block"
+            responsive
+            widths={[1280, 1536, 1920, 2048, 2560, 2880, 3840]}
+            sizes="100vw"
+            transformation="q-90"
+            aspectRatio={16 / 9}
+            overlay={false}
+          />
+        </>
+      ) : (
+        /* Default Single Hero Image (for all screens) */
+        <ParallaxImage
+          src={heroImage.imagekitUrl}
+          alt={heroImage.alt || "Interior Design Hero Image"}
+          speed={-30}
+          className="w-full h-screen"
+          responsive
+          widths={[1280, 1536, 1920, 2048, 2560, 2880, 3840]}
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 100vw"
+          transformation="q-90"
+          aspectRatio={16 / 9}
+          overlay={false}
+        />
+      )}
 
       {/* Content positioned at center */}
       <div className="absolute inset-0 flex items-center justify-center z-20 p-4 sm:p-8">

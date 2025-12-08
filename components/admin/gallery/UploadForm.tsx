@@ -9,17 +9,18 @@ import { Label } from '@/components/ui/label';
 import { Upload, AlertTriangle } from 'lucide-react';
 import { imagekitConfig } from '@/lib/imagekit';
 import { FolderData } from './types';
-import { 
-  setHeroImage, 
-  setFirstImage, 
-  setAboutUsImage, 
-  setMaureenImage, 
-  setJoannaImage, 
-  setTeamImage, 
-  setSecondImage, 
-  setThirdImage, 
-  setResidentialCoverImage, 
-  setCommercialCoverImage 
+import {
+  setHeroImage,
+  setFirstImage,
+  setAboutUsImage,
+  setMaureenImage,
+  setJoannaImage,
+  setTeamImage,
+  setSecondImage,
+  setThirdImage,
+  setResidentialCoverImage,
+  setCommercialCoverImage,
+  setMobileHeroImage,
 } from '@/lib/image-actions';
 
 interface UploadFormProps {
@@ -44,14 +45,15 @@ export default function UploadForm({
   const [showFolderAlert, setShowFolderAlert] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [showErrorAlert, setShowErrorAlert] = useState(false);
-  
+
   const getFolderById = (id: string) => folders.find(f => f.id === id);
 
   const getSectionTitle = (type: string) => {
     const SECTION_TITLES: Record<string, string> = {
       hero: 'Hero Image',
+      mobileHero: 'Mobile Hero Image',
       first: 'First Image',
-      about: 'About Us Image', 
+      about: 'About Us Image',
       maureen: 'Maureen Image',
       joanna: 'Joanna Image',
       team: 'Team Image',
@@ -156,6 +158,9 @@ export default function UploadForm({
           case 'hero':
             await setHeroImage(imageId);
             break;
+          case 'mobileHero':
+            await setMobileHeroImage(imageId);
+            break;
           case 'first':
             await setFirstImage(imageId);
             break;
@@ -187,12 +192,12 @@ export default function UploadForm({
       }
 
       setUploadProgress(100);
-      
+
       // Reset form and close dialog
       (e.target as HTMLFormElement).reset();
       onUploadComplete();
       onOpenChange(false);
-      
+
     } catch (error) {
       console.error('Upload failed:', error);
       setErrorMessage(error instanceof Error ? error.message : 'Upload failed');
@@ -213,7 +218,7 @@ export default function UploadForm({
               {sectionType ? `Upload ${getSectionTitle(sectionType)}` : 'Upload Images'}
             </DialogTitle>
           </DialogHeader>
-          
+
           <div className="space-y-4">
             <form onSubmit={handleFileUpload} className="space-y-4">
               <div className="space-y-2">
@@ -227,7 +232,7 @@ export default function UploadForm({
                   disabled={isUploading}
                 />
               </div>
-              
+
               <div className="space-y-2">
                 <Label htmlFor="alt">Alt Text</Label>
                 <Input
@@ -237,7 +242,7 @@ export default function UploadForm({
                   disabled={isUploading}
                 />
               </div>
-              
+
               <div className="space-y-2">
                 <Label htmlFor="caption">Caption</Label>
                 <Input
@@ -261,8 +266,8 @@ export default function UploadForm({
                 </div>
               </div>
 
-              <Button 
-                type="submit" 
+              <Button
+                type="submit"
                 disabled={isUploading}
                 className="w-full"
                 style={{ backgroundColor: 'var(--color-primary)' }}
@@ -282,7 +287,7 @@ export default function UploadForm({
               Cannot Upload to Section Folder
             </AlertDialogTitle>
             <AlertDialogDescription>
-              Images cannot be uploaded directly to Residential or Commercial section folders. 
+              Images cannot be uploaded directly to Residential or Commercial section folders.
               Please select a project folder within the section, or create a new project first.
             </AlertDialogDescription>
           </AlertDialogHeader>

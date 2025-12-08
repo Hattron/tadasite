@@ -8,6 +8,7 @@ export interface ImageData {
   isHero: boolean;
   heroTitle: string | null;
   heroSubtitle: string | null;
+  isMobileHero: boolean;
   isFirstImage: boolean;
   firstImageTitle: string | null;
   firstImageSubtitle: string | null;
