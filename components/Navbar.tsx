@@ -64,7 +64,7 @@ export default function Navbar() {
           onClick={closeMenu}
         >
           <img
-            src={`${imagekitConfig.urlEndpoint}/tada/Assets/logosimple.png?tr=h-60,q-90`}
+            src={`${imagekitConfig.urlEndpoint}/tada/Assets/logosimple.png?tr=h-300,q-90`}
             alt="TaDa! Interior Design"
             className="h-20 sm:h-24"
             style={{ height: "5rem" }}
