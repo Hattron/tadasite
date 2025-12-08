@@ -9,9 +9,17 @@ import ImageFrame from "@/components/ui/ImageFrame";
 // Force dynamic rendering to ensure fresh content
 export const revalidate = 0;
 
+import { Metadata } from "next";
+
 // Helper function to extract path from ImageKit URL
 const getImagePath = (fullUrl: string) => {
   return fullUrl.replace(/^https:\/\/ik\.imagekit\.io\/[^\/]+/, "");
+};
+
+export const metadata: Metadata = {
+  title: "About Us",
+  description:
+    "Meet Maureen and Joanna, the creative force behind TaDa! Interior Design. Learn about our passion for creating beautiful, functional spaces.",
 };
 
 export default async function AboutPage() {

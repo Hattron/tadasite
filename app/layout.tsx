@@ -28,8 +28,22 @@ const windSong = WindSong({
 });
 
 export const metadata: Metadata = {
-  title: "TaDa! Site",
-  description: "A customizable site with dynamic CSS variables",
+  title: {
+    template: "%s | TaDa! Interior Design",
+    default: "TaDa! Interior Design",
+  },
+  description:
+    "TaDa! Interior Design offers expert residential and commercial design services. From renovations to custom millwork, we create distinctive, functional spaces.",
+  keywords: [
+    "Interior Design",
+    "Residential Design",
+    "Commercial Design",
+    "Renovations",
+    "Custom Millwork",
+    "Space Planning",
+    "Home Staging",
+    "TaDa Interiors",
+  ],
 };
 
 export default function RootLayout({

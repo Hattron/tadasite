@@ -10,6 +10,14 @@ import AnimatedPageWrapper from "@/components/AnimatedPageWrapper";
 import AnimatedSection from "@/components/AnimatedSection";
 import { getHeroImage } from "@/lib/image-actions";
 
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Home | TaDa! Interior Design",
+  description:
+    "Welcome to TaDa! Interior Design. We specialize in residential and commercial design, creating spaces that blend functionality with distinctive style.",
+};
+
 export default async function Home() {
   const heroImage = await getHeroImage();
 

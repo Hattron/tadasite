@@ -1,6 +1,14 @@
 import ContactForm from "./components/ContactForm";
 
 
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Contact Us",
+  description:
+    "Get in touch with TaDa! Interior Design to start your project. We offer residential and commercial design services at competitive rates.",
+};
+
 export default function ContactPage() {
 
 

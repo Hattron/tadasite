@@ -4,6 +4,13 @@ import {
 } from "@/lib/image-actions";
 import { imagekitConfig } from "@/lib/imagekit";
 import Link from "next/link";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Recent Projects",
+  description:
+    "View our portfolio of recent interior design projects, showcasing our residential and commercial work.",
+};
 
 const getImagePath = (fullUrl: string) => {
   return fullUrl.replace(/^https:\/\/ik\.imagekit\.io\/[^\/]+/, "");
@@ -35,7 +42,7 @@ export default async function GalleryPage() {
               fontFamily: "var(--font-primary)",
             }}
           >
-            Portfolio
+            Recent Projects
           </h1>
 
           {/* Decorative line */}
