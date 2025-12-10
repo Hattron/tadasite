@@ -127,7 +127,7 @@ export default async function AboutPage() {
                     alt={teamImage.alt || "TaDa! Interiors Team"}
                     className="w-full h-auto"
                     style={{
-                      maxWidth: "380px",
+                      maxWidth: "340px",
                       display: "block",
                     }}
                   />

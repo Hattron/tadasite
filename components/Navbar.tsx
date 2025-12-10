@@ -91,7 +91,7 @@ export default function Navbar() {
               color: "var(--color-primary)",
               fontFamily: "var(--font-secondary, Inter, sans-serif)",
               borderBottom: "2px solid transparent",
-              fontSize: "var(--font-size-lg)",
+              fontSize: "var(--font-size-xl)",
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.opacity = "0.9";
@@ -104,6 +104,7 @@ export default function Navbar() {
           >
             About
           </Link>
+          <span style={{ height: "1.5rem", width: "1px", backgroundColor: "var(--color-primary)", opacity: 0.3 }}></span>
           <Link
             href="/services"
             className="font-medium pb-1 transition-all"
@@ -111,7 +112,7 @@ export default function Navbar() {
               color: "var(--color-primary)",
               fontFamily: "var(--font-secondary, Inter, sans-serif)",
               borderBottom: "2px solid transparent",
-              fontSize: "var(--font-size-lg)",
+              fontSize: "var(--font-size-xl)",
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.opacity = "0.9";
@@ -124,6 +125,7 @@ export default function Navbar() {
           >
             Services
           </Link>
+          <span style={{ height: "1.5rem", width: "1px", backgroundColor: "var(--color-primary)", opacity: 0.3 }}></span>
           <Link
             href="/gallery"
             className="font-medium pb-1 transition-all"
@@ -131,7 +133,7 @@ export default function Navbar() {
               color: "var(--color-primary)",
               fontFamily: "var(--font-secondary, Inter, sans-serif)",
               borderBottom: "2px solid transparent",
-              fontSize: "var(--font-size-lg)",
+              fontSize: "var(--font-size-xl)",
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.opacity = "0.9";
@@ -144,6 +146,7 @@ export default function Navbar() {
           >
             Recent Projects
           </Link>
+          <span style={{ height: "1.5rem", width: "1px", backgroundColor: "var(--color-primary)", opacity: 0.3 }}></span>
           <Link
             href="/contact"
             className="font-medium pb-1 transition-all"
@@ -151,7 +154,7 @@ export default function Navbar() {
               color: "var(--color-primary)",
               fontFamily: "var(--font-secondary, Inter, sans-serif)",
               borderBottom: "2px solid transparent",
-              fontSize: "var(--font-size-lg)",
+              fontSize: "var(--font-size-xl)",
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.opacity = "0.9";
@@ -214,7 +217,7 @@ export default function Navbar() {
               style={{
                 color: "var(--color-primary)",
                 fontFamily: "var(--font-secondary, Inter, sans-serif)",
-                fontSize: "var(--font-size-lg)",
+                fontSize: "var(--font-size-xl)",
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.backgroundColor = "rgba(159, 149, 108, 0.08)"; // subtle secondary tint
@@ -232,7 +235,7 @@ export default function Navbar() {
               style={{
                 color: "var(--color-primary)",
                 fontFamily: "var(--font-secondary, Inter, sans-serif)",
-                fontSize: "var(--font-size-lg)",
+                fontSize: "var(--font-size-xl)",
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.backgroundColor = "rgba(159, 149, 108, 0.08)";
@@ -250,7 +253,7 @@ export default function Navbar() {
               style={{
                 color: "var(--color-primary)",
                 fontFamily: "var(--font-secondary, Inter, sans-serif)",
-                fontSize: "var(--font-size-lg)",
+                fontSize: "var(--font-size-xl)",
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.backgroundColor = "rgba(159, 149, 108, 0.08)";
