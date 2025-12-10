@@ -253,14 +253,7 @@ export default function ServicesPageContent() {
                     </div>
 
                     {/* Commercial Image - Starling Restaurant */}
-                    <figure className="services-detail-media">
-                        <img
-                            src="https://ik.imagekit.io/crimsonstack/tada/Assets/starling.JPG"
-                            alt="Commercial restaurant interior design - Starling Restaurant"
-                            className="services-detail-media-image"
-                        />
-                        <figcaption className="services-detail-caption"></figcaption>
-                    </figure>
+
                 </section>
 
                 {/* Call to Action */}

@@ -94,11 +94,7 @@ export default async function AboutUsAnimated() {
                 fontFamily: "var(--font-secondary)",
               }}
             >
-              At TaDa! Interiors, we&apos;ve been bringing inspired design to
-              homes and businesses across Ottawa for over 20 years. Our passion
-              lies in creating spaces that are not only beautiful but also
-              deeply personal and functional for the people who live and work in
-              them.
+              At TaDa! Interiors, we create beautifully decorated spaces that reflect the people and brands behind them. Whether you&rsquo;re refreshing a home or elevating a commercial space, we bring a refined, practical eye to every detail&mdash;furnishings, finishes, flow, and function.
             </div>
 
             <div
@@ -108,11 +104,7 @@ export default async function AboutUsAnimated() {
                 fontFamily: "var(--font-secondary)",
               }}
             >
-              We&apos;re celebrated for our ability to transform and reimagine
-              spaces in a way that reflects every client&apos;s unique style,
-              needs, and budget. Whether it&apos;s a complete home renovation, a
-              single room refresh, or a commercial project, we approach each
-              design challenge with creativity, expertise, and genuine care.
+              Based in Ottawa and backed by over two decades of experience, we combine creative vision with real-world execution. Our trusted network of skilled trades and suppliers helps ensure every project runs smoothly and stays on budget&mdash;without compromising on style.
             </div>
 
             <div
@@ -122,11 +114,7 @@ export default async function AboutUsAnimated() {
                 fontFamily: "var(--font-secondary)",
               }}
             >
-              We work closely with a trusted team of skilled trades
-              professionals, allowing TaDa! Interiors to deliver comprehensive
-              design solutions from concept to completion. Our collaborative
-              approach ensures every detail is thoughtfully considered and
-              expertly executed.
+              Known for our collaborative, down-to-earth approach, we help clients make confident decisions and bring their spaces to life in ways that feel polished, personal, and complete.
             </div>
 
             {/* Call to Action */}

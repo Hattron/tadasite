@@ -47,8 +47,10 @@
 .caption-corners .inner-corner.top-left {
   top: 3px;
   left: 3px;
-  width: 48px; /* 2/3 of outer length */
-  height: 48px; /* 2/3 of outer length */
+  width: 48px;
+  /* 2/3 of outer length */
+  height: 48px;
+  /* 2/3 of outer length */
   border-top: 1px solid var(--color-primary);
   border-left: 1px solid var(--color-primary);
 }
@@ -219,7 +221,7 @@
 
   /* Component sizing variables */
   --image-max-width: 32rem;
-  --image-about-medium-max-width: 24rem;
+  --image-about-medium-max-width: 26rem;
   --image-about-max-width: 16rem;
   --content-max-width: 42rem;
   --container-max-width: 80rem;
@@ -258,7 +260,11 @@
   --services-detail-text-gap: clamp(1rem, 3vw, 1.5rem);
 }
 
-.font-windsong { font-family: var(--font-caption); font-weight: var(--font-caption-weight-bold); }
+.font-windsong {
+  font-family: var(--font-caption);
+  font-weight: var(--font-caption-weight-bold);
+}
+
 .services-section {
   display: flex;
   flex-direction: column;
@@ -511,11 +517,13 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
+
 @media (min-width: 1200px) {
   .services-grid {
     grid-template-columns: repeat(3, minmax(26rem, 1fr));
   }
 }
+
 @media (max-width: 768px) {
   .services-card {
     padding: clamp(1.5rem, 6vw, 2.2rem);

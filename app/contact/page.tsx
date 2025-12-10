@@ -41,7 +41,7 @@ export default function ContactPage() {
         >
           {/* 1. Top Left: Contact Form Section */}
           <div
-            className="flex flex-col lg:col-span-6"
+            className="flex flex-col lg:col-span-6 order-1"
             style={{
               gap: "var(--spacing-lg)",
             }}
@@ -59,7 +59,7 @@ export default function ContactPage() {
 
           {/* 2. Top Right: Vase Image */}
           <div
-            className="rounded-lg overflow-hidden shadow-sm lg:col-span-6"
+            className="rounded-lg overflow-hidden shadow-sm lg:col-span-6 order-2"
             style={{
               backgroundColor: "var(--color-background)",
               border: `1px solid var(--color-text-muted)`,
@@ -76,7 +76,7 @@ export default function ContactPage() {
 
           {/* 3. Bottom Left: Team Image */}
           <div
-            className="rounded-lg overflow-hidden shadow-sm lg:col-span-4"
+            className="rounded-lg overflow-hidden shadow-sm lg:col-span-4 order-4 lg:order-3"
             style={{
               backgroundColor: "var(--color-background)",
               border: `1px solid var(--color-text-muted)`,
@@ -84,7 +84,7 @@ export default function ContactPage() {
             }}
           >
             <img
-              src="https://ik.imagekit.io/crimsonstack/tada/Team07cropped.jpg?tr=w-450,q-90"
+              src="https://ik.imagekit.io/crimsonstack/tada/Assets/hallwaycrop2.png?tr=w-450,q-90"
               alt="Interior design sink showcase"
               className="w-full h-full object-cover"
               style={{
@@ -95,7 +95,7 @@ export default function ContactPage() {
 
           {/* 4. Bottom Right: Our Services */}
           <div
-            className="rounded-lg shadow-sm lg:col-span-8"
+            className="rounded-lg shadow-sm lg:col-span-8 order-3 lg:order-4"
             style={{
               backgroundColor: "var(--color-background)",
               border: `1px solid var(--color-text-muted)`,

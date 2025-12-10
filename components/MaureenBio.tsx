@@ -63,7 +63,7 @@ export default async function MaureenBio() {
             {maurImage ? (
               <ImageFrame variant="minimal">
                 <img
-                  src={`${imagekitConfig.urlEndpoint}${getImagePath(maurImage.imagekitUrl)}?tr=w-300,h-300,q-90`}
+                  src={`${imagekitConfig.urlEndpoint}${getImagePath(maurImage.imagekitUrl)}?tr=w-600,h-750,q-90`}
                   alt={
                     maurImage.alt ||
                     "Maureen Rice, certified interior decorator"

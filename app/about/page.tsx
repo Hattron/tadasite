@@ -127,7 +127,7 @@ export default async function AboutPage() {
                     alt={teamImage.alt || "TaDa! Interiors Team"}
                     className="w-full h-auto"
                     style={{
-                      maxWidth: "450px",
+                      maxWidth: "380px",
                       display: "block",
                     }}
                   />
@@ -170,7 +170,7 @@ export default async function AboutPage() {
           <img
             src="https://ik.imagekit.io/crimsonstack/tada/Assets/chair.png?tr=w-500,h-600,q-90"
             alt="Interior design chair detail"
-            className="w-full h-auto object-cover grayscale hover:grayscale-0 transition-all duration-500"
+            className="w-full h-auto object-cover transition-all duration-500"
             style={{
               maxHeight: "400px",
               display: "block",
@@ -187,7 +187,7 @@ export default async function AboutPage() {
           <img
             src="https://ik.imagekit.io/crimsonstack/tada/Assets/light.jpg?tr=w-500,h-600,q-90"
             alt="Interior design lighting detail"
-            className="w-full h-auto object-cover grayscale hover:grayscale-0 transition-all duration-500"
+            className="w-full h-auto object-cover transition-all duration-500"
             style={{
               maxHeight: "400px",
               display: "block",
@@ -199,7 +199,7 @@ export default async function AboutPage() {
           <img
             src="https://ik.imagekit.io/crimsonstack/tada/Assets/faucet.jpg?tr=w-500,h-600,q-90"
             alt="Interior design faucet detail"
-            className="w-full h-auto object-cover grayscale hover:grayscale-0 transition-all duration-500"
+            className="w-full h-auto object-cover transition-all duration-500"
             style={{
               maxHeight: "400px",
               display: "block",

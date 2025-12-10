@@ -91,6 +91,7 @@ export default function Navbar() {
               color: "var(--color-primary)",
               fontFamily: "var(--font-secondary, Inter, sans-serif)",
               borderBottom: "2px solid transparent",
+              fontSize: "var(--font-size-lg)",
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.opacity = "0.9";
@@ -110,6 +111,7 @@ export default function Navbar() {
               color: "var(--color-primary)",
               fontFamily: "var(--font-secondary, Inter, sans-serif)",
               borderBottom: "2px solid transparent",
+              fontSize: "var(--font-size-lg)",
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.opacity = "0.9";
@@ -129,6 +131,7 @@ export default function Navbar() {
               color: "var(--color-primary)",
               fontFamily: "var(--font-secondary, Inter, sans-serif)",
               borderBottom: "2px solid transparent",
+              fontSize: "var(--font-size-lg)",
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.opacity = "0.9";
@@ -148,6 +151,7 @@ export default function Navbar() {
               color: "var(--color-primary)",
               fontFamily: "var(--font-secondary, Inter, sans-serif)",
               borderBottom: "2px solid transparent",
+              fontSize: "var(--font-size-lg)",
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.opacity = "0.9";
@@ -210,6 +214,7 @@ export default function Navbar() {
               style={{
                 color: "var(--color-primary)",
                 fontFamily: "var(--font-secondary, Inter, sans-serif)",
+                fontSize: "var(--font-size-lg)",
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.backgroundColor = "rgba(159, 149, 108, 0.08)"; // subtle secondary tint
@@ -227,6 +232,7 @@ export default function Navbar() {
               style={{
                 color: "var(--color-primary)",
                 fontFamily: "var(--font-secondary, Inter, sans-serif)",
+                fontSize: "var(--font-size-lg)",
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.backgroundColor = "rgba(159, 149, 108, 0.08)";
@@ -244,6 +250,7 @@ export default function Navbar() {
               style={{
                 color: "var(--color-primary)",
                 fontFamily: "var(--font-secondary, Inter, sans-serif)",
+                fontSize: "var(--font-size-lg)",
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.backgroundColor = "rgba(159, 149, 108, 0.08)";
@@ -261,6 +268,7 @@ export default function Navbar() {
               style={{
                 color: "var(--color-primary)",
                 fontFamily: "var(--font-secondary, Inter, sans-serif)",
+                fontSize: "var(--font-size-lg)",
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.backgroundColor = "rgba(159, 149, 108, 0.08)";

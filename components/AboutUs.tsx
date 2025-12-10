@@ -12,16 +12,16 @@ export default async function AboutUs() {
   return (
     <section className="py-20 px-8" style={{ backgroundColor: 'var(--color-background)' }}>
       <div className="max-w-7xl mx-auto">
-        <h2 
+        <h2
           className="text-5xl font-bold text-center mb-16"
-          style={{ 
+          style={{
             color: 'var(--color-primary)',
             fontFamily: 'var(--font-primary)'
           }}
         >
           About Us
         </h2>
-        
+
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Image Section */}
           <div className="flex justify-center lg:justify-start">
@@ -33,11 +33,11 @@ export default async function AboutUs() {
                 style={{ maxWidth: '500px' }}
               />
             ) : (
-              <div 
+              <div
                 className="w-full max-w-md h-96 rounded-2xl shadow-lg flex items-center justify-center"
                 style={{ backgroundColor: 'var(--color-secondary)', opacity: 0.1 }}
               >
-                <p 
+                <p
                   className="text-center"
                   style={{ color: 'var(--color-text)' }}
                 >
@@ -49,50 +49,39 @@ export default async function AboutUs() {
 
           {/* Content Section */}
           <div className="space-y-6">
-            <p 
+            <p
               className="text-lg leading-relaxed"
-              style={{ 
+              style={{
                 color: 'var(--color-text)',
                 fontFamily: 'var(--font-secondary)'
               }}
             >
-              At TaDa! Interiors, we&apos;ve been bringing inspired design 
-              to homes and businesses across Ottawa for over 20 years. 
-              From personalized paint consultations to full scale 
-              renovations, we offer a wide range of residential and 
-              commercial design services tailored to meet each client&apos;s 
-              needs.
+              At TaDa! Interiors, we create beautifully decorated spaces that reflect the people and brands behind them. Whether you&rsquo;re refreshing a home or elevating a commercial space, we bring a refined, practical eye to every detail&mdash;furnishings, finishes, flow, and function.
             </p>
 
-            <p 
+            <p
               className="text-lg leading-relaxed"
-              style={{ 
+              style={{
                 color: 'var(--color-text)',
                 fontFamily: 'var(--font-secondary)'
               }}
             >
-              We&apos;re celebrated for our ability to transform and reimagine 
-              spaces in a way that reflects every client&apos;s personality, style 
-              and lifestyle. Our warm, collaborative approach ensures that 
-              every project feels thoughtful, functional, and visually 
-              harmonious.
+              Based in Ottawa and backed by over two decades of experience, we combine creative vision with real-world execution. Our trusted network of skilled trades and suppliers helps ensure every project runs smoothly and stays on budget&mdash;without compromising on style.
             </p>
 
-            <p 
+            <p
               className="text-lg leading-relaxed"
-              style={{ 
+              style={{
                 color: 'var(--color-text)',
                 fontFamily: 'var(--font-secondary)'
               }}
             >
-              We work closely with a trusted team of skilled trades 
-              professionals, allowing TaDa! Interiors to deliver exceptional 
-              craftsmanship and seamless results every step of the way.
+              Known for our collaborative, down-to-earth approach, we help clients make confident decisions and bring their spaces to life in ways that feel polished, personal, and complete.
             </p>
 
             {/* Call to Action */}
             <div className="pt-6">
-              <a 
+              <a
                 href="mailto:hello@tadainteriordesign.com"
                 className="inline-flex items-center gap-2 rounded-full transition-all font-medium px-8 py-4 text-lg"
                 style={{
